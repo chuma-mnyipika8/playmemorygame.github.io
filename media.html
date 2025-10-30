@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic MP3 Player</title>
+     <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e1e2f, #3b3b5f);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background-image: url('mediau.webp'); /* Optional Background */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .player-container {
+            background: rgba(30, 30, 30, 0.9);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 550px;
+            box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.8);
+            padding: 25px;
+            text-align: center;
+        }
+
+        .header {
+            font-size: 2.2em;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: #00e676;
+            text-shadow: 0px 4px 10px rgba(0, 230, 118, 0.8);
+        }
+
+        .search-bar {
+            margin-bottom: 15px;
+        }
+
+        .search-bar input {
+            width: 90%;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: 2px solid #00e676;
+            border-radius: 10px;
+            outline: none;
+            color: #000;
+        }
+
+        .btn-select-folder {
+            margin: 10px auto;
+            padding: 12px 25px;
+            font-size: 16px;
+            background: #00e676;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+            box-shadow: 0px 4px 10px rgba(0, 230, 118, 0.5);
+        }
+
+        .btn-select-folder:hover {
+            background: #00c853;
+        }
+
+        .track-title {
+            font-size: 1.5em;
+            margin: 15px 0;
+            font-weight: bold;
+            color: #f3f3f3;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-around;
+            margin: 15px 0;
+        }
+
+        .controls button {
+            background: linear-gradient(135deg, #6200ee, #3700b3);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 4px 10px rgba(98, 0, 238, 0.7);
+        }
+
+        .controls button:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 6px 15px rgba(98, 0, 238, 0.9);
+        }
+
+        .progress-bar {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .progress-bar input[type="range"] {
+            flex: 1;
+            height: 8px;
+            appearance: none;
+            background: #00e676;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .progress-bar input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            background: #ffffff;
+            border: 3px solid #00e676;
+            border-radius: 50%;
+        }
+
+        .playlist {
+            margin-top: 15px;
+            background: rgba(50, 50, 50, 0.9);
+            border-radius: 10px;
+            padding: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .playlist ul {
+            list-style: none;
+        }
+
+        .playlist ul li {
+            padding: 10px;
+            margin-bottom: 5px;
+            background: #444;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .playlist ul li.active {
+            background: #00e676;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .playlist ul li:hover {
+            background: #6200ee;
+            color: white;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="player-container">
+        <div class="header">Dynamic MP3 Player</div>
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search songs...">
+        </div>
+        <button class="btn-select-folder" id="selectFolderButton">Select Songs</button>
+        <audio id="audioPlayer"></audio>
+        <div class="track-title" id="trackTitle">No Song Playing</div>
+        <div class="controls">
+            <button id="prevButton">⏮</button>
+            <button id="playPauseButton">▶</button>
+            <button id="nextButton">⏭</button>
+        </div>
+        <div class="progress-bar">
+            <span id="currentTime">0:00</span>
+            <input type="range" id="progress" value="0">
+            <span id="totalTime">0:00</span>
+        </div>
+        <div class="playlist">
+            <h3>Your Playlist</h3>
+            <ul id="playlist"></ul>
+        </div>
+        <footer>&copy; 2024 Dynamic MP3 Player</footer>
+    </div>
+
+    <script>
+        const selectFolderButton = document.getElementById('selectFolderButton');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const playPauseButton = document.getElementById('playPauseButton');
+        const progress = document.getElementById('progress');
+        const playlist = document.getElementById('playlist');
+        const trackTitle = document.getElementById('trackTitle');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+
+        let songs = [];
+        let currentSongIndex = 0;
+
+        // Select files manually as a fallback for unsupported browsers
+        selectFolderButton.addEventListener('click', async () => {
+            try {
+                // Fallback for unsupported browsers
+                const fileHandles = await window.showOpenFilePicker({
+                    multiple: true,
+                    types: [{
+                        description: 'Audio Files',
+                        accept: { 'audio/*': ['.mp3'] }
+                    }]
+                });
+
+                songs = [];
+                for (const handle of fileHandles) {
+                    const file = await handle.getFile();
+                    songs.push({ title: file.name, src: URL.createObjectURL(file) });
+                }
+
+                if (songs.length > 0) {
+                    currentSongIndex = 0;
+                    loadSong(currentSongIndex);
+                    populatePlaylist();
+                } else {
+                    alert('No MP3 files selected.');
+                }
+            } catch (error) {
+                console.error('Error selecting files:', error);
+            }
+        });
+
+        // Load a song
+        function loadSong(index) {
+            const song = songs[index];
+            trackTitle.textContent = song.title;
+            audioPlayer.src = song.src;
+        }
+
+        // Populate playlist
+        function populatePlaylist() {
+            playlist.innerHTML = '';
+            songs.forEach((song, index) => {
+                const li = document.createElement('li');
+                li.textContent = song.title;
+                li.classList.add(index === currentSongIndex ? 'active' : '');
+                li.addEventListener('click', () => {
+                    currentSongIndex = index;
+                    loadSong(currentSongIndex);
+                    playSong();
+                });
+                playlist.appendChild(li);
+            });
+        }
+
+        // Highlight active song
+        function updateActiveSong() {
+            const items = playlist.querySelectorAll('li');
+            items.forEach((item, index) => {
+                item.classList.toggle('active', index === currentSongIndex);
+            });
+        }
+
+        // Play or pause the audio
+        playPauseButton.addEventListener('click', () => {
+            if (audioPlayer.paused) {
+                playSong();
+            } else {
+                pauseSong();
+            }
+        });
+
+        function playSong() {
+            audioPlayer.play();
+            playPauseButton.textContent = '⏸';
+            updateActiveSong();
+        }
+
+        function pauseSong() {
+            audioPlayer.pause();
+            playPauseButton.textContent = '▶';
+        }
+
+        // Update progress bar
+        audioPlayer.addEventListener('timeupdate', () => {
+            if (audioPlayer.duration) {
+                progress.value = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            }
+        });
+
+        progress.addEventListener('input', () => {
+            if (audioPlayer.duration) {
+                audioPlayer.currentTime = (progress.value / 100) * audioPlayer.duration;
+            }
+        });
+
+        // Navigation buttons
+        prevButton.addEventListener('click', () => {
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+            loadSong(currentSongIndex);
+            playSong();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            loadSong(currentSongIndex);
+            playSong();
+        });
+    </script>
+</body>
+</html>

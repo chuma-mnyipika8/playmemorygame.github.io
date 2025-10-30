@@ -1,0 +1,1500 @@
+const wordsList = [
+  ['love', 'happy', 'sad', 'angry', 'excited', 'fear'],
+  ['joyful', 'depressed', 'furious', 'nervous', 'thrilled', 'anxious'],
+  ['ecstatic', 'miserable', 'rage', 'calm', 'overjoyed', 'terrified'],
+  ['compassionate', 'sorrowful', 'irritated', 'peaceful', 'delighted', 'worried'],
+  ['affectionate', 'melancholy', 'hostile', 'serene', 'enthusiastic', 'panicked'],
+  ['grateful', 'hopeless', 'resentful', 'content', 'elated', 'apprehensive'],
+  ['passionate', 'heartbroken', 'agitated', 'relaxed', 'cheerful', 'distraught'],
+  ['adoring', 'devastated', 'enraged', 'tranquil', 'jubilant', 'uneasy'],
+  ['caring', 'disheartened', 'frustrated', 'balanced', 'exuberant', 'alarmed'],
+  ['tender', 'gloomy', 'outraged', 'restful', 'buoyant', 'timid'],
+  ['fond', 'sulky', 'bitter', 'soothed', 'upbeat', 'doubtful'],
+  ['warmhearted', 'forlorn', 'annoyed', 'harmonious', 'gleeful', 'hesitant'],
+  ['devoted', 'downcast', 'vexed', 'collected', 'high-spirited', 'jittery'],
+  ['romantic', 'sullen', 'irate', 'gentle', 'lively', 'pensive'],
+  ['tenderhearted', 'woeful', 'fuming', 'mindful', 'festive', 'restless'],
+  ['admiring', 'despairing', 'cross', 'undisturbed', 'buoyed', 'shy'],
+  ['affection', 'pessimistic', 'simmering', 'zen', 'exhilarated', 'reserved'],
+  ['sentimental', 'downhearted', 'seething', 'clear-headed', 'overcome', 'uncertain'],
+  ['infatuated', 'mournful', 'outrageous', 'unshaken', 'giddy', 'shaken'],
+  ['ardent', 'wistful', 'grumpy', 'unperturbed', 'merry', 'tensed'],
+  ['endearing', 'glum', 'testy', 'settled', 'jovial', 'distressed'],
+  ['sympathetic', 'tearful', 'touchy', 'reassured', 'vivacious', 'frazzled'],
+  ['charitable', 'somber', 'snappy', 'softhearted', 'animated', 'flustered'],
+  ['tenderness', 'lonely', 'prickly', 'philosophical', 'lighthearted', 'nervy'],
+  ['devotion', 'grieving', 'abrasive', 'meditative', 'sunny', 'antsy'],
+  ['adoration', 'anguished', 'defensive', 'introspective', 'bouncy', 'shaky'],
+  ['amorous', 'grief-stricken', 'cynical', 'poised', 'carefree', 'dazed'],
+  ['caressing', 'distraught', 'jumpy', 'thoughtful', 'ebullient', 'rattled'],
+  ['cherishing', 'forlorn', 'bristling', 'mellow', 'radiant', 'uneven'],
+  ['deeply caring', 'crestfallen', 'resenting', 'serene', 'vibrant', 'unsteady'],
+  ['warm affection', 'down in the dumps', 'cranky', 'tranquilized', 'optimistic', 'wobbly'],
+  ['genuine love', 'brokenhearted', 'grumbling', 'quiet', 'glad', 'jumpy'],
+  ['sincere admiration', 'melancholic', 'displeased', 'still', 'joyous', 'panicky'],
+  ['adoring embrace', 'lonesome', 'grouchy', 'mild-mannered', 'cheery', 'distrustful'],
+  ['overflowing love', 'morose', 'hot-tempered', 'tactful', 'bright-eyed', 'startled'],
+  ['undying affection', 'weeping', 'short-fused', 'mindful', 'bubbly', 'anxious'],
+  ['heartfelt care', 'troubled', 'sharp-tongued', 'unrushed', 'snug', 'edgy'],
+  ['devout admiration', 'tormented', 'peevish', 'sober', 'mirthful', 'worried'],
+  ['eternal fondness', 'blue', 'scolding', 'laid-back', 'gleaming', 'restless'],
+  ['soulful devotion', 'melodramatic', 'impatient', 'composed', 'sparkling', 'nervous'],
+  ['intense passion', 'drained', 'indignant', 'level-headed', 'radiating', 'spooked'],
+  ['affectionate bond', 'dejected', 'temperamental', 'easygoing', 'whimsical', 'tense'],
+  ['profound adoration', 'despondent', 'pouting', 'gentle-spirited', 'lighthearted', 'flustered'],
+  ['tender love', 'hopelessness', 'stormy', 'soothing', 'beaming', 'fidgety'],
+  ['devoted embrace', 'teary-eyed', 'ill-tempered', 'collected', 'delighted', 'unnerved'],
+  ['deep connection', 'heartache', 'miffed', 'resting', 'cheerful', 'uneasy'],
+  ['eternal attachment', 'grief', 'fidgety', 'reposed', 'sunny', 'jittery'],
+  ['true companionship', 'aching', 'argumentative', 'peace-loving', 'glimmering', 'apprehensive']
+];
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+const wordsList = [
+  ['trending', 'viral', 'subscribe', 'click', 'like', 'share'],
+  ['download', 'upload', 'stream', 'search', 'view', 'content'],
+  ['watch', 'play', 'win', 'buy', 'free', 'new'],
+  ['login', 'signup', 'password', 'email', 'account', 'profile'],
+  ['blog', 'news', 'media', 'video', 'photo', 'music'],
+  ['google', 'youtube', 'facebook', 'twitter', 'instagram', 'tiktok'],
+  ['ad', 'promotion', 'deal', 'offer', 'discount', 'sale'],
+  ['shop', 'cart', 'checkout', 'payment', 'credit', 'order'],
+  ['comment', 'reply', 'quote', 'mention', 'tag', 'post'],
+  ['link', 'website', 'domain', 'host', 'server', 'SEO'],
+  ['clickbait', 'headline', 'breaking', 'update', 'live', 'trending'],
+  ['subscribe', 'membership', 'premium', 'free trial', 'exclusive', 'access'],
+  ['tech', 'gadget', 'innovation', 'review', 'unboxing', 'tutorial'],
+  ['news', 'breaking', 'headline', 'story', 'update', 'coverage'],
+  ['AI', 'machine learning', 'robot', 'automation', 'algorithm', 'data'],
+  ['crypto', 'bitcoin', 'blockchain', 'wallet', 'investment', 'trading'],
+  ['finance', 'stocks', 'market', 'economy', 'money', 'budget'],
+  ['gaming', 'console', 'PC', 'mobile', 'esports', 'live stream'],
+  ['security', 'privacy', 'password', 'encryption', 'firewall', 'hacking'],
+  ['email', 'spam', 'inbox', 'unsubscribe', 'attachment', 'forward'],
+  ['cloud', 'storage', 'backup', 'sync', 'drive', 'server'],
+  ['app', 'download', 'install', 'update', 'settings', 'features'],
+  ['camera', 'photo', 'filter', 'edit', 'resolution', 'selfie'],
+  ['fitness', 'workout', 'exercise', 'yoga', 'nutrition', 'health'],
+  ['food', 'recipe', 'cooking', 'restaurant', 'delivery', 'menu'],
+  ['travel', 'flight', 'hotel', 'booking', 'tour', 'destination'],
+  ['fashion', 'style', 'trend', 'outfit', 'shopping', 'brand'],
+  ['education', 'course', 'lesson', 'online', 'study', 'degree'],
+  ['weather', 'forecast', 'temperature', 'rain', 'sunny', 'climate'],
+  ['car', 'bike', 'motor', 'engine', 'speed', 'fuel'],
+  ['science', 'experiment', 'research', 'theory', 'discovery', 'space'],
+  ['space', 'galaxy', 'planet', 'NASA', 'telescope', 'universe'],
+  ['history', 'ancient', 'war', 'civilization', 'artifact', 'museum'],
+  ['movie', 'film', 'cinema', 'actor', 'director', 'trailer'],
+  ['music', 'song', 'album', 'artist', 'concert', 'playlist'],
+  ['sports', 'football', 'basketball', 'tennis', 'score', 'goal'],
+  ['programming', 'coding', 'JavaScript', 'Python', 'debugging', 'framework'],
+  ['hardware', 'processor', 'RAM', 'graphics', 'SSD', 'cooling'],
+  ['streaming', 'Netflix', 'Hulu', 'Prime', 'Disney', 'HBO'],
+  ['podcast', 'audio', 'radio', 'episode', 'host', 'guest'],
+  ['business', 'entrepreneur', 'startup', 'marketing', 'strategy', 'growth'],
+  ['social', 'media', 'tweet', 'hashtag', 'follow', 'message'],
+  ['mental health', 'stress', 'therapy', 'meditation', 'relax', 'mindfulness'],
+  ['parenting', 'baby', 'childcare', 'education', 'school', 'family'],
+  ['politics', 'election', 'vote', 'government', 'policy', 'debate'],
+  ['charity', 'donation', 'help', 'volunteer', 'fundraising', 'support'],
+  ['motivation', 'success', 'goal', 'inspiration', 'achievement', 'mindset'],
+  ['lifestyle', 'hobby', 'interest', 'passion', 'community', 'trend'],
+  ['funny', 'meme', 'joke', 'gif', 'humor', 'laugh']
+];
+///////////////////////////////////////////////////////////
+const wordsList = [
+  ['search', 'engine', 'query', 'result', 'optimization', 'rank'],
+  ['hashtag', 'trend', 'viral', 'influencer', 'post', 'feed'],
+  ['content', 'creator', 'platform', 'audience', 'engagement', 'interaction'],
+  ['stream', 'live', 'broadcast', 'audience', 'viewer', 'subscription'],
+  ['tutorial', 'guide', 'lesson', 'how-to', 'steps', 'explained'],
+  ['plugin', 'extension', 'add-on', 'feature', 'upgrade', 'tool'],
+  ['keyword', 'ranking', 'traffic', 'SEO', 'clicks', 'conversion'],
+  ['revenue', 'profit', 'ad', 'marketing', 'campaign', 'promotion'],
+  ['merchandise', 'store', 'checkout', 'shopping', 'cart', 'sale'],
+  ['affiliate', 'link', 'commission', 'partner', 'referral', 'income'],
+  ['community', 'forum', 'discussion', 'thread', 'post', 'comment'],
+  ['collaboration', 'partnership', 'teamwork', 'cooperation', 'network', 'synergy'],
+  ['support', 'ticket', 'help', 'faq', 'contact', 'issue'],
+  ['mobile', 'device', 'app', 'download', 'install', 'update'],
+  ['notifications', 'alerts', 'pop-up', 'message', 'reminder', 'task'],
+  ['security', 'authentication', 'password', 'two-factor', 'encryption', 'login'],
+  ['analytics', 'dashboard', 'metric', 'report', 'data', 'insights'],
+  ['cloud', 'storage', 'file', 'backup', 'sync', 'share'],
+  ['user', 'interface', 'UX', 'design', 'feedback', 'improvement'],
+  ['navigation', 'menu', 'button', 'click', 'interaction', 'UX'],
+  ['login', 'logout', 'sign-in', 'register', 'account', 'profile'],
+  ['subscription', 'plan', 'premium', 'trial', 'access', 'membership'],
+  ['contact', 'info', 'details', 'email', 'support', 'chat'],
+  ['newsletter', 'email', 'subscribe', 'update', 'message', 'notification'],
+  ['cart', 'checkout', 'order', 'payment', 'billing', 'invoice'],
+  ['currency', 'conversion', 'rate', 'payment', 'transfer', 'fees'],
+  ['cryptocurrency', 'bitcoin', 'ethereum', 'blockchain', 'wallet', 'trade'],
+  ['advertisement', 'banner', 'ad', 'popup', 'branding', 'promote'],
+  ['interaction', 'reaction', 'like', 'share', 'comment', 'vote'],
+  ['engagement', 'clicks', 'views', 'shares', 'posts', 'followers'],
+  ['inbox', 'message', 'spam', 'filter', 'unread', 'archived'],
+  ['profile', 'picture', 'avatar', 'bio', 'username', 'tag'],
+  ['game', 'play', 'score', 'level', 'achievement', 'player'],
+  ['ranking', 'leaderboard', 'highscore', 'competition', 'challenge', 'gameplay'],
+  ['tutorial', 'how-to', 'lesson', 'guide', 'step-by-step', 'help'],
+  ['server', 'host', 'database', 'cloud', 'backend', 'connection'],
+  ['shopping', 'purchase', 'add to cart', 'checkout', 'payment', 'discount'],
+  ['feedback', 'survey', 'review', 'rate', 'opinion', 'testimonials'],
+  ['sale', 'offer', 'discount', 'deal', 'promo', 'coupon'],
+  ['currency', 'rate', 'exchange', 'financial', 'transaction', 'bank'],
+  ['health', 'fitness', 'exercise', 'diet', 'wellness', 'nutrition'],
+  ['product', 'feature', 'review', 'rating', 'quality', 'specifications'],
+  ['quiz', 'survey', 'poll', 'questionnaire', 'response', 'feedback'],
+  ['ecommerce', 'online shop', 'buy', 'discount', 'offer', 'purchase'],
+  ['tech', 'gadget', 'innovation', 'smartphone', 'device', 'review'],
+  ['app', 'download', 'update', 'install', 'feature', 'version'],
+  ['platform', 'community', 'forum', 'group', 'discussion', 'chat'],
+  ['video', 'content', 'stream', 'broadcast', 'clip', 'channel']
+];
+//////////////////////////////////focus///////////////////
+const wordsList1 = [
+    { word: "planet", letters: ["p", "l", "a", "n", "e", "t"] }, 
+    { word: "nebula", letters: ["n", "e", "b", "u", "l", "a"] },
+    { word: "asteroid", letters: ["a", "s", "t", "e", "r", "o", "i", "d"] },
+    { word: "satellite", letters: ["s", "a", "t", "e", "l", "l", "i", "t", "e"] }
+];
+
+const wordsList2 = [
+    { word: "comet", letters: ["c", "o", "m", "e", "t"] }, 
+    { word: "cosmos", letters: ["c", "o", "s", "m", "o", "s"] },
+    { word: "orbit", letters: ["o", "r", "b", "i", "t"] },
+    { word: "gravity", letters: ["g", "r", "a", "v", "i", "t", "y"] }
+];
+
+const wordsList3 = [
+    { word: "quasar", letters: ["q", "u", "a", "s", "a", "r"] }, 
+    { word: "blackhole", letters: ["b", "l", "a", "c", "k", "h", "o", "l", "e"] },
+    { word: "meteor", letters: ["m", "e", "t", "e", "o", "r"] },
+    { word: "supernova", letters: ["s", "u", "p", "e", "r", "n", "o", "v", "a"] }
+];
+
+const wordsList4 = [
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] }, 
+    { word: "telescope", letters: ["t", "e", "l", "e", "s", "c", "o", "p", "e"] },
+    { word: "saturn", letters: ["s", "a", "t", "u", "r", "n"] },
+    { word: "eclipse", letters: ["e", "c", "l", "i", "p", "s", "e"] }
+];
+
+const wordsList5 = [
+    { word: "stardust", letters: ["s", "t", "a", "r", "d", "u", "s", "t"] }, 
+    { word: "moonlight", letters: ["m", "o", "o", "n", "l", "i", "g", "h", "t"] },
+    { word: "aurora", letters: ["a", "u", "r", "o", "r", "a"] },
+    { word: "astronaut", letters: ["a", "s", "t", "r", "o", "n", "a", "u", "t"] }
+];
+
+ const wordsList5 = [
+    { word: "orbit", letters: ["o", "r", "b", "i", "t"] },
+    { word: "saturn", letters: ["s", "a", "t", "u", "r", "n"] },
+    { word: "moon", letters: ["m", "o", "o", "n"] },
+    { word: "solar", letters: ["s", "o", "l", "a", "r"] }
+];
+
+const wordsList6 = [
+    { word: "asteroid", letters: ["a", "s", "t", "e", "r", "o", "i", "d"] },
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] },
+    { word: "nebula", letters: ["n", "e", "b", "u", "l", "a"] },
+    { word: "pluto", letters: ["p", "l", "u", "t", "o"] }
+];
+
+const wordsList7 = [
+    { word: "constellation", letters: ["c", "o", "n", "s", "t", "e", "l", "l", "a", "t", "i", "o", "n"] },
+    { word: "satellite", letters: ["s", "a", "t", "e", "l", "l", "i", "t", "e"] },
+    { word: "supernova", letters: ["s", "u", "p", "e", "r", "n", "o", "v", "a"] },
+    { word: "blackhole", letters: ["b", "l", "a", "c", "k", "h", "o", "l", "e"] }
+];
+
+const wordsList8 = [
+    { word: "star", letters: ["s", "t", "a", "r"] },
+    { word: "planet", letters: ["p", "l", "a", "n", "e", "t"] },
+    { word: "universe", letters: ["u", "n", "i", "v", "e", "r", "s", "e"] },
+    { word: "comet", letters: ["c", "o", "m", "e", "t"] }
+];
+
+ const wordsList8 = [
+    { word: "star", letters: ["s", "t", "a", "r"] },
+    { word: "planet", letters: ["p", "l", "a", "n", "e", "t"] },
+    { word: "universe", letters: ["u", "n", "i", "v", "e", "r", "s", "e"] },
+    { word: "comet", letters: ["c", "o", "m", "e", "t"] }
+];
+
+const wordsList9 = [
+    { word: "nebula", letters: ["n", "e", "b", "u", "l", "a"] },
+    { word: "asteroid", letters: ["a", "s", "t", "e", "r", "o", "i", "d"] },
+    { word: "satellite", letters: ["s", "a", "t", "e", "l", "l", "i", "t", "e"] },
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] }
+];
+
+const wordsList10 = [
+    { word: "moon", letters: ["m", "o", "o", "n"] },
+    { word: "eclipse", letters: ["e", "c", "l", "i", "p", "s", "e"] },
+    { word: "meteor", letters: ["m", "e", "t", "e", "o", "r"] },
+    { word: "quasar", letters: ["q", "u", "a", "s", "a", "r"] }
+];
+
+const wordsList11 = [
+    { word: "lightyear", letters: ["l", "i", "g", "h", "t", "y", "e", "a", "r"] },
+    { word: "telescope", letters: ["t", "e", "l", "e", "s", "c", "o", "p", "e"] },
+    { word: "gravity", letters: ["g", "r", "a", "v", "i", "t", "y"] },
+    { word: "solar", letters: ["s", "o", "l", "a", "r"] }
+];
+
+const wordsList12 = [
+    { word: "constellation", letters: ["c", "o", "n", "s", "t", "e", "l", "l", "a", "t", "i", "o", "n"] },
+    { word: "orbit", letters: ["o", "r", "b", "i", "t"] },
+    { word: "pluto", letters: ["p", "l", "u", "t", "o"] },
+    { word: "supernova", letters: ["s", "u", "p", "e", "r", "n", "o", "v", "a"] }
+];
+
+const wordsList13 = [
+    { word: "blackhole", letters: ["b", "l", "a", "c", "k", "h", "o", "l", "e"] },
+    { word: "pulsar", letters: ["p", "u", "l", "s", "a", "r"] },
+    { word: "starship", letters: ["s", "t", "a", "r", "s", "h", "i", "p"] },
+    { word: "nebula", letters: ["n", "e", "b", "u", "l", "a"] }
+];
+
+const wordsList14 = [
+    { word: "exoplanet", letters: ["e", "x", "o", "p", "l", "a", "n", "e", "t"] },
+    { word: "astrology", letters: ["a", "s", "t", "r", "o", "l", "o", "g", "y"] },
+    { word: "universe", letters: ["u", "n", "i", "v", "e", "r", "s", "e"] },
+    { word: "galactic", letters: ["g", "a", "l", "a", "c", "t", "i", "c"] }
+];
+
+const wordsList15 = [
+    { word: "saturn", letters: ["s", "a", "t", "u", "r", "n"] },
+    { word: "jupiter", letters: ["j", "u", "p", "i", "t", "e", "r"] },
+    { word: "mars", letters: ["m", "a", "r", "s"] },
+    { word: "venus", letters: ["v", "e", "n", "u", "s"] }
+];
+
+ const wordsList16 = [
+    { word: "mercury", letters: ["m", "e", "r", "c", "u", "r", "y"] },
+    { word: "milkyway", letters: ["m", "i", "l", "k", "y", "w", "a", "y"] },
+    { word: "crater", letters: ["c", "r", "a", "t", "e", "r"] },
+    { word: "asteroid", letters: ["a", "s", "t", "e", "r", "o", "i", "d"] }
+];
+
+const wordsList17 = [
+    { word: "saturn", letters: ["s", "a", "t", "u", "r", "n"] },
+    { word: "jupiter", letters: ["j", "u", "p", "i", "t", "e", "r"] },
+    { word: "mars", letters: ["m", "a", "r", "s"] },
+    { word: "venus", letters: ["v", "e", "n", "u", "s"] }
+];
+
+const wordsList18 = [
+    { word: "neptune", letters: ["n", "e", "p", "t", "u", "n", "e"] },
+    { word: "uranus", letters: ["u", "r", "a", "n", "u", "s"] },
+    { word: "telescope", letters: ["t", "e", "l", "e", "s", "c", "o", "p", "e"] },
+    { word: "blackhole", letters: ["b", "l", "a", "c", "k", "h", "o", "l", "e"] }
+];
+
+const wordsList19 = [
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] },
+    { word: "sun", letters: ["s", "u", "n"] },
+    { word: "eclipse", letters: ["e", "c", "l", "i", "p", "s", "e"] },
+    { word: "comet", letters: ["c", "o", "m", "e", "t"] }
+];
+
+const wordsList20 = [
+    { word: "crater", letters: ["c", "r", "a", "t", "e", "r"] },
+    { word: "meteor", letters: ["m", "e", "t", "e", "o", "r"] },
+    { word: "moon", letters: ["m", "o", "o", "n"] },
+    { word: "planet", letters: ["p", "l", "a", "n", "e", "t"] }
+];
+
+const wordsList21 = [
+    { word: "rocket", letters: ["r", "o", "c", "k", "e", "t"] },
+    { word: "satellite", letters: ["s", "a", "t", "e", "l", "l", "i", "t", "e"] },
+    { word: "nebula", letters: ["n", "e", "b", "u", "l", "a"] },
+    { word: "starship", letters: ["s", "t", "a", "r", "s", "h", "i", "p"] }
+];
+
+const wordsList22 = [
+    { word: "exoplanet", letters: ["e", "x", "o", "p", "l", "a", "n", "e", "t"] },
+    { word: "quasar", letters: ["q", "u", "a", "s", "a", "r"] },
+    { word: "galactic", letters: ["g", "a", "l", "a", "c", "t", "i", "c"] },
+    { word: "astronaut", letters: ["a", "s", "t", "r", "o", "n", "a", "u", "t"] }
+];
+
+const wordsList23 = [
+    { word: "spacecraft", letters: ["s", "p", "a", "c", "e", "c", "r", "a", "f", "t"] },
+    { word: "pluto", letters: ["p", "l", "u", "t", "o"] },
+    { word: "space", letters: ["s", "p", "a", "c", "e"] },
+    { word: "orbit", letters: ["o", "r", "b", "i", "t"] }
+];
+
+const wordsList24 = [
+    { word: "titan", letters: ["t", "i", "t", "a", "n"] },
+    { word: "moonlight", letters: ["m", "o", "o", "n", "l", "i", "g", "h", "t"] },
+    { word: "asteroid", letters: ["a", "s", "t", "e", "r", "o", "i", "d"] },
+    { word: "star", letters: ["s", "t", "a", "r"] }
+];
+
+ const wordsList25 = [
+    { word: "supernova", letters: ["s", "u", "p", "e", "r", "n", "o", "v", "a"] },
+    { word: "solar", letters: ["s", "o", "l", "a", "r"] },
+    { word: "crater", letters: ["c", "r", "a", "t", "e", "r"] },
+    { word: "space", letters: ["s", "p", "a", "c", "e"] }
+];
+
+const wordsList26 = [
+    { word: "astronaut", letters: ["a", "s", "t", "r", "o", "n", "a", "u", "t"] },
+    { word: "pluto", letters: ["p", "l", "u", "t", "o"] },
+    { word: "planet", letters: ["p", "l", "a", "n", "e", "t"] },
+    { word: "orbit", letters: ["o", "r", "b", "i", "t"] }
+];
+
+const wordsList27 = [
+    { word: "telescope", letters: ["t", "e", "l", "e", "s", "c", "o", "p", "e"] },
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] },
+    { word: "satellite", letters: ["s", "a", "t", "e", "l", "l", "i", "t", "e"] },
+    { word: "comet", letters: ["c", "o", "m", "e", "t"] }
+];
+
+const wordsList28 = [
+    { word: "neutron", letters: ["n", "e", "u", "t", "r", "o", "n"] },
+    { word: "blackhole", letters: ["b", "l", "a", "c", "k", "h", "o", "l", "e"] },
+    { word: "rocket", letters: ["r", "o", "c", "k", "e", "t"] },
+    { word: "spacecraft", letters: ["s", "p", "a", "c", "e", "c", "r", "a", "f", "t"] }
+];
+
+const wordsList29 = [
+    { word: "crater", letters: ["c", "r", "a", "t", "e", "r"] },
+    { word: "eclipse", letters: ["e", "c", "l", "i", "p", "s", "e"] },
+    { word: "meteor", letters: ["m", "e", "t", "e", "o", "r"] },
+    { word: "venus", letters: ["v", "e", "n", "u", "s"] }
+];
+
+const wordsList30 = [
+    { word: "mercury", letters: ["m", "e", "r", "c", "u", "r", "y"] },
+    { word: "jupiter", letters: ["j", "u", "p", "i", "t", "e", "r"] },
+    { word: "saturn", letters: ["s", "a", "t", "u", "r", "n"] },
+    { word: "mars", letters: ["m", "a", "r", "s"] }
+];
+
+const wordsList31 = [
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] },
+    { word: "moon", letters: ["m", "o", "o", "n"] },
+    { word: "asteroid", letters: ["a", "s", "t", "e", "r", "o", "i", "d"] },
+    { word: "sun", letters: ["s", "u", "n"] }
+];
+
+const wordsList32 = [
+    { word: "solar", letters: ["s", "o", "l", "a", "r"] },
+    { word: "neptune", letters: ["n", "e", "p", "t", "u", "n", "e"] },
+    { word: "titan", letters: ["t", "i", "t", "a", "n"] },
+    { word: "uranus", letters: ["u", "r", "a", "n", "u", "s"] }
+];
+
+const wordsList33 = [
+    { word: "nebula", letters: ["n", "e", "b", "u", "l", "a"] },
+    { word: "quasar", letters: ["q", "u", "a", "s", "a", "r"] },
+    { word: "titan", letters: ["t", "i", "t", "a", "n"] },
+    { word: "moonlight", letters: ["m", "o", "o", "n", "l", "i", "g", "h", "t"] }
+];
+
+const wordsList34 = [
+    { word: "exoplanet", letters: ["e", "x", "o", "p", "l", "a", "n", "e", "t"] },
+    { word: "saturn", letters: ["s", "a", "t", "u", "r", "n"] },
+    { word: "jupiter", letters: ["j", "u", "p", "i", "t", "e", "r"] },
+    { word: "mars", letters: ["m", "a", "r", "s"] }
+];
+
+const wordsList35 = [
+    { word: "astronaut", letters: ["a", "s", "t", "r", "o", "n", "a", "u", "t"] },
+    { word: "crater", letters: ["c", "r", "a", "t", "e", "r"] },
+    { word: "space", letters: ["s", "p", "a", "c", "e"] },
+    { word: "rocket", letters: ["r", "o", "c", "k", "e", "t"] }
+];
+
+const wordsList36 = [
+    { word: "asteroid", letters: ["a", "s", "t", "e", "r", "o", "i", "d"] },
+    { word: "neutron", letters: ["n", "e", "u", "t", "r", "o", "n"] },
+    { word: "telescope", letters: ["t", "e", "l", "e", "s", "c", "o", "p", "e"] },
+    { word: "solar", letters: ["s", "o", "l", "a", "r"] }
+];
+const wordsList37 = [
+    { word: "solar", letters: ["s", "o", "l", "a", "r"] },
+    { word: "eclipse", letters: ["e", "c", "l", "i", "p", "s", "e"] },
+    { word: "blackhole", letters: ["b", "l", "a", "c", "k", "h", "o", "l", "e"] },
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] }
+];
+
+const wordsList38 = [
+    { word: "planet", letters: ["p", "l", "a", "n", "e", "t"] },
+    { word: "spacecraft", letters: ["s", "p", "a", "c", "e", "c", "r", "a", "f", "t"] },
+    { word: "supernova", letters: ["s", "u", "p", "e", "r", "n", "o", "v", "a"] },
+    { word: "nebula", letters: ["n", "e", "b", "u", "l", "a"] }
+];
+
+const wordsList39 = [
+    { word: "comet", letters: ["c", "o", "m", "e", "t"] },
+    { word: "mars", letters: ["m", "a", "r", "s"] },
+    { word: "jupiter", letters: ["j", "u", "p", "i", "t", "e", "r"] },
+    { word: "moon", letters: ["m", "o", "o", "n"] }
+];
+
+const wordsList40 = [
+    { word: "titan", letters: ["t", "i", "t", "a", "n"] },
+    { word: "venus", letters: ["v", "e", "n", "u", "s"] },
+    { word: "neutron", letters: ["n", "e", "u", "t", "r", "o", "n"] },
+    { word: "orbital", letters: ["o", "r", "b", "i", "t", "a", "l"] }
+];
+
+const wordsList41 = [
+    { word: "satellite", letters: ["s", "a", "t", "e", "l", "l", "i", "t", "e"] },
+    { word: "crater", letters: ["c", "r", "a", "t", "e", "r"] },
+    { word: "meteor", letters: ["m", "e", "t", "e", "o", "r"] },
+    { word: "rocket", letters: ["r", "o", "c", "k", "e", "t"] }
+];
+
+const wordsList42 = [
+    { word: "blackhole", letters: ["b", "l", "a", "c", "k", "h", "o", "l", "e"] },
+    { word: "sun", letters: ["s", "u", "n"] },
+    { word: "telescope", letters: ["t", "e", "l", "e", "s", "c", "o", "p", "e"] },
+    { word: "exoplanet", letters: ["e", "x", "o", "p", "l", "a", "n", "e", "t"] }
+];
+
+const wordsList43 = [
+    { word: "orbit", letters: ["o", "r", "b", "i", "t"] },
+    { word: "crater", letters: ["c", "r", "a", "t", "e", "r"] },
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] },
+    { word: "saturn", letters: ["s", "a", "t", "u", "r", "n"] }
+];
+
+const wordsList44 = [
+    { word: "venus", letters: ["v", "e", "n", "u", "s"] },
+    { word: "neptune", letters: ["n", "e", "p", "t", "u", "n", "e"] },
+    { word: "pluto", letters: ["p", "l", "u", "t", "o"] },
+    { word: "titan", letters: ["t", "i", "t", "a", "n"] }
+];
+
+const wordsList45 = [
+    { word: "space", letters: ["s", "p", "a", "c", "e"] },
+    { word: "comet", letters: ["c", "o", "m", "e", "t"] },
+    { word: "rocket", letters: ["r", "o", "c", "k", "e", "t"] },
+    { word: "solar", letters: ["s", "o", "l", "a", "r"] }
+];
+
+const wordsList46 = [
+    { word: "astronaut", letters: ["a", "s", "t", "r", "o", "n", "a", "u", "t"] },
+    { word: "moonlight", letters: ["m", "o", "o", "n", "l", "i", "g", "h", "t"] },
+    { word: "meteor", letters: ["m", "e", "t", "e", "o", "r"] },
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] }
+];
+
+const wordsList47 = [
+    { word: "exoplanet", letters: ["e", "x", "o", "p", "l", "a", "n", "e", "t"] },
+    { word: "neutron", letters: ["n", "e", "u", "t", "r", "o", "n"] },
+    { word: "supernova", letters: ["s", "u", "p", "e", "r", "n", "o", "v", "a"] },
+    { word: "pluto", letters: ["p", "l", "u", "t", "o"] }
+];
+
+const wordsList48 = [
+    { word: "venus", letters: ["v", "e", "n", "u", "s"] },
+    { word: "mars", letters: ["m", "a", "r", "s"] },
+    { word: "jupiter", letters: ["j", "u", "p", "i", "t", "e", "r"] },
+    { word: "neptune", letters: ["n", "e", "p", "t", "u", "n", "e"] }
+];
+
+const wordsList49 = [
+    { word: "spacecraft", letters: ["s", "p", "a", "c", "e", "c", "r", "a", "f", "t"] },
+    { word: "rocket", letters: ["r", "o", "c", "k", "e", "t"] },
+    { word: "satellite", letters: ["s", "a", "t", "e", "l", "l", "i", "t", "e"] },
+    { word: "crater", letters: ["c", "r", "a", "t", "e", "r"] }
+];
+
+const wordsList50 = [
+    { word: "meteor", letters: ["m", "e", "t", "e", "o", "r"] },
+    { word: "comet", letters: ["c", "o", "m", "e", "t"] },
+    { word: "rocket", letters: ["r", "o", "c", "k", "e", "t"] },
+    { word: "blackhole", letters: ["b", "l", "a", "c", "k", "h", "o", "l", "e"] }
+];
+const wordsList51 = [
+    { word: "satellite", letters: ["s", "a", "t", "e", "l", "l", "i", "t", "e"] },
+    { word: "nebula", letters: ["n", "e", "b", "u", "l", "a"] },
+    { word: "asteroid", letters: ["a", "s", "t", "e", "r", "o", "i", "d"] },
+    { word: "telescope", letters: ["t", "e", "l", "e", "s", "c", "o", "p", "e"] }
+];
+
+const wordsList52 = [
+    { word: "moon", letters: ["m", "o", "o", "n"] },
+    { word: "comet", letters: ["c", "o", "m", "e", "t"] },
+    { word: "sun", letters: ["s", "u", "n"] },
+    { word: "mars", letters: ["m", "a", "r", "s"] }
+];
+
+const wordsList53 = [
+    { word: "titan", letters: ["t", "i", "t", "a", "n"] },
+    { word: "neptune", letters: ["n", "e", "p", "t", "u", "n", "e"] },
+    { word: "crater", letters: ["c", "r", "a", "t", "e", "r"] },
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] }
+];
+
+const wordsList54 = [
+    { word: "meteor", letters: ["m", "e", "t", "e", "o", "r"] },
+    { word: "rocket", letters: ["r", "o", "c", "k", "e", "t"] },
+    { word: "supernova", letters: ["s", "u", "p", "e", "r", "n", "o", "v", "a"] },
+    { word: "orbit", letters: ["o", "r", "b", "i", "t"] }
+];
+
+const wordsList55 = [
+    { word: "jupiter", letters: ["j", "u", "p", "i", "t", "e", "r"] },
+    { word: "sun", letters: ["s", "u", "n"] },
+    { word: "pluto", letters: ["p", "l", "u", "t", "o"] },
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] }
+];
+
+const wordsList56 = [
+    { word: "venus", letters: ["v", "e", "n", "u", "s"] },
+    { word: "saturn", letters: ["s", "a", "t", "u", "r", "n"] },
+    { word: "telescope", letters: ["t", "e", "l", "e", "s", "c", "o", "p", "e"] },
+    { word: "blackhole", letters: ["b", "l", "a", "c", "k", "h", "o", "l", "e"] }
+];
+
+const wordsList57 = [
+    { word: "space", letters: ["s", "p", "a", "c", "e"] },
+    { word: "comet", letters: ["c", "o", "m", "e", "t"] },
+    { word: "rocket", letters: ["r", "o", "c", "k", "e", "t"] },
+    { word: "star", letters: ["s", "t", "a", "r"] }
+];
+
+const wordsList58 = [
+    { word: "astronaut", letters: ["a", "s", "t", "r", "o", "n", "a", "u", "t"] },
+    { word: "moonlight", letters: ["m", "o", "o", "n", "l", "i", "g", "h", "t"] },
+    { word: "meteor", letters: ["m", "e", "t", "e", "o", "r"] },
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] }
+];
+
+const wordsList59 = [
+    { word: "exoplanet", letters: ["e", "x", "o", "p", "l", "a", "n", "e", "t"] },
+    { word: "neutron", letters: ["n", "e", "u", "t", "r", "o", "n"] },
+    { word: "supernova", letters: ["s", "u", "p", "e", "r", "n", "o", "v", "a"] },
+    { word: "pluto", letters: ["p", "l", "u", "t", "o"] }
+];
+
+const wordsList60 = [
+    { word: "venus", letters: ["v", "e", "n", "u", "s"] },
+    { word: "mars", letters: ["m", "a", "r", "s"] },
+    { word: "jupiter", letters: ["j", "u", "p", "i", "t", "e", "r"] },
+    { word: "neptune", letters: ["n", "e", "p", "t", "u", "n", "e"] }
+];
+const wordsList61 = [
+    { word: "moon", letters: ["m", "o", "o", "n"] },
+    { word: "comet", letters: ["c", "o", "m", "e", "t"] },
+    { word: "solar", letters: ["s", "o", "l", "a", "r"] },
+    { word: "planet", letters: ["p", "l", "a", "n", "e", "t"] }
+];
+
+const wordsList62 = [
+    { word: "satellite", letters: ["s", "a", "t", "e", "l", "l", "i", "t", "e"] },
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] },
+    { word: "asteroid", letters: ["a", "s", "t", "e", "r", "o", "i", "d"] },
+    { word: "universe", letters: ["u", "n", "i", "v", "e", "r", "s", "e"] }
+];
+
+const wordsList63 = [
+    { word: "nebula", letters: ["n", "e", "b", "u", "l", "a"] },
+    { word: "titan", letters: ["t", "i", "t", "a", "n"] },
+    { word: "blackhole", letters: ["b", "l", "a", "c", "k", "h", "o", "l", "e"] },
+    { word: "asteroid", letters: ["a", "s", "t", "e", "r", "o", "i", "d"] }
+];
+
+const wordsList64 = [
+    { word: "rocket", letters: ["r", "o", "c", "k", "e", "t"] },
+    { word: "mars", letters: ["m", "a", "r", "s"] },
+    { word: "neptune", letters: ["n", "e", "p", "t", "u", "n", "e"] },
+    { word: "saturn", letters: ["s", "a", "t", "u", "r", "n"] }
+];
+
+const wordsList65 = [
+    { word: "venus", letters: ["v", "e", "n", "u", "s"] },
+    { word: "mercury", letters: ["m", "e", "r", "c", "u", "r", "y"] },
+    { word: "jupiter", letters: ["j", "u", "p", "i", "t", "e", "r"] },
+    { word: "sun", letters: ["s", "u", "n"] }
+];
+
+const wordsList66 = [
+    { word: "pluto", letters: ["p", "l", "u", "t", "o"] },
+    { word: "moonlight", letters: ["m", "o", "o", "n", "l", "i", "g", "h", "t"] },
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] },
+    { word: "orbit", letters: ["o", "r", "b", "i", "t"] }
+];
+
+const wordsList67 = [
+    { word: "supernova", letters: ["s", "u", "p", "e", "r", "n", "o", "v", "a"] },
+    { word: "crater", letters: ["c", "r", "a", "t", "e", "r"] },
+    { word: "asteroid", letters: ["a", "s", "t", "e", "r", "o", "i", "d"] },
+    { word: "telescope", letters: ["t", "e", "l", "e", "s", "c", "o", "p", "e"] }
+];
+
+const wordsList68 = [
+    { word: "nebula", letters: ["n", "e", "b", "u", "l", "a"] },
+    { word: "comet", letters: ["c", "o", "m", "e", "t"] },
+    { word: "rocket", letters: ["r", "o", "c", "k", "e", "t"] },
+    { word: "planet", letters: ["p", "l", "a", "n", "e", "t"] }
+];
+
+const wordsList69 = [
+    { word: "solar", letters: ["s", "o", "l", "a", "r"] },
+    { word: "space", letters: ["s", "p", "a", "c", "e"] },
+    { word: "star", letters: ["s", "t", "a", "r"] },
+    { word: "universe", letters: ["u", "n", "i", "v", "e", "r", "s", "e"] }
+];
+
+const wordsList70 = [
+    { word: "titan", letters: ["t", "i", "t", "a", "n"] },
+    { word: "venus", letters: ["v", "e", "n", "u", "s"] },
+    { word: "neptune", letters: ["n", "e", "p", "t", "u", "n", "e"] },
+    { word: "mars", letters: ["m", "a", "r", "s"] }
+];
+const wordsList71 = [
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] },
+    { word: "blackhole", letters: ["b", "l", "a", "c", "k", "h", "o", "l", "e"] },
+    { word: "telescope", letters: ["t", "e", "l", "e", "s", "c", "o", "p", "e"] },
+    { word: "comet", letters: ["c", "o", "m", "e", "t"] }
+];
+
+const wordsList72 = [
+    { word: "star", letters: ["s", "t", "a", "r"] },
+    { word: "supernova", letters: ["s", "u", "p", "e", "r", "n", "o", "v", "a"] },
+    { word: "pluto", letters: ["p", "l", "u", "t", "o"] },
+    { word: "planet", letters: ["p", "l", "a", "n", "e", "t"] }
+];
+
+const wordsList73 = [
+    { word: "titan", letters: ["t", "i", "t", "a", "n"] },
+    { word: "neptune", letters: ["n", "e", "p", "t", "u", "n", "e"] },
+    { word: "comet", letters: ["c", "o", "m", "e", "t"] },
+    { word: "saturn", letters: ["s", "a", "t", "u", "r", "n"] }
+];
+
+const wordsList74 = [
+    { word: "mars", letters: ["m", "a", "r", "s"] },
+    { word: "moon", letters: ["m", "o", "o", "n"] },
+    { word: "asteroid", letters: ["a", "s", "t", "e", "r", "o", "i", "d"] },
+    { word: "satellite", letters: ["s", "a", "t", "e", "l", "l", "i", "t", "e"] }
+];
+
+const wordsList75 = [
+    { word: "solar", letters: ["s", "o", "l", "a", "r"] },
+    { word: "venus", letters: ["v", "e", "n", "u", "s"] },
+    { word: "telescope", letters: ["t", "e", "l", "e", "s", "c", "o", "p", "e"] },
+    { word: "supernova", letters: ["s", "u", "p", "e", "r", "n", "o", "v", "a"] }
+];
+
+const wordsList76 = [
+    { word: "rocket", letters: ["r", "o", "c", "k", "e", "t"] },
+    { word: "crater", letters: ["c", "r", "a", "t", "e", "r"] },
+    { word: "orbit", letters: ["o", "r", "b", "i", "t"] },
+    { word: "saturn", letters: ["s", "a", "t", "u", "r", "n"] }
+];
+
+const wordsList77 = [
+    { word: "space", letters: ["s", "p", "a", "c", "e"] },
+    { word: "planet", letters: ["p", "l", "a", "n", "e", "t"] },
+    { word: "sun", letters: ["s", "u", "n"] },
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] }
+];
+
+const wordsList78 = [
+    { word: "moon", letters: ["m", "o", "o", "n"] },
+    { word: "mars", letters: ["m", "a", "r", "s"] },
+    { word: "crater", letters: ["c", "r", "a", "t", "e", "r"] },
+    { word: "neptune", letters: ["n", "e", "p", "t", "u", "n", "e"] }
+];
+
+const wordsList79 = [
+    { word: "titan", letters: ["t", "i", "t", "a", "n"] },
+    { word: "comet", letters: ["c", "o", "m", "e", "t"] },
+    { word: "rocket", letters: ["r", "o", "c", "k", "e", "t"] },
+    { word: "satellite", letters: ["s", "a", "t", "e", "l", "l", "i", "t", "e"] }
+];
+
+const wordsList80 = [
+    { word: "venus", letters: ["v", "e", "n", "u", "s"] },
+    { word: "mercury", letters: ["m", "e", "r", "c", "u", "r", "y"] },
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] },
+    { word: "sun", letters: ["s", "u", "n"] }
+];
+const wordsList81 = [
+    { word: "cosmos", letters: ["c", "o", "s", "m", "o", "s"] },
+    { word: "gravity", letters: ["g", "r", "a", "v", "i", "t", "y"] },
+    { word: "orbit", letters: ["o", "r", "b", "i", "t"] },
+    { word: "nebula", letters: ["n", "e", "b", "u", "l", "a"] }
+];
+
+const wordsList82 = [
+    { word: "lightyear", letters: ["l", "i", "g", "h", "t", "y", "e", "a", "r"] },
+    { word: "meteor", letters: ["m", "e", "t", "e", "o", "r"] },
+    { word: "earth", letters: ["e", "a", "r", "t", "h"] },
+    { word: "astronaut", letters: ["a", "s", "t", "r", "o", "n", "a", "u", "t"] }
+];
+
+const wordsList83 = [
+    { word: "jupiter", letters: ["j", "u", "p", "i", "t", "e", "r"] },
+    { word: "saturn", letters: ["s", "a", "t", "u", "r", "n"] },
+    { word: "pluto", letters: ["p", "l", "u", "t", "o"] },
+    { word: "milkyway", letters: ["m", "i", "l", "k", "y", "w", "a", "y"] }
+];
+
+const wordsList84 = [
+    { word: "spacesuit", letters: ["s", "p", "a", "c", "e", "s", "u", "i", "t"] },
+    { word: "lunar", letters: ["l", "u", "n", "a", "r"] },
+    { word: "eclipse", letters: ["e", "c", "l", "i", "p", "s", "e"] },
+    { word: "stardust", letters: ["s", "t", "a", "r", "d", "u", "s", "t"] }
+];
+
+const wordsList85 = [
+    { word: "bigbang", letters: ["b", "i", "g", "b", "a", "n", "g"] },
+    { word: "exoplanet", letters: ["e", "x", "o", "p", "l", "a", "n", "e", "t"] },
+    { word: "comet", letters: ["c", "o", "m", "e", "t"] },
+    { word: "meteorite", letters: ["m", "e", "t", "e", "o", "r", "i", "t", "e"] }
+];
+
+const wordsList86 = [
+    { word: "universe", letters: ["u", "n", "i", "v", "e", "r", "s", "e"] },
+    { word: "astronomy", letters: ["a", "s", "t", "r", "o", "n", "o", "m", "y"] },
+    { word: "spacewalk", letters: ["s", "p", "a", "c", "e", "w", "a", "l", "k"] },
+    { word: "constellation", letters: ["c", "o", "n", "s", "t", "e", "l", "l", "a", "t", "i", "o", "n"] }
+];
+
+const wordsList87 = [
+    { word: "satellite", letters: ["s", "a", "t", "e", "l", "l", "i", "t", "e"] },
+    { word: "hubble", letters: ["h", "u", "b", "b", "l", "e"] },
+    { word: "rocket", letters: ["r", "o", "c", "k", "e", "t"] },
+    { word: "interstellar", letters: ["i", "n", "t", "e", "r", "s", "t", "e", "l", "l", "a", "r"] }
+];
+
+const wordsList88 = [
+    { word: "orbits", letters: ["o", "r", "b", "i", "t", "s"] },
+    { word: "helium", letters: ["h", "e", "l", "i", "u", "m"] },
+    { word: "spacecraft", letters: ["s", "p", "a", "c", "e", "c", "r", "a", "f", "t"] },
+    { word: "cosmonaut", letters: ["c", "o", "s", "m", "o", "n", "a", "u", "t"] }
+];
+
+const wordsList89 = [
+    { word: "meteor shower", letters: ["m", "e", "t", "e", "o", "r", "s", "h", "o", "w", "e", "r"] },
+    { word: "nova", letters: ["n", "o", "v", "a"] },
+    { word: "black hole", letters: ["b", "l", "a", "c", "k", "h", "o", "l", "e"] },
+    { word: "dark matter", letters: ["d", "a", "r", "k", "m", "a", "t", "t", "e", "r"] }
+];
+
+const wordsList90 = [
+    { word: "pulsar", letters: ["p", "u", "l", "s", "a", "r"] },
+    { word: "neutron", letters: ["n", "e", "u", "t", "r", "o", "n"] },
+    { word: "orbit", letters: ["o", "r", "b", "i", "t"] },
+    { word: "solar system", letters: ["s", "o", "l", "a", "r", "s", "y", "s", "t", "e", "m"] }
+];
+
+ const wordsList91 = [
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] },
+    { word: "starship", letters: ["s", "t", "a", "r", "s", "h", "i", "p"] },
+    { word: "gravity", letters: ["g", "r", "a", "v", "i", "t", "y"] },
+    { word: "NASA", letters: ["N", "A", "S", "A"] }
+];
+
+const wordsList92 = [
+    { word: "astronaut", letters: ["a", "s", "t", "r", "o", "n", "a", "u", "t"] },
+    { word: "Mars", letters: ["M", "a", "r", "s"] },
+    { word: "Elon Musk", letters: ["E", "l", "o", "n", "M", "u", "s", "k"] },
+    { word: "Apollo", letters: ["A", "p", "o", "l", "l", "o"] }
+];
+
+const wordsList93 = [
+    { word: "Saturn", letters: ["S", "a", "t", "u", "r", "n"] },
+    { word: "Tesla", letters: ["T", "e", "s", "l", "a"] },
+    { word: "Milky Way", letters: ["M", "i", "l", "k", "y", "W", "a", "y"] },
+    { word: "Pluto", letters: ["P", "l", "u", "t", "o"] }
+];
+
+const wordsList94 = [
+    { word: "cosmos", letters: ["c", "o", "s", "m", "o", "s"] },
+    { word: "wormhole", letters: ["w", "o", "r", "m", "h", "o", "l", "e"] },
+    { word: "Stephen Hawking", letters: ["S", "t", "e", "p", "h", "e", "n", "H", "a", "w", "k", "i", "n", "g"] },
+    { word: "Einstein", letters: ["E", "i", "n", "s", "t", "e", "i", "n"] }
+];
+
+const wordsList95 = [
+    { word: "rocket", letters: ["r", "o", "c", "k", "e", "t"] },
+    { word: "Hubble", letters: ["H", "u", "b", "b", "l", "e"] },
+    { word: "SpaceX", letters: ["S", "p", "a", "c", "e", "X"] },
+    { word: "Neil Armstrong", letters: ["N", "e", "i", "l", "A", "r", "m", "s", "t", "r", "o", "n", "g"] }
+];
+
+const wordsList96 = [
+    { word: "lunar", letters: ["l", "u", "n", "a", "r"] },
+    { word: "Voyager", letters: ["V", "o", "y", "a", "g", "e", "r"] },
+    { word: "Big Bang", letters: ["B", "i", "g", "B", "a", "n", "g"] },
+    { word: "Galileo", letters: ["G", "a", "l", "i", "l", "e", "o"] }
+];
+
+const wordsList97 = [
+    { word: "exoplanet", letters: ["e", "x", "o", "p", "l", "a", "n", "e", "t"] },
+    { word: "Asteroid", letters: ["A", "s", "t", "e", "r", "o", "i", "d"] },
+    { word: "Jeff Bezos", letters: ["J", "e", "f", "f", "B", "e", "z", "o", "s"] },
+    { word: "Blue Origin", letters: ["B", "l", "u", "e", "O", "r", "i", "g", "i", "n"] }
+];
+
+const wordsList98 = [
+    { word: "black hole", letters: ["b", "l", "a", "c", "k", "h", "o", "l", "e"] },
+    { word: "event horizon", letters: ["e", "v", "e", "n", "t", "h", "o", "r", "i", "z", "o", "n"] },
+    { word: "Buzz Aldrin", letters: ["B", "u", "z", "z", "A", "l", "d", "r", "i", "n"] },
+    { word: "Chris Hadfield", letters: ["C", "h", "r", "i", "s", "H", "a", "d", "f", "i", "e", "l", "d"] }
+];
+
+const wordsList99 = [
+    { word: "light speed", letters: ["l", "i", "g", "h", "t", "s", "p", "e", "e", "d"] },
+    { word: "International Space Station", letters: ["I", "n", "t", "e", "r", "n", "a", "t", "i", "o", "n", "a", "l", "S", "p", "a", "c", "e", "S", "t", "a", "t", "i", "o", "n"] },
+    { word: "Carl Sagan", letters: ["C", "a", "r", "l", "S", "a", "g", "a", "n"] },
+    { word: "Yuri Gagarin", letters: ["Y", "u", "r", "i", "G", "a", "g", "a", "r", "i", "n"] }
+];
+
+const wordsList100 = [
+    { word: "star cluster", letters: ["s", "t", "a", "r", "c", "l", "u", "s", "t", "e", "r"] },
+    { word: "supernova", letters: ["s", "u", "p", "e", "r", "n", "o", "v", "a"] },
+    { word: "Mars Rover", letters: ["M", "a", "r", "s", "R", "o", "v", "e", "r"] },
+    { word: "James Webb", letters: ["J", "a", "m", "e", "s", "W", "e", "b", "b"] }
+];
+const wordsList101 = [
+    { word: "quantum", letters: ["q", "u", "a", "n", "t", "u", "m"] },
+    { word: "nebula", letters: ["n", "e", "b", "u", "l", "a"] },
+    { word: "Voyager 1", letters: ["V", "o", "y", "a", "g", "e", "r", "1"] },
+    { word: "Edwin Hubble", letters: ["E", "d", "w", "i", "n", "H", "u", "b", "b", "l", "e"] }
+];
+
+const wordsList102 = [
+    { word: "telescope", letters: ["t", "e", "l", "e", "s", "c", "o", "p", "e"] },
+    { word: "radiation", letters: ["r", "a", "d", "i", "a", "t", "i", "o", "n"] },
+    { word: "Jupiter", letters: ["J", "u", "p", "i", "t", "e", "r"] },
+    { word: "Voyager 2", letters: ["V", "o", "y", "a", "g", "e", "r", "2"] }
+];
+
+const wordsList103 = [
+    { word: "black hole", letters: ["b", "l", "a", "c", "k", "h", "o", "l", "e"] },
+    { word: "wormhole", letters: ["w", "o", "r", "m", "h", "o", "l", "e"] },
+    { word: "Andromeda", letters: ["A", "n", "d", "r", "o", "m", "e", "d", "a"] },
+    { word: "Apollo 11", letters: ["A", "p", "o", "l", "l", "o", "1", "1"] }
+];
+
+const wordsList104 = [
+    { word: "event horizon", letters: ["e", "v", "e", "n", "t", "h", "o", "r", "i", "z", "o", "n"] },
+    { word: "meteorite", letters: ["m", "e", "t", "e", "o", "r", "i", "t", "e"] },
+    { word: "solar flare", letters: ["s", "o", "l", "a", "r", "f", "l", "a", "r", "e"] },
+    { word: "Kepler", letters: ["K", "e", "p", "l", "e", "r"] }
+];
+
+const wordsList105 = [
+    { word: "Kepler 22b", letters: ["K", "e", "p", "l", "e", "r", "2", "2", "b"] },
+    { word: "Neptune", letters: ["N", "e", "p", "t", "u", "n", "e"] },
+    { word: "cosmology", letters: ["c", "o", "s", "m", "o", "l", "o", "g", "y"] },
+    { word: "Saturn V", letters: ["S", "a", "t", "u", "r", "n", "V"] }
+];
+
+const wordsList106 = [
+    { word: "Carl Sagan", letters: ["C", "a", "r", "l", "S", "a", "g", "a", "n"] },
+    { word: "Big Bang", letters: ["B", "i", "g", "B", "a", "n", "g"] },
+    { word: "lunar module", letters: ["l", "u", "n", "a", "r", "m", "o", "d", "u", "l", "e"] },
+    { word: "supermassive", letters: ["s", "u", "p", "e", "r", "m", "a", "s", "s", "i", "v", "e"] }
+];
+
+const wordsList107 = [
+    { word: "orbital", letters: ["o", "r", "b", "i", "t", "a", "l"] },
+    { word: "exoplanet", letters: ["e", "x", "o", "p", "l", "a", "n", "e", "t"] },
+    { word: "pulsar", letters: ["p", "u", "l", "s", "a", "r"] },
+    { word: "solar system", letters: ["s", "o", "l", "a", "r", "s", "y", "s", "t", "e", "m"] }
+];
+
+const wordsList108 = [
+    { word: "cosmic rays", letters: ["c", "o", "s", "m", "i", "c", "r", "a", "y", "s"] },
+    { word: "neutron star", letters: ["n", "e", "u", "t", "r", "o", "n", "s", "t", "a", "r"] },
+    { word: "red giant", letters: ["r", "e", "d", "g", "i", "a", "n", "t"] },
+    { word: "Isaac Newton", letters: ["I", "s", "a", "a", "c", "N", "e", "w", "t", "o", "n"] }
+];
+
+const wordsList109 = [
+    { word: "dark matter", letters: ["d", "a", "r", "k", "m", "a", "t", "t", "e", "r"] },
+    { word: "dark energy", letters: ["d", "a", "r", "k", "e", "n", "e", "r", "g", "y"] },
+    { word: "binary star", letters: ["b", "i", "n", "a", "r", "y", "s", "t", "a", "r"] },
+    { word: "cosmic microwave background", letters: ["c", "o", "s", "m", "i", "c", "m", "i", "c", "r", "o", "w", "a", "v", "e", "b", "a", "c", "k", "g", "r", "o", "u", "n", "d"] }
+];
+
+const wordsList110 = [
+    { word: "Mars Rover", letters: ["M", "a", "r", "s", "R", "o", "v", "e", "r"] },
+    { word: "James Webb Telescope", letters: ["J", "a", "m", "e", "s", "W", "e", "b", "b", "T", "e", "l", "e", "s", "c", "o", "p", "e"] },
+    { word: "SpaceX", letters: ["S", "p", "a", "c", "e", "X"] },
+    { word: "Blue Origin", letters: ["B", "l", "u", "e", "O", "r", "i", "g", "i", "n"] }
+];
+const wordsList111 = [
+    { word: "gravity", letters: ["g", "r", "a", "v", "i", "t", "y"] },
+    { word: "satellite", letters: ["s", "a", "t", "e", "l", "l", "i", "t", "e"] },
+    { word: "Hawking", letters: ["H", "a", "w", "k", "i", "n", "g"] },
+    { word: "Mars", letters: ["M", "a", "r", "s"] }
+];
+
+const wordsList112 = [
+    { word: "NASA", letters: ["N", "A", "S", "A"] },
+    { word: "asteroid", letters: ["a", "s", "t", "e", "r", "o", "i", "d"] },
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] },
+    { word: "quasar", letters: ["q", "u", "a", "s", "a", "r"] }
+];
+
+const wordsList113 = [
+    { word: "Milky Way", letters: ["M", "i", "l", "k", "y", "W", "a", "y"] },
+    { word: "Hubble Telescope", letters: ["H", "u", "b", "b", "l", "e", "T", "e", "l", "e", "s", "c", "o", "p", "e"] },
+    { word: "orbit", letters: ["o", "r", "b", "i", "t"] },
+    { word: "supernova", letters: ["s", "u", "p", "e", "r", "n", "o", "v", "a"] }
+];
+
+const wordsList114 = [
+    { word: "Neutron", letters: ["N", "e", "u", "t", "r", "o", "n"] },
+    { word: "Uranus", letters: ["U", "r", "a", "n", "u", "s"] },
+    { word: "light-year", letters: ["l", "i", "g", "h", "t", "-", "y", "e", "a", "r"] },
+    { word: "Mars Rover", letters: ["M", "a", "r", "s", "R", "o", "v", "e", "r"] }
+];
+
+const wordsList115 = [
+    { word: "exosphere", letters: ["e", "x", "o", "s", "p", "h", "e", "r", "e"] },
+    { word: "Oort Cloud", letters: ["O", "o", "r", "t", "C", "l", "o", "u", "d"] },
+    { word: "Pluto", letters: ["P", "l", "u", "t", "o"] },
+    { word: "comet", letters: ["c", "o", "m", "e", "t"] }
+];
+
+const wordsList116 = [
+    { word: "Venus", letters: ["V", "e", "n", "u", "s"] },
+    { word: "Europa", letters: ["E", "u", "r", "o", "p", "a"] },
+    { word: "Juno", letters: ["J", "u", "n", "o"] },
+    { word: "Mercury", letters: ["M", "e", "r", "c", "u", "r", "y"] }
+];
+
+const wordsList117 = [
+    { word: "spacewalk", letters: ["s", "p", "a", "c", "e", "w", "a", "l", "k"] },
+    { word: "asterism", letters: ["a", "s", "t", "e", "r", "i", "s", "m"] },
+    { word: "Apollo 13", letters: ["A", "p", "o", "l", "l", "o", "1", "3"] },
+    { word: "cosmos", letters: ["c", "o", "s", "m", "o", "s"] }
+];
+
+const wordsList118 = [
+    { word: "interstellar", letters: ["i", "n", "t", "e", "r", "s", "t", "e", "l", "l", "a", "r"] },
+    { word: "event horizon", letters: ["e", "v", "e", "n", "t", "h", "o", "r", "i", "z", "o", "n"] },
+    { word: "asteroid belt", letters: ["a", "s", "t", "e", "r", "o", "i", "d", "b", "e", "l", "t"] },
+    { word: "big bang", letters: ["b", "i", "g", "b", "a", "n", "g"] }
+];
+
+const wordsList119 = [
+    { word: "Singularity", letters: ["S", "i", "n", "g", "u", "l", "a", "r", "i", "t", "y"] },
+    { word: "exoplanet", letters: ["e", "x", "o", "p", "l", "a", "n", "e", "t"] },
+    { word: "Neptune", letters: ["N", "e", "p", "t", "u", "n", "e"] },
+    { word: "Space Shuttle", letters: ["S", "p", "a", "c", "e", "S", "h", "u", "t", "t", "l", "e"] }
+];
+
+const wordsList120 = [
+    { word: "Elon Musk", letters: ["E", "l", "o", "n", "M", "u", "s", "k"] },
+    { word: "Stephen Hawking", letters: ["S", "t", "e", "p", "h", "e", "n", "H", "a", "w", "k", "i", "n", "g"] },
+    { word: "Buzz Aldrin", letters: ["B", "u", "z", "z", "A", "l", "d", "r", "i", "n"] },
+    { word: "Neil Armstrong", letters: ["N", "e", "i", "l", "A", "r", "m", "s", "t", "r", "o", "n", "g"] }
+];
+
+const wordsList121 = [
+    { word: "space station", letters: ["s", "p", "a", "c", "e", "s", "t", "a", "t", "i", "o", "n"] },
+    { word: "X-ray", letters: ["X", "-", "r", "a", "y"] },
+    { word: "Yuri Gagarin", letters: ["Y", "u", "r", "i", "G", "a", "g", "a", "r", "i", "n"] },
+    { word: "James Webb", letters: ["J", "a", "m", "e", "s", "W", "e", "b", "b"] }
+];
+
+const wordsList122 = [
+    { word: "SpaceX", letters: ["S", "p", "a", "c", "e", "X"] },
+    { word: "Blue Origin", letters: ["B", "l", "u", "e", "O", "r", "i", "g", "i", "n"] },
+    { word: "rocket", letters: ["r", "o", "c", "k", "e", "t"] },
+    { word: "gravity waves", letters: ["g", "r", "a", "v", "i", "t", "y", "w", "a", "v", "e", "s"] }
+];
+const wordsList123 = [
+    { word: "lunar module", letters: ["l", "u", "n", "a", "r", "m", "o", "d", "u", "l", "e"] },
+    { word: "black hole", letters: ["b", "l", "a", "c", "k", "h", "o", "l", "e"] },
+    { word: "Einstein", letters: ["E", "i", "n", "s", "t", "e", "i", "n"] },
+    { word: "cosmology", letters: ["c", "o", "s", "m", "o", "l", "o", "g", "y"] }
+];
+
+const wordsList124 = [
+    { word: "wormhole", letters: ["w", "o", "r", "m", "h", "o", "l", "e"] },
+    { word: "graviton", letters: ["g", "r", "a", "v", "i", "t", "o", "n"] },
+    { word: "Higgs boson", letters: ["H", "i", "g", "g", "s", "b", "o", "s", "o", "n"] },
+    { word: "nuclear fusion", letters: ["n", "u", "c", "l", "e", "a", "r", "f", "u", "s", "i", "o", "n"] }
+];
+
+const wordsList125 = [
+    { word: "space probe", letters: ["s", "p", "a", "c", "e", "p", "r", "o", "b", "e"] },
+    { word: "Voyager", letters: ["V", "o", "y", "a", "g", "e", "r"] },
+    { word: "nebula", letters: ["n", "e", "b", "u", "l", "a"] },
+    { word: "Andromeda", letters: ["A", "n", "d", "r", "o", "m", "e", "d", "a"] }
+];
+
+const wordsList126 = [
+    { word: "light speed", letters: ["l", "i", "g", "h", "t", "s", "p", "e", "e", "d"] },
+    { word: "supercluster", letters: ["s", "u", "p", "e", "r", "c", "l", "u", "s", "t", "e", "r"] },
+    { word: "exosphere", letters: ["e", "x", "o", "s", "p", "h", "e", "r", "e"] },
+    { word: "dark matter", letters: ["d", "a", "r", "k", "m", "a", "t", "t", "e", "r"] }
+];
+
+const wordsList127 = [
+    { word: "pulsar", letters: ["p", "u", "l", "s", "a", "r"] },
+    { word: "Kepler", letters: ["K", "e", "p", "l", "e", "r"] },
+    { word: "space elevator", letters: ["s", "p", "a", "c", "e", "e", "l", "e", "v", "a", "t", "o", "r"] },
+    { word: "terraform", letters: ["t", "e", "r", "r", "a", "f", "o", "r", "m"] }
+];
+
+const wordsList128 = [
+    { word: "dark energy", letters: ["d", "a", "r", "k", "e", "n", "e", "r", "g", "y"] },
+    { word: "Galileo", letters: ["G", "a", "l", "i", "l", "e", "o"] },
+    { word: "Cassini", letters: ["C", "a", "s", "s", "i", "n", "i"] },
+    { word: "event horizon", letters: ["e", "v", "e", "n", "t", "h", "o", "r", "i", "z", "o", "n"] }
+];
+
+const wordsList129 = [
+    { word: "cryovolcano", letters: ["c", "r", "y", "o", "v", "o", "l", "c", "a", "n", "o"] },
+    { word: "antimatter", letters: ["a", "n", "t", "i", "m", "a", "t", "t", "e", "r"] },
+    { word: "neutrino", letters: ["n", "e", "u", "t", "r", "i", "n", "o"] },
+    { word: "redshift", letters: ["r", "e", "d", "s", "h", "i", "f", "t"] }
+];
+
+const wordsList130 = [
+    { word: "Big Bang", letters: ["B", "i", "g", "B", "a", "n", "g"] },
+    { word: "Lagrange point", letters: ["L", "a", "g", "r", "a", "n", "g", "e", "p", "o", "i", "n", "t"] },
+    { word: "Oberth effect", letters: ["O", "b", "e", "r", "t", "h", "e", "f", "f", "e", "c", "t"] },
+    { word: "wormhole", letters: ["w", "o", "r", "m", "h", "o", "l", "e"] }
+];
+
+const wordsList131 = [
+    { word: "Apollo 11", letters: ["A", "p", "o", "l", "l", "o", "1", "1"] },
+    { word: "Einstein-Rosen bridge", letters: ["E", "i", "n", "s", "t", "e", "i", "n", "-", "R", "o", "s", "e", "n", "b", "r", "i", "d", "g", "e"] },
+    { word: "Voyager 1", letters: ["V", "o", "y", "a", "g", "e", "r", "1"] },
+    { word: "Starship", letters: ["S", "t", "a", "r", "s", "h", "i", "p"] }
+];
+
+const wordsList132 = [
+    { word: "Schwarzschild radius", letters: ["S", "c", "h", "w", "a", "r", "z", "s", "c", "h", "i", "l", "d", "r", "a", "d", "i", "u", "s"] },
+    { word: "hyperspace", letters: ["h", "y", "p", "e", "r", "s", "p", "a", "c", "e"] },
+    { word: "radio galaxy", letters: ["r", "a", "d", "i", "o", "g", "a", "l", "a", "x", "y"] },
+    { word: "exoplanet", letters: ["e", "x", "o", "p", "l", "a", "n", "e", "t"] }
+];
+
+const wordsList133 = [
+    { word: "spacetime", letters: ["s", "p", "a", "c", "e", "t", "i", "m", "e"] },
+    { word: "multiverse", letters: ["m", "u", "l", "t", "i", "v", "e", "r", "s", "e"] },
+    { word: "gamma rays", letters: ["g", "a", "m", "m", "a", "r", "a", "y", "s"] },
+    { word: "white dwarf", letters: ["w", "h", "i", "t", "e", "d", "w", "a", "r", "f"] }
+];
+
+const wordsList134 = [
+    { word: "Schrodinger", letters: ["S", "c", "h", "r", "o", "d", "i", "n", "g", "e", "r"] },
+    { word: "Mars rover", letters: ["M", "a", "r", "s", "r", "o", "v", "e", "r"] },
+    { word: "light year", letters: ["l", "i", "g", "h", "t", "y", "e", "a", "r"] },
+    { word: "James Webb", letters: ["J", "a", "m", "e", "s", "W", "e", "b", "b"] }
+];
+
+const wordsList135 = [
+    { word: "gravitational lensing", letters: ["g", "r", "a", "v", "i", "t", "a", "t", "i", "o", "n", "a", "l", "l", "e", "n", "s", "i", "n", "g"] },
+    { word: "Kelvin", letters: ["K", "e", "l", "v", "i", "n"] },
+    { word: "time dilation", letters: ["t", "i", "m", "e", "d", "i", "l", "a", "t", "i", "o", "n"] },
+    { word: "SpaceX", letters: ["S", "p", "a", "c", "e", "X"] }
+];
+
+const wordsList136 = [
+    { word: "cygnus", letters: ["c", "y", "g", "n", "u", "s"] },
+    { word: "extragalactic", letters: ["e", "x", "t", "r", "a", "g", "a", "l", "a", "c", "t", "i", "c"] },
+    { word: "wormhole travel", letters: ["w", "o", "r", "m", "h", "o", "l", "e", "t", "r", "a", "v", "e", "l"] },
+    { word: "cosmic rays", letters: ["c", "o", "s", "m", "i", "c", "r", "a", "y", "s"] }
+];
+
+const wordsList137 = [
+    { word: "Andromeda galaxy", letters: ["A", "n", "d", "r", "o", "m", "e", "d", "a", "g", "a", "l", "a", "x", "y"] },
+    { word: "Stephen Hawking", letters: ["S", "t", "e", "p", "h", "e", "n", "H", "a", "w", "k", "i", "n", "g"] },
+    { word: "quantum physics", letters: ["q", "u", "a", "n", "t", "u", "m", "p", "h", "y", "s", "i", "c", "s"] },
+    { word: "nuclear fission", letters: ["n", "u", "c", "l", "e", "a", "r", "f", "i", "s", "s", "i", "o", "n"] }
+];
+
+const wordsList138 = [
+    { word: "zero gravity", letters: ["z", "e", "r", "o", "g", "r", "a", "v", "i", "t", "y"] },
+    { word: "solar storm", letters: ["s", "o", "l", "a", "r", "s", "t", "o", "r", "m"] },
+    { word: "orbit", letters: ["o", "r", "b", "i", "t"] },
+    { word: "meteorite", letters: ["m", "e", "t", "e", "o", "r", "i", "t", "e"] }
+];
+
+const wordsList139 = [
+    { word: "Martian", letters: ["M", "a", "r", "t", "i", "a", "n"] },
+    { word: "comet", letters: ["c", "o", "m", "e", "t"] },
+    { word: "Neptune", letters: ["N", "e", "p", "t", "u", "n", "e"] },
+    { word: "space debris", letters: ["s", "p", "a", "c", "e", "d", "e", "b", "r", "i", "s"] }
+];
+
+const wordsList140 = [
+    { word: "Voyager ", letters: ["V", "o", "y", "a", "g", "e", "r"] },
+    { word: "exoplanetary system", letters: ["e", "x", "o", "p", "l", "a", "n", "e", "t", "a", "r", "y", "s", "y", "s", "t", "e", "m"] },
+    { word: "Oumuamua", letters: ["O", "u", "m", "u", "a", "m", "u", "a"] },
+    { word: "stellar flare", letters: ["s", "t", "e", "l", "l", "a", "r", "f", "l", "a", "r", "e"] }
+];
+
+const wordsList141 = [
+    { word: "Earth-like planet", letters: ["E", "a", "r", "t", "h", "-", "l", "i", "k", "e", "p", "l", "a", "n", "e", "t"] },
+    { word: "intergalactic", letters: ["i", "n", "t", "e", "r", "g", "a", "l", "a", "c", "t", "i", "c"] },
+    { word: "Pluto", letters: ["P", "l", "u", "t", "o"] },
+    { word: "cosmological constant", letters: ["c", "o", "s", "m", "o", "l", "o", "g", "i", "c", "a", "l", "c", "o", "n", "s", "t", "a", "n", "t"] }
+];
+
+ const wordsList151 = [
+    { word: "joy", letters: ["j", "o", "y"] },
+    { word: "dream", letters: ["d", "r", "e", "a", "m"] },
+    { word: "wonder", letters: ["w", "o", "n", "d", "e", "r"] },
+    { word: "serenity", letters: ["s", "e", "r", "e", "n", "i", "t", "y"] }
+];
+
+const wordsList152 = [
+    { word: "imagine", letters: ["i", "m", "a", "g", "i", "n", "e"] },
+    { word: "curiosity", letters: ["c", "u", "r", "i", "o", "s", "i", "t", "y"] },
+    { word: "bliss", letters: ["b", "l", "i", "s", "s"] },
+    { word: "awe", letters: ["a", "w", "e"] }
+];
+
+const wordsList153 = [
+    { word: "hope", letters: ["h", "o", "p", "e"] },
+    { word: "passion", letters: ["p", "a", "s", "s", "i", "o", "n"] },
+    { word: "fantasy", letters: ["f", "a", "n", "t", "a", "s", "y"] },
+    { word: "ecstasy", letters: ["e", "c", "s", "t", "a", "s", "y"] }
+];
+
+const wordsList154 = [
+    { word: "melancholy", letters: ["m", "e", "l", "a", "n", "c", "h", "o", "l", "y"] },
+    { word: "tranquility", letters: ["t", "r", "a", "n", "q", "u", "i", "l", "i", "t", "y"] },
+    { word: "whimsy", letters: ["w", "h", "i", "m", "s", "y"] },
+    { word: "euphoria", letters: ["e", "u", "p", "h", "o", "r", "i", "a"] }
+];
+
+const wordsList155 = [
+    { word: "longing", letters: ["l", "o", "n", "g", "i", "n", "g"] },
+    { word: "elation", letters: ["e", "l", "a", "t", "i", "o", "n"] },
+    { word: "daydream", letters: ["d", "a", "y", "d", "r", "e", "a", "m"] },
+    { word: "yearning", letters: ["y", "e", "a", "r", "n", "i", "n", "g"] }
+];
+const wordsList156 = [
+    { word: "enchantment", letters: ["e", "n", "c", "h", "a", "n", "t", "m", "e", "n", "t"] },
+    { word: "fascination", letters: ["f", "a", "s", "c", "i", "n", "a", "t", "i", "o", "n"] },
+    { word: "reverie", letters: ["r", "e", "v", "e", "r", "i", "e"] },
+    { word: "aura", letters: ["a", "u", "r", "a"] }
+];
+
+const wordsList157 = [
+    { word: "tranquil", letters: ["t", "r", "a", "n", "q", "u", "i", "l"] },
+    { word: "ethereal", letters: ["e", "t", "h", "e", "r", "e", "a", "l"] },
+    { word: "delight", letters: ["d", "e", "l", "i", "g", "h", "t"] },
+    { word: "wistful", letters: ["w", "i", "s", "t", "f", "u", "l"] }
+];
+
+const wordsList158 = [
+    { word: "radiance", letters: ["r", "a", "d", "i", "a", "n", "c", "e"] },
+    { word: "enigma", letters: ["e", "n", "i", "g", "m", "a"] },
+    { word: "serendipity", letters: ["s", "e", "r", "e", "n", "d", "i", "p", "i", "t", "y"] },
+    { word: "lucid", letters: ["l", "u", "c", "i", "d"] }
+];
+
+const wordsList159 = [
+    { word: "vision", letters: ["v", "i", "s", "i", "o", "n"] },
+    { word: "inspire", letters: ["i", "n", "s", "p", "i", "r", "e"] },
+    { word: "mystic", letters: ["m", "y", "s", "t", "i", "c"] },
+    { word: "harmony", letters: ["h", "a", "r", "m", "o", "n", "y"] }
+];
+
+const wordsList160 = [
+    { word: "whisper", letters: ["w", "h", "i", "s", "p", "e", "r"] },
+    { word: "solace", letters: ["s", "o", "l", "a", "c", "e"] },
+    { word: "radiant", letters: ["r", "a", "d", "i", "a", "n", "t"] },
+    { word: "sublime", letters: ["s", "u", "b", "l", "i", "m", "e"] }
+];
+
+const wordsList161 = [
+    { word: "unfold", letters: ["u", "n", "f", "o", "l", "d"] },
+    { word: "melody", letters: ["m", "e", "l", "o", "d", "y"] },
+    { word: "luminous", letters: ["l", "u", "m", "i", "n", "o", "u", "s"] },
+    { word: "infinity", letters: ["i", "n", "f", "i", "n", "i", "t", "y"] }
+];
+
+const wordsList162 = [
+    { word: "serene", letters: ["s", "e", "r", "e", "n", "e"] },
+    { word: "daydream", letters: ["d", "a", "y", "d", "r", "e", "a", "m"] },
+    { word: "elegance", letters: ["e", "l", "e", "g", "a", "n", "c", "e"] },
+    { word: "invention", letters: ["i", "n", "v", "e", "n", "t", "i", "o", "n"] }
+];
+
+const wordsList163 = [
+    { word: "fantasy", letters: ["f", "a", "n", "t", "a", "s", "y"] },
+    { word: "captivate", letters: ["c", "a", "p", "t", "i", "v", "a", "t", "e"] },
+    { word: "stargaze", letters: ["s", "t", "a", "r", "g", "a", "z", "e"] },
+    { word: "enlighten", letters: ["e", "n", "l", "i", "g", "h", "t", "e", "n"] }
+];
+
+const wordsList164 = [
+    { word: "twilight", letters: ["t", "w", "i", "l", "i", "g", "h", "t"] },
+    { word: "blissful", letters: ["b", "l", "i", "s", "s", "f", "u", "l"] },
+    { word: "mystical", letters: ["m", "y", "s", "t", "i", "c", "a", "l"] },
+    { word: "cosmic", letters: ["c", "o", "s", "m", "i", "c"] }
+];
+
+const wordsList165 = [
+    { word: "universe", letters: ["u", "n", "i", "v", "e", "r", "s", "e"] },
+    { word: "manifest", letters: ["m", "a", "n", "i", "f", "e", "s", "t"] },
+    { word: "euphoria", letters: ["e", "u", "p", "h", "o", "r", "i", "a"] },
+    { word: "vivid", letters: ["v", "i", "v", "i", "d"] }
+];
+const wordsList166 = [
+    { word: "whimsical", letters: ["w", "h", "i", "m", "s", "i", "c", "a", "l"] },
+    { word: "serenity", letters: ["s", "e", "r", "e", "n", "i", "t", "y"] },
+    { word: "dreamscape", letters: ["d", "r", "e", "a", "m", "s", "c", "a", "p", "e"] },
+    { word: "tranquility", letters: ["t", "r", "a", "n", "q", "u", "i", "l", "i", "t", "y"] }
+];
+
+const wordsList167 = [
+    { word: "illumination", letters: ["i", "l", "l", "u", "m", "i", "n", "a", "t", "i", "o", "n"] },
+    { word: "elation", letters: ["e", "l", "a", "t", "i", "o", "n"] },
+    { word: "imaginative", letters: ["i", "m", "a", "g", "i", "n", "a", "t", "i", "v", "e"] },
+    { word: "hallucination", letters: ["h", "a", "l", "l", "u", "c", "i", "n", "a", "t", "i", "o", "n"] }
+];
+
+const wordsList168 = [
+    { word: "elevate", letters: ["e", "l", "e", "v", "a", "t", "e"] },
+    { word: "vibrant", letters: ["v", "i", "b", "r", "a", "n", "t"] },
+    { word: "kaleidoscope", letters: ["k", "a", "l", "e", "i", "d", "o", "s", "c", "o", "p", "e"] },
+    { word: "rejuvenate", letters: ["r", "e", "j", "u", "v", "e", "n", "a", "t", "e"] }
+];
+
+const wordsList169 = [
+    { word: "envision", letters: ["e", "n", "v", "i", "s", "i", "o", "n"] },
+    { word: "eclipse", letters: ["e", "c", "l", "i", "p", "s", "e"] },
+    { word: "whispering", letters: ["w", "h", "i", "s", "p", "e", "r", "i", "n", "g"] },
+    { word: "celestial", letters: ["c", "e", "l", "e", "s", "t", "i", "a", "l"] }
+];
+
+const wordsList170 = [
+    { word: "moonlight", letters: ["m", "o", "o", "n", "l", "i", "g", "h", "t"] },
+    { word: "nostalgia", letters: ["n", "o", "s", "t", "a", "l", "g", "i", "a"] },
+    { word: "enrapture", letters: ["e", "n", "r", "a", "p", "t", "u", "r", "e"] },
+    { word: "harmonious", letters: ["h", "a", "r", "m", "o", "n", "i", "o", "u", "s"] }
+];
+
+const wordsList171 = [
+    { word: "inspiration", letters: ["i", "n", "s", "p", "i", "r", "a", "t", "i", "o", "n"] },
+    { word: "solitude", letters: ["s", "o", "l", "i", "t", "u", "d", "e"] },
+    { word: "radiance", letters: ["r", "a", "d", "i", "a", "n", "c", "e"] },
+    { word: "glimmer", letters: ["g", "l", "i", "m", "m", "e", "r"] }
+];
+
+const wordsList172 = [
+    { word: "wonderland", letters: ["w", "o", "n", "d", "e", "r", "l", "a", "n", "d"] },
+    { word: "daydream", letters: ["d", "a", "y", "d", "r", "e", "a", "m"] },
+    { word: "miracle", letters: ["m", "i", "r", "a", "c", "l", "e"] },
+    { word: "enchantment", letters: ["e", "n", "c", "h", "a", "n", "t", "m", "e", "n", "t"] }
+];
+
+const wordsList173 = [
+    { word: "exhilaration", letters: ["e", "x", "h", "i", "l", "a", "r", "a", "t", "i", "o", "n"] },
+    { word: "infinity", letters: ["i", "n", "f", "i", "n", "i", "t", "y"] },
+    { word: "universe", letters: ["u", "n", "i", "v", "e", "r", "s", "e"] },
+    { word: "compassion", letters: ["c", "o", "m", "p", "a", "s", "s", "i", "o", "n"] }
+];
+
+const wordsList174 = [
+    { word: "illumination", letters: ["i", "l", "l", "u", "m", "i", "n", "a", "t", "i", "o", "n"] },
+    { word: "serendipity", letters: ["s", "e", "r", "e", "n", "d", "i", "p", "i", "t", "y"] },
+    { word: "tranquil", letters: ["t", "r", "a", "n", "q", "u", "i", "l"] },
+    { word: "euphoria", letters: ["e", "u", "p", "h", "o", "r", "i", "a"] }
+];
+
+const wordsList175 = [
+    { word: "reverie", letters: ["r", "e", "v", "e", "r", "i", "e"] },
+    { word: "delight", letters: ["d", "e", "l", "i", "g", "h", "t"] },
+    { word: "mystical", letters: ["m", "y", "s", "t", "i", "c", "a", "l"] },
+    { word: "serenity", letters: ["s", "e", "r", "e", "n", "i", "t", "y"] }
+];
+const wordsList176 = [
+    { word: "calmness", letters: ["c", "a", "l", "m", "n", "e", "s", "s"] },
+    { word: "whisper", letters: ["w", "h", "i", "s", "p", "e", "r"] },
+    { word: "vivid", letters: ["v", "i", "v", "i", "d"] },
+    { word: "elevate", letters: ["e", "l", "e", "v", "a", "t", "e"] }
+];
+
+const wordsList177 = [
+    { word: "tantalize", letters: ["t", "a", "n", "t", "a", "l", "i", "z", "e"] },
+    { word: "imagine", letters: ["i", "m", "a", "g", "i", "n", "e"] },
+    { word: "dream", letters: ["d", "r", "e", "a", "m"] },
+    { word: "desire", letters: ["d", "e", "s", "i", "r", "e"] }
+];
+
+const wordsList178 = [
+    { word: "muse", letters: ["m", "u", "s", "e"] },
+    { word: "fantasy", letters: ["f", "a", "n", "t", "a", "s", "y"] },
+    { word: "creative", letters: ["c", "r", "e", "a", "t", "i", "v", "e"] },
+    { word: "affection", letters: ["a", "f", "f", "e", "c", "t", "i", "o", "n"] }
+];
+
+const wordsList179 = [
+    { word: "delight", letters: ["d", "e", "l", "i", "g", "h", "t"] },
+    { word: "dreamer", letters: ["d", "r", "e", "a", "m", "e", "r"] },
+    { word: "inspire", letters: ["i", "n", "s", "p", "i", "r", "e"] },
+    { word: "contentment", letters: ["c", "o", "n", "t", "e", "n", "t", "m", "e", "n", "t"] }
+];
+
+const wordsList180 = [
+    { word: "visionary", letters: ["v", "i", "s", "i", "o", "n", "a", "r", "y"] },
+    { word: "blissful", letters: ["b", "l", "i", "s", "s", "f", "u", "l"] },
+    { word: "exquisite", letters: ["e", "x", "q", "u", "i", "s", "i", "t", "e"] },
+    { word: "serene", letters: ["s", "e", "r", "e", "n", "e"] }
+];
+
+const wordsList181 = [
+    { word: "radiant", letters: ["r", "a", "d", "i", "a", "n", "t"] },
+    { word: "bliss", letters: ["b", "l", "i", "s", "s"] },
+    { word: "infatuation", letters: ["i", "n", "f", "a", "t", "u", "a", "t", "i", "o", "n"] },
+    { word: "serenity", letters: ["s", "e", "r", "e", "n", "i", "t", "y"] }
+];
+
+const wordsList182 = [
+    { word: "fondness", letters: ["f", "o", "n", "d", "n", "e", "s", "s"] },
+    { word: "sublime", letters: ["s", "u", "b", "l", "i", "m", "e"] },
+    { word: "blissful", letters: ["b", "l", "i", "s", "s", "f", "u", "l"] },
+    { word: "mesmerize", letters: ["m", "e", "s", "m", "e", "r", "i", "z", "e"] }
+];
+
+const wordsList183 = [
+    { word: "inspire", letters: ["i", "n", "s", "p", "i", "r", "e"] },
+    { word: "lullaby", letters: ["l", "u", "l", "l", "a", "b", "y"] },
+    { word: "romance", letters: ["r", "o", "m", "a", "n", "c", "e"] },
+    { word: "joyful", letters: ["j", "o", "y", "f", "u", "l"] }
+];
+
+const wordsList184 = [
+    { word: "dreamscape", letters: ["d", "r", "e", "a", "m", "s", "c", "a", "p", "e"] },
+    { word: "tranquillity", letters: ["t", "r", "a", "n", "q", "u", "i", "l", "l", "i", "t", "y"] },
+    { word: "whimsy", letters: ["w", "h", "i", "m", "s", "y"] },
+    { word: "hopeful", letters: ["h", "o", "p", "e", "f", "u", "l"] }
+];
+
+const wordsList185 = [
+    { word: "grace", letters: ["g", "r", "a", "c", "e"] },
+    { word: "ecstasy", letters: ["e", "c", "s", "t", "a", "s", "y"] },
+    { word: "introspect", letters: ["i", "n", "t", "r", "o", "s", "p", "e", "c", "t"] },
+    { word: "fantasia", letters: ["f", "a", "n", "t", "a", "s", "i", "a"] }
+];
+
+const wordsList186 = [
+    { word: "giddy", letters: ["g", "i", "d", "d", "y"] },
+    { word: "ecstasy", letters: ["e", "c", "s", "t", "a", "s", "y"] },
+    { word: "charming", letters: ["c", "h", "a", "r", "m", "i", "n", "g"] },
+    { word: "serenity", letters: ["s", "e", "r", "e", "n", "i", "t", "y"] }
+];
+
+const wordsList187 = [
+    { word: "mystic", letters: ["m", "y", "s", "t", "i", "c"] },
+    { word: "reverence", letters: ["r", "e", "v", "e", "r", "e", "n", "c", "e"] },
+    { word: "whisper", letters: ["w", "h", "i", "s", "p", "e", "r"] },
+    { word: "enchanted", letters: ["e", "n", "c", "h", "a", "n", "t", "e", "d"] }
+];
+
+const wordsList188 = [
+    { word: "tranquil", letters: ["t", "r", "a", "n", "q", "u", "i", "l"] },
+    { word: "ethereal", letters: ["e", "t", "h", "e", "r", "e", "a", "l"] },
+    { word: "captivating", letters: ["c", "a", "p", "t", "i", "v", "a", "t", "i", "n", "g"] },
+    { word: "bliss", letters: ["b", "l", "i", "s", "s"] }
+];
+
+const wordsList189 = [
+    { word: "seraphic", letters: ["s", "e", "r", "a", "p", "h", "i", "c"] },
+    { word: "reflection", letters: ["r", "e", "f", "l", "e", "c", "t", "i", "o", "n"] },
+    { word: "luminous", letters: ["l", "u", "m", "i", "n", "o", "u", "s"] },
+    { word: "peaceful", letters: ["p", "e", "a", "c", "e", "f", "u", "l"] }
+];
+
+const wordsList190 = [
+    { word: "mystify", letters: ["m", "y", "s", "t", "i", "f", "y"] },
+    { word: "blissful", letters: ["b", "l", "i", "s", "s", "f", "u", "l"] },
+    { word: "desire", letters: ["d", "e", "s", "i", "r", "e"] },
+    { word: "enchant", letters: ["e", "n", "c", "h", "a", "n", "t"] }
+];
+
+const wordsList191 = [
+    { word: "miracle", letters: ["m", "i", "r", "a", "c", "l", "e"] },
+    { word: "elation", letters: ["e", "l", "a", "t", "i", "o", "n"] },
+    { word: "nostalgia", letters: ["n", "o", "s", "t", "a", "l", "g", "i", "a"] },
+    { word: "content", letters: ["c", "o", "n", "t", "e", "n", "t"] }
+];
+
+const wordsList192 = [
+    { word: "whimsical", letters: ["w", "h", "i", "m", "s", "i", "c", "a", "l"] },
+    { word: "courage", letters: ["c", "o", "u", "r", "a", "g", "e"] },
+    { word: "serenity", letters: ["s", "e", "r", "e", "n", "i", "t", "y"] },
+    { word: "euphoria", letters: ["e", "u", "p", "h", "o", "r", "i", "a"] }
+];
+
+const wordsList193 = [
+    { word: "radiance", letters: ["r", "a", "d", "i", "a", "n", "c", "e"] },
+    { word: "joyful", letters: ["j", "o", "y", "f", "u", "l"] },
+    { word: "blissful", letters: ["b", "l", "i", "s", "s", "f", "u", "l"] },
+    { word: "vibrant", letters: ["v", "i", "b", "r", "a", "n", "t"] }
+];
+
+const wordsList194 = [
+    { word: "optimistic", letters: ["o", "p", "t", "i", "m", "i", "s", "t", "i", "c"] },
+    { word: "seraphic", letters: ["s", "e", "r", "a", "p", "h", "i", "c"] },
+    { word: "paradise", letters: ["p", "a", "r", "a", "d", "i", "s", "e"] },
+    { word: "charming", letters: ["c", "h", "a", "r", "m", "i", "n", "g"] }
+];
+
+const wordsList195 = [
+    { word: "clarity", letters: ["c", "l", "a", "r", "i", "t", "y"] },
+    { word: "radiate", letters: ["r", "a", "d", "i", "a", "t", "e"] },
+    { word: "sparkle", letters: ["s", "p", "a", "r", "k", "l", "e"] },
+    { word: "delight", letters: ["d", "e", "l", "i", "g", "h", "t"] }
+];
+
+const wordsList196 = [
+    { word: "calm", letters: ["c", "a", "l", "m"] },
+    { word: "bliss", letters: ["b", "l", "i", "s", "s"] },
+    { word: "hope", letters: ["h", "o", "p", "e"] },
+    { word: "pure", letters: ["p", "u", "r", "e"] }
+];
+
+const wordsList197 = [
+    { word: "grace", letters: ["g", "r", "a", "c", "e"] },
+    { word: "serenity", letters: ["s", "e", "r", "e", "n", "i", "t", "y"] },
+    { word: "peace", letters: ["p", "e", "a", "c", "e"] },
+    { word: "bliss", letters: ["b", "l", "i", "s", "s"] }
+];
+
+const wordsList198 = [
+    { word: "serenity", letters: ["s", "e", "r", "e", "n", "i", "t", "y"] },
+    { word: "calm", letters: ["c", "a", "l", "m"] },
+    { word: "relax", letters: ["r", "e", "l", "a", "x"] },
+    { word: "peaceful", letters: ["p", "e", "a", "c", "e", "f", "u", "l"] }
+];
+
+const wordsList199 = [
+    { word: "tranquility", letters: ["t", "r", "a", "n", "q", "u", "i", "l", "l", "i", "t", "y"] },
+    { word: "elegance", letters: ["e", "l", "e", "g", "a", "n", "c", "e"] },
+    { word: "inspire", letters: ["i", "n", "s", "p", "i", "r", "e"] },
+    { word: "refresh", letters: ["r", "e", "f", "r", "e", "s", "h"] }
+];
+
+const wordsList200 = [
+    { word: "seraphic", letters: ["s", "e", "r", "a", "p", "h", "i", "c"] },
+    { word: "blissful", letters: ["b", "l", "i", "s", "s", "f", "u", "l"] },
+    { word: "euphoria", letters: ["e", "u", "p", "h", "o", "r", "i", "a"] },
+    { word: "miracle", letters: ["m", "i", "r", "a", "c", "l", "e"] }
+];
+/**frequential pattern**/
+
+
+
+
+ 
+

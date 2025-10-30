@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Pixel Manipulation</title>
+</head>
+<body>
+
+    <input type="file" id="upload" accept="image/*">
+    <canvas id="canvas"></canvas>
+    <br>
+    <button onclick="changeColor()">Change Background Color</button>
+    <button onclick="invertColors()">Invert Colors</button>
+    <button onclick="grayscale()">Convert to Grayscale</button>
+    <button onclick="removeText()">Remove Text</button>
+    <button onclick="highlightText()">Highlight Text</button>
+    <br><br>
+    <button onclick="downloadImage()">Download Modified Image</button>
+
+    <script>
+        const upload = document.getElementById("upload");
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        let imageData, data;
+
+        upload.addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const img = new Image();
+                img.src = URL.createObjectURL(file);
+                img.onload = function() {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+                    imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    data = imageData.data;
+                };
+            }
+        });
+
+        // 1️⃣ Change Background Color (e.g., Change White to Blue)
+        function changeColor() {
+            for (let i = 0; i < data.length; i += 4) {
+                let r = data[i], g = data[i + 1], b = data[i + 2];
+
+                // Detect white background and change it to blue
+                if (r > 200 && g > 200 && b > 200) {
+                    data[i] = 0;   // Red
+                    data[i + 1] = 0;   // Green
+                    data[i + 2] = 255; // Blue
+                }
+            }
+            ctx.putImageData(imageData, 0, 0);
+        }
+
+        // 2️⃣ Invert Colors (Photo Negative Effect)
+        function invertColors() {
+            for (let i = 0; i < data.length; i += 4) {
+                data[i] = 255 - data[i];     // Invert Red
+                data[i + 1] = 255 - data[i + 1]; // Invert Green
+                data[i + 2] = 255 - data[i + 2]; // Invert Blue
+            }
+            ctx.putImageData(imageData, 0, 0);
+        }
+
+        // 3️⃣ Convert Image to Grayscale (Black & White)
+        function grayscale() {
+            for (let i = 0; i < data.length; i += 4) {
+                let gray = (data[i] + data[i + 1] + data[i + 2]) / 3;
+                data[i] = gray;
+                data[i + 1] = gray;
+                data[i + 2] = gray;
+            }
+            ctx.putImageData(imageData, 0, 0);
+        }
+
+        // 4️⃣ Remove Text (Remove Black Letters from an Image)
+        function removeText() {
+            for (let i = 0; i < data.length; i += 4) {
+                let r = data[i], g = data[i + 1], b = data[i + 2];
+
+                // Detect black or dark text and replace with white
+                if (r < 50 && g < 50 && b < 50) {
+                    data[i] = 255; // Set Red to White
+                    data[i + 1] = 255; // Set Green to White
+                    data[i + 2] = 255; // Set Blue to White
+                }
+            }
+            ctx.putImageData(imageData, 0, 0);
+        }
+
+        // 5️⃣ Highlight Text (Turn Black Letters into Red)
+        function highlightText() {
+            for (let i = 0; i < data.length; i += 4) {
+                let r = data[i], g = data[i + 1], b = data[i + 2];
+
+                // Detect black text and change it to red
+                if (r < 50 && g < 50 && b < 50) {
+                    data[i] = 255; // Red
+                    data[i + 1] = 0;   // Green
+                    data[i + 2] = 0;   // Blue
+                }
+            }
+            ctx.putImageData(imageData, 0, 0);
+        }
+
+        // 6️⃣ Download the Modified Image
+        function downloadImage() {
+            const link = document.createElement('a');
+            link.download = 'modified-image.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+    </script>
+	<canvas id="canvas"></canvas>
+<img id="image" src="your-image.jpg" style="display:none;">
+<script>
+    const img = document.getElementById('image');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    img.onload = function() {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+
+        let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        let data = imageData.data;
+
+        for (let i = 0; i < data.length; i += 4) {
+            let r = data[i];
+            let g = data[i + 1];
+            let b = data[i + 2];
+
+            // Detect white (text) and replace with background
+            if (r > 200 && g > 200 && b > 200) {
+                data[i] = 0;      // Replace with black
+                data[i + 1] = 0;
+                data[i + 2] = 0;
+            }
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+    };
+</script>
+<canvas id="canvas"></canvas>
+<img id="image" src="your-image.jpg" style="display:none;">
+<script>
+    const img = document.getElementById('image');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    img.onload = function() {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+
+        let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        let data = imageData.data;
+
+        for (let i = 0; i < data.length; i += 4) {
+            let r = data[i];
+            let g = data[i + 1];
+            let b = data[i + 2];
+
+            // Detect red (e.g., r > 150) and change it to blue
+            if (r > 150 && g < 100 && b < 100) {
+                data[i] = 0;    // Change to blue
+                data[i + 1] = 0;
+                data[i + 2] = 255;
+            }
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+    };
+</script>
+<canvas id="canvas"></canvas>
+<img id="image" src="your-image.jpg" style="display:none;">
+<script>
+    const img = document.getElementById('image');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    img.onload = function() {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+
+        let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        let data = imageData.data;
+
+        for (let i = 0; i < data.length; i += 4 * 5) { // Skip pixels to create a glitch
+            let shift = (Math.random() - 0.5) * 10; // Random shift
+            let index = i + shift * 4;
+            if (index > 0 && index < data.length - 4) {
+                data[i] = data[index];     // Swap pixels
+                data[i + 1] = data[index + 1];
+                data[i + 2] = data[index + 2];
+            }
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+    };
+</script>
+
+
+</body>
+</html>

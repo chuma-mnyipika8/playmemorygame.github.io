@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Video Media Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 900px;
+            position: relative;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 10px;
+            background-color: black;
+            display: block;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 15px;
+            left: 20px;
+            right: 20px;
+            width: calc(100% - 40px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            flex-wrap: wrap;
+        }
+
+        .button, .input, .volume-input, .fullscreen-button {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .input, .volume-input {
+            width: 80px;
+        }
+
+        .button:hover, .input:hover, .volume-input:hover, .fullscreen-button:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background-color: #555;
+            cursor: pointer;
+        }
+
+        .progress-bar-filled {
+            height: 100%;
+            background-color: #ff6347;
+            width: 0;
+        }
+
+        .time-display {
+            font-size: 14px;
+            color: #bbb;
+            text-align: center;
+            width: 100%;
+        }
+
+        #videoSelector {
+            margin-top: 20px;
+            padding: 10px;
+            background: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #videoSelector:hover {
+            background: #444;
+        }
+
+        .fullscreen-button {
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .fullscreen-button:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .video-container {
+                width: 100%;
+                max-width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .controls {
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: flex-start;
+            }
+
+            .button, .input, .volume-input, .fullscreen-button {
+                margin: 5px 0;
+                width: 100%;
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .time-display {
+                font-size: 12px;
+                margin-top: 5px;
+            }
+
+            #videoSelector {
+                width: 100%;
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .button, .input, .volume-input, .fullscreen-button {
+                font-size: 12px;
+                padding: 6px;
+            }
+
+            .time-display {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-container">
+        <video id="videoPlayer" controls>
+            <source id="videoSource" src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="controls">
+            <button class="button" onclick="togglePlayPause()">Play/Pause</button>
+            <button class="button" onclick="toggleMute()">Mute</button>
+            <input class="input" type="number" id="seekInput" placeholder="Seek (sec)" onchange="seekVideo()">
+            <input class="volume-input" type="range" id="volumeControl" min="0" max="1" step="0.1" value="1" onchange="adjustVolume()">
+            <button class="fullscreen-button" onclick="toggleFullScreen()">Fullscreen</button>
+        </div>
+        <div class="progress-bar" onclick="seekProgress(event)">
+            <div class="progress-bar-filled" id="progressBarFilled"></div>
+        </div>
+        <div class="time-display">
+            <span id="currentTimeDisplay">0:00</span> / <span id="durationDisplay">0:00</span>
+        </div>
+    </div>
+
+    <button id="videoSelector" onclick="selectVideo()">Select Video</button>
+
+    <script>
+        const video = document.getElementById('videoPlayer');
+        const videoSource = document.getElementById('videoSource');
+        const progressBarFilled = document.getElementById('progressBarFilled');
+        const currentTimeDisplay = document.getElementById('currentTimeDisplay');
+        const durationDisplay = document.getElementById('durationDisplay');
+        const seekInput = document.getElementById('seekInput');
+        const volumeControl = document.getElementById('volumeControl');
+
+        let isPlaying = false;
+        let isMuted = false;
+        let isFullScreen = false;
+
+        // Update the video progress
+        video.addEventListener('timeupdate', () => {
+            const currentTime = video.currentTime;
+            const duration = video.duration;
+
+            // Update progress bar
+            const progress = (currentTime / duration) * 100;
+            progressBarFilled.style.width = `${progress}%`;
+
+            // Update time display
+            currentTimeDisplay.textContent = formatTime(currentTime);
+            durationDisplay.textContent = formatTime(duration);
+        });
+
+        // Toggle play/pause
+        function togglePlayPause() {
+            if (isPlaying) {
+                video.pause();
+            } else {
+                video.play();
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Toggle mute
+        function toggleMute() {
+            video.muted = !isMuted;
+            isMuted = !isMuted;
+        }
+
+        // Seek video by clicking progress bar
+        function seekProgress(event) {
+            const progressBar = event.target;
+            const offsetX = event.offsetX;
+            const progressWidth = progressBar.offsetWidth;
+            const seekTime = (offsetX / progressWidth) * video.duration;
+            video.currentTime = seekTime;
+        }
+
+        // Seek video based on input
+        function seekVideo() {
+            const seekTime = parseInt(seekInput.value, 10);
+            video.currentTime = seekTime;
+        }
+
+        // Adjust volume
+        function adjustVolume() {
+            video.volume = volumeControl.value;
+        }
+
+        // Full-screen toggle
+        function toggleFullScreen() {
+            if (!isFullScreen) {
+                if (video.requestFullscreen) {
+                    video.requestFullscreen();
+                } else if (video.mozRequestFullScreen) { // Firefox
+                    video.mozRequestFullScreen();
+                } else if (video.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                    video.webkitRequestFullscreen();
+                } else if (video.msRequestFullscreen) { // IE/Edge
+                    video.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) { // Firefox
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { // IE/Edge
+                    document.msExitFullscreen();
+                }
+            }
+            isFullScreen = !isFullScreen;
+        }
+
+        // Format time (minutes:seconds)
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60);
+            return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+        }
+
+        // Select video file from user's local directory
+        function selectVideo() {
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = 'video/mp4';
+            fileInput.click();
+
+            fileInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const fileURL = URL.createObjectURL(file);
+                    videoSource.src = fileURL;
+                    video.load(); // Load the new video
+                    video.play(); // Play the video immediately after loading
+                    isPlaying = true;
+                } else {
+                    alert('Unsupported file format.');
+                }
+            });
+        }
+
+        // Keyboard controls
+        window.addEventListener('keydown', (e) => {
+            if (e.key === ' ') { // Space to toggle play/pause
+                togglePlayPause();
+            } else if (e.key === 'm' || e.key === 'M') { // 'M' to mute/unmute
+                toggleMute();
+            } else if (e.key === 'ArrowLeft') { // Left arrow to seek back 10 seconds
+                video.currentTime -= 10;
+            } else if (e.key === 'ArrowRight') { // Right arrow to seek forward 10 seconds
+                video.currentTime += 10;
+            } else if (e.key === 'f' || e.key === 'F') { // 'F' to toggle fullscreen
+                toggleFullScreen();
+            }
+        });
+    </script>
+
+</body>
+</html>

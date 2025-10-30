@@ -1,0 +1,767 @@
+﻿ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Search Game</title>
+    <style>
+	
+
+        /* Responsive and Enhanced Styling */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 40%, #4a6fa5 70%, #607ea1 100%);
+            color: #fff;
+            background-image: url('test6.jpg');
+            background-size: cover;
+        }
+
+        #game-container {
+            width: 90vw;
+            max-width: 500px;
+           /* background: #2d3748;*/
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+			/*background-image: url('test1.jpg');*/
+            background-size: cover;
+            margin-top:200px;
+        }
+        .word-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-bottom: 10px;
+			/*background-image: url('cat.webp');*/
+            background-size: cover;
+        }
+        .word-list span {
+            font-size: 1.1rem;
+            padding: 5px 15px;
+            margin: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+     .word-list span.word-found {
+    text-decoration: line-through;
+    color: #1a202c; /* Dark text for contrast */
+    background-color: #cbd5e0; /* A medium-light gray */
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 4px 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease;
+}
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 2px;
+            /*background: #4a5568;*/
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .cell {
+            background: #718096;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            user-select: none;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+            transition: background 0.3s, transform 0.2s;
+			background-image: url('test5.jpg');
+            background-size: cover;
+        }
+        .cell:hover {
+            transform: scale(1.1);
+            background: #a0aec0;
+        }
+        .cell.selected {
+            background: #63b3ed;
+            color: #1a202c;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
+        }
+        .cell.correct {
+            background: #FF7043;
+            color: #ffffff;
+        }
+         
+#message {
+        text-align: center;
+        margin: 20px auto;
+        font-size: 14px;
+        font-weight: bold;
+        color: #ffffff;
+        width: 300px;
+        height: 20px;
+        line-height: 60px; /* Vertical centering */
+       /* background: linear-gradient(135deg, #ff7eb3, #ff758c);*/
+        /*border: 3px solid #d72323;*/
+        border-radius: 50px; /* Fully rounded pill shape */
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), 0 0 12px rgba(255, 0, 150, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+        /*background-image: url('cartoon.webp');*/
+        background-size: cover;
+        background-blend-mode: overlay;
+        /*animation: pop-in 1s forwards, pulse 1.5s infinite;*/
+        overflow: hidden;
+        cursor: pointer;
+        
+    }
+
+    /* Text styling for a cartoonish look */
+    #message::after {
+        content: attr(data-text); /* Replicates the text for a layered effect */
+        font-size: 20px;
+        font-weight: bold;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-5deg);
+        color: #ffd700;
+        text-shadow: 
+            -2px -2px 0px #ff0000, 
+            2px -2px 0px #00ff00, 
+            -2px 2px 0px #00ffff, 
+            2px 2px 0px #0000ff;
+        filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.5));
+        animation: wave 2s infinite;
+    }
+
+    /* Hover Effects */
+    #message:hover {
+        transform: scale(1.2) rotate(-3deg);
+        background: linear-gradient(135deg, #85ffbd, #fffb7d);
+        border-color: #ffc107;
+        color: #000;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 100, 0.8);
+    }
+
+    /* Pop-In Animation */
+    @keyframes pop-in {
+        0% {
+            transform: scale(0.5);
+            opacity: 0;
+        }
+        50% {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    /* Pulse Animation */
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 10px rgba(255, 0, 150, 0.5), 0 0 20px rgba(255, 0, 150, 0.7);
+        }
+        50% {
+            box-shadow: 0 0 20px rgba(255, 0, 150, 0.8), 0 0 40px rgba(255, 0, 150, 1);
+        }
+        100% {
+            box-shadow: 0 0 10px rgba(255, 0, 150, 0.5), 0 0 20px rgba(255, 0, 150, 0.7);
+        }
+    }
+
+    /* Wave animation for the text */
+    @keyframes wave {
+        0%, 100% {
+            transform: translate(-50%, -50%) rotate(-5deg) scale(1);
+        }
+        50% {
+            transform: translate(-50%, -48%) rotate(-5deg) scale(1.05);
+        }
+    }
+        #reset-button {
+            display: block;
+            margin: 10px auto;
+            padding: 15px 30px;
+            background: linear-gradient(145deg, #1a202c, #2d3748);
+            border: 2px solid #4a5568;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            outline: none;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+			background-image: url('cartoon.webp');
+            background-size: cover;
+        }
+        #reset-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+            border-radius: 50px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        #reset-button:hover {
+            background: linear-gradient(145deg, #38a169, #48bb78);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px);
+        }
+        #reset-button:hover::before {
+            opacity: 1;
+        }
+        #reset-button:active {
+            transform: translateY(3px);
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+	 <style>
+    /* Container styling */
+    #word-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 20px;
+         margin-top:65 px;
+    }
+
+    #word-list span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1rem; /* Scales better on smaller screens */
+    /*font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;*/
+    font-weight: bold;
+    color: #2d3436; /* Better contrast than pure black */
+    text-align: center;
+
+    padding: 10px 16px;
+    margin: 5px;
+    background: linear-gradient(135deg, #fff6b7, #ffeaa7);
+    border: 2px solid #636e72;
+    border-radius: 12px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
+
+    transition: all 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+    flex: 1 1 120px; /* Responsive sizing */
+    max-width: 200px;
+}
+
+/* Hover effect for desktops */
+#word-list span:hover {
+    background: linear-gradient(135deg, #fffa90, #feca57);
+    transform: scale(1.05);
+    box-shadow: 3px 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    #word-list span {
+        font-size: 1.1rem;
+        padding: 12px 14px;
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+
+
+    /* Hover effect */
+    #word-list span:hover {
+        background: linear-gradient(145deg, #74b9ff, #a29bfe);
+        transform: rotate(0deg) scale(1.1);
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 255, 255, 0.8);
+        color: #222;
+    }
+
+    /* Individual Word Colors */
+    #word-list span:nth-child(1) {
+        background: linear-gradient(145deg, #55efc4, #00cec9);
+        
+    }
+
+    #word-list span:nth-child(2) {
+        background: linear-gradient(145deg, #81ecec, #74b9ff);
+    }
+
+    #word-list span:nth-child(3) {
+        background: linear-gradient(145deg, #fab1a0, #ff7675);
+    }
+
+    #word-list span:nth-child(4) {
+        background: linear-gradient(145deg, #fdcb6e, #e17055);
+    }
+
+    #word-list span:nth-child(5) {
+        background: linear-gradient(145deg, #6c5ce7, #a29bfe);
+    }
+
+    /* Animation for bounce */
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-5px);
+        }
+    }
+
+    /* Apply bounce animation */
+    #word-list span {
+        animation: bounce 1.5s infinite ease-in-out;
+    }
+
+    /* Disable animation on hover */
+    #word-list span:hover {
+        animation: none;
+    }
+	    
+        /* Responsive Timer Container */
+        .timer-container {
+            width: 80%;
+            max-width: 500px;
+            padding: 20px;
+            opacity:0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.2),
+                inset 4px 4px 10px rgba(255, 255, 255, 0.8),
+                inset -4px -4px 10px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+			 background-image: url('test6.jpg');
+            background-size: cover;
+        }
+
+        /* Timer Label with Metallic Style */
+        .timer-label {
+            font-size: 22px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #2c3e50;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #e0e0e0, #ffffff);
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #cfd8dc;
+            margin-bottom: 20px;
+			 /*background-image: url('catt.webp');*/
+            background-size: cover;
+        }
+
+        /* Timer Display with Realistic LED Look */
+ 
+        /* Glowing Animation */
+        @keyframes glow {
+            0% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
+            100% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.6); }
+        }
+
+        /* Motivational Message */
+        .info-box {
+            margin-top: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #37474f;
+            background: linear-gradient(145deg, #e0e0e0, #ffffff);
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 
+                2px 2px 8px rgba(0, 0, 0, 0.1),
+                -2px -2px 8px rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            border: 1px solid #b0bec5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .timer-container {
+                padding: 30px;
+            }
+            #timer {
+                font-size: 50px;
+                padding: 12px 20px;
+            }
+            .timer-label {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .timer-container {
+                padding: 20px;
+            }
+            #timer {
+                font-size: 40px;
+            }
+            .timer-label {
+                font-size: 16px;
+            }
+            .info-box {
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+        }
+       #grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    max-width: 100%;
+    touch-action: none;
+}
+
+.cell {
+    aspect-ratio: 1;
+    user-select: none;
+    text-align: center;
+    font-size: 1.2em;
+    line-height: 2em;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.cell.selected {
+    background-color: #add8e6;
+}
+
+.cell.correct {
+    background-color: #90ee90;
+}
+
+</style>
+
+</head>
+<body>
+     <!-- Background music with autoplay off (no autoplay initially) -->
+    <audio id="background-music" autoplay loop>
+  <source src="gamemusic.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+    <div id="game-container">
+        <div class="word-list" id="word-list">
+            <span>Code</span>
+            <span>Logic</span>
+            <span>Array</span>
+            <span>Debug</span>
+            <span>Function</span>
+        </div>
+        <div class="grid" id="grid"></div>
+        <div id="message"></div>
+        <button id="reset-button" style="display: none;">Play Again</button>
+		     <!--<div class="timer-container">
+        <div id="timer">01:00</div>
+    </div>-->
+
+  
+
+    </div>
+
+    <script>
+          
+const words = ["Train", "Usage", "Waste", "Watch"];
+		 
+        //const gridSize = 10;
+		 let gridSize;
+
+function updateGridSize() {
+    if (window.innerWidth <= 480) {
+        gridSize = 5;
+    } else if (window.innerWidth <= 768) {
+        gridSize = 7;
+    } else {
+        gridSize = 9;
+    }
+
+    const grid = document.getElementById('grid');
+    if (grid) {
+        grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+    }
+}
+
+updateGridSize(); // Set up once at load
+window.addEventListener('resize', updateGridSize); // Update on screen resize
+
+        const gridElement = document.getElementById('grid');
+        const wordListElement = document.getElementById('word-list');
+        const messageElement = document.getElementById('message');
+        const resetButton = document.getElementById('reset-button');
+        let grid = [];
+        let selectedCells = [];
+        let currentWord = '';
+        let foundWords = new Set();
+
+        function initializeGame() {
+            gridElement.innerHTML = '';
+            wordListElement.innerHTML = '';
+            messageElement.textContent = '';
+            resetButton.style.display = 'none';
+            foundWords.clear();
+            selectedCells = [];
+            currentWord = '';
+
+            words.forEach(word => {
+                const span = document.createElement('span');
+                span.textContent = word;
+                span.id = `word-${word}`;
+                wordListElement.appendChild(span);
+            });
+
+            grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(''));
+            placeWords();
+            fillRandomLetters();
+            renderGrid();
+			 
+        }
+
+        /*function placeWords() {
+            words.forEach(word => {
+                let placed = false;
+                while (!placed) {
+                    const direction = Math.floor(Math.random() * 2);
+                    const startX = Math.floor(Math.random() * (gridSize - (direction ? 1 : word.length)));
+                    const startY = Math.floor(Math.random() * (gridSize - (!direction ? 1 : word.length)));
+
+                    if (canPlaceWord(word, startX, startY, direction)) {
+                        for (let i = 0; i < word.length; i++) {
+                            grid[startY + (direction ? i : 0)][startX + (!direction ? i : 0)] = word[i];
+                        }
+                        placed = true;
+                    }
+                }
+            });
+        }*/
+        function placeWords() {
+    words.forEach(word => {
+        let placed = false;
+        while (!placed) {
+            const direction = Math.floor(Math.random() * 2); // 0 = horizontal, 1 = vertical
+
+            let startX, startY;
+            if (direction === 0) {
+                // Horizontal
+                startX = Math.floor(Math.random() * (gridSize - word.length + 1));
+                startY = Math.floor(Math.random() * gridSize);                        
+            } else {
+                // Vertical
+                startX = Math.floor(Math.random() * gridSize);
+                startY = Math.floor(Math.random() * (gridSize - word.length + 1));
+            }
+
+            if (canPlaceWord(word, startX, startY, direction)) {
+                for (let i = 0; i < word.length; i++) {
+                    grid[startY + (direction ? i : 0)][startX + (!direction ? i : 0)] = word[i];
+                }
+                placed = true;
+            }
+        }
+    });
+}
+
+        function canPlaceWord(word, x, y, direction) {
+            for (let i = 0; i < word.length; i++) {
+                const nx = x + (!direction ? i : 0);
+                const ny = y + (direction ? i : 0);
+                if (grid[ny][nx] !== '' && grid[ny][nx] !== word[i]) return false;
+            }
+            return true;
+        }
+
+        function fillRandomLetters() {
+            const letters = 'abcdefghijklmnopqrstuvwxyz';
+            grid = grid.map(row =>
+                row.map(cell => (cell === '' ? letters[Math.floor(Math.random() * letters.length)] : cell))
+            );
+        }
+
+        function renderGrid() {
+            grid.forEach((row, y) => {
+                row.forEach((letter, x) => {
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    cell.textContent = letter;
+                    cell.dataset.x = x;
+                    cell.dataset.y = y;
+                    gridElement.appendChild(cell);
+                });
+            });
+        }
+
+       function handleSwipe(startCell, endCell) {
+    const startX = parseInt(startCell.dataset.x, 10);
+    const startY = parseInt(startCell.dataset.y, 10);
+    const endX = parseInt(endCell.dataset.x, 10);
+    const endY = parseInt(endCell.dataset.y, 10);
+
+    const dx = endX - startX;
+    const dy = endY - startY;
+
+    const length = Math.max(Math.abs(dx), Math.abs(dy)) + 1;
+    const stepX = dx === 0 ? 0 : dx / Math.abs(dx);
+    const stepY = dy === 0 ? 0 : dy / Math.abs(dy);
+
+    // Allow only straight (horizontal/vertical) or perfect diagonal lines
+    if (Math.abs(dx) !== 0 && Math.abs(dy) !== 0 && Math.abs(dx) !== Math.abs(dy)) return;
+
+    resetSelection();
+
+    for (let i = 0; i < length; i++) {
+        const x = startX + stepX * i;
+        const y = startY + stepY * i;
+        const cell = gridElement.querySelector(`.cell[data-x='${x}'][data-y='${y}']`);
+        if (cell) {
+            selectedCells.push(cell);
+            cell.classList.add('selected');
+        }
+    }
+
+    currentWord = selectedCells.map(cell => cell.textContent).join('');
+}
+
+        function resetSelection() {
+            selectedCells.forEach(cell => cell.classList.remove('selected'));
+            selectedCells = [];
+            currentWord = '';
+        }
+
+        let isSwiping = false;
+        let startCell = null;
+
+        gridElement.addEventListener('mousedown', e => {
+            if (e.target.classList.contains('cell')) {
+                isSwiping = true;
+                startCell = e.target;
+            }
+        });
+
+        gridElement.addEventListener('mouseup', e => {
+            if (isSwiping && startCell && e.target.classList.contains('cell')) {
+                handleSwipe(startCell, e.target);
+                if (words.includes(currentWord) && !foundWords.has(currentWord)) {
+                    selectedCells.forEach(cell => cell.classList.add('correct'));
+                    document.getElementById(`word-${currentWord}`).classList.add('word-found');
+                    foundWords.add(currentWord);
+                }
+                resetSelection();
+
+                if (foundWords.size === words.length) {
+                    //messageElement.textContent = 'Congratulations! You found all the words!';
+                    //resetButton.style.display = 'block';
+					window.location.href='won.html';
+					 
+ localStorage.setItem('stagethirtysixopen',' stagethirtysixopen');
+                }
+            }
+            isSwiping = false;
+            startCell = null;
+        });
+          // Mobile swipe logic
+let touchStartCell = null;
+
+gridElement.addEventListener('touchstart', (e) => {
+    const touch = e.touches[0];
+    const target = document.elementFromPoint(touch.clientX, touch.clientY);
+    if (target && target.classList.contains('cell')) {
+        touchStartCell = target;
+        resetSelection();
+        selectedCells.push(touchStartCell);
+        touchStartCell.classList.add('selected');
+    }
+}, { passive: true });
+
+gridElement.addEventListener('touchmove', (e) => {
+    e.preventDefault(); // prevent scrolling
+
+    const touch = e.touches[0];
+    const target = document.elementFromPoint(touch.clientX, touch.clientY);
+
+    if (touchStartCell && target && target.classList.contains('cell')) {
+        handleSwipe(touchStartCell, target);
+    }
+}, { passive: false });
+
+gridElement.addEventListener('touchend', (e) => {
+    const touch = e.changedTouches[0];
+    const target = document.elementFromPoint(touch.clientX, touch.clientY);
+
+    if (touchStartCell && target && target.classList.contains('cell')) {
+        handleSwipe(touchStartCell, target);
+
+        if (words.includes(currentWord) && !foundWords.has(currentWord)) {
+            selectedCells.forEach(cell => cell.classList.add('correct'));
+            document.getElementById(`word-${currentWord}`).classList.add('word-found');
+            foundWords.add(currentWord);
+        }
+
+        if (foundWords.size === words.length) {
+            window.location.href = 'won.html';
+             
+ localStorage.setItem('stagethirtysixopen',' stagethirtysixopen');
+        }
+    }
+
+    resetSelection();
+    touchStartCell = null;
+});
+
+        resetButton.addEventListener('click', initializeGame);
+        initializeGame();
+    </script>
+	   <script>
+        function startTimer(durationInSeconds) {
+            let timerElement = document.getElementById("timer");
+            let remainingTime = durationInSeconds;
+
+            let countdown = setInterval(function () {
+                let minutes = Math.floor(remainingTime / 60);
+                let seconds = remainingTime % 60;
+
+                // Format the time as MM:SS
+                timerElement.textContent = 
+                    (minutes < 10 ? "0" : "") + minutes + ":" + 
+                    (seconds < 10 ? "0" : "") + seconds;
+
+                if (remainingTime <= 0) {
+                    clearInterval(countdown);
+                   // window.location.href = "lose.html"; // Redirect to lose page
+                } else {
+                    remainingTime--;
+                }
+            }, 1000);
+        }
+
+        // Start the timer (e.g. 1 minute)
+        startTimer(60);
+    </script>
+	 
+</body>
+</html>
+
+

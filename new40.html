@@ -1,0 +1,236 @@
+﻿  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Word Puzzle</title>
+     <style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        background: radial-gradient(circle, rgba(255, 156, 185, 1) 0%, rgba(255, 205, 196, 1) 50%, rgba(255, 255, 255, 1) 100%);
+        color: #fff;
+        padding: 20px;
+        background-attachment: fixed;
+background-image: url('ttn.jpg');
+      background-size: cover;
+            background-position: center;
+    }
+    h1 {
+        font-size: 3rem;
+        color:black;
+        letter-spacing: 2px;
+        animation: glowingText 1.5s ease-in-out infinite alternate;
+    }
+    @keyframes glowingText {
+        0% {
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.5), 0 0 60px rgba(255, 255, 255, 0.2);
+        }
+        100% {
+            text-shadow: 0 0 30px rgba(255, 255, 255, 1), 0 0 60px rgba(255, 255, 255, 0.9), 0 0 90px rgba(255, 255, 255, 0.7);
+        }
+    }
+    #lettersContainer {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 30px;
+        gap: 15px;
+        animation: fadeInUp 2s ease-in-out;
+		
+		
+    }
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .letter {
+        padding: 20px 25px;
+        border-radius: 15px;
+        background: #ff4081;
+        font-size: 2rem;
+        cursor: grab;
+        color: black;
+        user-select: none;
+        transition: transform 0.2s, background 0.3s ease-in-out, box-shadow 0.3s ease;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+		 background-image: url('test5.jpg');
+      background-size: cover;
+            background-position: center;
+    }
+    .letter:hover {
+        transform: scale(1.15);
+        background: #e91e63;
+        box-shadow: 0 0 25px rgba(233, 30, 99, 0.6), 0 0 35px rgba(233, 30, 99, 0.4);
+    }
+    .letter:active {
+        transform: scale(1.05);
+        background: #c2185b;
+        box-shadow: 0 0 15px rgba(194, 24, 91, 0.6), 0 0 25px rgba(194, 24, 91, 0.4);
+    }
+    #wordInput {
+        margin-top: 30px;
+        min-height: 60px;
+        padding: 20px;
+        border-radius: 12px;
+         color:white; 
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2), 0px 2px 25px rgba(255, 255, 255, 0.3);
+        font-size: 1.6rem;
+        color: #fff;
+        width: 60%;
+        border: none;
+        transition: box-shadow 0.3s ease, background 0.3s ease;
+        margin-left: 68px;
+        background-image: url('bb.png');
+      background-size: cover;
+          
+    }
+    #wordInput:focus {
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.4), 0px 4px 35px rgba(255, 255, 255, 0.5);
+        outline: none;
+    }
+    p {
+        font-size: 1.4rem;
+        margin-top: 20px;
+        font-weight: 300;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+        color:black;
+    }
+    span {
+        font-weight: 600;
+        color:white;
+    }
+#attemptsValue{
+color:black;
+}
+#timerValue{
+color:black;
+}
+</style>
+
+</head>
+<body>
+<!-- Background music with autoplay off (no autoplay initially) -->
+    <audio id="background-music" autoplay loop>
+  <source src="gamemusic.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+    <h1>HINT:__nd</h1>
+    <div id="lettersContainer"></div>
+    <div id="wordInput" ondragover="event.preventDefault()" ondrop="dropLetter(event)"></div>
+    <p>Attempts left: <span id="attemptsValue">3</span></p>
+    <p>Time left: <span id="timerValue">25</span></p>
+    <script>
+        /**const wordsList = [
+            { word: "quantum", letters: ["q", "u", "a", "n", "t", "u", "m"] },
+            { word: "photon", letters: ["p", "h", "o", "t", "o", "n"] },
+            { word: "gravity", letters: ["g", "r", "a", "v", "i", "t", "y"] },
+            { word: "electromagnetism", letters: ["e", "l", "e", "c", "t", "r", "o", "m", "a", "g", "n", "e", "t", "i", "s", "m"] }
+        ];**/
+        const wordsList= [
+    { word: "kind", letters: ["k", "i", "n", "d"] },
+    { word: "quantum", letters: ["q", "u", "a", "n", "t", "u", "m"] },
+    { word: "Voyager 1", letters: ["V", "o", "y", "a", "g", "e", "r", "1"] },
+    { word: "Edwin Hubble", letters: ["E", "d", "w", "i", "n", "H", "u", "b", "b", "l", "e"] }
+];
+        let currentLevel = 0;
+        let attemptsLeft = 3;
+        let timer;
+        let currentWord = wordsList[currentLevel];
+
+        document.addEventListener("DOMContentLoaded", () => {
+            generateLetters(currentWord.letters);
+            startTimer();
+            updateAttempts();
+        });
+
+        function generateLetters(letters) {
+            const lettersContainer = document.getElementById("lettersContainer");
+            lettersContainer.innerHTML = '';
+            const shuffledLetters = shuffleArray([...letters, ...shuffleArray("abcdefghijklmnopqrstuvwxyz".split('')).slice(0, 5)]);
+            shuffledLetters.forEach(letter => {
+                const letterElement = document.createElement("div");
+                letterElement.classList.add("letter");
+                letterElement.textContent = letter;
+                letterElement.draggable = true;
+                letterElement.addEventListener("dragstart", event => {
+                    event.dataTransfer.setData("text", event.target.textContent);
+                });
+                lettersContainer.appendChild(letterElement);
+            });
+        }
+
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function dropLetter(event) {
+            event.preventDefault();
+            const letter = event.dataTransfer.getData("text");
+            const span = document.createElement("span");
+            span.textContent = letter;
+            document.getElementById("wordInput").appendChild(span);
+            checkWord();
+        }
+
+        function checkWord() {
+            const inputWord = document.getElementById("wordInput").innerText.trim().toLowerCase();
+            if (inputWord === currentWord.word) {
+               // alert("Congratulations! You won!");
+               // location.reload();
+			  // window.location.href='won.html';
+			  window.location.href='won.html';
+			   localStorage.setItem('stageseventhyfouropen','stageseventhyfouropen');                                    
+            } else if (inputWord.length >= currentWord.word.length) {
+                attemptsLeft--;
+                updateAttempts();
+                if (attemptsLeft <= 0) {
+                   // alert("Game Over! Try again.");
+                   // location.reload();
+				   window.location.href='lose.html';
+                } else {
+                    document.getElementById("wordInput").innerHTML = '';
+                }
+            }
+        }
+
+        function updateAttempts() {
+            document.getElementById("attemptsValue").textContent = attemptsLeft;
+        }
+
+        function startTimer() {
+            let timeLeft = 25;
+            clearInterval(timer);
+            document.getElementById("timerValue").textContent = timeLeft;
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById("timerValue").textContent = timeLeft;
+                if (timeLeft <= 0) {
+                   // clearInterval(timer);
+                   // alert("Time's up! You lost!");
+                   // location.reload();
+				   window.location.href='lose.html';
+                }
+            }, 1000);
+        }
+    </script>
+	 
+</body>
+</html>
+
+
+
+
+
+

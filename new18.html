@@ -1,0 +1,369 @@
+﻿     <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Puzzle Game</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fb;
+             background-image: url('ttn.jpg');
+      background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+             background-image: url('ttn.jpg');
+      background-size: cover;
+            background-position: center;
+            transition: all 0.3s ease;
+             opacity: 0.9;
+        }
+
+        h1 {
+            font-size: 26px;
+            color: #3b3f48;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .clue-box {
+            font-size: 20px;
+            font-weight: bold;
+            color: black ;
+            background: linear-gradient(45deg, #ff4e50, #1fddff);
+            padding: 10px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(255, 78, 80, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            animation: glow 1.5s infinite alternate;
+             background-image: url('test5.jpg');
+      background-size: cover;
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px rgba(255, 78, 80, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(31, 221, 255, 0.8); }
+        }
+
+        #lettersContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .letter {
+            font-size: 24px;
+         background-image: url('test5.jpg');
+      background-size: cover;
+            background-position: center;
+            width: 65px;
+            height: 65px;
+            border-radius: 10px;
+            cursor: pointer;
+            user-select: none;
+            text-align: center;
+            line-height: 65px;
+            color: black;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0.9;
+        }
+
+        .letter:hover {
+            transform: scale(1.15);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            opacity: 1;
+        }
+
+        .letter:active {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #wordInput {
+            width: 90%;
+            min-height: 50px;
+            font-size: 18px;
+            border-radius: 12px;
+            border: 2px solid #5c6bc0;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            padding: 12px;
+            margin-bottom: 25px;
+            overflow-y: auto;
+        }
+
+        #wordInput:focus {
+            outline: none;
+            border-color: #4caf50;
+            background-color: #f1f1f1;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        #wordInput:empty::before {
+            content: attr(data-placeholder);
+            color: #888;
+            opacity: 0.7;
+        }
+
+        #message {
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        #score {
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        #scoreValue {
+            font-weight: bold;
+            color: #00796b;
+        }
+
+        #nextLevelButton {
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: none;
+            transition: background-color 0.3s ease;
+        }
+
+        #nextLevelButton:hover {
+            background-color: #45a049;
+        }
+
+        .correct {
+            color: #4caf50;
+            animation: correctFeedback 1s ease-in-out;
+        }
+
+        @keyframes correctFeedback {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .wrong {
+            background-color: #f44336;
+            color: white;
+            animation: wrongFeedback 0.5s ease-in-out;
+        }
+
+        @keyframes wrongFeedback {
+            0% { background-color: #f44336; }
+            50% { background-color: #ff5722; }
+            100% { background-color: #f44336; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                max-width: 90%;
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .letter {
+                width: 60px;
+                height: 60px;
+                line-height: 60px;
+                font-size: 20px;
+            }
+
+            #wordInput {
+                font-size: 16px;
+                padding: 12px;
+            }
+
+            #nextLevelButton {
+                font-size: 14px;
+                padding: 10px 18px;
+            }
+
+            .clue-box {
+                font-size: 18px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Background music with autoplay off (no autoplay initially) -->
+    <audio id="background-music" autoplay loop>
+  <source src="gamemusic.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+<div class="container">
+    <div class="clue-box">hint:c__m </div>
+
+    <div id="gameArea">
+        <div id="lettersContainer" aria-label="Letters container" role="list"></div>
+
+        <div id="wordInput"
+             contenteditable="true"
+             data-placeholder="Drag letters here"
+             spellcheck="false"
+             role="textbox"
+             aria-label="Enter the word here"
+             aria-multiline="false"></div>
+    </div>
+
+    <div id="message" aria-live="polite"></div>
+
+     
+
+    <div id="nextLevel">
+        <button id="nextLevelButton">Next Level</button>
+    </div>
+</div>
+ <script>
+ const wordsList = [
+    { word: "calm", letters: ["c", "a", "l", "m"] },
+    { word: "bliss", letters: ["b", "l", "i", "s", "s"] },
+    { word: "hope", letters: ["h", "o", "p", "e"] },
+    { word: "pure", letters: ["p", "u", "r", "e"] }
+];
+
+let currentLevel = 0;
+let score = 0;
+let attemptsLeft = 3;
+let timer;
+let currentWord = wordsList[currentLevel];
+
+const wordInput = document.getElementById("wordInput");
+const message = document.getElementById("message");
+const lettersContainer = document.getElementById("lettersContainer");
+
+document.addEventListener("DOMContentLoaded", () => {
+    generateLetters(currentWord.letters);
+    startTimer();
+    updateAttempts();
+});
+
+function generateLetters(letters) {
+    lettersContainer.innerHTML = '';
+    const extraLetters = ["i", "m", "z", "x", "q", "t"]; // corrected extra letters
+    const shuffledLetters = shuffleArray([...letters, ...extraLetters.slice(0, 3)]);
+
+    shuffledLetters.forEach(letter => {
+        const letterElement = document.createElement("div");
+        letterElement.classList.add("letter");
+        letterElement.textContent = letter;
+
+        // Enable drag for desktop
+        letterElement.draggable = true;
+        letterElement.addEventListener("dragstart", (event) => {
+            event.dataTransfer.setData("text", event.target.textContent);
+            event.dataTransfer.effectAllowed = "move";
+        });
+
+        // Enable tap for mobile
+        letterElement.addEventListener("click", () => {
+            handleLetterDrop(letter);
+        });
+
+        lettersContainer.appendChild(letterElement);
+    });
+}
+
+// Allow drag on desktop
+wordInput.addEventListener("dragover", (event) => event.preventDefault());
+wordInput.addEventListener("drop", (event) => {
+    event.preventDefault();
+    const letter = event.dataTransfer.getData("text");
+    handleLetterDrop(letter);
+});
+
+function handleLetterDrop(letter) {
+    if (!currentWord.letters.includes(letter)) {
+        window.location.href = "lose.html";
+        return;
+    }
+    const span = document.createElement("span");
+    span.textContent = letter;
+    wordInput.appendChild(span);
+    checkWord();
+}
+
+function checkWord() {
+    const inputWord = wordInput.innerText.trim().toLowerCase();
+    if (inputWord === currentWord.word) {
+         localStorage.setItem('stagefifthytwoopen','stagefifthytwoopen');
+        window.location.href = " won.html";
+    }
+}
+
+function updateAttempts() {
+    document.getElementById("attemptsValue").textContent = attemptsLeft;
+}
+
+function startTimer() {
+    let timeLeft = 30;
+    clearInterval(timer);
+    document.getElementById("timerValue").textContent = timeLeft;
+    timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timerValue").textContent = timeLeft;
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            window.location.href = "lose.html";
+        }
+    }, 1000);
+}
+
+function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+</script>
+	 
+</body>
+</html>
+
