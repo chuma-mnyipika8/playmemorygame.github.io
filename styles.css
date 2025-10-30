@@ -1,0 +1,227 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Press Start 2P', cursive;
+    background: radial-gradient(circle, #1e1e1e, #0a0a0a);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.app-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header {
+    background: linear-gradient(90deg, #ff00cc, #3f45cc);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+    font-size: 24px;
+    text-shadow: 0 0 10px rgba(255, 0, 204, 0.8), 0 0 15px rgba(0, 204, 255, 0.8);
+}
+
+.game-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, #1a1b30, #14162d);
+    padding: 20px;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(4, 100px);
+    gap: 10px;
+    justify-content: center;
+}
+
+.card {
+    width: 100px;
+    height: 100px;
+    background-color: #333;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.card.flipped {
+    background-color: #ff00cc;
+    transform: rotateY(180deg);
+}
+
+.card.matched {
+    background-color: #3f45cc;
+    cursor: default;
+    transform: scale(1.1);
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 2px solid #ff00cc;
+    background: linear-gradient(145deg, #3f45cc, #ff00cc);
+    color: white;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+button:hover {
+    background: linear-gradient(145deg, #ff00cc, #3f45cc);
+    box-shadow: 0 10px 20px rgba(255, 0, 204, 0.5);
+}
+
+footer {
+    background: linear-gradient(90deg, #ff00cc, #3f45cc);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Game Info Section */
+.game-info {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .game-board {
+        grid-template-columns: repeat(4, 80px);
+        grid-template-rows: repeat(4, 80px);
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        font-size: 20px;
+    }
+
+    .game-board {
+        grid-template-columns: repeat(4, 70px);
+        grid-template-rows: repeat(4, 70px);
+    }
+
+    footer {
+        font-size: 14px;
+    }
+
+    .game-info {
+        font-size: 16px;
+        flex-direction: column;
+    }
+}
+/* Basic Styles */
+body {
+    margin: 0;
+    font-family: 'Press Start 2P', cursive;
+    background: #1a1a1a;
+    color: white;
+    text-align: center;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+}
+
+#closeModalBtn {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#closeModalBtn:hover {
+    background-color: #ff00cc;
+}
+
+img {
+    margin-top: 20px;
+    max-width: 100px;
+}
+
+/* Other styling for game board and cards */
+.game-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.card {
+    width: 80px;
+    height: 80px;
+    background: #ccc;
+    margin: 5px;
+    display: inline-block;
+    text-align: center;
+    line-height: 80px;
+    font-size: 24px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.flipped {
+    background-color: #fff;
+}
+
+/* Footer Styling */
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
