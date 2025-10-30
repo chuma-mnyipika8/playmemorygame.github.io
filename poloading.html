@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Us - Learn, Create, and Aspire to Greatness">
+    <meta name="author" content="YourCompany">
+    <title>About Us</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            color: white;
+			background-image: url('mom.webp');
+        }
+        a {
+            text-decoration: none;
+            color: #ffcc33;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+        }
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffcc33;
+        }
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+        .nav-links a {
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #ffdd55;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        .hero button {
+            background: #ffcc33;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            color: #1e3c72;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+        .hero button:hover {
+            transform: scale(1.1);
+        }
+
+        /* About Section */
+        .about {
+            padding: 50px 20px;
+            background: #ffffff10;
+            text-align: center;
+        }
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ffcc33;
+        }
+        .about p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        .about img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Section */
+        .quote-section {
+            padding: 50px 20px;
+            background: linear-gradient(to bottom, #2a5298, #1e3c72);
+            text-align: center;
+        }
+        .quote-section p {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #ffdd55;
+        }
+        .quote-section span {
+            display: block;
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            padding: 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.9);
+        }
+        .social-links {
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .social-links a {
+            font-size: 1.5rem;
+            color: #ffcc33;
+            transition: color 0.3s;
+        }
+        .social-links a:hover {
+            color: #ffdd55;
+        }
+        .footer-text {
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-logo">AspireTech</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#quote">Inspiration</a>
+            <a href="#footer">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to Your Journey</h1>
+        <p>Empowering you to dream big, create boldly, and achieve greatness. This is more than a page—it's your launchpad.</p>
+        <button onclick="window.location.href='pol.html'">Get Started</button>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>Who We Are</h2>
+        <p>
+            AspireTech is built on the foundation of innovation, curiosity, and the belief that everyone has the potential to create something extraordinary. 
+            From humble beginnings to big aspirations, we're here to inspire your journey.
+        </p>
+        <img src="https://via.placeholder.com/500" alt="Inspiration Image">
+    </section>
+
+    <!-- Quote Section -->
+    <section id="quote" class="quote-section">
+        <p>"The only way to do great work is to love what you do."</p>
+        <span>- Steve Jobs</span>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="social-links">
+            <a href="https://facebook.com" target="_blank">🌐</a>
+            <a href="https://twitter.com" target="_blank">🐦</a>
+            <a href="https://linkedin.com" target="_blank">💼</a>
+        </div>
+        <p class="footer-text">© 2024 Chuma Mnyipika. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
+

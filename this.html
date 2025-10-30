@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memory Mix‑Up Achievements</title>
+  <meta name="description" content="Check your unlocked vouchers and progress in Memory Mix‑Up. Easily view achievements, unlock codes, and track your game completion." />
+  <meta name="keywords" content="Memory Mix‑Up achievements, game vouchers, unlock codes, progress tracker" />
+  <meta name="author" content="Chuma Mnyipika" />
+
+  <!-- Optional: Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Memory Mix‑Up Achievements",
+    "description": "Track your achievements, vouchers, and unlock progress in Memory Mix‑Up."
+  }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Press Start 2P', sans-serif;
+      color: #FF00CC;
+      background: #1e1e1e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+       background-image: url('test6.jpg'); /* Your image */
+     background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+    }
+
+    .achievements-container {
+      position: relative;
+      width: 90%;
+      max-width: 600px;
+      padding: 20px;
+      background: rgba(51, 51, 51, 0.6); /* Semi-transparent overlay */
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      color: #FFFFFF;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .vouchers {
+      background: rgba(51, 51, 51, 0.8);
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .vouchers.unlocked {
+      opacity: 1;
+      transform: scale(1.03);
+      box-shadow: 0 6px 15px rgba(255, 0, 204, 0.5);
+    }
+
+    .achievement-title {
+      font-size: 1.2rem;
+      color: #FF00CC;
+      margin-bottom: 5px;
+    }
+
+    .achievement-details {
+      font-size: 1rem;
+      color: #FFFFFF;
+    }
+
+    .unlock-code {
+      font-size: 0.9rem;
+      color: #00FFCC;
+      margin-top: 8px;
+    }
+
+    .achievement-button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      color: #FFFFFF;
+      background: linear-gradient(135deg,#FF00CC,#FF0066);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-transform: uppercase;
+    }
+
+    .achievement-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(255,0,204,0.5);
+    }
+
+    .progress-container {
+      background: rgba(51,51,51,0.8);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 20px auto;
+      width: 100%;
+      max-width: 400px;
+      height: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(135deg,#FF00CC,#FF0066);
+      transition: width 0.5s ease;
+    }
+
+    .back-button {
+      margin-top: 20px;
+      padding: 10px 16px;
+      font-size: 1rem;
+      color: #FFFFFF;
+      background: linear-gradient(135deg,#FF00CC,#FF0066);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(255,0,204,0.5);
+    }
+  </style>
+</head>
+<body>
+  <main class="achievements-container" role="main">
+    <h1>Achievements</h1>
+
+    <section class="progress-container" aria-label="Progress toward unlocking all vouchers">
+      <div class="progress-bar" id="progress-bar"></div>
+    </section>
+
+    <section id="achievements-list" aria-live="polite"></section>
+
+    <button class="back-button" onclick="window.location.href='navigation.html'">Back to Navigation</button>
+  </main>
+
+  <audio id="unlock-sound" src="https://www.myinstants.com/media/sounds/achievement-unlocked.mp3" aria-hidden="true"></audio>
+
+
+    <script>
+        /**const achievements = [
+            { title: "Stage 10 voucher", details: "Complete Stage 1 without mistakes.", unlocked: false, code: "1234", unlockCode: "" },
+            { title: "stage 20 voucher", details: "Complete any stage within 1 minute.", unlocked: false, code: "12345", unlockCode: "" },
+            { title: "stage 30 voucher", details: "Match all pairs without mistakes.", unlocked: false, code: "123456", unlockCode: "" },
+            { title: "stage 40 voucher", details: "Complete 5 levels in a row.", unlocked: false, code: "1234567", unlockCode: "" },
+            { title: "stage 50 voucher", details: "Finish a level in under 30s.", unlocked: false, code: "12345678", unlockCode: "" },
+            { title: "stage 60 voucher", details: "Win 10 games in a row.", unlocked: false, code: "123456789", unlockCode: "" },
+            { title: "stage 70 voucher", details: "Remember 50+ correct pairs.", unlocked: false, code: "1234567890", unlockCode: "" },
+            { title: "stage 80 voucher", details: "Complete the hardest level.", unlocked: false, code: "12345678901", unlockCode: "" },
+            { title: "stage 90 voucher", details: "Find 5 hidden patterns.", unlocked: false, code: "123456789012", unlockCode: "" },
+            { title: "stage 100 vouher", details: "Achieve perfect score.", unlocked: false, code: "1234567890123", unlockCode: "" }
+        ];
+
+        function generateUnlockCode() {
+            return Math.floor(1000000000000000 + Math.random() * 9000000000000000).toString();
+        }
+
+        function loadAchievements() {
+            const savedAchievements = JSON.parse(localStorage.getItem("achievements"));
+            if (savedAchievements) {
+                achievements.forEach((ach, index) => {
+                    achievements[index] = savedAchievements[index];
+                });
+            }
+
+            const achievementsList = document.getElementById("achievements-list");
+            achievementsList.innerHTML = "";
+
+            achievements.forEach((ach, index) => {
+                let div = document.createElement("div");
+                div.classList.add("achievement");
+                if (ach.unlocked) {
+                    div.classList.add("unlocked");
+                }
+                div.innerHTML = `<div class="achievement-title">${ach.title}</div>
+                                 <div class="achievement-details">${ach.details}</div>
+                                 ${ach.unlocked ? `<div class="unlock-code">Code: ${ach.unlockCode}</div>` : ""}
+                                 <button class="achievement-button" onclick="unlockAchievement(${index})" ${ach.unlocked ? 'disabled' : ''}>Unlock</button>`;
+                achievementsList.appendChild(div);
+            });
+
+            updateProgressBar();
+        }
+
+        function unlockAchievement(index) {
+            if (index > 0 && !achievements[index - 1].unlocked) {
+                alert("Unlock the previous achievement first!");
+                return;
+            }
+
+            let userCode = prompt(`Enter the unlock code for ${achievements[index].title}:`);
+            if (userCode === achievements[index].code) {
+                achievements[index].unlocked = true;
+                achievements[index].unlockCode = generateUnlockCode();
+                document.getElementById("unlock-sound").play();
+                saveAchievements();
+                loadAchievements();
+            } else {
+                alert("Incorrect code! Try again.");
+            }
+        }
+
+        function saveAchievements() {
+            localStorage.setItem("achievements", JSON.stringify(achievements));
+        }
+
+        function updateProgressBar() {
+            let unlockedCount = achievements.filter(a => a.unlocked).length;
+            document.getElementById("progress-bar").style.width = (unlockedCount / achievements.length) * 100 + "%";
+        }
+
+        window.onload = loadAchievements;**/
+		//////////////////////////////fixed logic///////////////////////
+		const vouchers = [
+  { title: "Stage 10 voucher", details: "win R5 voucher", unlocked: false, code: "1234xxytgvb", unlockCode: "" },
+  { title: "stage 20 voucher", details: " win R10 voucher", unlocked: false, code: "12345polkmnbuyt", unlockCode: "" },
+  { title: "stage 30 voucher", details: "win R15 voucher", unlocked: false, code: "123456jdshyttwrrea", unlockCode: "" },
+  { title: "stage 40 voucher", details: "win R20 voucher", unlocked: false, code: "1234567xxxcvbnmla", unlockCode: "" },
+  { title: "stage 50 voucher", details: "win R25 voucher", unlocked: false, code: "12345678camchuped", unlockCode: "" },
+  { title: "stage 60 voucher", details: "win R30 voucher", unlocked: false, code: "123456789trevusinl", unlockCode: "" },
+  { title: "stage 70 voucher", details: "win R35 voucher", unlocked: false, code: "1234567890nosayilensich", unlockCode: "" },
+  { title: "stage 80 voucher", details: "win R40 voucher", unlocked: false, code: "12345678901equlmnoippajd", unlockCode: "" },
+  { title: "stage 90 voucher", details: "win R45 voucher", unlocked: false, code: "123456789012ncgoedligcesb", unlockCode: "" },
+  { title: "stage 100 vouher", details: "win R50 voucher", unlocked: false, code: "1234567890123fantmjsoilhons", unlockCode: "" }
+];
+
+         let codes = [
+  '1787512285145650',
+  '1324842131288671',
+  '1192686218145751',
+  '1665872531653490',
+  '1139301177618874',
+  '1214170568420386',
+  '1155794285915992',
+  '1661869581888542',
+  '1207822368416013',
+  '1660021895175400'
+];
+let currentIndex = 0;
+        function generateUnlockCode() {
+		      if (currentIndex < codes.length) {
+    return codes[currentIndex++];
+  } else {
+    console.log('No more codes available!');
+    return null;
+  }
+            //return Math.floor(1000000000000000 + Math.random() * 9000000000000000).toString();
+		     //if(vouchers[5]){ return Math.floor(1234567890123456).toString();
+			 //}else if(vouchers[7]){ return Math.floor(123456789000000000).toString();}
+        }
+        /**
+		Here are ten unique unlock codes, one for each button:
+
+Button 1: 2345678901
+Button 2: 3456789012
+Button 3: 4567890123
+Button 4: 5678901234
+Button 5: 6789012345
+Button 6: 7890123456
+Button 7: 8901234567
+Button 8: 9012345678
+Button 9: 0123456789
+Button 10: 1234567890
+
+And here's a simple JavaScript function to return these codes:
+
+
+let codes = [
+  '1787512285145650',
+  '1324842131288671',
+  '1192686218145751',
+  '1665872531653490',
+  '1139301177618874',
+  '1214170568420386',
+  '1155794285915992',
+  '1661869581888542',
+  '1207822368416013',
+  '1660021895175400'
+];
+
+let currentIndex = 0;
+
+function generateUnlockCode() {
+  if (currentIndex < codes.length) {
+    return codes[currentIndex++];
+  } else {
+    console.log('No more codes available!');
+    return null;
+  }
+}
+		**/
+        function loadAchievements() {
+            const savedAchievements = JSON.parse(localStorage.getItem("vouchers"));
+            if (savedAchievements) {
+                vouchers.forEach((ach, index) => {
+                    vouchers[index] = savedAchievements[index];
+                });
+            }
+
+            const achievementsList = document.getElementById("achievements-list");
+            achievementsList.innerHTML = "";
+
+            vouchers.forEach((ach, index) => {
+                let div = document.createElement("div");
+                div.classList.add("vouchers");                                
+                if (ach.unlocked) {
+                    div.classList.add("unlocked");
+                }
+                div.innerHTML = `<div class="achievement-title">${ach.title}</div>
+                                 <div class="achievement-details">${ach.details}</div>
+                                 ${ach.unlocked ? `<div class="unlock-code">Code: ${ach.unlockCode}</div>` : ""}
+                                 <button class="achievement-button" onclick="unlockAchievement(${index})" ${ach.unlocked ? 'disabled' : ''}>Unlock</button>`;
+                achievementsList.appendChild(div);
+            });
+
+            updateProgressBar();
+        }
+
+        function unlockAchievement(index) {
+            if (index > 0 && !vouchers[index - 1].unlocked) {
+                alert("Unlock the previous achievement first!");
+                return;
+            }
+
+            let userCode = prompt(`Enter the unlock code for ${vouchers[index].title}:`);
+            if (userCode === vouchers[index].code) {
+                vouchers[index].unlocked = true;
+                vouchers[index].unlockCode = generateUnlockCode();
+                document.getElementById("unlock-sound").play();
+                saveAchievements();
+                loadAchievements();
+            } else {
+                alert("Incorrect code! Try again.");
+            }
+        }
+
+        function saveAchievements() {
+            localStorage.setItem("vouchers", JSON.stringify(vouchers));
+        }
+
+        function updateProgressBar() {
+            let unlockedCount = vouchers.filter(a => a.unlocked).length;
+            document.getElementById("progress-bar").style.width = (unlockedCount / vouchers.length) * 100 + "%";
+        }
+
+        window.onload = loadAchievements;
+    </script>
+</body>
+</html>

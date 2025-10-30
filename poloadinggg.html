@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Notepad</title>
+    <style>
+        /* General Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #141414, #2a2a2a);
+            color: #fff;
+            overflow: hidden;
+            text-align: center;
+			       background-image: url('test7.jpg'); /* Your image */
+    background-size: cover;
+        }
+
+        /* Glowing Effect */
+        .glow-text {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ff005c;
+            text-transform: uppercase;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 10px #ff005c, 0 0 20px #ff005c, 0 0 30px #ff005c;
+            }
+            100% {
+                text-shadow: 0 0 20px #ff005c, 0 0 40px #ff005c, 0 0 60px #ff005c;
+            }
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            width: 80%;
+            max-width: 500px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin: 20px auto;
+            overflow: hidden;
+            position: relative;
+            height: 20px;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff005c, #ff2a80);
+            border-radius: 8px;
+            animation: loadProgress 3s linear forwards;
+        }
+
+        @keyframes loadProgress {
+            0% {
+                width: 0%;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        /* Loading Tips */
+        .loading-tips {
+            font-size: 16px;
+            margin-top: 20px;
+            color: #ccc;
+            animation: fadeIn 3s infinite;
+        }
+
+        @keyframes fadeIn {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Interactive Elements */
+        .tap-animation {
+            margin-top: 30px;
+            font-size: 14px;
+            font-style: italic;
+            color: #ff80a0;
+            cursor: pointer;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .tap-animation:active {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="glow-text">Loading Notepad...</div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+
+        <!-- Loading Tips -->
+        <div class="loading-tips" id="loading-tips">Tip: You can save your notes locally or share them!</div>
+
+        <!-- Interactive Tap Text -->
+        <div class="tap-animation" onclick="showSecretMessage()">Tap here for a surprise!</div>
+    </div>
+    <!-- Auto-Redirect Script -->
+    <script>
+        const tips = [
+            "Tip: You can change the font size and style in the toolbar!",
+            "Tip: Use 'Find & Replace' to quickly edit your notes.",
+            "Tip: Convert your notes to PDF with a single click.",
+            "Tip: Dark mode saves your eyes and battery!",
+            "Tip: Use voice-to-text for hands-free note-taking.",
+        ];
+
+        let currentTip = 0;
+
+        // Update loading tips dynamically
+        setInterval(() => {
+            currentTip = (currentTip + 1) % tips.length;
+            document.getElementById("loading-tips").textContent = tips[currentTip];
+        }, 3000);
+
+        // Simulate loading process
+        setTimeout(() => {
+            window.location.href = "poloading.html"; // Replace with your main app page
+        }, 3000);
+
+        // Show a secret message when the user interacts
+        function showSecretMessage() {
+            alert("You're awesome for being curious! 🚀");
+        }
+    </script>
+</body>
+</html>

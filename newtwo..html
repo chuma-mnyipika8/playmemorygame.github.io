@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anagram Solver</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+            box-sizing: border-box;
+			 background-image: url('llogol.webp');
+      background-size: cover;
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            transition: all 0.3s ease;
+			 background-image: url('llogol.webp');
+      background-size: cover;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #3b3f48;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        #lettersContainer {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            gap: 12px;
+            justify-content: center;
+            animation: fadeIn 1s ease-in-out;
+			
+        }
+
+         .letter {
+    font-size: 28px;
+    background-color: #4caf50;
+    background-image: linear-gradient(135deg, #5c6bc0, #4caf50); /* Gradient background for depth */
+    padding: 15px;
+    margin: 8px;
+    border-radius: 10px; /* Slightly rounded corners for a modern look */
+    cursor: pointer;
+    user-select: none;
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    line-height: 70px; /* Vertically centers the text */
+    color: white;
+    font-weight: bold;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    opacity: 0.9;
+    transform: scale(1);
+	background-image: url('cat.webp');
+            background-size: cover;
+}
+
+.letter:hover {
+    transform: scale(1.2); /* Larger scale on hover */
+    background-color: #45a049; /* Slightly darker green on hover */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+    opacity: 1;
+}
+
+.letter:active {
+    transform: scale(1.1); /* Slightly reduced size on click to give a press effect */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Reset shadow on click */
+}
+
+
+        .letter:hover {
+            transform: scale(1.1);
+            background-color: #3f51b5;
+            opacity: 1;
+        }
+
+        #wordInput {
+    width: 80%;
+    padding: 15px;
+    font-size: 20px; /* Increased font size for better readability */
+    margin-bottom: 30px; /* Increased bottom margin for better spacing */
+    border-radius: 15px; /* Rounded corners for a softer look */
+    border: 2px solid #5c6bc0; /* Slightly stronger border with the accent color */
+    height: 50px; /* Increased height for better appearance */
+    text-align: center;
+    display: inline-block;
+    background-color: #ffffff; /* White background for a cleaner look */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); /* Larger shadow for depth */
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease; /* Smooth transition for interaction */
+}
+
+#wordInput:focus {
+    outline: none; /* Remove the default focus outline */
+    border-color: #4caf50; /* Green border when the input is focused */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15); /* Larger shadow on focus */
+    background-color: #f1f1f1; /* Subtle change in background on focus */
+}
+
+#wordInput::placeholder {
+    color: #888; /* Lighter placeholder text */
+    font-weight: 500;
+    opacity: 0.7; /* Slight opacity for the placeholder */
+    transition: opacity 0.3s ease; /* Smooth transition when focus is gained */
+}
+
+#wordInput:focus::placeholder {
+    opacity: 0; /* Hide the placeholder when focused */
+}
+
+
+        #wordInput span {
+            display: inline-block;
+            font-size: 24px;
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            margin-right: 5px;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        #message {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        #score {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        #nextLevelButton {
+            padding: 12px 20px;
+            font-size: 18px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            display: none;
+            transition: background-color 0.3s ease;
+        }
+
+        #nextLevelButton:hover {
+            background-color: #45a049;
+        }
+
+        #scoreValue {
+            font-weight: bold;
+            color: #00796b;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Animation for correct word feedback */
+        .correct {
+            color: #4caf50;
+            animation: correctFeedback 1s ease-in-out;
+        }
+
+        @keyframes correctFeedback {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Wrong input feedback */
+        .wrong {
+            background-color: #f44336;
+            animation: wrongFeedback 0.5s ease-in-out;
+            color: white;
+        }
+
+        @keyframes wrongFeedback {
+            0% { background-color: #f44336; }
+            50% { background-color: #ff5722; }
+            100% { background-color: #f44336; }
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                width: 80%;
+            }
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div id="gameArea">
+            <div id="lettersContainer"></div>
+            <div id="wordInput" contenteditable="true" placeholder="Drag letters here" spellcheck="false"></div>
+        </div>
+        <div id="message"></div>
+        <div id="score">
+            <p> <span id="scoreValue"></span></p>
+        </div>
+        <div id="nextLevel">
+            <button id="nextLevelButton">Next Level</button>
+        </div>
+    </div>
+<script>
+const wordsList = [
+    { word: "world", letters: ["w", "o", "r", "l", "d"] },
+    { word: "galaxy", letters: ["g", "a", "l", "a", "x", "y"] },
+    { word: "universe", letters: ["u", "n", "i", "v", "e", "r", "s", "e"] },
+    { word: "constellation", letters: ["c", "o", "n", "s", "t", "e", "l", "l", "a", "t", "i", "o", "n"] }
+];
+
+let currentLevel = 0;
+let score = 0;
+let attemptsLeft = 3;
+let timer;
+let currentWord = wordsList[currentLevel];
+
+const wordInput = document.getElementById("wordInput");
+const message = document.getElementById("message");
+const lettersContainer = document.getElementById("lettersContainer");
+
+document.addEventListener("DOMContentLoaded", () => {
+    generateLetters(currentWord.letters);
+    startTimer();
+    updateAttempts();
+});
+
+function generateLetters(letters) {
+    lettersContainer.innerHTML = '';
+    const extraLetters = ["z", "q", "x", "v", "m", "j", "p", "k"];
+    const shuffledLetters = shuffleArray([...letters, ...extraLetters.slice(0, 3)]);
+
+    shuffledLetters.forEach(letter => {
+        const letterElement = document.createElement("div");
+        letterElement.classList.add("letter");
+        letterElement.textContent = letter;
+        letterElement.draggable = true;
+
+        letterElement.addEventListener("dragstart", (event) => {
+            event.dataTransfer.setData("text", event.target.textContent);
+            event.dataTransfer.effectAllowed = "move";
+        });
+
+        lettersContainer.appendChild(letterElement);
+    });
+}
+
+function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+wordInput.addEventListener("dragover", (event) => event.preventDefault());
+wordInput.addEventListener("drop", (event) => {
+    event.preventDefault();
+    const letter = event.dataTransfer.getData("text");
+    
+    if (!currentWord.letters.includes(letter)) {
+        window.location.href = "lose.html";
+        return;
+    }
+    
+    const span = document.createElement("span");
+    span.textContent = letter;
+    wordInput.appendChild(span);
+    checkWord();
+});
+
+function checkWord() {
+    const inputWord = wordInput.innerText.trim().toLowerCase();
+    if (inputWord === currentWord.word) {
+        window.location.href = "won.html";
+    }
+}
+
+function updateAttempts() {
+    document.getElementById("attemptsValue").textContent = attemptsLeft;
+}
+
+function startTimer() {
+    let timeLeft = 30;
+    clearInterval(timer);
+    document.getElementById("timerValue").textContent = timeLeft;
+    timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timerValue").textContent = timeLeft;
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            window.location.href = "lose.html";
+        }
+    }, 1000);
+}
+
+</script>
+</body>
+</html>

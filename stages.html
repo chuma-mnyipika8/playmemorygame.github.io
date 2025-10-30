@@ -1,0 +1,3421 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Mix-Up - Stages</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+	  
+
+        body {
+            background-image: url('InShot_20200411_043932719.jpg'); /* Your image */
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            color: #ff00cc;
+            font-family: 'Press Start 2P', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: auto;
+        }
+
+        .stages-container {
+            text-align: center;
+            width: 100%;
+            max-width: 500px; /* Restrict the max width for better readability */
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column; /* Stack buttons vertically */
+            gap: 15px;
+            overflow: auto;
+            margin-top: 2250%;  /*Added margin to push buttons down */
+		   
+        }
+          
+        .header {
+                 margin-left: calc(100vw - 86px); /* Adjust the values as needed */
+                 margin-top:200px;
+            font-size: 55px;
+            color: #ffffff;
+             
+        }
+         .headerpi {
+                 margin-left: calc(100vw - 50px); /* Adjust the values as needed */
+                 margin-top:200px;
+            font-size: 55px;
+            color: #ffffff;
+             
+        }
+    .stage-button {
+    padding: 20px 40px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff; /* Crisp white text for clarity */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(
+        145deg,
+        #3a4ed3 40%,
+        #9f44d3 60%
+    ); /* Curved diagonal gradient for stylish division */
+    border: none;
+    border-radius: 25px; /* Smooth, inviting corners */
+    width: 100%; /* Adaptable to any layout */
+    height: 100px; /* Fixed height for consistency */
+    box-sizing: border-box;
+    clip-path: polygon(
+        10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%
+    );  
+    position: relative;
+    overflow: hidden; /* Contain all effects */
+    box-shadow: 
+        0 12px 20px rgba(0, 0, 0, 0.3), /* Depth shadow */
+        inset 0 -5px 10px rgba(255, 255, 255, 0.2), /* Subtle inner highlight */
+        inset 0 8px 12px rgba(0, 0, 0, 0.2); /* Inner shadow for realism */
+    transition: all 0.5s ease; /* Smooth transitions for all interactions */
+    background-image: url('test7.jpg'); /* Your image */
+    background-size: cover;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+ .image-container { 
+    display: flex;
+    gap:250px;  
+    align-items: center;
+}
+ 
+/* For tablets and small phones */
+ @media (max-width: 768px) {
+    .image-container {
+        gap: 250px; /* Default for big screens */
+    }
+} 
+
+/* For very small phones */
+ @media (max-width: 480px) {
+    .image-container {
+        gap: 165px;
+    }
+} 
+ 
+.stage-image {
+    width: 35px;  /* Adjust size */
+    height: 35px; /* Adjust size */
+    border-radius: 50%; /* Makes the images round */
+    object-fit: cover; /* Ensures images don’t stretch */
+    border: 2px solid white; /* Optional: adds a clean border */
+}
+ .stage-button i {
+ 
+    font-size: 22px; /* Slightly larger for a premium look */
+    position: absolute;
+    left: 20px; /* Moves the lock to the left */
+    color: #e0e0e0; /* Elegant silver tone */
+    
+    /* Subtle metallic shine */
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8), 
+                 0 2px 4px rgba(0, 0, 0, 0.3);
+    
+    transition: color 0.3s ease-in-out, 
+                text-shadow 0.3s ease-in-out, 
+                transform 0.3s ease-in-out;
+}
+
+/* Hover Effect: Modern Glow & Depth */
+.stage-button:hover i {
+    color: #ffffff; /* Brightens slightly for emphasis */
+    
+    /* Gentle glow effect to attract users */
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.9), 
+                 0 4px 8px rgba(0, 0, 0, 0.5), 
+                 0 6px 12px rgba(0, 0, 0, 0.3);
+    
+    transform: scale(1.15); /* Slightly enlarges for dynamic effect */
+}
+
+
+
+.stage-button::before {
+    content: ""; /* Reflective dynamic layer */
+    position: absolute;
+    top: -50%;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    transform: rotate(45deg);
+    animation: shimmer 3s infinite linear; /* Smooth movement across the button */
+    z-index: 1; /* Below the text */
+}
+
+.stage-button span {
+    position: relative;
+    z-index: 2; /* Text above effects */
+    text-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.5), /* Deep text shadow for contrast */
+        0 0 10px rgba(255, 255, 255, 0.8); /* Subtle glow for emphasis */
+}
+
+.stage-button::after {
+    content: ""; /* Pulsating glow effect */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle,
+        rgba(150, 200, 255, 0.2),
+        transparent 70%
+    );
+    animation: pulse 2.5s infinite ease-in-out; /* Smooth pulsating animation */
+    z-index: 0; /* Behind everything */
+    pointer-events: none; /* Decorative only */
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-200%) rotate(45deg); }
+    100% { transform: translateX(200%) rotate(45deg); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 0.5; }
+}
+
+.stage-button:active {
+    transform: scale(0.97); /* Subtle press effect */
+    box-shadow: 
+        0 8px 15px rgba(0, 0, 0, 0.4),
+        inset 0 -5px 8px rgba(255, 255, 255, 0.3),
+        inset 0 4px 6px rgba(0, 0, 0, 0.3); /* Enhanced depth on press */
+}
+
+        /* Hover is replaced with touch-friendly effect for mobile */
+        .stage-button:active, .stage-button:focus {
+            background: linear-gradient(135deg, #ff0066, #ff00cc);
+            box-shadow: 0 6px 15px rgba(255, 0, 204, 0.5), 0 4px 10px rgba(255, 0, 153, 0.4);
+            transform: translateY(-4px) rotate(2deg); /* Slight rotation when pressed */
+        }
+
+        .stage-button:active {
+            background: #cc0066;
+            transform: translateY(2px) rotate(1deg); /* Smaller rotation when button is clicked */
+            box-shadow: 0 2px 6px rgba(255, 0, 204, 0.3);
+        }
+
+        h1 {
+            font-size: 60px;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff00cc, #ff66b2);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            animation: textSlide 2s ease-in-out;
+        }
+         
+           h2 {
+            font-size: 300px;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff00cc, #ff66b2);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            animation: textSlide 2s ease-in-out;
+            top:20px;
+        }
+         h3 {
+            font-size: 300px;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff00cc, #ff66b2);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            animation: textSlide 2s ease-in-out;
+            top:20px;
+        }
+        @keyframes textSlide {
+            0% {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Layout */
+        @media screen and (max-width: 768px) {
+            .stages-header {
+                font-size: 24px;
+            }
+
+            .stage-button {
+                font-size: 16px;
+                padding: 12px;
+                clip-path: polygon(5% 0%, 95% 0%, 100% 5%, 100% 95%, 95% 100%, 5% 100%, 0% 95%, 0% 5%); /* Adjusted polygon for smaller screens */
+                height: auto; /* Allow button height to adjust dynamically */
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .stages-header {
+                font-size: 20px;
+            }
+
+            .stage-button {
+                font-size: 14px;
+                padding: 10px;
+                clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); /* Rectangular shape on very small screens */
+                height: auto; /* Let buttons adjust to text size */
+            }
+        }
+		  .stage-container {
+  position: fixed;
+  left: 5%; /* Positions it on the left */
+  top: 10px; /* Positions it at the top */
+  width: 40px;
+  height: 40px;
+ /* background: linear-gradient(145deg, #2d3e50, #4a6782);*/ /* Professional gradient */
+  color: #ffffff;
+  border-radius: 50%; /* Makes it circular */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+   background-image: url('hh3.jpeg'); /* Your image */
+     background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Home Icon Styling */
+<!---.stage-container i {
+    font-size: 28px; /* Properly sized home icon */
+    color: #ffffff;
+    transition: color 0.3s ease-in-out;
+	 
+	
+}-->
+
+/* Hover Effect */
+<!---.stage-container:hover {
+    background: linear-gradient(145deg, #4a6782, #5a7d98);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transform: translateY(-50%) scale(1.1);
+}
+--->
+.stage-container:hover i {
+    color: #f5f5f5; /* Slightly brightens on hover */
+}
+
+#cago{
+ border-radius: 50%; /* Makes it circular */
+   margin-right:313px;
+}
+#cagosss{
+ border-radius: 50%; /* Makes it circular */
+   .stage-button {
+  position: relative;
+  padding: 10px 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: #34A8FF; /* Blue text color */
+}
+
+.stage-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #34A8FF; /* Blue border */
+  border-radius: 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.stage-button:hover::before {
+  transform: scale(1.05);
+  border-color: #FF69B4; /* Pink border on hover */
+}
+
+.stage-button:focus::before {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Focus shadow */
+  border-color: #F7DC6F; /* Yellow border on focus */
+}
+
+}
+    .bg-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: fill; /* Stretch to cover full width and height */
+      z-index: -1;       /* Sit behind content */
+    }
+     
+    </style>
+</head>
+<body>  
+      
+    <div class="stages-container">
+        
+        <h1 class="stages-header">Stages</h1>
+		   
+ <!-- Stage Container with Home Icon -->
+ <div class="stage-container" onclick="window.location.href='navigation.html'">
+  
+          <h2 class="header" >SCROLL UP</h2>
+           
+     <!--<img src="homec.jpg" id="cago"width="20px" height="20px"  />-->
+</div>
+          
+        <!--<img class="bg-image" src="IMG-20250523-WA0042.jpg"   alt="Image description" style="position: absolute; top: 50px; left:49vw; width:100px;height:50px;">-->
+	   
+        <!-- Stylish Stage Buttons -->
+        <!--<button class="stage-button" onclick="window.location.href='levelone.html'"><img src=" IMG-20250209-WA0155.jpg" id="cago"width="35px" height="35px"  /><img src="IMG-20250209-WA0044.jpg" id="cagosss"width="30px" height="35px"  /> </button>-->
+      <button class="stage-button" onclick="window.location.href='levelone.html'">
+    <div class="image-container">
+        <img src="IMG-20250209-WA0155.jpg"   class="stage-image" />
+        <img src="IMG-20250209-WA0044.jpg" id="cagosss" class="stage-image" />
+    </div>
+</button>
+
+	   <!--<button class="stage-button" id="stage2Button" disabled onclick="window.location.href='leveltwo.html'"><img src="locks.jpg"  id="cago" width="30px" height="35px" id="imageToChange2"  /> <img src="IMG-20250209-WA0045.jpg" id="cagosss"width="30px" height="35px"  /> </button>-->
+       <button class="stage-button" id="stage2Button" disabled>
+    <div class="image-container">
+        <img src="locks.jpg" id="imageToChange2" class="stage-image" />
+        <img src="IMG-20250209-WA0045.jpg" id="cagosss" class="stage-image" />
+    </div>
+</button>
+
+	  <!-- <button class="stage-button" id="stage3Button"  disabled onclick="window.location.href='levelthree.html'"> <img src="locks.jpg" id="cago"width="35px" height="30px" id="imageToChange3"  /> <img src="IMG-20250209-WA0046.jpg" id="cagosss"width="30px" height="35px"  /> </button>
+        <button class="stage-button" id="stage4Button" disabled onclick="window.location.href='levelfour.html'"><img src="locks.jpg" id="cago"width="35px" height="30px" id="imageToChange4"  /><img src="IMG-20250209-WA0047.jpg" id="cagosss"width="30px" height="35px"  /> </button>
+        <button class="stage-button" id="stage5Button" onclick="window.location.href='levelfive.html'"><img src="locks.jpg" id="cago"width="35px" height="30px"  id="imageToChange5" /><img src="IMG-20250209-WA0048.jpg" id="cagosss"width="30px" height="35px"  /> </button>
+        <button class="stage-button" id="stage6Button" onclick="window.location.href='levelsix.html'"><img src="locks.jpg" id="cago"width="35px" height="30px"  id="imageToChange6" /><img src="IMG-20250209-WA0049.jpg" id="cagosss"width="30px" height="35px"  /> </button>
+        <button class="stage-button" id="stage7Button" onclick="window.location.href='levelseven.html'"><img src="locks.jpg" id="cago"width="35px" height="30px"  id="imageToChange7" /><img src="IMG-20250209-WA0050.jpg" id="cagosss"width="30px" height="35px"  /> </button>
+        <button class="stage-button" id="stage8Button" onclick="window.location.href='leveleight.html'"><img src="locks.jpg" id="cago"width="35px" height="30px"  id="imageToChange8" /><img src="IMG-20250209-WA0052.jpg" id="cagosss"width="30px" height="35px"  /> </button>
+        <button class="stage-button" id="stage9Button" onclick="window.location.href='levelnine.html'"><img src="locks.jpg" id="cago"width="35px" height="30px"  id="imageToChange9" /><img src="IMG-20250209-WA0053.jpg" id="cagosss"width="30px" height="35px"  /> </button>
+        <button class="stage-button" id="stage10Button" onclick="window.location.href='levelten.html'"><img src="locks.jpg" id="cago"width="35px" height="30px"  id="imageToChange10" /><img src="IMG-20250209-WA0054.jpg" id="cagosss"width="30px" height="35px"  /> </button>-->
+<button class="stage-button" id="stage3Button" disabled onclick="window.location.href='levelthree.html'">
+    <div class="image-container">
+        <img src="locks.jpg" id="imageToChange3" class="stage-image" />
+        <img src="IMG-20250209-WA0046.jpg" class="stage-image" />
+    </div>
+</button>
+
+<button class="stage-button" id="stage4Button" disabled onclick="window.location.href='levelfour.html'">
+    <div class="image-container">
+        <img src="locks.jpg" id="imageToChange4" class="stage-image" />
+        <img src="IMG-20250209-WA0047.jpg" class="stage-image" />
+    </div>
+</button>
+
+<button class="stage-button" id="stage5Button" onclick="window.location.href='levelfive.html'">
+    <div class="image-container">
+        <img src="locks.jpg" id="imageToChange5" class="stage-image" />
+        <img src="IMG-20250209-WA0048.jpg" class="stage-image" />
+    </div>
+</button>
+
+<button class="stage-button" id="stage6Button" onclick="window.location.href='levelsix.html'">
+    <div class="image-container">
+        <img src="locks.jpg" id="imageToChange6" class="stage-image" />
+        <img src="IMG-20250209-WA0049.jpg" class="stage-image" />
+    </div>
+</button>
+
+<button class="stage-button" id="stage7Button" onclick="window.location.href='levelseven.html'">
+    <div class="image-container">
+        <img src="locks.jpg" id="imageToChange7" class="stage-image" />
+        <img src="IMG-20250209-WA0050.jpg" class="stage-image" />
+    </div>
+</button>
+
+<button class="stage-button" id="stage8Button" onclick="window.location.href='leveleight.html'">
+    <div class="image-container">
+        <img src="locks.jpg" id="imageToChange8" class="stage-image" />
+        <img src="IMG-20250209-WA0052.jpg" class="stage-image" />
+    </div>
+</button>
+
+<button class="stage-button" id="stage9Button" onclick="window.location.href='levelnine.html'">
+    <div class="image-container">
+        <img src="locks.jpg" id="imageToChange9" class="stage-image" />
+        <img src="IMG-20250209-WA0053.jpg" class="stage-image" />
+    </div>
+</button>
+
+<button class="stage-button" id="stage10Button" onclick="window.location.href='levelten.html'">
+    <div class="image-container">
+        <img src="locks.jpg" id="imageToChange10" class="stage-image" />
+        <img src="IMG-20250209-WA0054.jpg" class="stage-image" />
+    </div>
+</button>
+      
+	  <!--tretris-->       
+	   <button class="stage-button" id="stage11Button" onclick="window.location.href='lone.html'">
+	    <div class="image-container">
+	   <img src="locks.jpg" id="imageToChange11" class="stage-image"  />
+	   <img src="IMG-20250209-WA0055.jpg" class="stage-image"/> 
+	    </div>
+	   </button>
+        <button class="stage-button" id="stage12Button" onclick="window.location.href='ltwo.html'">
+		 <div class="image-container">
+		<img src="locks.jpg" id="imageToChange12"   class="stage-image" />
+		<img src="IMG-20250209-WA0056.jpg" class="stage-image"/>    
+		 </div>
+		</button>
+        <button class="stage-button" id="stage13Button" onclick="window.location.href='lthree.html'">
+		 <div class="image-container">
+		<img src="locks.jpg" id="imageToChange13"  class="stage-image" />
+		<img src="IMG-20250209-WA0058.jpg"   class="stage-image" /> 
+		</div>
+		</button>
+        <button class="stage-button" id="stage14Button" onclick="window.location.href='lfour.html'">
+		 <div class="image-container">
+		<img src="locks.jpg" id="imageToChange14" class="stage-image"/>
+		<img src="IMG-20250209-WA0059.jpg"  class="stage-image" />
+		</div>
+		</button>
+        <button class="stage-button" id="stage15Button" onclick="window.location.href='lfive.html'">
+		 <div class="image-container">
+		<img src="locks.jpg" id="imageToChange15"  class="stage-image" />
+		<img src="IMG-20250209-WA0060.jpg"   class="stage-image" />
+		</div>
+		</button>
+        <button class="stage-button" id="stage16Button" onclick="window.location.href='lsix.html'">
+		<div class="image-container">
+		<img src="locks.jpg" id="imageToChange16"  class="stage-image" />
+		<img src="IMG-20250209-WA0061.jpg"   class="stage-image"  /> 
+		</div>
+		</button>
+        <!--tictactoe-->
+        <button class="stage-button" id="stage17Button" onclick="window.location.href='tictactoe.html'">
+		<div class="image-container">
+		<img src="locks.jpg" id="imageToChange17" class="stage-image"  />
+		<img src="IMG-20250209-WA0062.jpg" class="stage-image"  /> 
+		</div>
+		</button>
+        <button class="stage-button" id="stage18Button" onclick="window.location.href='tictactoelevel2.html'">
+		<div class="image-container">
+		<img src="locks.jpg" id="imageToChange18" class="stage-image" />
+		<img src="IMG-20250209-WA0063.jpg" class="stage-image"  /> 
+		</div>
+		</button>
+        <button class="stage-button" id="stage19Button" onclick="window.location.href='tictactoelevel3.html'">
+		<div class="image-container">
+		<img src="locks.jpg" id="imageToChange19" class="stage-image" />
+		<img src="IMG-20250209-WA0064.jpg"  class="stage-image"  />
+		</div>
+		</button>
+        <button class="stage-button" id="stage20Button" onclick="window.location.href='tictactoelevel4.html'">
+		<div class="image-container">
+		<img src="locks.jpg" id="imageToChange20" class="stage-image" />
+		<img src="IMG-20250209-WA0065.jpg"  class="stage-image" /> 
+		</div>
+		</button>
+        <button class="stage-button" id="stage21Button" onclick="window.location.href='tictactoelevel5.html'">
+		<div class="image-container">
+		<img src="locks.jpg" id="imageToChange21"  class="stage-image"/>
+		<img src="IMG-20250209-WA0066.jpg"  class="stage-image" /> 
+		</div>
+		</button>
+        <button class="stage-button" id="stage22Button" onclick="window.location.href='tictactoelevel6.html'">
+		<div class="image-container">
+		<img src="locks.jpg" id="imageToChange22" class="stage-image" />
+		<img src="IMG-20250209-WA0067.jpg" class="stage-image"  /> 
+		</div>
+		</button>
+        <button class="stage-button" id="stage23Button" onclick="window.location.href='tictactoelevel7.html'">
+		<div class="image-container">
+		<img src="locks.jpg" id="imageToChange23" class="stage-image" />
+		<img src="IMG-20250209-WA0068.jpg"  class="stage-image" />
+		</div>
+		</button>
+        <button class="stage-button" id="stage24Button" onclick="window.location.href='tictactoelevel2 - Copy.html'">
+		<div class="image-container">
+		<img src="locks.jpg" id="imageToChange24"  class="stage-image" />
+		<img src="IMG-20250209-WA0069.jpg" class="stage-image"   /> 
+		</div>
+		</button>
+        <button class="stage-button" id="stage25Button" onclick="window.location.href='tictactoelevel2 - Copy - Copy.html'">
+		<div class="image-container">
+		<img src="locks.jpg" id="imageToChange25"  class="stage-image"/>
+		<img src="IMG-20250209-WA0070.jpg"  class="stage-image" /> 
+		</div>
+		</button>		
+         <!--chess-->
+		 <button class="stage-button" id="stage26Button" onclick="window.location.href='chessl1.html'">
+		<div class="image-container">
+		<img src="locks.jpg" id="imageToChange26" class="stage-image" />
+		 <img src="IMG-20250209-WA0071.jpg" class="stage-image"  />
+		</div>
+		</button>
+        <button class="stage-button" id="stage27Button" onclick="window.location.href='chessl2.html'">
+		<div class="image-container">
+		<img src="locks.jpg" id="imageToChange27" class="stage-image"/>
+		<img src="IMG-20250209-WA0074.jpg" class="stage-image"  />
+		</div>
+		</button>
+        <button class="stage-button" id="stage28Button" onclick="window.location.href='chessl3.html'">
+		<div class="image-container">
+		<img src="locks.jpg" id="imageToChange28"  class="stage-image"/>
+		<img src="IMG-20250209-WA0073.jpg"  class="stage-image" />
+		</div>
+		</button>
+        <button class="stage-button" id="stage29Button" onclick="window.location.href='chessl4.html'">
+		<div class="image-container">
+		<img src="locks.jpg" id="imageToChange29" class="stage-image" />
+		<img src="IMG-20250209-WA0075.jpg" class="stage-image"  />
+		</div>
+		</button>
+        <button class="stage-button" id="stage30Button" onclick="window.location.href='chessl6.html'">
+		<div class="image-container">
+		<img src="locks.jpg" id="imageToChange30" class="stage-image" />
+		<img src="IMG-20250209-WA0076.jpg"  class="stage-image"  />
+		</div>
+		</button>
+        <button class="stage-button" id="stage31Button" onclick="window.location.href='chessl6.html'">
+		<div class="image-container">
+		<img src="locks.jpg" id="imageToChange31" class="stage-image"/>
+		<img src="IMG-20250209-WA0077.jpg" class="stage-image"  />
+		</div>
+		</button>
+        <button class="stage-button" id="stage32Button" onclick="window.location.href='chessl7.html'">
+		<div class="image-container">
+		<img src="locks.jpg" id="imageToChange32"  class="stage-image"/>
+		<img src="IMG-20250209-WA0078.jpg"  class="stage-image"  />
+		</div>
+		</button>
+        <button class="stage-button" id="stage33Button" onclick="window.location.href='chessl8.html'">
+		<div class="image-container">
+		<img src="locks.jpg" id="imageToChange33"  class="stage-image" />
+		<img src="IMG-20250209-WA0079.jpg"  class="stage-image"  />
+		</div>
+		</button>
+        <button class="stage-button" id="stage34Button" onclick="window.location.href='chessl9.html'">
+		<div class="image-container">
+		<img src="locks.jpg" id="imageToChange34"  class="stage-image" />
+		<img src="IMG-20250209-WA0080.jpg"  class="stage-image" />
+		</div>
+		</button>		
+         <!--another-->
+		 <button class="stage-button" id="stage35Button" onclick="window.location.href='new1.html'">
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange35"  class="stage-image" />
+		 <img src="IMG-20250209-WA0081.jpg"  class="stage-image" />
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage36Button" onclick="window.location.href='new2.html'">
+		  <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange36"  class="stage-image"/>
+		 <img src="IMG-20250209-WA0082.jpg"  class="stage-image"   />
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage37Button" onclick="window.location.href='new3.html'">
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange37"  class="stage-image" />
+		 <img src="IMG-20250209-WA0083.jpg"  class="stage-image"  />
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage38Button" onclick="window.location.href='new4.html'">
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange38"   class="stage-image"/>
+		 <img src="IMG-20250209-WA0084.jpg"  class="stage-image"  />
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage39Button" onclick="window.location.href='new5.html'">
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange39" class="stage-image" />
+		 <img src="IMG-20250209-WA0085.jpg" class="stage-image"   />
+		  </div>
+		 </button>
+		 <button class="stage-button" id="stage40Button" onclick="window.location.href='new6.html'">
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange40" class="stage-image" />
+		 <img src="IMG-20250209-WA0086.jpg" class="stage-image"   />
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage41Button" onclick="window.location.href='new7.html'">
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange41"  class="stage-image" />
+		 <img src="IMG-20250209-WA0087.jpg"  class="stage-image" />
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage42Button" onclick="window.location.href='new8.html'">
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange42" class="stage-image" />
+		 <img src="IMG-20250209-WA0088.jpg"  class="stage-image"  />
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage43Button" onclick="window.location.href='new9.html'">
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange43" class="stage-image" />
+		 <img src="IMG-20250209-WA0089.jpg" class="stage-image"   />
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage44Button" onclick="window.location.href='new10.html'">
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange44" class="stage-image" />
+		 <img src="IMG-20250209-WA0090.jpg" class="stage-image"  />
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage45Button" onclick="window.location.href='new11.html'">
+         <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange45"   class="stage-image"  />
+		 <img src="IMG-20250209-WA0091.jpg"  class="stage-image"  />
+		  </div>
+		 </button>
+		 <button class="stage-button" id="stage46Button" onclick="window.location.href='new12.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange46" class="stage-image" />
+		 <img src="IMG-20250209-WA0092.jpg"  class="stage-image"  />
+		  </div>
+		 </button>
+		 <button class="stage-button" id="stage47Button" onclick="window.location.href='new13.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange47" class="stage-image" />
+		 <img src="IMG-20250209-WA0093.jpg" class="stage-image"  />
+		  </div>
+		 </button>
+		 <button class="stage-button" id="stage48Button" onclick="window.location.href='new14.html'"> 
+		  <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange48"  class="stage-image"/>
+		 <img src="IMG-20250209-WA0094.jpg" class="stage-image" />
+		  </div>
+		 </button>
+		 <button class="stage-button" id="stage49Button" onclick="window.location.href='new15.html'">
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange49" class="stage-image" />
+		 <img src="IMG-20250209-WA0095.jpg"  class="stage-image"  /> 
+		  </div>
+		 </button>
+		 <button class="stage-button" id="stage50Button" onclick="window.location.href='new17f.html'">
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange50" class="stage-image" />
+		 <img src="IMG-20250209-WA0096.jpg"  class="stage-image" />
+          </div>
+		 </button>
+		 <!--another-->
+		 <button class="stage-button" id="stage51Button" onclick="window.location.href='new17.html'"> 
+		  <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange51"  class="stage-image" />
+		 <img src="IMG-20250209-WA0097.jpg"  class="stage-image" />
+		  </div>
+		 </button>
+		 <button class="stage-button" id="stage52Button" onclick="window.location.href='new18.html'">
+          <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange52" class="stage-image" />
+		 <img src="IMG-20250209-WA0098.jpg"  class="stage-image" />
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage53Button" onclick="window.location.href='new19.html'">
+         <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange53"  class="stage-image"/>
+		 <img src="IMG-20250209-WA0099.jpg"  class="stage-image"  />
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage54Button" onclick="window.location.href='new20.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange54"    class="stage-image"/>
+		 <img src="IMG-20250209-WA0100.jpg"   class="stage-image"  />
+		  </div>
+		 </button>
+		 <button class="stage-button" id="stage55Button" onclick="window.location.href='new21.html'"> 
+		  <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange55"  class="stage-image" />
+		 <img src="IMG-20250209-WA0101.jpg" class="stage-image"  /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage56Button" onclick="window.location.href='new22.html'"> 
+		  <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange56"  class="stage-image" />
+		 <img src="IMG-20250209-WA0102.jpg"  class="stage-image" />
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage57Button" onclick="window.location.href='new23.html'">
+         <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange57"  class="stage-image"/>
+		 <img src="IMG-20250209-WA0103.jpg"  class="stage-image" />
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage58Button" onclick="window.location.href='new24.html'">
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange58"  class="stage-image" />
+		 <img src="IMG-20250209-WA0104.jpg"   class="stage-image" /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage59Button" onclick="window.location.href='new25.html'"> 
+		  <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange59"  class="stage-image"/>
+		 <img src="IMG-20250209-WA0105.jpg"  class="stage-image"  />
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage60Button" onclick="window.location.href='new26.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange60"   class="stage-image"/>
+		 <img src="IMG-20250209-WA0106.jpg" class="stage-image"  />
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage61Button" onclick="window.location.href='new27.html'">
+		  <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange61" class="stage-image" />
+		 <img src="IMG-20250209-WA0107.jpg"  class="stage-image"  /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage62Button" onclick="window.location.href='new28.html'"> 
+		  <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange62"   class="stage-image"/>
+		 <img src="IMG-20250209-WA0108.jpg"  class="stage-image" />
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage63Button" onclick="window.location.href='new29.html'">
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange63"  class="stage-image" />
+		 <img src="IMG-20250209-WA0109.jpg"  class="stage-image"  /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage64Button" onclick="window.location.href='new30.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange64"  class="stage-image" />
+		 <img src="IMG-20250209-WA0111.jpg"   class="stage-image" /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage65Button" onclick="window.location.href='new31.html'">
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange65"   class="stage-image"/>
+		 <img src="IMG-20250209-WA0112.jpg"   class="stage-image" /> 
+         </div>
+		 </button>
+		 <button class="stage-button" id="stage66Button" onclick="window.location.href='new32.html'">
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange66"   class="stage-image" />
+		 <img src="IMG-20250209-WA0115.jpg"    class="stage-image" />  
+		  </div>
+		 </button>
+         <!--another-->
+		  <button class="stage-button" id="stage67Button" onclick="window.location.href='new33.html'">
+		  <div class="image-container">
+		  <img src="locks.jpg" id="imageToChange67"  class="stage-image"/>
+		  <img src="IMG-20250209-WA0116.jpg"  class="stage-image"  /> 
+          </div>
+		  </button>
+		 <button class="stage-button" id="stage68Button" onclick="window.location.href='new34.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange68"   class="stage-image"/>
+		 <img src="IMG-20250209-WA0117.jpg"   class="stage-image" /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage69Button" onclick="window.location.href='new35.html'">
+          <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange69" class="stage-image" />
+		 <img src="IMG-20250209-WA0118.jpg"  class="stage-image"  /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage70Button" onclick="window.location.href='new36.html'"> 
+		  <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange70"  class="stage-image" />
+		 <img src="IMG-20250209-WA0119.jpg"  class="stage-image"  /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage71Button" onclick="window.location.href='new37.html'"> 
+		  <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange71" class="stage-image" />
+		 <img src="IMG-20250209-WA0120.jpg"  class="stage-image"  />
+         </div>
+		 </button>
+		 <button class="stage-button" id="stage72Button" onclick="window.location.href='new38.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange72"  class="stage-image" />
+		 <img src="IMG-20250209-WA0121.jpg"   class="stage-image" /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage73Button" onclick="window.location.href='new39.html'">
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange73"  class="stage-image"/>
+		 <img src="IMG-20250209-WA0122.jpg"  class="stage-image" /> 
+         </div>
+		 </button>
+		 <button class="stage-button" id="stage74Button" onclick="window.location.href='new40.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange74" class="stage-image" />
+		 <img src="IMG-20250209-WA0123.jpg"  class="stage-image"  /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage75Button" onclick="window.location.href='new41.html'">
+         <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange75" class="stage-image" />
+		 <img src="IMG-20250209-WA0124.jpg" class="stage-image"   /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage76Button" onclick="window.location.href='new42.html'">
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange76"  class="stage-image" />
+		 <img src="IMG-20250209-WA0125.jpg" class="stage-image"  /> 
+         </div>
+		 </button>
+		 <button class="stage-button" id="stage77Button" onclick="window.location.href='new43.html'">
+         <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange77"  class="stage-image" />
+		 <img src="IMG-20250209-WA0126.jpg" class="stage-image"   /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage78Button" onclick="window.location.href='new44.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange78"  class="stage-image" />
+		 <img src="IMG-20250209-WA0127.jpg"   class="stage-image" /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage79Button" onclick="window.location.href='new45.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange79" class="stage-image" />
+		 <img src="IMG-20250209-WA0128.jpg"  class="stage-image"  /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage80Button" onclick="window.location.href='new46.html'"> 
+		  <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange80"  class="stage-image" />
+		 <img src="IMG-20250209-WA0130.jpg" class="stage-image"  /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage81Button" onclick="window.location.href='new47.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange81"   class="stage-image"/>
+		 <img src="IMG-20250209-WA0131.jpg"   class="stage-image" /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage82Button" onclick="window.location.href='new48.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange82"  class="stage-image" />
+		 <img src="IMG-20250209-WA0132.jpg"  class="stage-image"  /> 
+		  </div>
+		 </button> 
+         <!--another-->
+		  <button class="stage-button" id="stage83Button" onclick="window.location.href='new49.html'">
+		  <div class="image-container">
+		  <img src="locks.jpg" id="imageToChange83"  class="stage-image" />
+		  <img src="IMG-20250209-WA0133.jpg" class="stage-image"  /> 
+		   </div>
+		  </button>
+		 <button class="stage-button" id="stage84Button" onclick="window.location.href='new50.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange84"   class="stage-image"/>
+		 <img src="IMG-20250209-WA0134.jpg"  class="stage-image" /> 
+		  </div>
+		 </button>
+		 <button class="stage-button" id="stage85Button" onclick="window.location.href='new51.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange85"   class="stage-image"/>
+		 <img src="IMG-20250209-WA0135.jpg"  class="stage-image"  />
+         </div>
+		 </button>
+		 <button class="stage-button" id="stage86Button" onclick="window.location.href='new52.html'">
+         <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange86"  class="stage-image" />
+		 <img src="IMG-20250209-WA0136.jpg"  class="stage-image"  />
+          </div>
+		 </button>
+		 <button class="stage-button" id="stage87Button" onclick="window.location.href='new53.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange87"  class="stage-image" />
+		 <img src="IMG-20250209-WA0137.jpg" class="stage-image"   /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage88Button" onclick="window.location.href='new54.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange88"   class="stage-image" />
+		 <img src="IMG-20250209-WA0138.jpg"  class="stage-image"  /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage89Button" onclick="window.location.href='new55.html'">
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange89"  class="stage-image" />
+		 <img src="IMG-20250209-WA0139.jpg"  class="stage-image"  /> 
+          </div>
+		 </button>
+		 <button class="stage-button" id="stage90Button" onclick="window.location.href='new56.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange90"   class="stage-image"/>
+		 <img src="IMG-20250209-WA0140.jpg"   class="stage-image" /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage91Button" onclick="window.location.href='new57.html'">
+         <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange91"  class="stage-image"/>
+		 <img src="IMG-20250209-WA0141.jpg"   class="stage-image"/> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage92Button" onclick="window.location.href='new58.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange92" class="stage-image" />
+		 <img src="IMG-20250209-WA0142.jpg"  class="stage-image"  /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage93Button" onclick="window.location.href='new59.html'">
+          <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange93"  class="stage-image"/>
+		 <img src="IMG-20250209-WA0143.jpg" class="stage-image"  /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage94Button" onclick="window.location.href='new60.html'"> 
+		  <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange94"  class="stage-image" />
+		 <img src="IMG-20250209-WA0144.jpg"   class="stage-image" /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage95Button" onclick="window.location.href='new61.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange95"   class="stage-image"/>
+		 <img src="IMG-20250209-WA0145.jpg" class="stage-image"   />
+          </div>
+		 </button>
+		 <button class="stage-button" id="stage96Button" onclick="window.location.href='new62.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange96"   class="stage-image"/>
+		 <img src="IMG-20250209-WA0146.jpg" class="stage-image"   /> 
+		  </div>
+		 </button>
+		 <button class="stage-button" id="stage97Button" onclick="window.location.href='new63.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange97" class="stage-image" />
+		 <img src="IMG-20250209-WA0147.jpg"  class="stage-image" /> 
+		 </div>
+		 </button>
+		 <button class="stage-button" id="stage98Button" onclick="window.location.href='new64.html'"> 
+		 <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange98"  class="stage-image" />
+		 <img src="IMG-20250209-WA0148.jpg"  class="stage-image"  />
+         </div>
+		 </button>		 
+         <button class="stage-button" id="stage99Button" onclick="window.location.href='new65.html'">
+         <div class="image-container">
+		 <img src="locks.jpg" id="imageToChange99"  class="stage-image" />
+		 <img src="IMG-20250209-WA0149.jpg"   class="stage-image"  /> 
+		 </div>
+		 </button>
+    <button class="stage-button" id="stage100Button" onclick="window.location.href='new66.html'"> 
+	<div class="image-container">
+	<img src="locks.jpg" id="imageToChange100" class="stage-image" />
+	<img src="IMG-20250209-WA0151.jpg"   class="stage-image" /> 
+	</div>
+	</button> 		 
+   </div>
+   <script>
+    // Retrieve the text from local storage
+//const storedText2 = localStorage.getItem('stagetwoopen');
+// Get the button element by its ID
+//const stage2Button = document.getElementById('stage2Button');
+ 
+// Get the image element by its ID
+//const imageToChange = document.getElementById('imageToChange1');
+ 
+// Check if storedText exists in local storage
+//if (storedText2) {
+    // If storedText exists, enable the button
+   // stage2Button.disabled = false;
+   // stage2Button.style.opacity = 1; // Optional: Change opacity to indicate enabled
+	// imageToChange.src = 'IMG-20250209-WA0155.jpg';
+//} else {
+    // If storedText does not exist, disable the button
+  //  stage2Button.disabled = true;
+  //  stage2Button.style.opacity = 0.7; // Optional: Change opacity to indicate disabled
+//}
+// Define an array of stage numbers
+//const stages = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+//stages.forEach(stage => {
+    // Retrieve the text from local storage
+  //  const storedText = localStorage.getItem(`stage${stage}open`);
+    
+    // Get the button and image elements by their IDs
+    //const button = document.getElementById(`stage${stage}Button`);
+   // const image = document.getElementById(`imageToChange${stage}`);
+    
+    //if (button && image) {
+      //  if (storedText) {
+            // Enable the button and change the image source
+        //    button.disabled = false;
+         //   button.style.opacity = 1; 
+         //   image.src = 'IMG-20250209-WA0155.jpg';
+        //} else {
+            // Disable the button
+          //  button.disabled = true;
+           // button.style.opacity = 0.7; 
+        //}
+   // }
+//});
+
+ // Check if Stage 2 is unlocked
+const storedText = localStorage.getItem('stagetwoopennnn');
+const button = document.getElementById('stage2Button');
+const image = document.getElementById('imageToChange2');
+
+if (button) {
+    if (storedText) {
+        // Stage 2 is unlocked, enable the button
+        button.disabled = false;
+        button.style.opacity = 1; 
+        button.onclick = function() {
+            window.location.href = 'leveltwo.html';
+			
+        };
+        // Change the lock image to indicate it's open
+        if (image) {
+            image.src = 'IMG-20250209-WA0155.jpg'; // Change to an unlocked image
+        }
+    } else {
+        // Stage 2 is locked, keep the button disabled
+        button.disabled = true;
+        button.style.opacity = 0.7; 
+    }
+}
+// Check if Stage 3 is unlocked
+const stage3StoredText = localStorage.getItem('stagethreeopen');
+const stage3Button = document.getElementById('stage3Button');
+const stage3Image = document.getElementById('imageToChange3');
+
+if (stage3Button) {
+    if (stage3StoredText) {
+        // Stage 3 is unlocked, enable the button
+        stage3Button.disabled = false;
+        stage3Button.style.opacity = 1;
+        stage3Button.onclick = function() {
+            window.location.href = 'levelthree.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage3Image) {
+            stage3Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 3 is locked, keep the button disabled
+        stage3Button.disabled = true;
+        stage3Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 4 is unlocked
+const stage4StoredText = localStorage.getItem('stagefouropen');
+const stage4Button = document.getElementById('stage4Button');
+const stage4Image = document.getElementById('imageToChange4');
+
+if (stage4Button) {
+    if (stage4StoredText) {
+        // Stage 4 is unlocked, enable the button
+        stage4Button.disabled = false;
+        stage4Button.style.opacity = 1;
+        stage4Button.onclick = function() {
+            window.location.href = 'levelfour.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage4Image) {
+            stage4Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 4 is locked, keep the button disabled
+        stage4Button.disabled = true;
+        stage4Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 4 is unlocked
+const stage5StoredText = localStorage.getItem('stagefiveopen');
+const stage5Button = document.getElementById('stage5Button');
+const stage5Image = document.getElementById('imageToChange5');
+
+if (stage5Button) {
+    if (stage5StoredText) {
+        // Stage 4 is unlocked, enable the button
+        stage5Button.disabled = false;
+        stage5Button.style.opacity = 1;
+        stage5Button.onclick = function() {
+            window.location.href = 'levelfive.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage5Image) {
+            stage5Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 4 is locked, keep the button disabled
+        stage5Button.disabled = true;
+        stage5Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 4 is unlocked
+const stage6StoredText = localStorage.getItem('stagesixopen');
+const stage6Button = document.getElementById('stage6Button');
+const stage6Image = document.getElementById('imageToChange6');
+
+if (stage4Button) {
+    if (stage6StoredText) {
+        // Stage 4 is unlocked, enable the button
+        stage6Button.disabled = false;
+        stage6Button.style.opacity = 1;
+        stage6Button.onclick = function() {
+            window.location.href = 'levelsix.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage6Image) {
+            stage6Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 4 is locked, keep the button disabled
+        stage6Button.disabled = true;
+        stage6Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 7 is unlocked
+const stage7StoredText = localStorage.getItem('stagesevenopen');
+const stage7Button = document.getElementById('stage7Button');
+const stage7Image = document.getElementById('imageToChange7');
+
+if (stage7Button) {
+    if (stage7StoredText) {
+        // Stage 7 is unlocked, enable the button
+        stage7Button.disabled = false;
+        stage7Button.style.opacity = 1;
+        stage7Button.onclick = function() {
+            window.location.href = 'levelseven.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage7Image) {
+            stage7Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 7 is locked, keep the button disabled
+        stage7Button.disabled = true;
+        stage7Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 8 is unlocked
+const stage8StoredText = localStorage.getItem('stageeightopen');
+const stage8Button = document.getElementById('stage8Button');
+const stage8Image = document.getElementById('imageToChange8');
+
+if (stage8Button) {
+    if (stage8StoredText) {
+        // Stage 8 is unlocked, enable the button
+        stage8Button.disabled = false;
+        stage8Button.style.opacity = 1;
+        stage8Button.onclick = function() {
+            window.location.href = 'leveleight.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage8Image) {
+            stage8Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 8 is locked, keep the button disabled
+        stage8Button.disabled = true;
+        stage8Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 9 is unlocked
+const stage9StoredText = localStorage.getItem('stagenineopen');
+const stage9Button = document.getElementById('stage9Button');
+const stage9Image = document.getElementById('imageToChange9');
+
+if (stage9Button) {
+    if (stage9StoredText) {
+        // Stage 9 is unlocked, enable the button
+        stage9Button.disabled = false;
+        stage9Button.style.opacity = 1;
+        stage9Button.onclick = function() {
+            window.location.href = 'levelnine.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage9Image) {
+            stage9Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 9 is locked, keep the button disabled
+        stage9Button.disabled = true;
+        stage9Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 10 is unlocked
+const stage10StoredText = localStorage.getItem('stagetenopen');
+const stage10Button = document.getElementById('stage10Button');
+const stage10Image = document.getElementById('imageToChange10');
+
+if (stage10Button) {
+    if (stage10StoredText) {
+        // Stage 10 is unlocked, enable the button
+        stage10Button.disabled = false;
+        stage10Button.style.opacity = 1;
+        stage10Button.onclick = function() {
+            window.location.href = 'levelten.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage10Image) {
+            stage10Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 10 is locked, keep the button disabled
+        stage10Button.disabled = true;
+        stage10Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 11 is unlocked
+const stage11StoredText = localStorage.getItem('stageelevenopen');
+const stage11Button = document.getElementById('stage11Button');
+const stage11Image = document.getElementById('imageToChange11');
+
+if (stage11Button) {
+    if (stage11StoredText) {
+        // Stage 11 is unlocked, enable the button
+        stage11Button.disabled = false;
+        stage11Button.style.opacity = 1;
+        stage11Button.onclick = function() {
+            window.location.href = 'lone.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage11Image) {
+            stage11Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 11 is locked, keep the button disabled
+        stage11Button.disabled = true;
+        stage11Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 12 is unlocked
+const stage12StoredText = localStorage.getItem('stagetwelveopen');
+const stage12Button = document.getElementById('stage12Button');
+const stage12Image = document.getElementById('imageToChange12');
+
+if (stage12Button) {
+    if (stage12StoredText) {
+        // Stage 12 is unlocked, enable the button
+        stage12Button.disabled = false;
+        stage12Button.style.opacity = 1;
+        stage12Button.onclick = function() {
+            window.location.href = 'ltwo.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage12Image) {
+            stage12Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 12 is locked, keep the button disabled
+        stage12Button.disabled = true;
+        stage12Button.style.opacity =0.7;
+    }
+}
+// Check if Stage 13 is unlocked
+const stage13StoredText = localStorage.getItem('stagethirteenopen');
+const stage13Button = document.getElementById('stage13Button');
+const stage13Image = document.getElementById('imageToChange13');
+
+if (stage13Button) {
+    if (stage13StoredText) {
+        // Stage 13 is unlocked, enable the button
+        stage13Button.disabled = false;
+        stage13Button.style.opacity = 1;
+        stage13Button.onclick = function() {
+            window.location.href = 'lthree.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage13Image) {
+            stage13Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 13 is locked, keep the button disabled
+        stage13Button.disabled = true;
+        stage13Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 14 is unlocked
+const stage14StoredText = localStorage.getItem('stagefourteenopen');
+const stage14Button = document.getElementById('stage14Button');
+const stage14Image = document.getElementById('imageToChange14');
+
+if (stage14Button) {
+    if (stage14StoredText) {
+        // Stage 14 is unlocked, enable the button
+        stage14Button.disabled = false;
+        stage14Button.style.opacity = 1;
+        stage14Button.onclick = function() {
+            window.location.href = 'lfour.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage14Image) {
+            stage14Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 14 is locked, keep the button disabled
+        stage14Button.disabled = true;
+        stage14Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 15 is unlocked
+const stage15StoredText = localStorage.getItem('stagefifteenopen');
+const stage15Button = document.getElementById('stage15Button');
+const stage15Image = document.getElementById('imageToChange15');
+
+if (stage15Button) {
+    if (stage15StoredText) {
+        // Stage 15 is unlocked, enable the button
+        stage15Button.disabled = false;
+        stage15Button.style.opacity = 1;
+        stage15Button.onclick = function() {
+            window.location.href = 'lfive.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage15Image) {
+            stage15Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 15 is locked, keep the button disabled
+        stage15Button.disabled = true;
+        stage15Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 16 is unlocked
+const stage16StoredText = localStorage.getItem('stagesixteenopen');
+const stage16Button = document.getElementById('stage16Button');
+const stage16Image = document.getElementById('imageToChange16');
+
+if (stage16Button) {
+    if (stage16StoredText) {
+        // Stage 16 is unlocked, enable the button
+        stage16Button.disabled = false;
+        stage16Button.style.opacity = 1;
+        stage16Button.onclick = function() {
+            window.location.href = 'lsix.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage16Image) {
+            stage16Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 16 is locked, keep the button disabled
+        stage16Button.disabled = true;
+        stage16Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 17 is unlocked
+const stage17StoredText = localStorage.getItem('stageseventeenopen');
+const stage17Button = document.getElementById('stage17Button');
+const stage17Image = document.getElementById('imageToChange17');
+
+if (stage17Button) {
+    if (stage17StoredText) {
+        // Stage 17 is unlocked, enable the button
+        stage17Button.disabled = false;
+        stage17Button.style.opacity = 1;
+        stage17Button.onclick = function() {
+            window.location.href = 'tictactoe.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage17Image) {
+            stage17Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 17 is locked, keep the button disabled
+        stage17Button.disabled =  false;
+        stage17Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 18 is unlocked
+const stage18StoredText = localStorage.getItem('stageeighteenopen');
+const stage18Button = document.getElementById('stage18Button');
+const stage18Image = document.getElementById('imageToChange18');
+
+if (stage18Button) {
+    if (stage18StoredText) {
+        // Stage 18 is unlocked, enable the button
+        stage18Button.disabled = false;
+        stage18Button.style.opacity = 1;
+        stage18Button.onclick = function() {
+            window.location.href = 'tictactoelevel2.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage18Image) {
+            stage18Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 18 is locked, keep the button disabled
+        stage18Button.disabled =false;
+        stage18Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 19 is unlocked
+const stage19StoredText = localStorage.getItem('s19');
+const stage19Button = document.getElementById('stage19Button');
+const stage19Image = document.getElementById('imageToChange19');
+
+if (stage19Button) {
+    if (stage19StoredText) {
+        // Stage 19 is unlocked, enable the button
+        stage19Button.disabled = false;
+        stage19Button.style.opacity = 1;
+        stage19Button.onclick = function() {
+            window.location.href='tictactoelevel3.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage19Image) {
+            stage19Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 19 is locked, keep the button disabled
+        stage19Button.disabled = true;
+        stage19Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 20 is unlocked
+const stage20StoredText = localStorage.getItem('stagetwentyopen');
+const stage20Button = document.getElementById('stage20Button');
+const stage20Image = document.getElementById('imageToChange20');
+
+if (stage20Button) {
+    if (stage20StoredText) {
+        // Stage 20 is unlocked, enable the button
+        stage20Button.disabled = false;
+        stage20Button.style.opacity = 1;
+        stage20Button.onclick = function() {
+            window.location.href = 'tictactoelevel4.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage20Image) {
+            stage20Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 20 is locked, keep the button disabled
+        stage20Button.disabled = true;
+        stage20Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 21 is unlocked
+const stage21StoredText = localStorage.getItem('stagetwentyoneopen');
+const stage21Button = document.getElementById('stage21Button');
+const stage21Image = document.getElementById('imageToChange21');
+
+if (stage21Button) {
+    if (stage21StoredText) {
+        // Stage 21 is unlocked, enable the button
+        stage21Button.disabled = false;
+        stage21Button.style.opacity = 1;
+        stage21Button.onclick = function() {
+            window.location.href = 'tictactoelevel5.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage21Image) {
+            stage21Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 21 is locked, keep the button disabled
+        stage21Button.disabled = true;
+        stage21Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 22 is unlocked
+const stage22StoredText = localStorage.getItem('stagetwentytwoopen');
+const stage22Button = document.getElementById('stage22Button');
+const stage22Image = document.getElementById('imageToChange22');
+
+if (stage22Button) {
+    if (stage22StoredText) {
+        // Stage 22 is unlocked, enable the button
+        stage22Button.disabled = false;
+        stage22Button.style.opacity = 1;
+        stage22Button.onclick = function() {
+            window.location.href = 'tictactoelevel6.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage22Image) {
+            stage22Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 22 is locked, keep the button disabled
+        stage22Button.disabled = true;
+        stage22Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 23 is unlocked
+const stage23StoredText = localStorage.getItem('stagetwentythreeopen');
+const stage23Button = document.getElementById('stage23Button');
+const stage23Image = document.getElementById('imageToChange23');
+
+if (stage23Button) {
+    if (stage23StoredText) {
+        // Stage 23 is unlocked, enable the button
+        stage23Button.disabled = false;
+        stage23Button.style.opacity = 1;
+        stage23Button.onclick = function() {
+            window.location.href = 'tictactoelevel7.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage23Image) {
+            stage23Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 23 is locked, keep the button disabled
+        stage23Button.disabled = true;
+        stage23Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 24 is unlocked
+const stage24StoredText = localStorage.getItem('stagetwentyfouropen');
+const stage24Button = document.getElementById('stage24Button');
+const stage24Image = document.getElementById('imageToChange24');
+
+if (stage24Button) {
+    if (stage24StoredText) {
+        // Stage 24 is unlocked, enable the button
+        stage24Button.disabled = false;
+        stage24Button.style.opacity = 1;
+        stage24Button.onclick = function() {
+            window.location.href = 'tb.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage24Image) {
+            stage24Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 24 is locked, keep the button disabled
+        stage24Button.disabled = true;
+        stage24Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 25 is unlocked
+const stage25StoredText = localStorage.getItem('stagetwentyfiveopen');
+const stage25Button = document.getElementById('stage25Button');
+const stage25Image = document.getElementById('imageToChange25');
+
+if (stage25Button) {
+    if (stage25StoredText) {
+        // Stage 25 is unlocked, enable the button
+        stage25Button.disabled = false;
+        stage25Button.style.opacity = 1;
+        stage25Button.onclick = function() {
+            window.location.href = 'tbb5.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage25Image) {
+            stage25Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 25 is locked, keep the button disabled
+        stage25Button.disabled = true;
+        stage25Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 26 is unlocked
+const stage26StoredText = localStorage.getItem('stagetwentysixopen');
+const stage26Button = document.getElementById('stage26Button');
+const stage26Image = document.getElementById('imageToChange26');
+
+if (stage26Button) {
+    if (stage26StoredText) {
+        // Stage 26 is unlocked, enable the button
+        stage26Button.disabled = false;
+        stage26Button.style.opacity = 1;
+        stage26Button.onclick = function() {
+            window.location.href = '  chessl1.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage26Image) {
+            stage26Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 26 is locked, keep the button disabled
+        stage26Button.disabled = true;
+        stage26Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 27 is unlocked
+const stage27StoredText = localStorage.getItem('stagetwentysevenopen');
+const stage27Button = document.getElementById('stage27Button');
+const stage27Image = document.getElementById('imageToChange27');
+
+if (stage27Button) {
+    if (stage27StoredText) {
+        // Stage 27 is unlocked, enable the button
+        stage27Button.disabled = false;
+        stage27Button.style.opacity = 1;
+        stage27Button.onclick = function() {
+            window.location.href = '  chessl2.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage27Image) {
+            stage27Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 27 is locked, keep the button disabled
+        stage27Button.disabled = true;
+        stage27Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 28 is unlocked
+const stage28StoredText = localStorage.getItem('stagetwentyeightopen');
+const stage28Button = document.getElementById('stage28Button');
+const stage28Image = document.getElementById('imageToChange28');
+
+if (stage28Button) {
+    if (stage28StoredText) {
+        // Stage 28 is unlocked, enable the button
+        stage28Button.disabled = false;
+        stage28Button.style.opacity = 1;
+        stage28Button.onclick = function() {
+            window.location.href = '  chessl3.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage28Image) {
+            stage28Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 28 is locked, keep the button disabled
+        stage28Button.disabled = true;
+        stage28Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 29 is unlocked
+const stage29StoredText = localStorage.getItem('stagetwentynineopen');
+const stage29Button = document.getElementById('stage29Button');
+const stage29Image = document.getElementById('imageToChange29');
+
+if (stage29Button) {
+    if (stage29StoredText) {
+        // Stage 29 is unlocked, enable the button
+        stage29Button.disabled = false;
+        stage29Button.style.opacity = 1;
+        stage29Button.onclick = function() {
+            window.location.href = '  chessl4.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage29Image) {
+            stage29Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 29 is locked, keep the button disabled
+        stage29Button.disabled = true;
+        stage29Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 30 is unlocked
+const stage30StoredText = localStorage.getItem('stagethirtyopen');
+const stage30Button = document.getElementById('stage30Button');
+const stage30Image = document.getElementById('imageToChange30');
+
+if (stage30Button) {
+    if (stage30StoredText) {
+        // Stage 30 is unlocked, enable the button
+        stage30Button.disabled = false;
+        stage30Button.style.opacity = 1;
+        stage30Button.onclick = function() {
+            window.location.href = '  chessl6.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage30Image) {
+            stage30Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 30 is locked, keep the button disabled
+        stage30Button.disabled = true;
+        stage30Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 31 is unlocked
+const stage31StoredText = localStorage.getItem('stagethirtyoneopen');
+const stage31Button = document.getElementById('stage31Button');
+const stage31Image = document.getElementById('imageToChange31');
+
+if (stage31Button) {
+    if (stage31StoredText) {
+        // Stage 31 is unlocked, enable the button
+        stage31Button.disabled = false;
+        stage31Button.style.opacity = 1;
+        stage31Button.onclick = function() {
+            window.location.href = '  chessl7.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage31Image) {
+            stage31Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 31 is locked, keep the button disabled
+        stage31Button.disabled = true;
+        stage31Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 32 is unlocked
+const stage32StoredText = localStorage.getItem('stagethirtytwoopen');
+const stage32Button = document.getElementById('stage32Button');
+const stage32Image = document.getElementById('imageToChange32');
+
+if (stage32Button) {
+    if (stage32StoredText) {
+        // Stage 32 is unlocked, enable the button
+        stage32Button.disabled = false;
+        stage32Button.style.opacity = 1;
+        stage32Button.onclick = function() {
+            window.location.href = '  chessl8.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage32Image) {
+            stage32Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 32 is locked, keep the button disabled
+        stage32Button.disabled = true;
+        stage32Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 33 is unlocked
+const stage33StoredText = localStorage.getItem('stagethirtythreeopen');
+const stage33Button = document.getElementById('stage33Button');
+const stage33Image = document.getElementById('imageToChange33');
+
+if (stage33Button) {
+    if (stage33StoredText) {
+        // Stage 33 is unlocked, enable the button
+        stage33Button.disabled = false;
+        stage33Button.style.opacity = 1;
+        stage33Button.onclick = function() {
+            window.location.href = '  chessl9.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage33Image) {
+            stage33Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 33 is locked, keep the button disabled
+        stage33Button.disabled = true;
+        stage33Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 34 is unlocked
+const stage34StoredText = localStorage.getItem('stagethirtyfouropen');
+const stage34Button = document.getElementById('stage34Button');
+const stage34Image = document.getElementById('imageToChange34');
+
+if (stage34Button) {
+    if (stage34StoredText) {
+        // Stage 34 is unlocked, enable the button
+        stage34Button.disabled = false;
+        stage34Button.style.opacity = 1;
+        stage34Button.onclick = function() {
+            window.location.href = 'new1.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage34Image) {
+            stage34Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 34 is locked, keep the button disabled
+        stage34Button.disabled = true;
+        stage34Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 35 is unlocked
+const stage35StoredText = localStorage.getItem('stagethirtyfiveopen');
+const stage35Button = document.getElementById('stage35Button');
+const stage35Image = document.getElementById('imageToChange35');
+
+if (stage35Button) {
+    if (stage35StoredText) {
+        // Stage 35 is unlocked, enable the button
+        stage35Button.disabled = false;
+        stage35Button.style.opacity = 1;
+        stage35Button.onclick = function() {
+            window.location.href = 'new2.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage35Image) {
+            stage35Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 35 is locked, keep the button disabled
+        stage35Button.disabled = true;
+        stage35Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 36 is unlocked
+const stage36StoredText = localStorage.getItem('stagethirtysixopen');
+const stage36Button = document.getElementById('stage36Button');
+const stage36Image = document.getElementById('imageToChange36');
+
+if (stage36Button) {
+    if (stage36StoredText) {
+        // Stage 36 is unlocked, enable the button
+        stage36Button.disabled = false;
+        stage36Button.style.opacity = 1;
+        stage36Button.onclick = function() {
+            window.location.href = 'new3.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage36Image) {
+            stage36Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 36 is locked, keep the button disabled
+        stage36Button.disabled = true;
+        stage36Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 37 is unlocked
+const stage37StoredText = localStorage.getItem('stagethirtysevenopen');
+const stage37Button = document.getElementById('stage37Button');
+const stage37Image = document.getElementById('imageToChange37');
+
+if (stage37Button) {
+    if (stage37StoredText) {
+        // Stage 37 is unlocked, enable the button
+        stage37Button.disabled = false;
+        stage37Button.style.opacity = 1;
+        stage37Button.onclick = function() {
+            window.location.href = 'new4.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage37Image) {
+            stage37Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 37 is locked, keep the button disabled
+        stage37Button.disabled = true;
+        stage37Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 38 is unlocked
+const stage38StoredText = localStorage.getItem('stagethirtyeightopen');
+const stage38Button = document.getElementById('stage38Button');
+const stage38Image = document.getElementById('imageToChange38');
+
+if (stage38Button) {
+    if (stage38StoredText) {
+        // Stage 38 is unlocked, enable the button
+        stage38Button.disabled = false;
+        stage38Button.style.opacity = 1;
+        stage38Button.onclick = function() {
+            window.location.href = 'new5.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage38Image) {
+            stage38Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 38 is locked, keep the button disabled
+        stage38Button.disabled = true;
+        stage38Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 39 is unlocked
+const stage39StoredText = localStorage.getItem('stagethirtynineopen');
+const stage39Button = document.getElementById('stage39Button');
+const stage39Image = document.getElementById('imageToChange39');
+
+if (stage39Button) {
+    if (stage39StoredText) {
+        // Stage 39 is unlocked, enable the button
+        stage39Button.disabled = false;
+        stage39Button.style.opacity = 1;
+        stage39Button.onclick = function() {
+            window.location.href = 'new6.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage39Image) {
+            stage39Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 39 is locked, keep the button disabled
+        stage39Button.disabled = true;
+        stage39Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 40 is unlocked
+const stage40StoredText = localStorage.getItem('stagefourthyopen');
+const stage40Button = document.getElementById('stage40Button');
+const stage40Image = document.getElementById('imageToChange40');
+
+if (stage40Button) {
+    if (stage40StoredText) {
+        // Stage 40 is unlocked, enable the button
+        stage40Button.disabled = false;
+        stage40Button.style.opacity = 1;
+        stage40Button.onclick = function() {
+            window.location.href = 'new7.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage40Image) {
+            stage40Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 40 is locked, keep the button disabled
+        stage40Button.disabled = true;
+        stage40Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 41 is unlocked
+const stage41StoredText = localStorage.getItem('stagefourthyoneopen');
+const stage41Button = document.getElementById('stage41Button');
+const stage41Image = document.getElementById('imageToChange41');
+
+if (stage41Button) {
+    if (stage41StoredText) {
+        // Stage 41 is unlocked, enable the button
+        stage41Button.disabled = false;
+        stage41Button.style.opacity = 1;
+        stage41Button.onclick = function() {
+            window.location.href = 'new8.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage41Image) {
+            stage41Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 41 is locked, keep the button disabled
+        stage41Button.disabled = true;
+        stage41Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 42 is unlocked
+const stage42StoredText = localStorage.getItem('stagefourthytwoopen');
+const stage42Button = document.getElementById('stage42Button');
+const stage42Image = document.getElementById('imageToChange42');
+
+if (stage42Button) {
+    if (stage42StoredText) {
+        // Stage 42 is unlocked, enable the button
+        stage42Button.disabled = false;
+        stage42Button.style.opacity = 1;
+        stage42Button.onclick = function() {
+            window.location.href = 'new9.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage42Image) {
+            stage42Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 42 is locked, keep the button disabled
+        stage42Button.disabled = true;
+        stage42Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 43 is unlocked
+const stage43StoredText = localStorage.getItem('stagefourthythreeopen');
+const stage43Button = document.getElementById('stage43Button');
+const stage43Image = document.getElementById('imageToChange43');
+
+if (stage43Button) {
+    if (stage43StoredText) {
+        // Stage 43 is unlocked, enable the button
+        stage43Button.disabled = false;
+        stage43Button.style.opacity = 1;
+        stage43Button.onclick = function() {
+            window.location.href = 'new10.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage43Image) {
+            stage43Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 43 is locked, keep the button disabled
+        stage43Button.disabled = true;
+        stage43Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 44 is unlocked
+const stage44StoredText = localStorage.getItem('stagefourthyfouropen');
+const stage44Button = document.getElementById('stage44Button');
+const stage44Image = document.getElementById('imageToChange44');
+
+if (stage44Button) {
+    if (stage44StoredText) {
+        // Stage 44 is unlocked, enable the button
+        stage44Button.disabled = false;
+        stage44Button.style.opacity = 1;
+        stage44Button.onclick = function() {
+            window.location.href = 'new11.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage44Image) {
+            stage44Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 44 is locked, keep the button disabled
+        stage44Button.disabled = true;
+        stage44Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 45 is unlocked
+const stage45StoredText = localStorage.getItem('stagefourthyfiveopen');
+const stage45Button = document.getElementById('stage45Button');
+const stage45Image = document.getElementById('imageToChange45');
+
+if (stage45Button) {
+    if (stage45StoredText) {
+        // Stage 45 is unlocked, enable the button
+        stage45Button.disabled = false;
+        stage45Button.style.opacity = 1;
+        stage45Button.onclick = function() {
+            window.location.href = 'new12.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage45Image) {
+            stage45Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 45 is locked, keep the button disabled
+        stage45Button.disabled = true;
+        stage45Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 46 is unlocked
+const stage46StoredText = localStorage.getItem('stagefourthysixopen');
+const stage46Button = document.getElementById('stage46Button');
+const stage46Image = document.getElementById('imageToChange46');
+
+if (stage46Button) {
+    if (stage46StoredText) {
+        // Stage 46 is unlocked, enable the button
+        stage46Button.disabled = false;
+        stage46Button.style.opacity = 1;
+        stage46Button.onclick = function() {
+            window.location.href = 'new13.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage46Image) {
+            stage46Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 46 is locked, keep the button disabled
+        stage46Button.disabled = true;
+        stage46Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 47 is unlocked
+const stage47StoredText = localStorage.getItem('stagefourthysevenopen');
+const stage47Button = document.getElementById('stage47Button');
+const stage47Image = document.getElementById('imageToChange47');
+
+if (stage47Button) {
+    if (stage47StoredText) {
+        // Stage 47 is unlocked, enable the button
+        stage47Button.disabled = false;
+        stage47Button.style.opacity = 1;
+        stage47Button.onclick = function() {
+            window.location.href = 'new14.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage47Image) {
+            stage47Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 47 is locked, keep the button disabled
+        stage47Button.disabled = true;
+        stage47Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 48 is unlocked
+const stage48StoredText = localStorage.getItem('stagefourthyeightopen');
+const stage48Button = document.getElementById('stage48Button');
+const stage48Image = document.getElementById('imageToChange48');
+
+if (stage48Button) {
+    if (stage48StoredText) {
+        // Stage 48 is unlocked, enable the button
+        stage48Button.disabled = false;
+        stage48Button.style.opacity = 1;
+        stage48Button.onclick = function() {
+            window.location.href = 'new15.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage48Image) {
+            stage48Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 48 is locked, keep the button disabled
+        stage48Button.disabled = true;
+        stage48Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 49 is unlocked
+const stage49StoredText = localStorage.getItem('stagefourthynineopen');
+const stage49Button = document.getElementById('stage49Button');
+const stage49Image = document.getElementById('imageToChange49');
+
+if (stage49Button) {
+    if (stage49StoredText) {
+        // Stage 49 is unlocked, enable the button
+        stage49Button.disabled = false;
+        stage49Button.style.opacity = 1;
+        stage49Button.onclick = function() {
+            window.location.href = 'new16.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage49Image) {
+            stage49Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 49 is locked, keep the button disabled
+        stage49Button.disabled = true;
+        stage49Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 50 is unlocked
+const stage50StoredText = localStorage.getItem('stagefifthyopen');
+const stage50Button = document.getElementById('stage50Button');
+const stage50Image = document.getElementById('imageToChange50');
+
+if (stage50Button) {
+    if (stage50StoredText) {
+        // Stage 50 is unlocked, enable the button
+        stage50Button.disabled = false;
+        stage50Button.style.opacity = 1;
+        stage50Button.onclick = function() {
+            window.location.href = 'new17f.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage50Image) {
+            stage50Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 50 is locked, keep the button disabled
+        stage50Button.disabled =false;
+        stage50Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 51 is unlocked
+const stage51StoredText = localStorage.getItem('stagefifthyooneopen');
+const stage51Button = document.getElementById('stage51Button');
+const stage51Image = document.getElementById('imageToChange51');
+
+if (stage51Button) {
+    if (stage51StoredText) {
+        // Stage 51 is unlocked, enable the button
+        stage51Button.disabled = false;
+        stage51Button.style.opacity = 1;
+        stage51Button.onclick = function() {
+            window.location.href = 'new18.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage51Image) {
+            stage51Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 51 is locked, keep the button disabled
+        stage51Button.disabled = true;
+        stage51Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 52 is unlocked
+const stage52StoredText = localStorage.getItem('stagefifthytwoopen');
+const stage52Button = document.getElementById('stage52Button');
+const stage52Image = document.getElementById('imageToChange52');
+
+if (stage52Button) {
+    if (stage52StoredText) {
+        // Stage 52 is unlocked, enable the button
+        stage52Button.disabled = false;
+        stage52Button.style.opacity = 1;
+        stage52Button.onclick = function() {
+            window.location.href = 'new19.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage52Image) {
+            stage52Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 52 is locked, keep the button disabled
+        stage52Button.disabled = true;
+        stage52Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 53 is unlocked
+const stage53StoredText = localStorage.getItem('stagefifthythreeopen');
+const stage53Button = document.getElementById('stage53Button');
+const stage53Image = document.getElementById('imageToChange53');
+
+if (stage53Button) {
+    if (stage53StoredText) {
+        // Stage 53 is unlocked, enable the button
+        stage53Button.disabled = false;
+        stage53Button.style.opacity = 1;
+        stage53Button.onclick = function() {
+            window.location.href = 'new20.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage53Image) {
+            stage53Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 53 is locked, keep the button disabled
+        stage53Button.disabled = true;
+        stage53Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 54 is unlocked
+const stage54StoredText = localStorage.getItem('stagefifthyfouropen');
+const stage54Button = document.getElementById('stage54Button');
+const stage54Image = document.getElementById('imageToChange54');
+
+if (stage54Button) {
+    if (stage54StoredText) {
+        // Stage 54 is unlocked, enable the button
+        stage54Button.disabled = false;
+        stage54Button.style.opacity = 1;
+        stage54Button.onclick = function() {
+            window.location.href = 'new21.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage54Image) {
+            stage54Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 54 is locked, keep the button disabled
+        stage54Button.disabled = true;
+        stage54Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 55 is unlocked
+const stage55StoredText = localStorage.getItem('stagefifthyfiveopen');
+const stage55Button = document.getElementById('stage55Button');
+const stage55Image = document.getElementById('imageToChange55');
+
+if (stage55Button) {
+    if (stage55StoredText) {
+        // Stage 55 is unlocked, enable the button
+        stage55Button.disabled = false;
+        stage55Button.style.opacity = 1;
+        stage55Button.onclick = function() {
+            window.location.href = 'new22.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage55Image) {
+            stage55Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 55 is locked, keep the button disabled
+        stage55Button.disabled = true;
+        stage55Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 56 is unlocked
+const stage56StoredText = localStorage.getItem('stagefifthysixopen');
+const stage56Button = document.getElementById('stage56Button');
+const stage56Image = document.getElementById('imageToChange56');
+
+if (stage56Button) {
+    if (stage56StoredText) {
+        // Stage 56 is unlocked, enable the button
+        stage56Button.disabled = false;
+        stage56Button.style.opacity = 1;
+        stage56Button.onclick = function() {
+            window.location.href = 'new23.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage56Image) {
+            stage56Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 56 is locked, keep the button disabled
+        stage56Button.disabled = true;
+        stage56Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 57 is unlocked
+const stage57StoredText = localStorage.getItem('stagefifthysevenopen');
+const stage57Button = document.getElementById('stage57Button');
+const stage57Image = document.getElementById('imageToChange57');
+
+if (stage57Button) {
+    if (stage57StoredText) {
+        // Stage 57 is unlocked, enable the button
+        stage57Button.disabled = false;
+        stage57Button.style.opacity = 1;
+        stage57Button.onclick = function() {
+            window.location.href = 'new24.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage57Image) {
+            stage57Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 57 is locked, keep the button disabled
+        stage57Button.disabled = true;
+        stage57Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 58 is unlocked
+const stage58StoredText = localStorage.getItem('stagefifthyeightopen');
+const stage58Button = document.getElementById('stage58Button');
+const stage58Image = document.getElementById('imageToChange58');
+
+if (stage58Button) {
+    if (stage58StoredText) {
+        // Stage 58 is unlocked, enable the button
+        stage58Button.disabled = false;
+        stage58Button.style.opacity = 1;
+        stage58Button.onclick = function() {
+            window.location.href = 'new25.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage58Image) {
+            stage58Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 58 is locked, keep the button disabled
+        stage58Button.disabled = true;
+        stage58Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 59 is unlocked
+const stage59StoredText = localStorage.getItem('stagefifthynineopen');
+const stage59Button = document.getElementById('stage59Button');
+const stage59Image = document.getElementById('imageToChange59');
+
+if (stage59Button) {
+    if (stage59StoredText) {
+        // Stage 59 is unlocked, enable the button
+        stage59Button.disabled = false;
+        stage59Button.style.opacity = 1;
+        stage59Button.onclick = function() {
+            window.location.href = 'new26.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage59Image) {
+            stage59Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 59 is locked, keep the button disabled
+        stage59Button.disabled = true;
+        stage59Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 60 is unlocked
+const stage60StoredText = localStorage.getItem('stagesixthyopen');
+const stage60Button = document.getElementById('stage60Button');
+const stage60Image = document.getElementById('imageToChange60');
+
+if (stage60Button) {
+    if (stage60StoredText) {
+        // Stage 60 is unlocked, enable the button
+        stage60Button.disabled = false;
+        stage60Button.style.opacity = 1;
+        stage60Button.onclick = function() {
+            window.location.href = 'new27.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage60Image) {
+            stage60Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 60 is locked, keep the button disabled
+        stage60Button.disabled = true;
+        stage60Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 61 is unlocked
+const stage61StoredText = localStorage.getItem('stagesixthyoneopen');
+const stage61Button = document.getElementById('stage61Button');
+const stage61Image = document.getElementById('imageToChange61');
+
+if (stage61Button) {
+    if (stage61StoredText) {
+        // Stage 61 is unlocked, enable the button
+        stage61Button.disabled = false;
+        stage61Button.style.opacity = 1;
+        stage61Button.onclick = function() {
+            window.location.href = 'new28.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage61Image) {
+            stage61Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 61 is locked, keep the button disabled
+        stage61Button.disabled = true;
+        stage61Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 62 is unlocked
+const stage62StoredText = localStorage.getItem('stagesixthytwoopen');
+const stage62Button = document.getElementById('stage62Button');
+const stage62Image = document.getElementById('imageToChange62');
+
+if (stage62Button) {
+    if (stage62StoredText) {
+        // Stage 62 is unlocked, enable the button
+        stage62Button.disabled = false;
+        stage62Button.style.opacity = 1;
+        stage62Button.onclick = function() {
+            window.location.href = 'new29.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage62Image) {
+            stage62Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 62 is locked, keep the button disabled
+        stage62Button.disabled = true;
+        stage62Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 63 is unlocked
+const stage63StoredText = localStorage.getItem('stagesixthythreeopen');
+const stage63Button = document.getElementById('stage63Button');
+const stage63Image = document.getElementById('imageToChange63');
+
+if (stage63Button) {
+    if (stage63StoredText) {
+        // Stage 63 is unlocked, enable the button
+        stage63Button.disabled = false;
+        stage63Button.style.opacity = 1;
+        stage63Button.onclick = function() {
+            window.location.href = 'new30.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage63Image) {
+            stage63Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 63 is locked, keep the button disabled
+        stage63Button.disabled = true;
+        stage63Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 64 is unlocked
+const stage64StoredText = localStorage.getItem('stagesixthyfouropen');
+const stage64Button = document.getElementById('stage64Button');
+const stage64Image = document.getElementById('imageToChange64');
+
+if (stage64Button) {
+    if (stage64StoredText) {
+        // Stage 64 is unlocked, enable the button
+        stage64Button.disabled = false;
+        stage64Button.style.opacity = 1;
+        stage64Button.onclick = function() {
+            window.location.href = 'new31.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage64Image) {
+            stage64Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 64 is locked, keep the button disabled
+        stage64Button.disabled = true;
+        stage64Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 65 is unlocked
+const stage65StoredText = localStorage.getItem('stagesixthyfiveopen');
+const stage65Button = document.getElementById('stage65Button');
+const stage65Image = document.getElementById('imageToChange65');
+
+if (stage65Button) {
+    if (stage65StoredText) {
+        // Stage 65 is unlocked, enable the button
+        stage65Button.disabled = false;
+        stage65Button.style.opacity = 1;
+        stage65Button.onclick = function() {
+            window.location.href = 'new32.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage65Image) {
+            stage65Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 65 is locked, keep the button disabled
+        stage65Button.disabled = true;
+        stage65Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 66 is unlocked
+const stage66StoredText = localStorage.getItem('stagesixthysixopen');
+const stage66Button = document.getElementById('stage66Button');
+const stage66Image = document.getElementById('imageToChange66');
+
+if (stage66Button) {
+    if (stage66StoredText) {
+        // Stage 66 is unlocked, enable the button
+        stage66Button.disabled = false;
+        stage66Button.style.opacity = 1;
+        stage66Button.onclick = function() {
+            window.location.href = 'new33.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage66Image) {
+            stage66Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 66 is locked, keep the button disabled
+        stage66Button.disabled = true;
+        stage66Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 67 is unlocked
+const stage67StoredText = localStorage.getItem('stagesixthysevenopen');
+const stage67Button = document.getElementById('stage67Button');
+const stage67Image = document.getElementById('imageToChange67');
+
+if (stage67Button) {
+    if (stage67StoredText) {
+        // Stage 67 is unlocked, enable the button
+        stage67Button.disabled = false;
+        stage67Button.style.opacity = 1;
+        stage67Button.onclick = function() {
+            window.location.href = 'new34.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage67Image) {
+            stage67Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 67 is locked, keep the button disabled
+        stage67Button.disabled = true;
+        stage67Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 68 is unlocked
+const stage68StoredText = localStorage.getItem('stagesixthyeightopen');
+const stage68Button = document.getElementById('stage68Button');
+const stage68Image = document.getElementById('imageToChange68');
+
+if (stage68Button) {
+    if (stage68StoredText) {
+        // Stage 68 is unlocked, enable the button
+        stage68Button.disabled = false;
+        stage68Button.style.opacity = 1;
+        stage68Button.onclick = function() {
+            window.location.href = 'new35.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage68Image) {
+            stage68Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 68 is locked, keep the button disabled
+        stage68Button.disabled = true;
+        stage68Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 69 is unlocked
+const stage69StoredText = localStorage.getItem('stagesixthynineopen');
+const stage69Button = document.getElementById('stage69Button');
+const stage69Image = document.getElementById('imageToChange69');
+
+if (stage69Button) {
+    if (stage69StoredText) {
+        // Stage 69 is unlocked, enable the button
+        stage69Button.disabled = false;
+        stage69Button.style.opacity = 1;
+        stage69Button.onclick = function() {
+            window.location.href = 'new36.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage69Image) {
+            stage69Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 69 is locked, keep the button disabled
+        stage69Button.disabled = true;
+        stage69Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 70 is unlocked
+const stage70StoredText = localStorage.getItem('stageseventhyopen');
+const stage70Button = document.getElementById('stage70Button');
+const stage70Image = document.getElementById('imageToChange70');
+
+if (stage70Button) {
+    if (stage70StoredText) {
+        // Stage 70 is unlocked, enable the button
+        stage70Button.disabled = false;
+        stage70Button.style.opacity = 1;
+        stage70Button.onclick = function() {
+            window.location.href = 'new37.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage70Image) {
+            stage70Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 70 is locked, keep the button disabled
+        stage70Button.disabled = true;
+        stage70Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 71 is unlocked
+const stage71StoredText = localStorage.getItem('stageseventhyoneopen');
+const stage71Button = document.getElementById('stage71Button');
+const stage71Image = document.getElementById('imageToChange71');
+
+if (stage71Button) {
+    if (stage71StoredText) {
+        // Stage 71 is unlocked, enable the button
+        stage71Button.disabled = false;
+        stage71Button.style.opacity = 1;
+        stage71Button.onclick = function() {
+            window.location.href = 'new38.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage71Image) {
+            stage71Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 71 is locked, keep the button disabled
+        stage71Button.disabled = true;
+        stage71Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 72 is unlocked
+const stage72StoredText = localStorage.getItem('stageseventhytwoopen');
+const stage72Button = document.getElementById('stage72Button');
+const stage72Image = document.getElementById('imageToChange72');
+
+if (stage72Button) {
+    if (stage72StoredText) {
+        // Stage 72 is unlocked, enable the button
+        stage72Button.disabled = false;
+        stage72Button.style.opacity = 1;
+        stage72Button.onclick = function() {
+            window.location.href = 'new39.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage72Image) {
+            stage72Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 72 is locked, keep the button disabled
+        stage72Button.disabled = true;
+        stage72Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 70 is unlocked
+const stage73StoredText = localStorage.getItem('stageseventhythreeopen');
+const stage73Button = document.getElementById('stage73Button');
+const stage73Image = document.getElementById('imageToChange73');
+
+if (stage73Button) {
+    if (stage73StoredText) {
+        // Stage 73 is unlocked, enable the button
+        stage73Button.disabled = false;
+        stage73Button.style.opacity = 1;
+        stage73Button.onclick = function() {
+            window.location.href = 'new40.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage73Image) {
+            stage73Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 73 is locked, keep the button disabled
+        stage73Button.disabled = true;
+        stage73Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 74 is unlocked
+const stage74StoredText = localStorage.getItem('stageseventhyfouropen');
+const stage74Button = document.getElementById('stage74Button');
+const stage74Image = document.getElementById('imageToChange74');
+
+if (stage74Button) {
+    if (stage74StoredText) {
+        // Stage 74 is unlocked, enable the button
+        stage74Button.disabled = false;
+        stage74Button.style.opacity = 1;
+        stage74Button.onclick = function() {
+            window.location.href = 'new41.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage74Image) {
+            stage74Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 74 is locked, keep the button disabled
+        stage74Button.disabled = true;
+        stage74Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 75 is unlocked
+const stage75StoredText = localStorage.getItem('stageseventhyfiveopen');
+const stage75Button = document.getElementById('stage75Button');
+const stage75Image = document.getElementById('imageToChange75');
+
+if (stage75Button) {
+    if (stage75StoredText) {
+        // Stage 75 is unlocked, enable the button
+        stage75Button.disabled = false;
+        stage75Button.style.opacity = 1;
+        stage75Button.onclick = function() {
+            window.location.href = 'new42.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage75Image) {
+            stage75Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 75 is locked, keep the button disabled
+        stage75Button.disabled = true;
+        stage75Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 76 is unlocked
+const stage76StoredText = localStorage.getItem('stageseventhysixopen');
+const stage76Button = document.getElementById('stage76Button');
+const stage76Image = document.getElementById('imageToChange76');
+
+if (stage76Button) {
+    if (stage76StoredText) {
+        // Stage 76 is unlocked, enable the button
+        stage76Button.disabled = false;
+        stage76Button.style.opacity = 1;
+        stage76Button.onclick = function() {
+            window.location.href = 'new43.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage76Image) {
+            stage76Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 76 is locked, keep the button disabled
+        stage76Button.disabled = true;
+        stage76Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 77 is unlocked
+const stage77StoredText = localStorage.getItem('stageseventhysevenopen');
+const stage77Button = document.getElementById('stage77Button');
+const stage77Image = document.getElementById('imageToChange77');
+
+if (stage77Button) {
+    if (stage77StoredText) {
+        // Stage 77 is unlocked, enable the button
+        stage77Button.disabled = false;
+        stage77Button.style.opacity = 1;
+        stage77Button.onclick = function() {
+            window.location.href = 'new44.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage77Image) {
+            stage77Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 77 is locked, keep the button disabled
+        stage77Button.disabled = true;
+        stage77Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 78 is unlocked
+const stage78StoredText = localStorage.getItem('stageseventhyeightopen');
+const stage78Button = document.getElementById('stage78Button');
+const stage78Image = document.getElementById('imageToChange78');
+
+if (stage78Button) {
+    if (stage78StoredText) {
+        // Stage 78 is unlocked, enable the button
+        stage78Button.disabled = false;
+        stage78Button.style.opacity = 1;
+        stage78Button.onclick = function() {
+            window.location.href = 'new45.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage78Image) {
+            stage78Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 78 is locked, keep the button disabled
+        stage78Button.disabled = true;
+        stage78Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 79 is unlocked
+const stage79StoredText = localStorage.getItem('stageseventhynineopen');
+const stage79Button = document.getElementById('stage79Button');
+const stage79Image = document.getElementById('imageToChange79');
+
+if (stage79Button) {
+    if (stage79StoredText) {
+        // Stage 79 is unlocked, enable the button
+        stage79Button.disabled = false;
+        stage79Button.style.opacity = 1;
+        stage79Button.onclick = function() {
+            window.location.href = 'new46.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage79Image) {
+            stage79Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 79 is locked, keep the button disabled
+        stage79Button.disabled = true;
+        stage79Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 80 is unlocked
+const stage80StoredText = localStorage.getItem('stageeighthyopen');
+const stage80Button = document.getElementById('stage80Button');
+const stage80Image = document.getElementById('imageToChange80');
+
+if (stage80Button) {
+    if (stage80StoredText) {
+        // Stage 80 is unlocked, enable the button
+        stage80Button.disabled = false;
+        stage80Button.style.opacity = 1;
+        stage80Button.onclick = function() {
+            window.location.href = 'new47.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage80Image) {
+            stage80Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 80 is locked, keep the button disabled
+        stage80Button.disabled = true;
+        stage80Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 81 is unlocked
+const stage81StoredText = localStorage.getItem('stageeighthyoneopen');
+const stage81Button = document.getElementById('stage81Button');
+const stage81Image = document.getElementById('imageToChange81');
+
+if (stage81Button) {
+    if (stage81StoredText) {
+        // Stage 81 is unlocked, enable the button
+        stage81Button.disabled = false;
+        stage81Button.style.opacity = 1;
+        stage81Button.onclick = function() {
+            window.location.href = 'new48.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage81Image) {
+            stage81Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 81 is locked, keep the button disabled
+        stage81Button.disabled = true;
+        stage81Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 82 is unlocked
+const stage82StoredText = localStorage.getItem('stageeighthytwoopen');
+const stage82Button = document.getElementById('stage82Button');
+const stage82Image = document.getElementById('imageToChange82');
+
+if (stage82Button) {
+    if (stage82StoredText) {
+        // Stage 82 is unlocked, enable the button
+        stage82Button.disabled = false;
+        stage82Button.style.opacity = 1;
+        stage82Button.onclick = function() {
+            window.location.href = 'new49.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage82Image) {
+            stage82Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 82 is locked, keep the button disabled
+        stage82Button.disabled = true;
+        stage82Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 83 is unlocked
+const stage83StoredText = localStorage.getItem('stageeighthythreeopen');
+const stage83Button = document.getElementById('stage83Button');
+const stage83Image = document.getElementById('imageToChange83');
+
+if (stage83Button) {
+    if (stage83StoredText) {
+        // Stage 83 is unlocked, enable the button
+        stage83Button.disabled = false;
+        stage83Button.style.opacity = 1;
+        stage83Button.onclick = function() {
+            window.location.href = 'new50.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage83Image) {
+            stage83Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 83 is locked, keep the button disabled
+        stage83Button.disabled = true;
+        stage83Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 84 is unlocked
+const stage84StoredText = localStorage.getItem('stageeighthyfouropen');
+const stage84Button = document.getElementById('stage84Button');
+const stage84Image = document.getElementById('imageToChange84');
+
+if (stage84Button) {
+    if (stage84StoredText) {
+        // Stage 84 is unlocked, enable the button
+        stage84Button.disabled = false;
+        stage84Button.style.opacity = 1;
+        stage84Button.onclick = function() {
+            window.location.href = 'new51.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage84Image) {
+            stage84Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 84 is locked, keep the button disabled
+        stage84Button.disabled = true;
+        stage84Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 85 is unlocked
+const stage85StoredText = localStorage.getItem('stageeighthyfiveopen');
+const stage85Button = document.getElementById('stage85Button');
+const stage85Image = document.getElementById('imageToChange85');
+
+if (stage85Button) {
+    if (stage85StoredText) {
+        // Stage 85 is unlocked, enable the button
+        stage85Button.disabled = false;
+        stage85Button.style.opacity = 1;
+        stage85Button.onclick = function() {
+            window.location.href = 'new52.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage85Image) {
+            stage85Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 85 is locked, keep the button disabled
+        stage85Button.disabled = true;
+        stage85Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 86 is unlocked
+const stage86StoredText = localStorage.getItem('stageeighthysixopen');
+const stage86Button = document.getElementById('stage86Button');
+const stage86Image = document.getElementById('imageToChange86');
+
+if (stage86Button) {
+    if (stage86StoredText) {
+        // Stage 86 is unlocked, enable the button
+        stage86Button.disabled = false;
+        stage86Button.style.opacity = 1;
+        stage86Button.onclick = function() {
+            window.location.href = 'new53.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage86Image) {
+            stage86Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 86 is locked, keep the button disabled
+        stage86Button.disabled = true;
+        stage86Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 87 is unlocked
+const stage87StoredText = localStorage.getItem('stageeighthysevenopen');
+const stage87Button = document.getElementById('stage87Button');
+const stage87Image = document.getElementById('imageToChange87');
+
+if (stage87Button) {
+    if (stage87StoredText) {
+        // Stage 87 is unlocked, enable the button
+        stage87Button.disabled = false;
+        stage87Button.style.opacity = 1;
+        stage87Button.onclick = function() {
+            window.location.href = 'new54.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage87Image) {
+            stage87Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 87 is locked, keep the button disabled
+        stage87Button.disabled = true;
+        stage87Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 88 is unlocked
+const stage88StoredText = localStorage.getItem('stageeighthyeightopen');
+const stage88Button = document.getElementById('stage88Button');
+const stage88Image = document.getElementById('imageToChange88');
+
+if (stage88Button) {
+    if (stage88StoredText) {
+        // Stage 88 is unlocked, enable the button
+        stage88Button.disabled = false;
+        stage88Button.style.opacity = 1;
+        stage88Button.onclick = function() {
+            window.location.href = 'new55.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage88Image) {
+            stage88Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 88 is locked, keep the button disabled
+        stage88Button.disabled = true;
+        stage88Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 89 is unlocked
+const stage89StoredText = localStorage.getItem('stageeighthynineopen');
+const stage89Button = document.getElementById('stage89Button');
+const stage89Image = document.getElementById('imageToChange89');
+
+if (stage89Button) {
+    if (stage89StoredText) {
+        // Stage 89 is unlocked, enable the button
+        stage89Button.disabled = false;
+        stage89Button.style.opacity = 1;
+        stage89Button.onclick = function() {
+            window.location.href = 'new56.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage89Image) {
+            stage89Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 89 is locked, keep the button disabled
+        stage89Button.disabled = true;
+        stage89Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 90 is unlocked
+const stage90StoredText = localStorage.getItem('stageninethyopen');
+const stage90Button = document.getElementById('stage90Button');
+const stage90Image = document.getElementById('imageToChange90');
+
+if (stage90Button) {
+    if (stage90StoredText) {
+        // Stage 90 is unlocked, enable the button
+        stage90Button.disabled = false;
+        stage90Button.style.opacity = 1;
+        stage90Button.onclick = function() {
+            window.location.href = 'new57.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage90Image) {
+            stage90Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 90 is locked, keep the button disabled
+        stage90Button.disabled = true;
+        stage90Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 91 is unlocked
+const stage91StoredText = localStorage.getItem('stageninethyoneopen');
+const stage91Button = document.getElementById('stage91Button');
+const stage91Image = document.getElementById('imageToChange91');
+
+if (stage91Button) {
+    if (stage91StoredText) {
+        // Stage 91 is unlocked, enable the button
+        stage91Button.disabled = false;
+        stage91Button.style.opacity = 1;
+        stage91Button.onclick = function() {
+            window.location.href = 'new58.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage91Image) {
+            stage91Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 91 is locked, keep the button disabled
+        stage91Button.disabled = true;
+        stage91Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 92 is unlocked
+const stage92StoredText = localStorage.getItem('stageninethytwoopen');
+const stage92Button = document.getElementById('stage92Button');
+const stage92Image = document.getElementById('imageToChange92');
+
+if (stage92Button) {
+    if (stage92StoredText) {
+        // Stage 92 is unlocked, enable the button
+        stage92Button.disabled = false;
+        stage92Button.style.opacity = 1;
+        stage92Button.onclick = function() {
+            window.location.href = 'new59.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage92Image) {
+            stage92Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 92 is locked, keep the button disabled
+        stage92Button.disabled = true;
+        stage92Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 93 is unlocked
+const stage93StoredText = localStorage.getItem('stageninethythreeopen');
+const stage93Button = document.getElementById('stage93Button');
+const stage93Image = document.getElementById('imageToChange93');
+
+if (stage93Button) {
+    if (stage93StoredText) {
+        // Stage 93 is unlocked, enable the button
+        stage93Button.disabled = false;
+        stage93Button.style.opacity = 1;
+        stage93Button.onclick = function() {
+            window.location.href = 'new60.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage93Image) {
+            stage93Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 93 is locked, keep the button disabled
+        stage93Button.disabled = true;
+        stage93Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 94 is unlocked
+const stage94StoredText = localStorage.getItem('stageninethyfouropen');
+const stage94Button = document.getElementById('stage94Button');
+const stage94Image = document.getElementById('imageToChange94');
+
+if (stage94Button) {
+    if (stage94StoredText) {
+        // Stage 94 is unlocked, enable the button
+        stage94Button.disabled = false;
+        stage94Button.style.opacity = 1;
+        stage94Button.onclick = function() {
+            window.location.href = 'new61.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage94Image) {
+            stage94Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 94 is locked, keep the button disabled
+        stage94Button.disabled = true;
+        stage94Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 95 is unlocked
+const stage95StoredText = localStorage.getItem('stageninethyfiveopen');
+const stage95Button = document.getElementById('stage95Button');
+const stage95Image = document.getElementById('imageToChange95');
+
+if (stage95Button) {
+    if (stage95StoredText) {
+        // Stage 95 is unlocked, enable the button
+        stage95Button.disabled = false;
+        stage95Button.style.opacity = 1;
+        stage95Button.onclick = function() {
+            window.location.href = 'new62.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage95Image) {
+            stage95Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 95 is locked, keep the button disabled
+        stage95Button.disabled = true;
+        stage95Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 96 is unlocked
+const stage96StoredText = localStorage.getItem('stageninethysixopen');
+const stage96Button = document.getElementById('stage96Button');
+const stage96Image = document.getElementById('imageToChange96');
+
+if (stage96Button) {
+    if (stage96StoredText) {
+        // Stage 96 is unlocked, enable the button
+        stage96Button.disabled = false;
+        stage96Button.style.opacity = 1;
+        stage96Button.onclick = function() {
+            window.location.href = 'new63.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage96Image) {
+            stage96Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 96 is locked, keep the button disabled
+        stage96Button.disabled = true;
+        stage96Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 97 is unlocked
+const stage97StoredText = localStorage.getItem('stageninethysevenopen');
+const stage97Button = document.getElementById('stage97Button');
+const stage97Image = document.getElementById('imageToChange97');
+
+if (stage97Button) {
+    if (stage97StoredText) {
+        // Stage 97 is unlocked, enable the button
+        stage97Button.disabled = false;
+        stage97Button.style.opacity = 1;
+        stage97Button.onclick = function() {
+            window.location.href = 'new64.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage97Image) {
+            stage97Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 97 is locked, keep the button disabled
+        stage97Button.disabled = true;
+        stage97Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 98 is unlocked
+const stage98StoredText = localStorage.getItem('stageninethyeightyopen');
+const stage98Button = document.getElementById('stage98Button');
+const stage98Image = document.getElementById('imageToChange98');
+
+if (stage98Button) {
+    if (stage98StoredText) {
+        // Stage 98 is unlocked, enable the button
+        stage98Button.disabled = false;
+        stage98Button.style.opacity = 1;
+        stage98Button.onclick = function() {
+            window.location.href = 'new65.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage98Image) {
+            stage98Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 98 is locked, keep the button disabled
+        stage98Button.disabled = true;
+        stage98Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 99 is unlocked
+const stage99StoredText = localStorage.getItem('stageninethynineopen');
+const stage99Button = document.getElementById('stage99Button');
+const stage99Image = document.getElementById('imageToChange99');
+
+if (stage99Button) {
+    if (stage99StoredText) {
+        // Stage 99 is unlocked, enable the button
+        stage99Button.disabled = false;
+        stage99Button.style.opacity = 1;
+        stage99Button.onclick = function() {
+            window.location.href = 'new66.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage99Image) {
+            stage99Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 99 is locked, keep the button disabled
+        stage99Button.disabled = true;
+        stage99Button.style.opacity = 0.7;
+    }
+}
+// Check if Stage 100 is unlocked
+const stage100StoredText = localStorage.getItem('stagehundredopen');
+const stage100Button = document.getElementById('stage100Button');
+const stage100Image = document.getElementById('imageToChange100');
+
+if (stage100Button) {
+    if (stage100StoredText) {
+        // Stage 100 is unlocked, enable the button
+        stage100Button.disabled = false;
+        stage100Button.style.opacity = 1;
+        stage100Button.onclick = function() { 
+            window.location.href = 'new67.html';
+        };
+        // Change the lock image to indicate it's open
+        if (stage100Image) {
+            stage100Image.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+        }
+    } else {
+        // Stage 100 is locked, keep the button disabled
+        stage100Button.disabled = true;
+        stage100Button.style.opacity = 0.7;
+    }
+}
+   //new code to review
+   // Function to handle stage unlocking
+    // function checkStage(stageNumber, stageName, pageUrl) {
+    // const storedText = localStorage.getItem(stageName);
+    //const stageButton = document.getElementById(`stage${stageNumber}Button`);
+     //const stageImage = document.getElementById(`imageToChange${stageNumber}`);
+    
+     //if (stageButton) {
+       //  if (storedText) {
+         //     Stage is unlocked, enable the button
+         //    stageButton.disabled = false;
+         //    stageButton.style.opacity = 1;
+          //   stageButton.onclick = function() {
+           //      window.location.href = pageUrl;
+           //  };
+           //  Change the lock image to indicate it's open
+           // if (stageImage) {
+            //  stageImage.src = 'IMG-20250209-WA0155.jpg'; // Replace with an unlocked image
+            //}
+        //} else {
+          //   Stage is locked, keep the button disabled
+          //  stageButton.disabled = true;
+          //  stageButton.style.opacity = 0.7;
+       // }
+    //}
+//}
+
+// Define stage names for localStorage keys
+//const stageNames = [
+  //  'stageoneopen', 'stagetwoopen', 'stagethreeopen', 'stagefouropen', 'stagefiveopen',
+  //  'stagesixopen', 'stagesevenopen', 'stageeightopen', 'stagenineopen', 'stagetenopen',
+  //  'stageelevenopen', 'stagetwelveopen', 'stagethirteenopen', 'stagefourteenopen', 'stagefifteenopen',
+  //  'stagesixteenopen', 'stageseventeenopen', 'stageeighteenopen', 'stagenineteenopen', 'stagetwentyopen',
+   // 'stagetwentyoneopen', 'stagetwentytwoopen', 'stagetwentythreeopen', 'stagetwentyfouropen', 'stagetwentyfiveopen',
+    //'stagetwentysixopen', 'stagetwentysevenopen', 'stagetwentyeightopen', 'stagetwentynineopen', 'stagethirtyopen',
+    //'stagethirtyoneopen', 'stagethirtytwoopen', 'stagethirtythreeopen', 'stagethirtyfouropen', 'stagethirtyfiveopen',
+    //'stagethirtysixopen', 'stagethirtysevenopen', 'stagethirtyeightopen', 'stagethirtynineopen', 'stagefortyopen',
+    //'stagefortyoneopen', 'stagefortytwoopen', 'stagefortythreeopen', 'stagefortyfouropen', 'stagefortyfiveopen',
+    //'stagefortysixopen', 'stagefortysevenopen', 'stagefortyeightopen', 'stagefortynineopen', 'stagefiftyopen',
+    //'stagefiftyoneopen', 'stagefiftytwoopen', 'stagefiftythreeopen', 'stagefiftyfouropen', 'stagefiftyfiveopen',
+    //'stagefiftysixopen', 'stagefiftysevenopen', 'stagefiftyeightopen', 'stagefiftynineopen', 'stagesixtyopen',
+    //'stagesixtyoneopen', 'stagesixtytwoopen', 'stagesixtythreeopen', 'stagesixtyfouropen', 'stagesixtyfiveopen',
+    //'stagesixtysixopen', 'stagesixtysevenopen', 'stagesixtyeightopen', 'stagesixtynineopen', 'stageseventyopen',
+    //'stageseventyoneopen', 'stageseventytwoopen', 'stageseventythreeopen', 'stageseventyfouropen', 'stageseventyfiveopen',
+    //'stageseventysixopen', 'stageseventysevenopen', 'stageseventyeightopen', 'stageseventynineopen', 'stageeightyopen',
+    //'stageeightyoneopen', 'stageeightytwoopen', 'stageeightythreeopen', 'stageeightyfouropen', 'stageeightyfiveopen',
+    //'stageeightysixopen', 'stageeightysevenopen', 'stageeightyeightopen', 'stageeightynineopen', 'stageninetyopen',
+    //'stageninetyoneopen', 'stageninetytwoopen', 'stageninetythreeopen', 'stageninetyfouropen', 'stageninetyfiveopen',
+    //'stageninetysixopen', 'stageninetysevenopen', 'stageninetyeightopen', 'stageninetynineopen', 'stagehundredopen'
+//];
+
+// Loop through stages 1 to 100 and apply unlocking logic
+//for (let i = 1; i <= 100; i++) {
+  //  checkStage(i, stageNames[i - 1], `new${i}.html`);
+//}
+
+ 
+   </script>
+   	 
+</body>
+</html>

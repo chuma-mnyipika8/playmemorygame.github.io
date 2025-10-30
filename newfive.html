@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Word Puzzle</title>
+	<style>
+	
+ /* General body styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    color: #fff;
+    padding: 10px;
+    margin: 0;
+}
+
+#game-container {
+    max-width: 100%;
+    width: 90%;
+    margin: auto;
+    padding: 15px;
+}
+
+h1 {
+    font-size: 2rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    color: #ffdd00;
+    margin-bottom: 15px;
+}
+
+/* Instructions */
+#instructions {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+/* Scrambled letters container */
+#scrambled-container {
+    margin-top: 20px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ff4081;
+}
+
+/* Word input field */
+#word-input {
+    margin-top: 20px;
+    padding: 12px;
+    font-size: 1.6rem;
+    width: 80%;
+    max-width: 350px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    box-sizing: border-box;
+}
+
+/* Submit button */
+#submit-btn {
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    cursor: pointer;
+    width: 80%;
+    max-width: 350px;
+}
+
+#submit-btn:hover {
+    background-color: #e91e63;
+}
+
+/* Score and timer container */
+#score-container, #timer-container {
+    font-size: 1.4rem;
+    margin-top: 15px;
+}
+
+/* Hint button */
+#hint-btn {
+    margin-top: 20px;
+    background-color: #ff4081;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 80%;
+    max-width: 350px;
+}
+
+#hint-btn:hover {
+    background-color: #e91e63;
+}
+
+/* Game Over screen */
+#game-over {
+    font-size: 1.5rem;
+}
+
+button {
+    font-size: 1rem;
+}
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    #scrambled-container {
+        font-size: 2rem;
+    }
+    #word-input {
+        font-size: 1.4rem;
+        width: 90%;
+    }
+    #submit-btn, #hint-btn {
+        font-size: 1.4rem;
+        width: 90%;
+    }
+    #score-container, #timer-container {
+        font-size: 1.2rem;
+    }
+    #game-over {
+        font-size: 1.4rem;
+    }
+}
+
+
+	</style>
+	</head>
+	<body>
+	 <div id="game-container">
+    <h1>Letter Scramble</h1>
+    <p id="instructions">Rearrange the letters to form a valid word!</p>
+    
+    <div id="scrambled-container">
+        <span id="scrambled-letters"></span>
+    </div>
+
+    <input type="text" id="word-input" placeholder="Type your guess..." autocomplete="off">
+    
+    <button id="submit-btn">Submit</button>
+    
+    <p id="score-container">Score: <span id="score">0</span></p>
+    <p id="timer-container">Time Left: <span id="timer">30</span> seconds</p>
+    
+    <div id="hint-container">
+        <button id="hint-btn">Hint</button>
+    </div>
+    
+    <div id="game-over" style="display: none;">
+        <h2>Game Over!</h2>
+        <p>Your final score: <span id="final-score"></span></p>
+        <button id="restart-btn">Restart</button>
+    </div>
+</div>
+
+    <script>
+	let score = 0;
+let timeLeft = 30;
+let currentWord = '';
+let timer;
+let hintUsed = false;
+
+// Words for the game
+const words = ['apple', 'banana', 'grape', 'orange', 'kiwi', 'melon', 'pear', 'cherry'];
+let scrambledLetters = '';
+
+function startGame() {
+    // Reset the game
+    score = 0;
+    timeLeft = 30;
+    hintUsed = false;
+    document.getElementById('score').textContent = score;
+    document.getElementById('timer').textContent = timeLeft;
+    document.getElementById('game-over').style.display = 'none';
+    
+    nextRound();
+    
+    // Start the timer
+    timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById('timer').textContent = timeLeft;
+        
+        if (timeLeft <= 0) {
+            //endGame();
+			window.location.href='lose.html';
+			
+        }
+    }, 1000);
+}
+
+function nextRound() {
+    // Choose a random word and scramble it
+    currentWord = words[Math.floor(Math.random() * words.length)];
+    scrambledLetters = scrambleWord(currentWord);
+    document.getElementById('scrambled-letters').textContent = scrambledLetters;
+    document.getElementById('word-input').value = '';
+}
+
+function scrambleWord(word) {
+    let scrambled = word.split('').sort(() => Math.random() - 0.5).join('');
+    return scrambled;
+}
+
+document.getElementById('submit-btn').addEventListener('click', () => {
+    const guess = document.getElementById('word-input').value.trim().toLowerCase();
+    
+    if (guess === currentWord) {
+       // score += 10;
+       // document.getElementById('score').textContent = score;
+       // nextRound();
+	   window.location.href='won.html';
+    } else {
+        //alert('Try again!');
+		window.location.href='lose.html';
+    }
+});
+
+document.getElementById('hint-btn').addEventListener('click', () => {
+    if (!hintUsed) {
+        hintUsed = true;
+        const hint = currentWord.charAt(Math.floor(Math.random() * currentWord.length));
+        alert(`Here’s a hint: One of the letters is "${hint}".`);
+    } else {
+        alert('You have already used your hint!');
+    }
+});
+
+function endGame() {
+    clearInterval(timer);
+    document.getElementById('final-score').textContent = score;
+    document.getElementById('game-over').style.display = 'block';
+	
+	
+}
+
+document.getElementById('restart-btn').addEventListener('click', startGame);
+
+// Start the game when the page loads
+window.onload = startGame;
+
+	</script>
+	
+	</body>
+</html>

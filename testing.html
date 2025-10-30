@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match-3 Game</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            background-image: url('your_background_image.jpg'); /* replace with your background image */
+            background-size: cover;
+            background-position: center center;
+            overflow: hidden;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 10px;
+            background: #e0e0e0;
+            padding: 20px;
+            border-radius: 15px;
+            width: 90vw;
+            max-width: 450px;
+            aspect-ratio: 1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        .tile {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: calc(3vw + 1vh);
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+            position: relative;
+            background-color: #3498db;
+            color: white;
+        }
+
+        .tile:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .tile.matched {
+            animation: explode 0.5s forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.5);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
+        .score-board {
+            background: #fff;
+            padding: 15px 30px;
+            border-radius: 20px;
+            font-size: calc(2.5vw + 2.5vh);
+            display: flex;
+            justify-content: space-between;
+            width: 90vw;
+            max-width: 450px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        .score-board span {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .score-board span#score {
+            color: #e74c3c;
+        }
+
+        .score-board span#moves {
+            color: #3498db;
+        }
+
+        .score-board span#level {
+            color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <div class="score-board">
+        <div>Score: <span id="score">0</span></div>
+        <div>Moves: <span id="moves">30</span></div>
+        <div>Level: <span id="level">1</span></div>
+    </div>
+    <div class="game-board" id="game-board"></div>
+
+    <script>
+        const boardSize = 8;
+        const tileColors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6'];
+        const board = document.getElementById('game-board');
+        const scoreDisplay = document.getElementById('score');
+        const movesDisplay = document.getElementById('moves');
+        const levelDisplay = document.getElementById('level');
+        let score = 0;
+        let moves = 30;
+        let level = 1;
+
+        // Create the game board
+        function createBoard() {
+            for (let i = 0; i < boardSize * boardSize; i++) {
+                const tile = document.createElement('div');
+                tile.classList.add('tile');
+                tile.style.backgroundColor = getRandomColor();
+                tile.setAttribute('draggable', true);
+                tile.setAttribute('id', i);
+                board.appendChild(tile);
+            }
+        }
+
+        function getRandomColor() {
+            return tileColors[Math.floor(Math.random() * tileColors.length)];
+        }
+
+        // Drag and Drop functionality
+        let draggedTile = null;
+        let replacedTile = null;
+
+        document.addEventListener('dragstart', (e) => {
+            draggedTile = e.target;
+        });
+
+        document.addEventListener('dragover', (e) => {
+            e.preventDefault();
+        });
+
+        document.addEventListener('drop', (e) => {
+            replacedTile = e.target;
+
+            if (draggedTile && replacedTile && draggedTile !== replacedTile) {
+                swapTiles(draggedTile, replacedTile);
+                checkMatches();
+                moves--;
+                movesDisplay.textContent = moves;
+                if (moves === 0) {
+                    alert('Game Over! Your final score is ' + score);
+                    resetGame();
+                }
+            }
+        });
+
+        function swapTiles(tile1, tile2) {
+            const tempColor = tile1.style.backgroundColor;
+            tile1.style.backgroundColor = tile2.style.backgroundColor;
+            tile2.style.backgroundColor = tempColor;
+        }
+
+        function checkMatches() {
+            const tiles = Array.from(document.querySelectorAll('.tile'));
+
+            // Check rows for matches
+            for (let i = 0; i < boardSize * boardSize; i++) {
+                if (i % boardSize < boardSize - 2) {
+                    const row = [i, i + 1, i + 2];
+                    const color = tiles[i].style.backgroundColor;
+
+                    if (row.every(index => tiles[index].style.backgroundColor === color)) {
+                        row.forEach(index => {
+                            tiles[index].style.backgroundColor = '';
+                            tiles[index].classList.add('matched');
+                        });
+                        updateScore(10);
+                    }
+                }
+            }
+
+            // Check columns for matches
+            for (let i = 0; i < boardSize * (boardSize - 2); i++) {
+                const column = [i, i + boardSize, i + 2 * boardSize];
+                const color = tiles[i].style.backgroundColor;
+
+                if (column.every(index => tiles[index].style.backgroundColor === color)) {
+                    column.forEach(index => {
+                        tiles[index].style.backgroundColor = '';
+                        tiles[index].classList.add('matched');
+                    });
+                    updateScore(10);
+                }
+            }
+
+            refillBoard();
+        }
+
+        function refillBoard() {
+            const tiles = Array.from(document.querySelectorAll('.tile'));
+            tiles.forEach(tile => {
+                if (!tile.style.backgroundColor) {
+                    tile.style.backgroundColor = getRandomColor();
+                    tile.classList.remove('matched');
+                }
+            });
+        }
+
+        function updateScore(points) {
+            score += points;
+            scoreDisplay.textContent = score;
+
+            if (score >= level * 100) {
+                level++;
+                levelDisplay.textContent = level;
+                moves += 10;
+                movesDisplay.textContent = moves;
+                alert('Level up! You are now on Level ' + level);
+            }
+        }
+
+        function resetGame() {
+            score = 0;
+            moves = 30;
+            level = 1;
+            scoreDisplay.textContent = score;
+            movesDisplay.textContent = moves;
+            levelDisplay.textContent = level;
+            board.innerHTML = '';
+            createBoard();
+        }
+
+        createBoard();
+    </script>
+</body>
+</html>

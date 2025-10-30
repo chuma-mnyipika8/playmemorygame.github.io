@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Stages Navigation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #6a1b9a, #d32f2f);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-attachment: fixed;
+    }
+
+    .nav-container {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 40px 60px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(15px);
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #fff;
+      margin-bottom: 40px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Stage Button Styles */
+    .stage-button {
+      display: block;
+      background: linear-gradient(135deg, #8e44ad, #3498db);
+      color: #fff;
+      padding: 18px 35px;
+      font-size: 20px;
+      margin: 20px auto;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.4s ease-in-out;
+      width: 70%;
+      text-transform: capitalize;
+    }
+
+    .stage-button:hover {
+      transform: scale(1.1) translateY(-5px);
+      background: linear-gradient(135deg, #3498db, #8e44ad);
+    }
+
+    .stage-button:disabled {
+      background: rgba(255, 255, 255, 0.3);
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    /* Stage Status */
+    .stage-status {
+      font-size: 18px;
+      margin-top: 8px;
+      font-weight: 600;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .stage-status span {
+      font-weight: bold;
+    }
+
+    .status-unlocked {
+      color: #2ecc71;
+    }
+
+    .status-locked {
+      color: #f39c12;
+    }
+
+    .status-completed {
+      color: #27ae60;
+    }
+
+    /* Animations */
+    .stage-button {
+      animation: fadeIn 0.5s ease-in-out forwards;
+    }
+
+    .stage-button:nth-child(odd) {
+      animation-delay: 0.2s;
+    }
+
+    .stage-button:nth-child(even) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 800px) {
+      .nav-container {
+        padding: 30px 40px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .stage-button {
+        font-size: 18px;
+        padding: 16px 30px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .nav-container {
+        padding: 20px 30px;
+      }
+
+      .stage-button {
+        font-size: 16px;
+        padding: 14px 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-container">
+    <h1>Game Rewards</h1>
+
+    <!-- Stage 1 -->
+    <button class="stage-button" id="stage1">Stage 10</button>
+    <div class="stage-status status-unlocked" id="status1">Status: <span>Unlocked</span></div>
+
+    <!-- Stage 2 -->
+    <button class="stage-button" id="stage2" disabled>Stage 20</button>
+    <div class="stage-status status-locked" id="status2">Status: <span>Locked</span></div>
+
+    <!-- Stage 3 -->
+    <button class="stage-button" id="stage3">Stage 30</button>
+    <div class="stage-status status-unlocked" id="status3">Status: <span>Unlocked</span></div>
+
+    <!-- Stage 4 -->
+    <button class="stage-button" id="stage4" disabled>Stage 40</button>
+    <div class="stage-status status-completed" id="status4">Status: <span>Completed</span></div>
+
+    <!-- Stage 5 -->
+    <button class="stage-button" id="stage5" disabled>Stage 50</button>
+    <div class="stage-status status-locked" id="status5">Status: <span>Locked</span></div>
+
+    <!-- Stage 6 -->
+    <button class="stage-button" id="stage6">Stage 60</button>
+    <div class="stage-status status-unlocked" id="status6">Status: <span>Unlocked</span></div>
+
+    <!-- Stage 7 -->
+    <button class="stage-button" id="stage7">Stage 70</button>
+    <div class="stage-status status-unlocked" id="status7">Status: <span>Unlocked</span></div>
+
+    <!-- Stage 8 -->
+    <button class="stage-button" id="stage8" disabled>Stage 80</button>
+    <div class="stage-status status-locked" id="status8">Status: <span>Locked</span></div>
+
+    <!-- Stage 9 -->
+    <button class="stage-button" id="stage9">Stage 90</button>
+    <div class="stage-status status-unlocked" id="status9">Status: <span>Unlocked</span></div>
+
+    <!-- Stage 10 -->
+    <button class="stage-button" id="stage10" disabled>Stage 100</button>
+    <div class="stage-status status-completed" id="status10">Status: <span>Completed</span></div>
+  </div>
+
+  <script>
+    // Simulating unlock conditions (for example, player completing previous stages)
+    let unlockedStages = [1, 3, 6, 7, 9]; // These stages are unlocked for the player
+
+    function updateStageStatus(stageNumber) {
+      const stageButton = document.getElementById(`stage${stageNumber}`);
+      const statusSpan = document.getElementById(`status${stageNumber}`);
+      
+      if (unlockedStages.includes(stageNumber)) {
+        stageButton.classList.remove('disabled');
+        stageButton.classList.add('stage-button');
+        statusSpan.classList.add('status-unlocked');
+        statusSpan.innerHTML = `Status: <span>Unlocked</span>`;
+        stageButton.disabled = false;
+      } else if (stageNumber === 4 || stageNumber === 10) {
+        stageButton.classList.add('disabled');
+        statusSpan.classList.add('status-completed');
+        statusSpan.innerHTML = `Status: <span>Completed</span>`;
+        stageButton.disabled = true;
+      } else {
+        statusSpan.classList.add('status-locked');
+        statusSpan.innerHTML = `Status: <span>Locked</span>`;
+        stageButton.classList.add('disabled');
+        stageButton.disabled = true;
+      }
+    }
+
+    // Initialize stage statuses
+    for (let i = 1; i <= 10; i++) {
+      updateStageStatus(i);
+    }
+
+    // Adding navigation functionality
+    document.querySelectorAll('.stage-button').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const stageId = e.target.id;
+        alert(`Navigating to ${stageId}`);
+        // Here you can add the actual navigation logic (e.g., redirect to a stage page)
+      });
+    });
+  </script>
+
+</body>
+</html>

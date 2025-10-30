@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Won!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+             
+            background-color: #1a1a1a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+			/*background-image: url('InShot_20200411_043911240.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;*/
+        }
+         .bg-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: fill; /* Stretch to cover full width and height */
+      z-index: -1;       /* Sit behind content */
+    }
+        .modal-content {
+             
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            text-align: center; 
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color:black;
+        }
+
+        p {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color:black;
+        }
+
+        .medal {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        #playAgainBtn {
+            background-color: black;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        #playAgainBtn:hover {
+            background-color: #ff66b2;
+        }
+    </style>
+</head>
+<body>
+     <img class="bg-image" src="InShot_20200411_043911240.jpg" alt="Background">
+    <div class="modal-content">
+        <h1>You Won!</h1>
+        <!--<p>Congratulations! You've won a voucher for stage 80 go to achievements and put the password 12345678901equlmnoippajd to get voucher</p>-->
+		<p>Congratulations! You've unlocked a fantastic reward!</p>
+<p>You've successfully reached Stage 80 and earned a exclusive voucher! To redeem it, simply head to the Achievements section and enter the password: <strong>12345678901equlmnoippajd</strong>.</p>
+        <div class="medal"> </div>
+        <br />
+        <button id="playAgainBtn" onclick="window.location.href='stages.html'">Next</button>
+    </div>
+
+</body>
+</html>
