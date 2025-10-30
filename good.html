@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Interactive Metal Menu</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: radial-gradient(circle, rgba(10, 10, 10, 0.9), rgba(0, 0, 0, 0.8));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      color: white;
+      perspective: 1500px; /* Perspective for 3D effect */
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      z-index: 1;
+      transform-style: preserve-3d;
+      perspective: 500px; /* Control the depth */
+      transition: transform 0.5s ease-out;
+    }
+
+    .menu-btn {
+      padding: 18px;
+      width: 280px;
+      font-size: 22px;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: #f2e5b6;
+      background: linear-gradient(145deg, #2a1a0e, #d2a14f);
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), inset 0 1px 3px rgba(255, 255, 255, 0.1);
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease, box-shadow 0.2s ease-in-out;
+      transform: rotateX(0deg) rotateY(0deg);
+      will-change: transform;
+    }
+
+    .menu-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.3));
+      filter: blur(2px);
+      opacity: 0.6;
+      z-index: 0;
+    }
+
+    /* 3D Button Hover Effects */
+    .menu-btn:hover {
+      transform: translateY(-8px) rotateX(15deg) rotateY(15deg);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6), inset 0 1px 5px rgba(255, 255, 255, 0.1);
+      background: linear-gradient(145deg, #d2a14f, #2a1a0e);
+      filter: brightness(1.3);
+      transition: all 0.3s ease-out, box-shadow 0.2s ease-in-out;
+    }
+
+    .menu-btn:active {
+      transform: translateY(4px) rotateX(0deg) rotateY(0deg);
+      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.4);
+      background: linear-gradient(145deg, #2a1a0e, #d2a14f);
+      filter: brightness(0.9);
+    }
+
+    .menu-btn:focus {
+      outline: none;
+    }
+
+    /* Shiny Text Effect */
+    .menu-btn span {
+      position: relative;
+      display: inline-block;
+      z-index: 1;
+    }
+
+    .menu-btn span::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #fff, #ffeb3b);
+      z-index: -1;
+      filter: blur(10px);
+      transform: scale(1.1);
+      opacity: 0.5;
+      animation: shine 2s infinite linear;
+    }
+
+    @keyframes shine {
+      0% {
+        left: -100%;
+      }
+      100% {
+        left: 100%;
+      }
+    }
+
+    /* 3D Perspective Adjustment based on Mouse Movement */
+    .menu-btn:hover {
+      transform: translateY(-10px) rotateX(20deg) rotateY(20deg);
+      transition: transform 0.5s ease-out;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), inset 0 1px 10px rgba(255, 255, 255, 0.1);
+      background: linear-gradient(145deg, #d2a14f, #2a1a0e);
+      filter: brightness(1.4);
+      transform-origin: center;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="menu">
+    <button class="menu-btn"><span>Button 1</span></button>
+    <button class="menu-btn"><span>Button 2</span></button>
+    <button class="menu-btn"><span>Button 3</span></button>
+    <button class="menu-btn"><span>Button 4</span></button>
+    <button class="menu-btn"><span>Button 5</span></button>
+    <button class="menu-btn"><span>Button 6</span></button>
+    <button class="menu-btn"><span>Button 7</span></button>
+    <button class="menu-btn"><span>Button 8</span></button>
+    <button class="menu-btn"><span>Button 9</span></button>
+    <button class="menu-btn"><span>Button 10</span></button>
+  </div>
+
+  <script>
+    document.querySelectorAll('.menu-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        alert(`${button.textContent} clicked!`);
+      });
+    });
+
+    // Add 3D effect based on mouse movement
+    document.body.addEventListener('mousemove', (e) => {
+      const buttons = document.querySelectorAll('.menu-btn');
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+
+      buttons.forEach(button => {
+        const angleX = (y - 0.5) * 30;
+        const angleY = (x - 0.5) * -30;
+        button.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+      });
+    });
+  </script>
+</body>
+</html>

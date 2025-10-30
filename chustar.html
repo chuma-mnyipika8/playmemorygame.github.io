@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Matrix</title>
+    <style>
+	* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	  background-image: url('mm.webp');
+    height: 100vh;
+}
+
+.game-container {
+    text-align: center;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	 background-image: url('m.webp');
+    width: 500px;
+}
+
+h1 {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.game-board {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 20px;
+    transition: grid-template-columns 0.5s ease;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    width: 150px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.tile {
+    width: 100px;
+    height: 100px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.tile.flipped {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transform: rotateY(180deg);
+}
+
+.tile.matched {
+    background-color: #4CAF50;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+#time {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+	</style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Memory Matrix</h1>
+        <p id="score">Score: 0</p>
+        <p>Matches: <span id="matches">0</span> / <span id="totalMatches">0</span></p>
+        <p>Time: <span id="time">00:00</span></p>
+        <div id="game-board" class="game-board"></div>
+        <button id="start-btn">Start New Game</button>
+        <button id="hint-btn">Hint</button>
+        <button id="undo-btn">Undo</button>
+    </div>
+
+    <script>
+	const startBtn = document.getElementById('start-btn');
+const hintBtn = document.getElementById('hint-btn');
+const undoBtn = document.getElementById('undo-btn');
+const gameBoard = document.getElementById('game-board');
+const scoreDisplay = document.getElementById('score');
+const matchesDisplay = document.getElementById('matches');
+const totalMatchesDisplay = document.getElementById('totalMatches');
+const timeDisplay = document.getElementById('time');
+
+let boardSize = 4;
+let score = 0;
+let matches = 0;
+let totalMatches = 0;
+let flippedTiles = [];
+let tiles = [];
+let timerInterval;
+let elapsedTime = 0;
+let hintTile = null;
+let prevFlippedTiles = [];
+
+// Function to start a new game
+function startNewGame() {
+    resetGame();
+
+    tiles = generateTiles(boardSize);
+    renderBoard(tiles);
+    totalMatches = (boardSize * boardSize) / 2;
+    totalMatchesDisplay.textContent = totalMatches;
+    
+    startTimer();
+}
+
+// Function to reset the game
+function resetGame() {
+    score = 0;
+    matches = 0;
+    flippedTiles = [];
+    prevFlippedTiles = [];
+    elapsedTime = 0;
+    gameBoard.innerHTML = '';
+    scoreDisplay.textContent = `Score: ${score}`;
+    matchesDisplay.textContent = matches;
+    timeDisplay.textContent = '00:00';
+    
+    clearInterval(timerInterval);
+    boardSize = 4;  // Reset grid size to start (can later increase in difficulty)
+}
+
+// Function to generate and shuffle tiles
+function generateTiles(size) {
+    const numbers = [];
+    for (let i = 1; i <= size * size / 2; i++) {
+        numbers.push(i, i);
+    }
+    return shuffle(numbers);
+}
+
+// Function to shuffle the tiles
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    }
+    return array;
+}
+
+// Function to render the game board
+function renderBoard(tiles) {
+    gameBoard.style.gridTemplateColumns = `repeat(${Math.sqrt(tiles.length)}, 1fr)`;
+
+    tiles.forEach((tileValue, index) => {
+        const tile = document.createElement('div');
+        tile.classList.add('tile');
+        tile.dataset.index = index;
+        tile.dataset.value = tileValue;
+        tile.textContent = '';
+        tile.addEventListener('click', handleTileClick);
+        gameBoard.appendChild(tile);
+    });
+}
+
+// Function to handle tile click
+function handleTileClick(e) {
+    const tile = e.target;
+    if (tile.classList.contains('flipped') || tile.classList.contains('matched')) return;
+
+    tile.textContent = tile.dataset.value;
+    tile.classList.add('flipped');
+    flippedTiles.push(tile);
+
+    if (flippedTiles.length === 2) {
+        checkMatch();
+    }
+}
+
+// Function to check if two flipped tiles match
+function checkMatch() {
+    const [tile1, tile2] = flippedTiles;
+    if (tile1.dataset.value === tile2.dataset.value) {
+        tile1.classList.add('matched');
+        tile2.classList.add('matched');
+        matches++;
+        matchesDisplay.textContent = matches;
+        score += 10;
+        scoreDisplay.textContent = `Score: ${score}`;
+        flippedTiles = [];
+        
+        if (matches === totalMatches) {
+            alert(`You win! Final Score: ${score}`);
+            boardSize += 2; // Increase grid size for next level
+            startNewGame();
+        }
+    } else {
+        setTimeout(() => {
+            tile1.textContent = '';
+            tile2.textContent = '';
+            tile1.classList.remove('flipped');
+            tile2.classList.remove('flipped');
+            flippedTiles = [];
+        }, 1000);
+    }
+}
+
+// Function to start the timer
+function startTimer() {
+    timerInterval = setInterval(() => {
+        elapsedTime++;
+        const minutes = Math.floor(elapsedTime / 60);
+        const seconds = elapsedTime % 60;
+        timeDisplay.textContent = `${formatTime(minutes)}:${formatTime(seconds)}`;
+    }, 1000);
+}
+
+// Function to format time
+function formatTime(time) {
+    return time < 10 ? `0${time}` : time;
+}
+
+// Hint Button
+hintBtn.addEventListener('click', function() {
+    if (hintTile) {
+        alert('Hint: ' + hintTile.dataset.value);
+        hintTile = null;
+    }
+});
+
+// Undo Button
+undoBtn.addEventListener('click', function() {
+    if (prevFlippedTiles.length > 0) {
+        const lastFlipped = prevFlippedTiles.pop();
+        lastFlipped.textContent = '';
+        lastFlipped.classList.remove('flipped');
+    }
+});
+
+// Start the game
+startBtn.addEventListener('click', startNewGame);
+startNewGame();
+
+	</script>
+</body>
+</html>

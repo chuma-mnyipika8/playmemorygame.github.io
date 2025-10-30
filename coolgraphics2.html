@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ngongonto Animation</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="ngongontoCanvas"></canvas>
+  <audio id="backgroundMusic" loop autoplay>
+    <source src="your-audio-file.mp3" type="audio/mp3">
+    <!-- Replace 'your-audio-file.mp3' with a valid file path -->
+    Your browser does not support the audio element.
+  </audio>
+  <script>
+    // Set up the canvas
+    const canvas = document.getElementById('ngongontoCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Animation variables
+    let x = canvas.width / 2;
+    let y = canvas.height / 2;
+    let angle = 0;
+    let scale = 1;
+    const text = "Ngongonto";
+
+    // Particle setup
+    const particles = [];
+    const particleCount = 100;
+
+    // Audio setup
+    const audio = document.getElementById('backgroundMusic');
+    let audioContext, analyser, source;
+    if (window.AudioContext || window.webkitAudioContext) {
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      analyser = audioContext.createAnalyser();
+      source = audioContext.createMediaElementSource(audio);
+      source.connect(analyser);
+      analyser.connect(audioContext.destination);
+      analyser.fftSize = 256;
+    } else {
+      console.error("Web Audio API not supported in this browser.");
+    }
+
+    // Particle initialization
+    function createParticles() {
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 2,
+          vy: (Math.random() - 0.5) * 2,
+          size: Math.random() * 3 + 1,
+          color: `hsl(${Math.random() * 360}, 70%, 70%)`
+        });
+      }
+    }
+    createParticles();
+
+    // Particle drawing
+    function drawParticles() {
+      particles.forEach(particle => {
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        ctx.fillStyle = particle.color;
+        ctx.fill();
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+
+        // Wrap around edges
+        if (particle.x > canvas.width) particle.x = 0;
+        if (particle.x < 0) particle.x = canvas.width;
+        if (particle.y > canvas.height) particle.y = 0;
+        if (particle.y < 0) particle.y = canvas.height;
+      });
+    }
+
+    // Text drawing
+    function drawText(frequency) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(angle);
+      ctx.scale(scale, scale);
+
+      // Gradient fill for the text
+      const gradient = ctx.createLinearGradient(-200, 0, 200, 0);
+      gradient.addColorStop(0, "red");
+      gradient.addColorStop(0.5, "yellow");
+      gradient.addColorStop(1, "blue");
+
+      ctx.font = `bold ${80 + frequency * 0.5}px Arial`;
+      ctx.fillStyle = gradient;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(text, 0, 0);
+
+      ctx.restore();
+
+      // Update transformations
+      angle += 0.01;
+      scale = 1 + Math.sin(angle) * 0.05;
+    }
+
+    // Main animation loop
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Get frequency data from audio
+      let frequency = 0;
+      if (analyser) {
+        const frequencyData = new Uint8Array(analyser.frequencyBinCount);
+        analyser.getByteFrequencyData(frequencyData);
+        frequency = frequencyData.reduce((a, b) => a + b, 0) / frequencyData.length;
+      }
+
+      drawParticles();
+      drawText(frequency);
+
+      requestAnimationFrame(animate);
+    }
+
+    // Start animation when audio plays
+    audio.addEventListener('play', () => {
+      if (audioContext) audioContext.resume();
+      animate();
+    });
+
+    // Resize canvas on window resize
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      x = canvas.width / 2;
+      y = canvas.height / 2;
+    });
+  </script>
+</body>
+</html>
+

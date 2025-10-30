@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Press Start 2P', cursive;
+             background-image: url('pink.jpg');  /* Your image */
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #ff00cc;
+        }
+
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #ff00cc;
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        p {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loading-container">
+        <h1>Loading Game...</h1>
+
+        <!-- Spinner Animation -->
+        <div class="spinner"></div>
+
+        <p>Please wait while the game is being prepared.</p>
+    </div>
+
+    <div class="footer">
+        <p>Chuma Mnyipika © 2024</p>
+    </div>
+
+    <script>
+        // Redirect to navigation.html after 5 seconds (adjust time as needed)
+        setTimeout(function() {
+            window.location.href = 'navigation.html';
+        }, 5000);
+    </script>
+</body>
+</html>

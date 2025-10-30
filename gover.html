@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Over - Tetris</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('IMG-20250523-WA0024.jpg '); /* Your image */
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            color: #ff00cc;
+            font-family: 'Press Start 2P', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 60px;
+            color: #ff00cc;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff00cc, #ff66b2);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            animation: textSlide 2s ease-in-out;
+        }
+
+        .score {
+            font-size: 30px;
+            color: #ffffff;
+            margin-top: 20px;
+        }
+
+        .game-over-buttons {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .game-over-button {
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ff00cc, #ff0066);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 0, 204, 0.3), 0 2px 5px rgba(255, 0, 153, 0.3);
+            transition: all 0.3s ease;
+            width: 200px;
+        }
+
+        .game-over-button:hover {
+            background: linear-gradient(135deg, #ff0066, #ff00cc);
+            box-shadow: 0 6px 15px rgba(255, 0, 204, 0.5), 0 4px 10px rgba(255, 0, 153, 0.4);
+            transform: translateY(-4px);
+        }
+
+        .game-over-button:active {
+            background: #cc0066;
+            transform: translateY(2px);
+            box-shadow: 0 2px 6px rgba(255, 0, 204, 0.3);
+        }
+
+        @keyframes textSlide {
+            0% {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Layout */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+            .score {
+                font-size: 24px;
+            }
+            .game-over-button {
+                font-size: 16px;
+                padding: 12px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+            .score {
+                font-size: 20px;
+            }
+            .game-over-button {
+                font-size: 14px;
+                padding: 10px;
+                width: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Game Over</h1>
+
+    <div class="score">
+        
+    </div>
+
+    <div class="game-over-buttons">
+        <button class="game-over-button" onclick="restartGame()">Restart Game</button>
+        <button class="game-over-button" onclick="goToMenu()">Main Menu</button>
+    </div>
+
+    <script>
+        // Example score value for demonstration, replace it with actual game score
+        let score = 1234; // Replace with the actual score from the game
+        document.getElementById('score').textContent = score;
+
+        // Functions for button actions
+        function restartGame() {
+            // Logic to restart the game (e.g., reload the game or reset the state)
+            window.location.href = 'stages.html'; // Assuming 'index.html' is the game start page
+        }
+
+        function goToMenu() {
+            // Redirect to the main menu (replace with your actual menu page)
+            window.location.href = 'navigation.html'; // Replace with actual main menu page
+        }
+    </script>
+</body>
+</html>
