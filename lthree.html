@@ -1,0 +1,278 @@
+﻿ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 13 - Memory Mix-Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background: radial-gradient(circle, #0d1f2d, #1e3b4e, #294e69);
+            color: white;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; 
+background-image: url('InShot_20200411_043932719.jpg'); /* Your image */
+     background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+color: #000;
+        }
+
+        /* Game Container */
+        .game-container {
+            width: 90%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+ 
+			 
+        }
+
+        /* Game Board */
+        .game-board {
+            display: grid;
+            gap: 10px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        /* Grid Adjustments for Responsiveness */
+        @media (min-width: 768px) {
+            .game-board {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .game-board {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .game-board {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Card Styling */
+        .card {
+            aspect-ratio: 1 / 1;
+            background: #2c3e50;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: transparent;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .card.flipped {
+            color: #ffffff;
+            background: #27ae60;
+            transform: rotateY(180deg);
+        }
+
+        .card.matched {
+            background: #f1c40f;
+            color: #000000;
+            cursor: not-allowed;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 10px #f1c40f;
+            }
+            100% {
+                box-shadow: 0 0 20px #f39c12;
+            }
+        }
+
+        /* Controls and Info */
+        .controls {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+
+        .controls button {
+            background-color: #ffcc00;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+background-image: url('test30.jpg'); /* Your image */
+     background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+        }
+
+        .controls button:hover {
+            background-color: #ffaa00;
+            transform: scale(1.1);
+        }
+
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 10px;
+             background: rgba(0, 0, 0, 0.5); 
+            border-radius: 10px;
+background-image: url('test30.jpg'); /* Your image */
+     background-size: cover;
+ 
+        }
+
+        .game-info span {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+        }
+#timer{ 
+color: #000;
+background-image: url('test30.jpg'); /* Your image */
+     background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+}
+    </style>
+</head>
+<body>
+ <!-- Background music with autoplay off (no autoplay initially) -->
+    <audio id="background-music" autoplay loop>
+  <source src="gaming-music-2-145874.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+    <header>
+        <h1>Level 13</h1>
+        <p>Your ultimate challenge awaits. Think fast!</p>
+    </header>
+    <div class="game-container">
+        <div class="controls">
+            <button id="start-btn">Start Game</button>
+            <button id="reset-btn" style="display: none;">Reset Game</button>
+        </div>
+        <div class="game-board" id="game-board"></div>
+        <div class="game-info">
+            <p  >⏳ Time Left: <span id="timer">00:60</span></p>
+            <p  >🔄 Flips Left: <span id="flips">50</span></p>
+        </div>
+    </div>
+
+    <script>
+        const startButton = document.getElementById("start-btn");
+        const resetButton = document.getElementById("reset-btn");
+        const gameBoard = document.getElementById("game-board");
+        const timerDisplay = document.getElementById("timer");
+        const flipsDisplay = document.getElementById("flips");
+
+        let cards = [];
+        let flippedCards = [];
+        let matches = 0;
+        let timer = 60;
+        let flips = 50;
+        let interval;
+
+        const cardValues = ['🍎', '🚀', '🎮', '💎', '⚡', '🌟', '🧩', '🎲', '🎵', '🔑'];
+
+        function createBoard() {
+            gameBoard.innerHTML = '';
+            const values = [...cardValues, ...cardValues].sort(() => Math.random() - 0.5);
+
+            values.forEach(value => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.dataset.value = value;
+                card.innerHTML = value;
+                card.addEventListener('click', flipCard);
+                gameBoard.appendChild(card);
+            });
+        }
+
+        function flipCard() {
+            if (this.classList.contains('flipped') || this.classList.contains('matched') || flippedCards.length === 2) return;
+
+            this.classList.add('flipped');
+            flippedCards.push(this);
+
+            if (flippedCards.length === 2) {
+                setTimeout(checkMatch, 800);
+            }
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+
+            if (card1.dataset.value === card2.dataset.value) {
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                matches++;
+            } else {
+                card1.classList.remove('flipped');
+                card2.classList.remove('flipped');
+            }
+
+            flippedCards = [];
+            flips--;
+            flipsDisplay.textContent = flips;
+
+            if (matches === cardValues.length) {
+               // clearInterval(interval);
+               // alert('You won!');
+			   window.location.href='won.html';
+			   localStorage.setItem('stagefourteenopen','stagefourteenopen');
+            } else if (flips === 0) {
+               // clearInterval(interval);
+               // alert('Game Over!');
+			   window.location.href='lose.html';
+            }
+        }
+
+        function startGame() {
+            timer = 60;
+            flips = 50;
+            matches = 0;
+            timerDisplay.textContent = '00:60';
+            flipsDisplay.textContent = flips;
+            createBoard();
+
+            interval = setInterval(() => {
+                timer--;
+                timerDisplay.textContent = `00:${timer < 10 ? '0' : ''}${timer}`;
+                if (timer === 0) {
+                    //clearInterval(interval);
+                    //alert('Time’s up! Game Over!');
+					window.location.href='lose.html';
+                }
+            }, 2000);
+        }
+
+        startButton.addEventListener('click', startGame);
+    </script>
+		 
+</body>
+</html>

@@ -1,0 +1,346 @@
+﻿ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Six - Memory Mix-Up Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+ <style>
+    /* General Styles */
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #1a1a1a;
+        color: white;
+        min-height: 100vh;
+    }
+
+    .app-container {
+        max-width: 100%;
+        width: 95%;
+        padding: 20px;
+    }
+
+    header {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 18px;
+    }
+
+    .game-container {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+
+    .game-board {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 10px;
+        max-width: 500px;
+        width: 100%;
+    }
+
+    .card {
+        background-color: #444;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100px;
+        font-size: 24px;
+        color: transparent;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .card.flipped {
+        background-color: #ff9900;
+        color: white;
+        transform: rotateY(180deg);
+    }
+
+    .card.matched {
+        background-color: #00cc66;
+        color: white;
+        cursor: default;
+    }
+
+    .game-controls {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+    #start-btn {
+        background-color: #00cc66;
+        color: white;
+    }
+
+    #reset-btn {
+        background-color: #ff3333;
+        color: white;
+    }
+
+    .game-info {
+        text-align: center;
+        margin: 10px 0;
+        font-size: 16px;
+    }
+
+    #timer {
+        color: #ffcc00;
+    }
+
+    #score {
+        color: #00cc66;
+    }
+
+    .footer {
+        text-align: center;
+        margin-top: auto;
+        font-size: 14px;
+        padding: 10px;
+        background-color: #121212;
+        color: #fff;
+        background-image: url('test30.jpg'); /* Your image */
+     background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+    }
+
+    /* Stage Button */
+    #stage-btn {
+        background-color: #007bff;
+        color: white;
+    }
+
+    #stage-selection {
+        display: none;
+        margin-top: 20px;
+    }
+
+    #stage-selection button {
+        margin: 5px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .game-board {
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            gap: 8px;
+        }
+
+        .card {
+            height: 70px;
+            font-size: 18px;
+        }
+    }
+     .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+             background-image: url('test20.jpg'); /* Your image */
+     background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+        }
+        .game-container{
+background-image: url('test6.jpg'); /* Your image */
+     background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+</style>
+
+</head>
+<body>
+     <!-- Background music with autoplay off (no autoplay initially) -->
+    <audio id="background-music" autoplay loop>
+  <source src="gaming-music-2-145874.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="header">
+            <p>Level Six - Can you match all the pairs before time runs out?</p>
+        </header>
+
+        <!-- Game Section -->
+        <div class="game-container">
+            <div class="game-board" id="game-board">
+                <!-- Cards will be dynamically inserted here -->
+            </div>
+        </div>
+
+        <!-- Controls Section -->
+        <div class="game-controls">
+            <button id="start-btn">Start Game</button>
+            <button id="stage-btn">Choose Stage</button>
+            <button id="reset-btn" style="display: none;">Reset Game</button>
+        </div>
+
+        <!-- Stage Selection Section -->
+        <div id="stage-selection">
+            <button class="stage-option" data-stage="easy">Easy (6 pairs)</button>
+            <button class="stage-option" data-stage="medium">Medium (8 pairs)</button>
+            <button class="stage-option" data-stage="hard">Hard (12 pairs)</button>
+        </div>
+
+        <!-- Game Info Section -->
+        <div class="game-info">
+            <p>Time Left: <span id="timer">01:00</span></p>
+            <p>  <span id="score"> </span></p>
+        </div>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+            <p>&copy; 2024 Chuma Mnyipika. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const startButton = document.getElementById("start-btn");
+        const resetButton = document.getElementById("reset-btn");
+        const stageButton = document.getElementById("stage-btn");
+        const timerDisplay = document.getElementById("timer");
+        const scoreDisplay = document.getElementById("score");
+        const gameBoard = document.getElementById("game-board");
+        const stageSelection = document.getElementById("stage-selection");
+
+        let cards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        //let score = 0;
+        //let timer = 60;
+        let timerInterval;
+        let isGameActive = false;
+        let selectedStage = 'easy'; // default stage
+
+        const cardValues = ['🦋', '🍁', '🌙', '🎮', '⚡', '🍒', '🔥', '🌻', '🎩', '🎲', '🛸', '🌈'];
+
+        function shuffleCards() {
+            const values = [...cardValues, ...cardValues];
+            return values.sort(() => Math.random() - 0.5);
+        }
+
+        function createCards() {
+            const shuffledValues = shuffleCards();
+            gameBoard.innerHTML = '';
+            shuffledValues.forEach(value => {
+                const card = document.createElement("div");
+                card.classList.add("card");
+                card.dataset.value = value;
+                card.addEventListener("click", flipCard);
+                gameBoard.appendChild(card);
+            });
+        }
+
+        function flipCard() {
+            if (!isGameActive || this.classList.contains("flipped") || flippedCards.length === 2) return;
+
+            this.classList.add("flipped");
+            this.textContent = this.dataset.value;
+            flippedCards.push(this);
+
+            if (flippedCards.length === 2) checkMatch();
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            if (card1.dataset.value === card2.dataset.value) {
+                card1.classList.add("matched");
+                card2.classList.add("matched");
+               // score += 10;
+               // matchedPairs++;
+            } else {
+                setTimeout(() => {
+                    card1.classList.remove("flipped");
+                    card2.classList.remove("flipped");
+                    card1.textContent = '';
+                    card2.textContent = '';
+                }, 1000);
+                score -= 5;
+            }
+            //scoreDisplay.textContent = score;
+            flippedCards = [];
+            checkWin();
+        }
+
+        function checkWin() {
+            if (matchedPairs === (selectedStage === 'easy' ? 6 : selectedStage === 'medium' ? 8 : 12)) {
+                clearInterval(timerInterval);
+                window.location.href="won.html";
+                resetButton.style.display = "inline-block";
+				// Store the text in local storage
+                localStorage.setItem('stagesevenopen', 'stagesevenopen');
+            }
+        }
+
+        function startTimer() {
+            timer = 180;
+            timerDisplay.textContent = `01:00`;
+            timerInterval = setInterval(() => {
+                timer--;
+                timerDisplay.textContent = `00:${timer < 10 ? '0' : ''}${timer}`;
+                if (timer <= 0) {
+                    clearInterval(timerInterval);
+                    window.location.href="lose.html";
+                    resetButton.style.display = "inline-block";
+                }
+            }, 1000);
+        }
+
+        function startGame() {
+            isGameActive = true;
+            matchedPairs = 0;
+            //score = 0;
+            //scoreDisplay.textContent = score;
+            createCards();
+            startTimer();
+            startButton.style.display = "none";
+            resetButton.style.display = "none";
+        }
+
+        function resetGame() {
+            clearInterval(timerInterval);
+            timerDisplay.textContent = "01:00";
+            //scoreDisplay.textContent = "0";
+            isGameActive = false;
+            startButton.style.display = "inline-block";
+            resetButton.style.display = "none";
+            gameBoard.innerHTML = '';
+        }
+
+        function selectStage(stage) {
+            selectedStage = stage;
+            stageSelection.style.display = "none";
+            startButton.style.display = "inline-block";
+        }
+
+        startButton.addEventListener("click", startGame);
+        resetButton.addEventListener("click", resetGame);
+        stageButton.addEventListener("click", () => {
+           window.location.href='stages.html';
+        });
+
+        document.querySelectorAll(".stage-option").forEach(button => {
+            button.addEventListener("click", () => selectStage(button.dataset.stage));
+        });
+    </script>
+	 
+</body>
+</html>

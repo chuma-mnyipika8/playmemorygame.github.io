@@ -1,0 +1,280 @@
+﻿ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Mix-Up Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Add custom styling for the Stages button */
+        .stages-btn {
+            background: linear-gradient(135deg, #ff0066, #ff3366);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            font-family: 'Press Start 2P', cursive;
+            transition: transform 0.3s, background-color 0.3s;
+            
+        }
+
+        .stages-btn:hover {
+            background: linear-gradient(135deg, #ff3366, #ff6699);
+            transform: scale(1.1);
+            background-color:gray;       
+ }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+             background-image: url('test20.jpg'); /* Your image */
+     background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+        }
+
+        .header p {
+            margin: 0;
+            font-size: 18px;
+            color: #fff;
+        }
+.game-container{
+background-image: url('test6.jpg'); /* Your image */
+     background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.stages-btn{
+ 
+}
+.footer{
+ background-image: url('test30.jpg'); /* Your image */
+     background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="header">
+            <p>Can you match all the pairs before time runs out?</p>
+            <!-- Stages Button -->
+            <a href="stages.html" class="stages-btn">Stages</a>
+        </header>
+
+        <!-- Game Section -->
+        <div class="game-container">
+            <div class="game-board">
+                <!-- Dynamic cards will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Controls Section -->
+        <div class="game-controls">
+            <label for="difficulty">Choose Difficulty: </label>
+            <select id="difficulty">
+                <option value="4">Easy</option>
+                <option value="6">Medium</option>
+                <option value="8">Hard</option>
+            </select>
+            <button id="start-btn">Start Game</button>
+            <button id="reset-btn" style="display: none;">Reset Game</button>
+        </div>
+         <!-- Background music with autoplay off (no autoplay initially) -->
+    <audio id="background-music" autoplay loop>
+  <source src="gaming-music-2-145874.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+        <!-- Game Info Section -->
+        <div class="game-info">
+            <p>Time Left: <span id="timer">00:00</span></p>
+            <p>  <span id="score"></span></p>
+        </div>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+            <p>Chuma Mnyipika  © 2024</p>
+        </footer>
+
+        <!-- Win Modal -->
+        <div id="winModal" class="modal">
+            <div class="modal-content">
+                <h2>You Won!</h2>
+                <p>Congratulations! You matched all the pairs.</p>
+                <img src="https://img.icons8.com/ios/452/first-place-medal.png" alt="Winner Medal" width="100" height="100" />
+                <br />
+                <button id="closeModalBtn">Close</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const board = document.querySelector('.game-board');
+    const startButton = document.getElementById('start-btn');
+    const resetButton = document.getElementById('reset-btn');
+    const timerElement = document.getElementById('timer');
+    const scoreElement = document.getElementById('score');
+    const winModal = document.getElementById('winModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const STORAGE_KEY = 'stagetwoopennn';
+
+    let cards = [];
+    let flippedCards = [];
+    let matchedCards = [];
+    let timer;
+    let timeLeft = 60;
+    //let score = 0;
+
+    const symbols = [
+        '💎', '🍎', '🍌', '🎮', '💀', '🎨', '🚗', '🦄', '🐶', '🍕', '🍇', '🌟',
+        '🌈', '🎉', '⚡', '🎵', '🌵', '🍀', '🦋', '🐱', '🐯', '🐧', '🐸', '🍓', '🍉', 
+        '🦊', '🍔', '🍩', '🌸', '🌻', '⚽', '🎤', '🥇', '🎲', '🥑'
+    ];
+
+    // Shuffle an array randomly
+    function shuffleArray(array) {
+        return array.sort(() => Math.random() - 0.5);
+    }
+
+    // Generate cards dynamically
+    function generateCards() {
+        const numCards = 12; // Number of cards for this level (6 pairs)
+        let cardSymbols = [...symbols.slice(0, numCards / 2), ...symbols.slice(0, numCards / 2)];
+        cardSymbols = shuffleArray(cardSymbols);
+
+        cardSymbols.forEach(symbol => {
+            const card = document.createElement('div');
+              
+             card.style.opacity='0.9';
+            card.classList.add('card');
+            card.dataset.symbol = symbol;
+            card.innerHTML = '<span>' + symbol + '</span>';
+            card.addEventListener('click', flipCard);
+            board.appendChild(card);
+        });
+
+        // Update the cards array dynamically
+        cards = Array.from(document.querySelectorAll('.card'));
+    }
+
+    // Handle card flip
+    function flipCard() {
+        if (flippedCards.length < 2 && !this.classList.contains('flipped') && !this.classList.contains('matched')) {
+            this.classList.add('flipped');
+            flippedCards.push(this);
+
+            if (flippedCards.length === 2) {
+                checkMatch();
+            }
+        }
+    }
+
+    // Check if two flipped cards match
+    function checkMatch() {
+        const [firstCard, secondCard] = flippedCards;
+
+        if (firstCard.dataset.symbol === secondCard.dataset.symbol) {
+            // If cards match
+            firstCard.classList.add('matched');
+            secondCard.classList.add('matched');
+            matchedCards.push(firstCard, secondCard);
+           // score += 10;
+           // scoreElement.textContent = score;
+            flippedCards = [];
+
+            // Check if all cards are matched
+            if (matchedCards.length === cards.length) {
+                clearInterval(timer);
+                //showWinModal();
+                window.location.href='won.html';
+                localStorage.setItem( STORAGE_KEY,STORAGE_KEY);
+				// Store the text in local storage
+                //localStorage.setItem('stagethreeopen', 'stagethreeopen');
+				 // Unlock Stage 3
+                 localStorage.setItem('stagetwoopennnn', 'stagetwoopennnn');
+            }
+        } else {
+            // If cards do not match
+            setTimeout(() => {
+                firstCard.classList.remove('flipped');
+                secondCard.classList.remove('flipped');
+                flippedCards = [];
+            }, 1000);
+        }
+    }
+
+    // Show win modal
+    function showWinModal() {
+        winModal.style.display = 'flex'; // Show modal
+    }
+
+    // Close win modal
+    function closeWinModal() {
+        winModal.style.display = 'none'; // Hide modal
+        resetGame(); // Reset game when modal is closed
+    }
+
+    // Start game
+    function startGame() {
+        //score = 0;
+       // scoreElement.textContent = score;
+        board.innerHTML = '';
+        matchedCards = [];
+        flippedCards = [];
+        generateCards();
+        timeLeft = 60;
+        timer = setInterval(updateTimer, 1000);
+        startButton.style.display = 'none';
+        resetButton.style.display = 'inline-block';
+    }
+
+    // Reset game
+    function resetGame() {
+       /** clearInterval(timer);
+        startButton.style.display = 'inline-block';
+        resetButton.style.display = 'none';
+        timerElement.textContent = '00:00';
+        scoreElement.textContent = '0';
+        board.innerHTML = '';
+        matchedCards = [];
+        flippedCards = [];**/
+		 window.location.href = 'stages.html';
+    }
+
+    // Update the timer
+    function updateTimer() {
+        timeLeft--;
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        timerElement.textContent = `${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            // Redirect to lose page when time runs out
+            window.location.href = 'lose.html';
+        }
+    }
+
+    // Event Listeners
+    startButton.addEventListener('click', startGame);
+    resetButton.addEventListener('click', resetGame);
+    closeModalBtn.addEventListener('click', closeWinModal);
+});
+
+</script>
+		 
+</body>
+</html>
+
+
