@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Start your game adventure. Access game instructions, license details, achievements, and invite your friends." />
+    <meta name="keywords" content="Game, Start Game, Instructions, Achievements, Invite Friends" />
+    <meta name="author" content="Chuma Mnyipika" />
+
+    <!-- Open Graph for social media -->
+    <meta property="og:title" content="Game Navigation" />
+    <meta property="og:description" content="Jump into the game and explore achievements, how to play, and more!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="your-thumbnail-image.jpg" />
+    <meta property="og:url" content="https://yourdomain.com/" />
+
+    <title>Game Navigation</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --text-color: #ffffff;
+            --hover-glow: #ff007b;
+             <!----shadow-glow: #73009b;-->
+        }
+
+        /* Reset & Global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Press Start 2P', cursive;
+            color: var(--text-color);
+            background: 
+                linear-gradient(45deg, rgba(30, 1, 58, 0.1), rgba(115, 0, 155, 0.1), rgba(255, 0, 123, 0.1), rgba(30, 1, 58, 0.1)),
+                url('InShot_20200411_043858064.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Overlay Particle Effects */
+        body::before,
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        body::before {
+            background: url('https://www.transparenttextures.com/patterns/noisy-grid.png');
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        body::after {
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+            animation: particleMove 5s infinite linear;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        @keyframes particleMove {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(-50px, 50px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        h1 {
+            font-size: 3rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            animation: glow 1.5s ease-in-out infinite alternate;
+            z-index: 2;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px var(--hover-glow), 0 0 20px var(--shadow-glow);
+            }
+            to {
+                text-shadow: 0 0 15px #ff00cc, 0 0 25px var(--shadow-glow), 0 0 35px var(--hover-glow);
+            }
+        }
+
+        .nav-container {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            animation: fadeSlideIn 1.5s ease-out;
+            z-index: 2;
+        }
+
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .nav-button {
+            background-image: url('IMG-20250408-WA0001.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: var(--text-color);
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            width: 300px;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0.9;
+            z-index: 2;
+        }
+
+        .nav-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--hover-glow), 0 0 30px var(--shadow-glow);
+        }
+
+        .nav-button:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 10px var(--shadow-glow);
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            font-size: 0.75rem;
+            color: #ccc;
+            z-index: 2;
+            text-shadow: 0 0 5px var(--shadow-glow);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .nav-button {
+                font-size: 0.8rem;
+                width: 250px;
+                padding: 15px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            .nav-button {
+                width: 200px;
+                padding: 12px 24px;
+                font-size: 0.7rem;
+            }
+            .footer {
+                font-size: 0.65rem;
+            }
+        }
+        .nav-button span {
+    color: #000000;          /* Black text */
+    font-weight: bold;       /* Make it bold */
+    text-shadow: none;       /* Remove glow if any */
+}
+
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Navigation</h1>
+    </header>
+
+    <main class="nav-container" role="navigation" aria-label="Main navigation buttons">
+    <button class="nav-button" onclick="window.location.href='stages.html'" aria-label="Play the Game Now">
+        <span>▶ Play the Game Now</span>
+    </button>
+
+    <button class="nav-button" onclick="window.location.href='licence_agreement.html'" aria-label="Game License and Terms of Use">
+        <span>📄 Game License & Terms of Use</span>
+    </button>
+
+    <button class="nav-button" onclick="window.location.href='gameinstruction.html'" aria-label="Game Instructions and How to Play">
+        <span>📘 Game Instructions (How to Play)</span>
+    </button>
+
+    <button class="nav-button" onclick="window.location.href='this.html'" aria-label="View Achievements and Milestones">
+        <span>🏆 View Player Achievements & Milestones</span>
+    </button>
+
+    <button class="nav-button" onclick="window.location.href='refertofriend.html'" aria-label="Invite Friends to Play">
+        <span>🤝 Invite Friends to Play</span>
+    </button>
+</main>
+
+
+    <footer class="footer">
+        <p>&copy; 2025 Chuma Mnyipika</p>
+    </footer>
+
+</body>
+</html>
