@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading - Memory</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+         
+        body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    overflow: hidden;
+
+    /*background-image: url('IMG-20250414-WA0015.jpg');*/
+    /*background-size: cover;*/           /* Makes sure it fills the screen */
+	background-size: contain;           /* Shows the WHOLE image */
+    background-position: center;      /* Keeps the focal point in the center */
+    background-repeat: no-repeat;     /* Prevents repeating */
+    background-attachment: scroll;    /* Changed from fixed for better mobile support */
+}
+.bg-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: fill; /* Stretch to cover full width and height */
+      z-index: -1;       /* Sit behind content */
+    }
+
+        .loading-container {
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+			
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+.loading-logo {
+    font-size: 5em; /* Larger for more presence */
+    font-weight: 900; /* Bold for impact */
+    letter-spacing: 8px; /* Wide for emphasis */
+    text-transform: uppercase;
+    color: #ffffff;
+    background: linear-gradient(135deg, #6a11cb, #2575fc, #a1c4fd, #ff7eb3);
+    background-size: 300% 300%; /* Expansive gradient for depth */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 50px;
+    position: relative;
+    display: inline-block;
+    animation: gradientShift 6s ease-in-out infinite, pulseGlow 1.8s ease-in-out infinite, shadowEffect 4s ease-in-out infinite; /* Multiple advanced animations */
+    transform: skewY(-5deg); /* Slight tilt for dynamism */
+    z-index: 1;
+	
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 0%; }
+    25% { background-position: 50% 50%; }
+    50% { background-position: 100% 100%; }
+    75% { background-position: 50% 50%; }
+    100% { background-position: 0% 0%; }
+}
+
+@keyframes pulseGlow {
+    0% { 
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3), 0 0 60px rgba(0, 255, 255, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 30px rgba(255, 255, 255, 1), 0 0 60px rgba(255, 255, 255, 0.6), 0 0 90px rgba(0, 255, 255, 0.8);
+    }
+    100% { 
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3), 0 0 60px rgba(0, 255, 255, 0.5);
+    }
+}
+
+@keyframes shadowEffect {
+    0% { text-shadow: 0 0 20px rgba(0, 255, 255, 0.4), 0 0 40px rgba(255, 0, 255, 0.4); }
+    25% { text-shadow: 0 0 40px rgba(0, 255, 255, 0.6), 0 0 80px rgba(255, 0, 255, 0.6); }
+    50% { text-shadow: 0 0 60px rgba(0, 255, 255, 0.8), 0 0 120px rgba(255, 0, 255, 0.8); }
+    75% { text-shadow: 0 0 80px rgba(0, 255, 255, 1), 0 0 160px rgba(255, 0, 255, 1); }
+    100% { text-shadow: 0 0 20px rgba(0, 255, 255, 0.4), 0 0 40px rgba(255, 0, 255, 0.4); }
+}
+
+.loading-logo::before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 20%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 50%;
+    animation: rotatePulse 5s infinite linear, softGlow 2s ease-in-out infinite; /* Soft glow and rotation */
+    opacity: 0.1;
+    z-index: -1; /* Behind text */
+}
+
+
+
+@keyframes softGlow {
+    0% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.4); }
+    50% { box-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(0, 255, 255, 0.6); }
+    100% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.4); }
+}
+
+.loading-logo:hover {
+    transform: scale(1.05) skewY(-3deg); /* Slightly enlarges and smoothens on hover */
+    color: #ff7eb3;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 30px rgba(255, 0, 255, 0.8), 0 0 60px rgba(255, 0, 255, 0.8), 0 0 90px rgba(0, 255, 255, 1); /* Intense glow on hover */
+    cursor: pointer;
+}
+
+
+
+         .spinner-multi-layer {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  top: 390px; /* Move down by 50px */
+  margin: 0 auto;
+}
+
+
+        .spinner-multi-layer div {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  border: 10px solid transparent;
+  border-top-color: #34A8FF; /* Brighter blue */
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.spinner-multi-layer div:nth-child(2) {
+  border-top-color: #FF69B4; /* Pastel pink */
+  animation: spin 1.8s linear infinite reverse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.spinner-multi-layer div:nth-child(3) {
+  border-top-color: #F7DC6F; /* Warm yellow */
+  animation: spin 2.2s linear infinite;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+        .progress-bar-container {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            margin: 30px auto;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            border-radius: 10px;
+            animation: load 5s linear forwards;
+        }
+
+        @keyframes load {
+            0% {
+                width: 0%;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+         .loading-text {
+  margin-top: 390px; /* Increase margin-top */
+  font-size: 1.4em;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+        .loading-text span {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .loading-text span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loading-text span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .loading-text span:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.8em;
+            color: rgba(255,255,255, 0.6);
+        }
+    </style>
+    <style>
+ .loading-logo {
+    font-size: 4.5em; /* Balanced for professionalism */
+    font-weight: 800; /* Strong but not overpowering */
+    letter-spacing: 5px; /* Sleek and modern spacing */
+    text-transform: uppercase;
+    background: linear-gradient(145deg, #d1d1d1, #f0f0f0, #a8a8a8, #707070);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    position: relative;
+    margin-bottom: 20px;
+    animation: steelFlow 6s ease-in-out infinite, lightSweep 5s infinite ease-in-out;
+    text-shadow: 1px 1px 4px rgba(150, 150, 150, 0.3), -1px -1px 4px rgba(255, 255, 255, 0.4);
+    transform: skewY(-2deg); /* Subtle for dynamic professionalism */
+    user-select: none;
+	background-image: url('catt.webp'); /* Your image */
+            background-size: cover;
+}
+
+/* Metallic Flow Effect */
+@keyframes steelFlow {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+/* Moving Light Reflection */
+@keyframes lightSweep {
+    from { background-position: -200px 0; }
+    to { background-position: 200px 0; }
+}
+
+/* Brushed Metal Overlay */
+.loading-logo::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.toptal.com/designers/subtlepatterns/uploads/white_carbon.png');
+    opacity: 0.1;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
+
+/* Clean Glow on Hover */
+.loading-logo:hover {
+    transform: scale(1.02);
+    transition: all 0.3s ease-in-out;
+    filter: brightness(1.2);
+    text-shadow: 2px 2px 8px rgba(200, 200, 200, 0.6);
+}
+
+/* Engraved Effect */
+.loading-logo::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 3px;
+    left: 3px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.3));
+    z-index: -1;
+    border-radius: 5px;
+}
+
+    </style>
+</head>
+<body>
+ <img class="bg-image" src="IMG-20250415-WA0037.jpg" alt="Background">
+    <div class="loading-container">
+       <!-- <div class="loading-logo">Memory</div>-->
+        <div class="spinner-multi-layer">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <!--<div class="progress-bar-container">
+            <div class="progress-bar"></div>
+        </div>-->
+        <div class="loading-text">
+            <span>L</span><span>O</span><span>A</span><span>D</span><span>I</span><span>N</span><span>G</span>
+        </div>
+    </div>
+    <footer>&copy; 2024 Chuma Mnyipika. All Rights Reserved.</footer>
+	    <script>
+        // Redirect to navigation.html after 5 seconds (adjust time as needed)
+        setTimeout(function() {
+            window.location.href = 'navigation.html';
+        }, 7000);
+    </script>
+</body>
+</html>
