@@ -1,0 +1,320 @@
+﻿ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 12 - Memory Mix-Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background: linear-gradient(to bottom, #141e30, #243b55);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .game-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+			background-image: url('InShot_20200411_043932719.jpg'); /* Your image */
+     background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+        }
+ 
+
+        .controls {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .game-board {
+            display: grid;
+            gap: 10px;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .card {
+            aspect-ratio: 1 / 1;
+            background: linear-gradient(135deg, #ff00cc, #3333ff);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: transparent;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s, background-color 0.3s, color 0.3s;
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+            color: white;
+            background: linear-gradient(135deg, #00ffcc, #ff3366);
+        }
+
+        .card.matched {
+            background: linear-gradient(135deg, #00ff00, #ffcc00);
+            box-shadow: 0 0 20px #00ff00;
+        }
+
+        .card.special-boost {
+            background: linear-gradient(135deg, #00ff99, #ff0099);
+        }
+
+        .card.special-bomb {
+            background: linear-gradient(135deg, #ff0000, #ff6600);
+            animation: glow 1.5s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 10px #ff0000;
+            }
+            50% {
+                box-shadow: 0 0 20px #ff6600;
+            }
+        }
+
+        .game-info {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        button {
+            background-color: #ffcc00;
+            color: black;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+ background-image: url('test30.jpg'); /* Your image */
+     background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+        }
+
+        button:hover {
+            background-color: #ffaa00;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .game-board {
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 8px;
+            }
+        }
+.header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+             background-image: url('test20.jpg'); /* Your image */
+     background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+        }
+.footer{
+ background-image: url('test30.jpg'); /* Your image */
+     background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+    </style>
+</head>
+<body>
+ <!-- Background music with autoplay off (no autoplay initially) -->
+    <audio id="background-music" autoplay loop>
+  <source src="gaming-music-2-145874.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+    <header class="header">
+        <h1>Level 12</h1>
+        <p>The ultimate test of your memory skills!</p>
+    </header>
+    <div class="game-container">
+        <div class="controls">
+            <label for="difficulty">Difficulty: </label>
+            <select id="difficulty">
+                <!--<option value="4">Easy</option>-->
+               <!-- <option value="6">Medium</option>-->
+                <option value="8">Hard</option>
+            </select>
+            <button id="start-btn">Start Game</button>
+            <button id="reset-btn" style="display: none;">Reset Game</button>
+            <button id="stages-btn">Stages</button>
+        </div>
+        <div class="game-board" id="game-board"></div>
+        <div class="game-info">
+            <p>⏳ Time Left: <span id="timer">01:00</span></p>
+            <p>    <span id="score"> </span></p>
+            <p>🔄 Flips Left: <span id="flips">20</span></p>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2025 Chuma Mnyipika. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const startButton = document.getElementById("start-btn");
+        const resetButton = document.getElementById("reset-btn");
+        const stagesButton = document.getElementById("stages-btn");
+        const gameBoard = document.getElementById("game-board");
+        const timerDisplay = document.getElementById("timer");
+        const scoreDisplay = document.getElementById("score");
+        const flipsDisplay = document.getElementById("flips");
+        const difficultySelector = document.getElementById("difficulty");
+
+        let cards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let score = 0;
+        let flipsRemaining = 20;
+        let timer = 60;
+        let timerInterval;
+        let difficulty = 4;
+
+        const cardValues = ['🍎', '🚀', '🎮', '💎', '⚡', '🌟', '🧩', '🎲'];
+        //const specialCards = ['💥', '⏳']; // 💥 = Bomb, ⏳ = Extra Time
+          const specialCards = []; // 💥 = Bomb, ⏳ = Extra Time
+        function generateCards() {
+            let values = [...cardValues, ...cardValues].slice(0, difficulty * difficulty / 2);
+            //if (difficulty > 4) values.push(...specialCards);
+            values = values.sort(() => Math.random() - 0.5);
+            gameBoard.innerHTML = '';
+            gameBoard.style.gridTemplateColumns = `repeat(${difficulty}, 1fr)`;
+            cards = values.map(value => {
+                const card = document.createElement("div");
+                card.classList.add("card");
+                card.dataset.value = value;
+                //if (value === '💥') card.classList.add("special-bomb");
+                //if (value === '⏳') card.classList.add("special-boost");
+                card.addEventListener("click", flipCard);
+                return card;
+            });
+            cards.forEach(card => gameBoard.appendChild(card));
+        }
+
+        function flipCard() {
+            if (flippedCards.length === 2 || this.classList.contains("flipped")) return;
+            this.classList.add("flipped");
+            this.textContent = this.dataset.value;
+            flippedCards.push(this);
+            flipsRemaining--;
+            flipsDisplay.textContent = flipsRemaining;
+            if (flippedCards.length === 2) checkMatch();
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            if (card1.dataset.value === card2.dataset.value) {
+                card1.classList.add("matched");
+                card2.classList.add("matched");
+                matchedPairs++;
+                score += 10;
+                if (card1.dataset.value === '⏳') timer += 5; 
+                scoreDisplay.textContent = score;
+            } else {
+                setTimeout(() => {
+                    card1.classList.remove("flipped");
+                    card2.classList.remove("flipped");
+                    card1.textContent = '';
+                    card2.textContent = '';
+                }, 1000);
+            }
+            flippedCards = [];
+            checkGameOver();
+        }
+
+        function checkGameOver() {
+            if (matchedPairs === cards.length / 2) {
+                //clearInterval(timerInterval);
+                //alert("You won Level 12!");
+				window.location.href='won.html';
+				localStorage.setItem('stagethirteenopen', 'stagethirteenopen');
+            } else if (flipsRemaining === 0 || timer === 0) {
+               // alert("Game Over! Try Again.");
+               // resetButton.click();
+			   window.location.href='lose.html';
+            }
+        }
+
+        function startGame() {
+            difficulty = parseInt(difficultySelector.value);
+            flipsRemaining = difficulty * 6;
+            timer = 60;
+            score = 0;
+            matchedPairs = 0;
+            scoreDisplay.textContent = score;
+            flipsDisplay.textContent = flipsRemaining;
+            timerDisplay.textContent = `01:00`;
+            generateCards();
+            timerInterval = setInterval(() => {
+                timer--;
+                timerDisplay.textContent = `00:${timer < 10 ? '0' : ''}${timer}`;
+                if (timer <= 0) {
+                    clearInterval(timerInterval);
+                    //alert("Time's Up!");
+					 window.location.href='lose.html';
+                }
+            }, 1000);
+            startButton.style.display = "none";
+            resetButton.style.display = "block";
+        }
+
+        function resetGame() {
+            clearInterval(timerInterval);
+            startButton.style.display = "block";
+            resetButton.style.display = "none";
+            gameBoard.innerHTML = '';
+            flippedCards = [];
+        }
+
+        startButton.addEventListener("click", startGame);
+        resetButton.addEventListener("click", resetGame);
+        stagesButton.addEventListener("click", () => (window.location.href = "stages.html"));
+    </script>
+		 
+</body>
+</html>
