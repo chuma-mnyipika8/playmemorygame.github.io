@@ -1,0 +1,174 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Lover - Dynamic Gaming Brand</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+    margin: 0;
+    padding: 0;
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+    overflow: hidden;
+
+    /*background-image: url('loverrr.webp');*/
+    background-size: cover;             /* Makes image cover the whole screen */
+    background-position: center center; /* Keeps image centered */
+    background-repeat: no-repeat;       /* Prevents repeating */
+    background-attachment: scroll;      /* Better for mobile support */
+}
+      .bg-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: fill; /* Stretch to cover full width and height */
+      z-index: -1;       /* Sit behind content */
+    }
+        /* Container with equal width and height */
+        .logo-container {
+            width: 80vw;  /* 80% of the viewport width */
+            height: 80vw; /* same as width, creating a square */
+            max-width: 600px; /* Limit the maximum width for larger screens */
+            max-height: 600px; /* Ensure the height doesn’t go beyond this limit */
+            position: relative;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.7);
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
+            animation: pulseContainer 3s ease-in-out infinite;
+        }
+
+        /* Game Controller Icon */
+        .logo-icon {
+            width: 120px;
+            height: auto;
+            margin-bottom: 20px;
+            fill: #ff00ff;
+            filter: drop-shadow(0 0 20px #ff00ff);
+            animation: pulseIcon 1.5s infinite alternate;
+        }
+
+        /* Main Logo Text */
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 8vw;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff, 0 0 60px #ff00ff;
+            letter-spacing: 5px;
+            transform: translateY(-20px);
+            animation: slideIn 2s ease-out forwards;
+        }
+
+        /* Subtext */
+        .logo-subtext {
+            font-family: 'Poppins', sans-serif;
+            font-size: 4vw;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+            letter-spacing: 3px;
+            animation: fadeInSubtext 2s ease-out forwards;
+        }
+
+        /* Hover Effects for Logo and Subtext */
+        .logo-container:hover .logo-text {
+            text-shadow: 0 0 25px #ff00cc, 0 0 50px #ff00cc, 0 0 100px #ff00cc;
+            transform: scale(1.05);
+        }
+
+        .logo-container:hover .logo-subtext {
+            text-shadow: 0 0 20px #00e6e6, 0 0 40px #00e6e6;
+            transform: scale(1.05);
+        }
+
+        /* Logo and Icon Animations */
+        @keyframes pulseIcon {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes pulseContainer {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideIn {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeInSubtext {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Responsive Design for Small Screens */
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 9vw;
+            }
+
+            .logo-subtext {
+                font-size: 5vw;
+            }
+
+            .logo-icon {
+                width: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 12vw;
+            }
+
+            .logo-subtext {
+                font-size: 6vw;
+            }
+
+            .logo-icon {
+                width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+      <img class="bg-image" src="loverrr.webp" alt="Background">
+    <!--<div class="logo-container">
+         Game Controller Icon 
+        <svg class="logo-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 6c-7 0-10 2-10 6v6H10c-5 0-8 5-8 12s3 10 8 10c1 0 2-1 3-2l5-6 3 1 2 3h14l2-3 3-1 5 6c1 1 2 2 3 2 5 0 8-3 8-10s-3-12-8-12H42V12c0-4-3-6-10-6zM20 20h24v10H20zm-6 8c1 0 2 1 2 2s-1 2-2 2-2-1-2-2 1-2 2-2zm36 0c1 0 2 1 2 2s-1 2-2 2-2-1-2-2 1-2 2-2zm-6 0c1 0 2 1 2 2s-1 2-2 2-2-1-2-2 1-2 2-2zm-20 0c1 0 2 1 2 2s-1 2-2 2-2-1-2-2 1-2 2-2z"/>
+        </svg>
+
+        <!-- Game Lover Logo Text 
+        <div class="logo-text">Game Lover</div>-->
+        
+        <!-- Subtext 
+        <div class="logo-subtext">Powering the Future of Gaming</div>
+    </div>-->
+
+    <script>
+        // Timer to redirect after 20 seconds
+        setTimeout(function() {
+            window.location.href = "medialoading.html";
+        }, 10000);  // 10000 milliseconds = 10 seconds
+    </script>
+</body>
+</html>
