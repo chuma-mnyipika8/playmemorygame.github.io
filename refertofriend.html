@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Share and Refer-a-Friend</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
   <style>
-    /* Body Styling */
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
@@ -18,13 +17,12 @@
       align-items: center;
       min-height: 100vh;
       text-align: center;
-	   background-image: url('InShot_20200411_043932719.jpg'); /* Your image */
-     background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+      background-image: url('InShot_20200411_043932719.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
-    /* Main Content Container */
     .content-container {
       background: rgba(0, 0, 0, 0.4);
       padding: 40px;
@@ -33,11 +31,8 @@
       max-width: 600px;
       width: 100%;
       text-align: center;
-	  
-      background-size: cover;
     }
 
-    /* Heading Styling */
     h1 {
       font-size: 36px;
       color: #fff;
@@ -46,7 +41,6 @@
       text-transform: uppercase;
     }
 
-    /* Social Share Button Container */
     .button-container {
       display: flex;
       justify-content: center;
@@ -55,8 +49,7 @@
       flex-wrap: wrap;
     }
 
-    /* Individual Social Media Buttons */
-    .social-button {
+    .social-button, .refer-button {
       background: linear-gradient(135deg, #ff6347, #ff4500);
       color: #fff;
       font-size: 18px;
@@ -69,32 +62,20 @@
       transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
     }
 
-    .social-button:hover {
+    .social-button:hover, .refer-button:hover {
       transform: scale(1.05);
       background: linear-gradient(135deg, #ff4500, #ff6347);
     }
 
-    /* Refer a Friend Button Styling */
     .refer-button {
       margin-top: 30px;
       background: #27ae60;
-      color: #fff;
-      font-size: 20px;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      font-weight: 600;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
     }
 
     .refer-button:hover {
-      transform: scale(1.05);
       background: #2ecc71;
     }
 
-    /* Responsive Styling for Small Screens */
     @media (max-width: 600px) {
       .content-container {
         padding: 20px;
@@ -104,13 +85,8 @@
         font-size: 28px;
       }
 
-      .social-button {
+      .social-button, .refer-button {
         font-size: 16px;
-        padding: 12px 24px;
-      }
-
-      .refer-button {
-        font-size: 18px;
         padding: 12px 24px;
       }
     }
@@ -120,63 +96,50 @@
 
   <div class="content-container">
     <h1>Share Your Progress</h1>
-
     <p>Spread the word and share your awesome achievements with friends. Invite them to join the fun!</p>
 
-    <!-- Social Media Sharing Buttons -->
     <div class="button-container">
-      <!-- Facebook -->
       <button class="social-button" id="share-facebook">Share on Facebook</button>
-
-      <!-- Twitter -->
       <button class="social-button" id="share-twitter">Share on Twitter</button>
-
-      <!-- WhatsApp -->
       <button class="social-button" id="share-whatsapp">Share on WhatsApp</button>
     </div>
 
-    <!-- Refer a Friend Button --> 
     <button class="refer-button" id="refer-button">Refer a Friend</button>
-    
-	<!-- Back To Navigation -->
     <button class="refer-button" id="navigation">Back To Game Navigation</button>
   </div>
- 
+
   <script>
-    // Sharing on Facebook
+    const siteUrl = 'https://playmemorygame.github.io';
+
+    // Facebook
     document.getElementById('share-facebook').addEventListener('click', function() {
-      const shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href);
+      const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(siteUrl)}`;
       window.open(shareUrl, '_blank');
     });
 
-    // Sharing on Twitter
+    // Twitter
     document.getElementById('share-twitter').addEventListener('click', function() {
-      const shareUrl = 'https://twitter.com/intent/tweet?text=Check%20out%20this%20game!&url=' + encodeURIComponent(window.location.href);
+      const text = 'Check out this awesome memory game!';
+      const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(siteUrl)}`;
       window.open(shareUrl, '_blank');
     });
 
-    // Sharing on WhatsApp
+    // WhatsApp
     document.getElementById('share-whatsapp').addEventListener('click', function() {
-      const shareUrl = 'https://api.whatsapp.com/send?text=Check%20out%20this%20game!%20' + encodeURIComponent(window.location.href);
+      const text = `Check out this awesome memory game! ${siteUrl}`;
+      const shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
       window.open(shareUrl, '_blank');
     });
 
-    // Refer a Friend System
+    // Referral Link (no user ID)
     document.getElementById('refer-button').addEventListener('click', function() {
-      const referralLink = generateReferralLink();
-      const message = `Hey! Join me in playing this awesome game: ${referralLink}`;
-      alert(`Copy this referral link and share it with your friends: \n\n${referralLink}`);
+      alert(`Copy this referral link and share it with your friends:\n\n${siteUrl}`);
     });
-    
-	// Back to navigation
+
+    // Back to navigation
     document.getElementById('navigation').addEventListener('click', function() {
-       window.location.href='navigation.html';
+      window.location.href = 'navigation.html';
     });
-    // Function to generate a unique referral link
-    function generateReferralLink() {
-      const userId = "user123";  // Simulating a user ID (can be dynamically generated based on the logged-in user)
-      return `https://playmemorygame.com`
-    }
   </script>
 
 </body>
