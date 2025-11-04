@@ -1,34 +1,116 @@
-﻿   <!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory Mix-Up Game</title>
+    <title>Level Four - Memory Mix-Up Game</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Add custom styling for the Stages button */
-        .stages-btn {
-            background: linear-gradient(135deg, #ff0066, #ff3366);
-            border: none;
-            border-radius: 12px;
-            color: white;
-            padding: 10px 20px;
-            font-size: 14px;
-            cursor: pointer;
-            text-decoration: none;
-            font-family: 'Press Start 2P', cursive;
-            transition: transform 0.3s, background-color 0.3s;
-            
+        /* Custom Styles for Level Four */
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 10px;
+            max-width: 80%;
+            margin: auto;
         }
 
-        .stages-btn:hover {
-            background: linear-gradient(135deg, #ff3366, #ff6699);
-            transform: scale(1.1);
-            background-color:gray;       
- }
+        .card {
+            width: 100%;
+            height: 120px;
+            background-color: #333;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: transparent;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
 
-        .header {
+        .card.flipped {
+            background-color: #444;
+            color: white;
+        }
+
+        .card.matched {
+            background-color: #ff00cc;
+            color: white;
+        }
+
+        .game-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #timer {
+            color: #ff00cc;
+            font-size: 24px;
+        }
+
+        #score {
+            color: #ff00cc;
+            font-size: 24px;
+        }
+
+        .footer {
+            background-color: #121212;
+            text-align: center;
+            color: white;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        /* Enhanced Button Styles */
+        .button {
+            display: inline-block;
+            margin: 10px auto;
+            padding: 15px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(90deg, #ff00cc, #6a00ff);
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background: linear-gradient(90deg, #6a00ff, #ff00cc);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .button:active {
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transform: translateY(0);
+        }
+
+        .game-controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+         .game-container{
+background-image: url('test6.jpg'); /* Your image */
+     background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+ .footer{
+ background-image: url('test30.jpg'); /* Your image */
+     background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+    .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -38,31 +120,10 @@
   background-position: center;
   background-repeat: no-repeat;
         }
-
-        .header p {
-            margin: 0;
-            font-size: 18px;
-            color: #fff;
-        }
-.game-container{
-background-image: url('test6.jpg'); /* Your image */
-     background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-.stages-btn{
- 
-}
-.footer{
- background-image: url('test30.jpg'); /* Your image */
-     background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
     </style>
 </head>
 <body>
-   <!-- Background music with autoplay off (no autoplay initially) -->
+     <!-- Background music with autoplay off (no autoplay initially) -->
     <audio id="background-music" autoplay loop>
   <source src="gaming-music-2-145874.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
@@ -70,209 +131,186 @@ background-image: url('test6.jpg'); /* Your image */
     <div class="app-container">
         <!-- Header Section -->
         <header class="header">
-            <p>Can you match all the pairs before time runs out?</p>
-            <!-- Stages Button -->
-            <a href="stages.html" class="stages-btn">Stages</a>
+            <p>Level Five - Can you match all the pairs before time runs out?</p>
         </header>
 
         <!-- Game Section -->
         <div class="game-container">
-            <div class="game-board">
-                <!-- Dynamic cards will be inserted here -->
+            <div class="game-board" id="game-board">
+                <!-- Cards will be dynamically inserted here -->
             </div>
         </div>
 
         <!-- Controls Section -->
         <div class="game-controls">
-            <label for="difficulty">Choose Difficulty: </label>
-            <select id="difficulty">
-                <option value="4">Easy</option>
-                <option value="6">Medium</option>
-                <option value="8">Hard</option>
-            </select>
-            <button id="start-btn">Start Game</button>
-            <button id="reset-btn" style="display: none;">Reset Game</button>
+            <button id="start-btn" class="button">Start Game</button>
+            <a href="stages.html" class="button">Go to Stages</a>
         </div>
 
         <!-- Game Info Section -->
         <div class="game-info">
-            <p>Time Left: <span id="timer">00:00</span></p>
-            <p> <span id="score"></span></p>
+            <p>Time Left: <span id="timer">03:00</span></p>
+            <p>  <span id="score"> </span></p>
         </div>
 
         <!-- Footer Section -->
         <footer class="footer">
-            <p>Chuma Mnyipika  © 2024</p>
+            <p>&copy; 2024 Chuma Mnyipika. All rights reserved.</p>
         </footer>
-
-        <!-- Win Modal -->
-        <div id="winModal" class="modal">
-            <div class="modal-content">
-                <h2>You Won!</h2>
-                <p>Congratulations! You matched all the pairs.</p>
-                <img src="https://img.icons8.com/ios/452/first-place-medal.png" alt="Winner Medal" width="100" height="100" />
-                <br />
-                <button id="closeModalBtn">Close</button>
-            </div>
-        </div>
-
     </div>
+<script>
+        const startButton = document.getElementById("start-btn");
+        const resetButton = document.getElementById("reset-btn");
+        const timerDisplay = document.getElementById("timer");
+        const scoreDisplay = document.getElementById("score");
+        const gameBoard = document.getElementById("game-board");
 
-      <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const board = document.querySelector('.game-board');
-    const startButton = document.getElementById('start-btn');
-    const resetButton = document.getElementById('reset-btn');
-    const timerElement = document.getElementById('timer');
-    const scoreElement = document.getElementById('score');
-    const winModal = document.getElementById('winModal');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const STORAGE_KEY = 'stagetwoopennn';
+        let cards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        //let score = 0;
+        let timer = 60;
+        let timerInterval;
+        let isGameActive = false;
 
-    let cards = [];
-    let flippedCards = [];
-    let matchedCards = [];
-    let timer;
-    let timeLeft = 60;
-    //let score = 0;
+        // Card values (unique symbols instead of emojis for a different feel)
+        const cardValues = ['🛸', '🔥', '🌑', '⚡', '🎲', '🛹', '🦄', '🌠', '🎸', '⏳', '🌍', '⚔️', '🔮', '💎', '🎨', '🚀'];
 
-    const symbols = [
-        '💎', '🍎', '🍌', '🎮', '💀', '🎨', '🚗', '🦄', '🐶', '🍕', '🍇', '🌟',
-        '🌈', '🎉', '⚡', '🎵', '🌵', '🍀', '🦋', '🐱', '🐯', '🐧', '🐸', '🍓', '🍉', 
-        '🦊', '🍔', '🍩', '🌸', '🌻', '⚽', '🎤', '🥇', '🎲', '🥑'
-    ];
+        // Shuffle and duplicate card values for the level
+        function shuffleAndCreateCards() {
+            let shuffled = [...cardValues, ...cardValues];
+            shuffled = shuffled.sort(() => Math.random() - 0.5);
+            
+            cards = shuffled.map(value => {
+                const card = document.createElement("div");
+                card.classList.add("card");
+                card.setAttribute("data-value", value);
+                card.addEventListener("click", flipCard);
+                return card;
+            });
 
-    // Shuffle an array randomly
-    function shuffleArray(array) {
-        return array.sort(() => Math.random() - 0.5);
-    }
+            gameBoard.innerHTML = '';
+            cards.forEach(card => gameBoard.appendChild(card));
+        }
 
-    // Generate cards dynamically
-    function generateCards() {
-        const numCards = 12; // Number of cards for this level (6 pairs)
-        let cardSymbols = [...symbols.slice(0, numCards / 2), ...symbols.slice(0, numCards / 2)];
-        cardSymbols = shuffleArray(cardSymbols);
+        // Flip a card
+        function flipCard() {
+            if (!isGameActive || this.classList.contains("flipped") || flippedCards.length === 2) {
+                return;
+            }
 
-        cardSymbols.forEach(symbol => {
-            const card = document.createElement('div');
-              
-             card.style.opacity='0.9';
-            card.classList.add('card');
-            card.dataset.symbol = symbol;
-            card.innerHTML = '<span>' + symbol + '</span>';
-            card.addEventListener('click', flipCard);
-            board.appendChild(card);
-        });
-
-        // Update the cards array dynamically
-        cards = Array.from(document.querySelectorAll('.card'));
-    }
-
-    // Handle card flip
-    function flipCard() {
-        if (flippedCards.length < 2 && !this.classList.contains('flipped') && !this.classList.contains('matched')) {
-            this.classList.add('flipped');
+            this.classList.add("flipped");
+            this.textContent = this.getAttribute("data-value");
             flippedCards.push(this);
 
             if (flippedCards.length === 2) {
                 checkMatch();
             }
         }
-    }
 
-    // Check if two flipped cards match
-    function checkMatch() {
-        const [firstCard, secondCard] = flippedCards;
-
-        if (firstCard.dataset.symbol === secondCard.dataset.symbol) {
-            // If cards match
-            firstCard.classList.add('matched');
-            secondCard.classList.add('matched');
-            matchedCards.push(firstCard, secondCard);
-           // score += 10;
-           // scoreElement.textContent = score;
-            flippedCards = [];
-
-            // Check if all cards are matched
-            if (matchedCards.length === cards.length) {
-                clearInterval(timer);
-                //showWinModal();
-                window.location.href='won.html';
-                localStorage.setItem( STORAGE_KEY,STORAGE_KEY);
-				// Store the text in local storage
-                localStorage.setItem('stagethreeopen', 'stagethreeopen');
-				 // Unlock Stage 3
-               //  localStorage.setItem('stagetwoopennnn', 'stagetwoopennnn');
+        // Check if two flipped cards match
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            
+            if (card1.getAttribute("data-value") === card2.getAttribute("data-value")) {
+                card1.classList.add("matched");
+                card2.classList.add("matched");
+                matchedPairs++;
+               // score += 20; // Higher points for correct matches
+              //  scoreDisplay.textContent = score;
+            } else {
+                // Penalize score for mismatches
+                //score -= 10;
+               // scoreDisplay.textContent = score;
+                
+                setTimeout(() => {
+                    card1.classList.remove("flipped");
+                    card2.classList.remove("flipped");
+                    card1.textContent = '';
+                    card2.textContent = '';
+                }, 1000);
             }
-        } else {
-            // If cards do not match
-            setTimeout(() => {
-                firstCard.classList.remove('flipped');
-                secondCard.classList.remove('flipped');
-                flippedCards = [];
-            }, 1000);
+
+            flippedCards = [];
+            checkGameStatus();
         }
-    }
 
-    // Show win modal
-    function showWinModal() {
-        winModal.style.display = 'flex'; // Show modal
-    }
+       
 
-    // Close win modal
-    function closeWinModal() {
-        winModal.style.display = 'none'; // Hide modal
-        resetGame(); // Reset game when modal is closed
-    }
-
-    // Start game
-    function startGame() {
-        //score = 0;
-       // scoreElement.textContent = score;
-        board.innerHTML = '';
-        matchedCards = [];
-        flippedCards = [];
-        generateCards();
-        timeLeft = 60;
-        timer = setInterval(updateTimer, 1000);
-        startButton.style.display = 'none';
-        resetButton.style.display = 'inline-block';
-    }
-
-    // Reset game
-    function resetGame() {
-       /** clearInterval(timer);
-        startButton.style.display = 'inline-block';
-        resetButton.style.display = 'none';
-        timerElement.textContent = '00:00';
-        scoreElement.textContent = '0';
-        board.innerHTML = '';
-        matchedCards = [];
-        flippedCards = [];**/
-		 window.location.href = 'stages.html';
-    }
-
-    // Update the timer
-    function updateTimer() {
-        timeLeft--;
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
-        timerElement.textContent = `${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-
-        if (timeLeft <= 0) {
-            clearInterval(timer);
-            // Redirect to lose page when time runs out
-            window.location.href = 'lose.html';
+        // Show Winning Message
+        function showWinningMessage() {
+            const message = document.createElement("div");
+            message.classList.add("message");
+            message.textContent = "You WON!";
+            document.body.appendChild(message);
         }
-    }
+         // Check if the game is over
+        function checkGameStatus() {
+            if (matchedPairs === cards.length / 2) {
+                clearInterval(timerInterval);
+                window.location.href = 'won.html';
+				// Store the text in local storage
+                 localStorage.setItem('stagesevenopen', 'stagesevenopen');
+            }
+        }
+        // Start the game
+        function startGame() {
+            isGameActive = true;
+            matchedPairs = 0;
+            //score = 0;
+            //scoreDisplay.textContent = score;
+            shuffleAndCreateCards();
 
-    // Event Listeners
-    startButton.addEventListener('click', startGame);
-    resetButton.addEventListener('click', resetGame);
-    closeModalBtn.addEventListener('click', closeWinModal);
-});
+            // Start the timer with unique phases
+            timerInterval = setInterval(() => {
+                timer--;
+                timerDisplay.textContent = `00:${timer < 10 ? '0' : ''}${timer}`;
 
-</script>
-		 
+                if (timer === 0) {
+                    clearInterval(timerInterval);
+                    //showLosingMessage();
+                    window.location.href="lose.html";
+                    resetButton.style.display = "inline-block";
+                }
+
+                // Unique behavior for timer phases
+                if (timer <= 30) {
+                    timerDisplay.style.color = "red"; // Change color when time is running low
+                }
+            }, 6000);
+
+            startButton.style.display = "none";
+            resetButton.style.display = "none";
+        }
+
+        // Show Losing Message
+        function showLosingMessage() {
+            const message = document.createElement("div");
+            message.classList.add("message");
+            message.textContent = "Time's up! You LOST!";
+            document.body.appendChild(message);
+        }
+
+        // Reset the game
+        function resetGame() {
+           /** timer = 60;
+            timerDisplay.textContent = "01:00";
+            score = 0;
+            scoreDisplay.textContent = score;
+            resetButton.style.display = "none";
+            startButton.style.display = "inline-block";
+            isGameActive = false;
+            matchedPairs = 0;
+            gameBoard.innerHTML = '';
+			**/
+			 window.location.href = 'stages.html';
+        }
+
+        // Event Listeners
+        startButton.addEventListener("click", startGame);
+        resetButton.addEventListener("click", resetGame);
+
+    </script>
+    	 
 </body>
 </html>
