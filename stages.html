@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -39,7 +39,13 @@
             margin-top: 2250%;  /*Added margin to push buttons down */
 		   
         }
-          
+
+        .stages-header {
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
         .header {
                  margin-left: calc(100vw - 86px); /* Adjust the values as needed */
                  margin-top:200px;
@@ -387,7 +393,18 @@
       object-fit: fill; /* Stretch to cover full width and height */
       z-index: -1;       /* Sit behind content */
     }
-     
+         h2.header {
+      font-size: 3rem;
+      font-weight: bold;
+      color: rgba(255, 255, 255, 0.7); /* Semi-transparent white text */
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: absolute;
+      bottom: 30px; /* Positioned at the bottom of the page */
+      opacity: 0.7;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Adds some depth */
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
     </style>
 </head>
 <body>  
@@ -1192,7 +1209,7 @@ if (stage4Button) {
         }
     } else {
         // Stage 4 is locked, keep the button disabled
-        stage6Button.disabled = true;
+        stage6Button.disabled =true;
         stage6Button.style.opacity = 0.7;
     }
 }
