@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Navigate through Memory Mix-Up — Play the Game, View Achievements, Read Instructions, or Invite Friends to Join the Fun!" />
-  <meta name="keywords" content="memory game, play online, how to play, achievements, invite friends, fun brain game" />
+  <meta name="keywords" content="memory game, play online, how to play, achievements, invite friends, privacy policy, fun brain game" />
   <meta name="author" content="Memory Mix-Up Team" />
   <meta property="og:title" content="Memory Mix-Up | Game Navigation" />
   <meta property="og:description" content="Choose what you want to do next: Play, Learn, or Invite Friends to Memory Mix-Up." />
@@ -25,18 +25,13 @@
       --bg-overlay: rgba(0, 0, 0, 0.6);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Press Start 2P', cursive;
       color: var(--main-text);
-      background: 
-        linear-gradient(45deg, rgba(30, 1, 58, 0.5), rgba(115, 0, 155, 0.4), rgba(255, 0, 123, 0.3)),
-        url('InShot_20200411_043858064.jpg') no-repeat center center fixed;
+      background: linear-gradient(45deg, rgba(30,1,58,0.5), rgba(115,0,155,0.4), rgba(255,0,123,0.3)),
+                  url('InShot_20200411_043858064.jpg') no-repeat center center fixed;
       background-size: cover;
       height: 100vh;
       display: flex;
@@ -97,14 +92,9 @@
       background-color: rgba(255, 0, 123, 0.15);
     }
 
-    .nav-button:active {
-      transform: scale(0.97);
-    }
+    .nav-button:active { transform: scale(0.97); }
 
-    .nav-button span {
-      color: #fff;
-      font-weight: bold;
-    }
+    .nav-button span { color: #fff; font-weight: bold; }
 
     footer {
       position: absolute;
@@ -120,10 +110,7 @@
       text-decoration: none;
     }
 
-    footer a:hover {
-      color: #fff;
-      text-decoration: underline;
-    }
+    footer a:hover { color: #fff; text-decoration: underline; }
 
     @media (max-width: 768px) {
       h1 { font-size: 1.7rem; margin-bottom: 30px; }
@@ -143,34 +130,34 @@
     <h1>Memory Mix-Up Navigation</h1>
   </header>
 
-  <!-- ✅ Your exact directives preserved -->
-      <main class="nav-container" role="navigation" aria-label="Main navigation buttons">
+  <!-- ✅ Buttons preserved, spans updated for clarity and AdSense compliance -->
+  <main class="nav-container" role="navigation" aria-label="Main navigation buttons">
     <button class="nav-button" onclick="window.location.href='stages.html'" aria-label="Play the Game Now">
-        <span>▶ Play the Game Now</span>
+        <span>▶ Start Playing Now</span>
     </button>
 
-    <button class="nav-button" onclick="window.location.href='licence_agreement.html'" aria-label="Game License and Terms of Use">
-        <span>📄 Game License & Terms of Use</span>
+    <button class="nav-button" onclick="window.location.href='licence_agreement.html'" aria-label="Game License and Privacy Policy">
+        <span>📄 Privacy Policy & License</span>
     </button>
 
     <button class="nav-button" onclick="window.location.href='gameinstruction.html'" aria-label="Game Instructions and How to Play">
-        <span>📘 Game Instructions (How to Play)</span>
+        <span>📘 How to Play</span>
     </button>
 
     <button class="nav-button" onclick="window.location.href='this.html'" aria-label="View Achievements and Milestones">
-        <span>🏆 View Player Achievements & Milestones</span>
+        <span>🏆 Player Achievements</span>
     </button>
 
     <button class="nav-button" onclick="window.location.href='refertofriend.html'" aria-label="Invite Friends to Play">
-        <span>🤝 Invite Friends to Play</span>
+        <span>🤝 Invite Friends</span>
     </button>
-</main>
+  </main>
+
+  <!-- ✅ Footer updated for AdSense compliance -->
   <footer>
     © 2025 Memory Mix-Up |
-    <a href="licence_agreement.html">Privacy Policy</a> |
-    <a href="licence_agreement.html">Contact</a>
+    <a href="licence_agreement.html" title="Privacy Policy & Terms of Use">Privacy Policy</a> |
+    <a href="licence_agreement.html" title="Contact Memory Mix-Up Team">Contact</a>
   </footer>
 </body>
 </html>
-
-
