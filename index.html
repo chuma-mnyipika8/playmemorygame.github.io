@@ -91,4 +91,113 @@
       z-index: 50;
     }
 
-    .continue-butto
+    .continue-button.visible {
+      opacity: 1;
+      visibility: visible;
+      bottom: 110px;
+    }
+
+    .continue-button:hover {
+      background-color: var(--primary-dark);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    footer {
+      background-color: var(--footer-bg);
+      padding: 20px 15px;
+      text-align: center;
+      font-size: 14.5px;
+      margin-top: auto;
+      border-top: 1px solid #ddd;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.7em;
+      }
+      main {
+        padding: 20px 15px 160px;
+        font-size: 16px;
+      }
+      .continue-button {
+        font-size: 16px;
+        padding: 12px 28px;
+        bottom: 80px;
+      }
+      .continue-button.visible {
+        bottom: 100px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Memory Mix-Up</h1>
+    <p>Ultimate Brain Challenge – Test your memory, logic, and focus!</p>
+  </header>
+
+  <main id="mainContent">
+    <p>
+      Welcome to <strong>Memory Mix-Up</strong> — a fun and challenging brain game designed to sharpen your
+      memory, test your logic, and improve your focus. Whether you’re a casual gamer or a serious competitor,
+      this game offers a unique way to exercise your brain while having fun.
+    </p>
+
+    <p>
+      Each round presents you with patterns and memory challenges that grow harder as you progress.
+      Observe carefully, recall quickly, and think strategically to move to the next level.
+      Each correct answer increases your score and brings you closer to mastering your memory skills.
+    </p>
+
+    <p><strong>Why Play Memory Mix-Up?</strong></p>
+    <ul>
+      <li>Multiple difficulty levels suited to your skills</li>
+      <li>Pattern recognition and memory challenges</li>
+      <li>Score tracking to measure progress</li>
+      <li>Engaging, ad-friendly interface for all ages</li>
+    </ul>
+
+    <p>
+      Scroll to the bottom to reveal the <strong>Continue</strong> button and begin your adventure!
+    </p>
+  </main>
+
+  <button class="continue-button" id="continueButton" aria-label="Continue to next page" onclick="location.href='navigation.html'">
+    Continue
+  </button>
+
+  <footer>
+    <p>
+      &copy; 2025 Memory Mix-Up &nbsp;|&nbsp;
+      <a href="licence_agreement.html">Privacy Policy</a> &nbsp;|&nbsp;
+      <a href="licence_agreement.html">Contact Us</a>
+    </p>
+  </footer>
+
+  <script>
+    const button = document.getElementById('continueButton');
+
+    window.addEventListener('scroll', () => {
+      const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+      if (scrollTop + clientHeight >= scrollHeight - 60) {
+        button.classList.add('visible');
+      } else {
+        button.classList.remove('visible');
+      }
+    });
+  </script>
+</body>
+</html>
