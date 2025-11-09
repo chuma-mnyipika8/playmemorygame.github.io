@@ -37,21 +37,6 @@
             opacity: 0.95;
         }
 
-        .loader {
-            border: 6px solid rgba(255, 255, 255, 0.2);
-            border-top: 6px solid #fff;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 2s linear infinite;
-            margin: 25px 0;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
         footer {
             position: absolute;
             bottom: 10px;
@@ -113,10 +98,7 @@
         Sharpen your focus, have fun, and enjoy a refreshing gaming experience built to make you smarter.
     </p>
 
-    <div class="loader"></div>
-    <p>Preparing your game environment...</p>
-
-    <button id="continue-btn" class="fade-in" onclick="continueToGame()">Continue</button>
+    <button id="continue-btn" onclick="continueToGame()">Continue</button>
 
     <nav>
         <a href="play.html">Play Now</a>
