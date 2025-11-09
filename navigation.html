@@ -1,111 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Essential Meta Tags -->
+  <!-- Meta & SEO -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Explore the Memory Mix-Up Game Navigation — Start Game, View Stages, Learn How to Play, and Invite Friends." />
-  <meta name="keywords" content="memory game, brain challenge, start game, game stages, how to play, invite friends" />
-  <meta name="author" content="Chuma Mnyipika" />
-
-  <!-- Open Graph -->
+  <meta name="description" content="Navigate through Memory Mix-Up — Play the Game, View Achievements, Read Instructions, or Invite Friends to Join the Fun!" />
+  <meta name="keywords" content="memory game, play online, how to play, achievements, invite friends, fun brain game" />
+  <meta name="author" content="Memory Mix-Up Team" />
   <meta property="og:title" content="Memory Mix-Up | Game Navigation" />
-  <meta property="og:description" content="Navigate through Memory Mix-Up — Start the game, view stages, or invite friends to play!" />
+  <meta property="og:description" content="Choose what you want to do next: Play, Learn, or Invite Friends to Memory Mix-Up." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="your-thumbnail-image.jpg" />
   <meta property="og:url" content="https://yourdomain.com/navigation.html" />
 
   <title>Memory Mix-Up | Game Navigation</title>
 
-  <!-- Google Font -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --text-color: #ffffff;
-      --hover-glow: #ff007b;
-      --shadow-glow: #73009b;
+      --main-text: #ffffff;
+      --highlight: #ff007b;
+      --accent: #73009b;
+      --bg-overlay: rgba(0, 0, 0, 0.6);
     }
 
-    /* Reset & Global */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    html, body {
-      height: 100%;
+    body {
       font-family: 'Press Start 2P', cursive;
-      color: var(--text-color);
+      color: var(--main-text);
       background: 
-        linear-gradient(45deg, rgba(30, 1, 58, 0.5), rgba(115, 0, 155, 0.4), rgba(255, 0, 123, 0.4)),
+        linear-gradient(45deg, rgba(30, 1, 58, 0.5), rgba(115, 0, 155, 0.4), rgba(255, 0, 123, 0.3)),
         url('InShot_20200411_043858064.jpg') no-repeat center center fixed;
       background-size: cover;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      overflow: hidden;
       position: relative;
-    }
-
-    body::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: url('https://www.transparenttextures.com/patterns/noisy-grid.png');
-      opacity: 0.05;
-      z-index: 0;
+      overflow: hidden;
     }
 
     h1 {
-      font-size: 2.5rem;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      animation: glow 1.5s ease-in-out infinite alternate;
-      z-index: 2;
+      font-size: 2.2rem;
       margin-bottom: 40px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      animation: glow 1.8s ease-in-out infinite alternate;
+      z-index: 2;
     }
 
     @keyframes glow {
-      from { text-shadow: 0 0 10px var(--hover-glow), 0 0 20px var(--shadow-glow); }
-      to { text-shadow: 0 0 20px #ff00cc, 0 0 35px var(--hover-glow); }
+      from { text-shadow: 0 0 10px var(--highlight), 0 0 20px var(--accent); }
+      to { text-shadow: 0 0 25px var(--highlight), 0 0 40px var(--accent); }
     }
 
-    .nav-container {
+    main.nav-container {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
       z-index: 2;
-      animation: fadeSlideIn 1.5s ease-out;
+      animation: fadeSlideIn 1.3s ease-out;
     }
 
     @keyframes fadeSlideIn {
-      from { opacity: 0; transform: translateY(100px); }
+      from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     .nav-button {
-      background: rgba(0, 0, 0, 0.6);
-      color: var(--text-color);
-      border: 2px solid var(--hover-glow);
-      border-radius: 40px;
-      padding: 18px 40px;
-      font-size: 0.9rem;
+      background: var(--bg-overlay);
+      color: var(--main-text);
+      border: 2px solid var(--highlight);
+      border-radius: 35px;
+      padding: 16px 30px;
+      font-size: 0.85rem;
       width: 280px;
       cursor: pointer;
       transition: all 0.3s ease;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      position: relative;
+      letter-spacing: 0.5px;
+      box-shadow: 0 0 8px rgba(255, 0, 123, 0.3);
+      margin: 0 auto;
     }
 
     .nav-button:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 25px var(--hover-glow);
-      background-color: rgba(255, 0, 123, 0.2);
+      box-shadow: 0 0 20px var(--highlight);
+      background-color: rgba(255, 0, 123, 0.15);
     }
 
     .nav-button:active {
@@ -115,58 +104,71 @@
     .nav-button span {
       color: #fff;
       font-weight: bold;
-      text-shadow: none;
     }
 
     footer {
       position: absolute;
-      bottom: 15px;
-      color: #ccc;
+      bottom: 20px;
       font-size: 0.75rem;
-      text-shadow: 0 0 4px var(--shadow-glow);
+      color: #ccc;
       z-index: 2;
     }
 
     footer a {
       color: #ff99cc;
+      margin: 0 6px;
       text-decoration: none;
-      margin: 0 5px;
     }
 
     footer a:hover {
-      text-decoration: underline;
       color: #fff;
+      text-decoration: underline;
     }
 
     @media (max-width: 768px) {
-      h1 { font-size: 1.8rem; }
-      .nav-button { width: 230px; padding: 15px 25px; font-size: 0.8rem; }
+      h1 { font-size: 1.7rem; margin-bottom: 30px; }
+      .nav-button { width: 240px; padding: 14px 25px; font-size: 0.8rem; }
     }
 
     @media (max-width: 480px) {
       h1 { font-size: 1.4rem; }
-      .nav-button { width: 190px; padding: 12px 20px; font-size: 0.7rem; }
-      footer { font-size: 0.65rem; }
+      .nav-button { width: 200px; padding: 12px 18px; font-size: 0.7rem; }
+      footer { font-size: 0.65rem; bottom: 10px; }
     }
   </style>
 </head>
 
 <body>
   <header>
-    <h1>Game Navigation</h1>
+    <h1>Memory Mix-Up Navigation</h1>
   </header>
 
-  <main class="nav-container" role="navigation" aria-label="Main game navigation buttons">
-    <button class="nav-button" onclick="location.href='stages.html'"><span>🎮 Start Game</span></button>
-    <button class="nav-button" onclick="location.href='this.html'"><span>📘 How to Play</span></button>
-    <button class="nav-button" onclick="location.href='achievements.html'"><span>🏆 Achievements</span></button>
-    <button class="nav-button" onclick="location.href='invite.html'"><span>🤝 Invite Friends</span></button>
-    <button class="nav-button" onclick="location.href='licence_agreement.html'"><span>⚙️ License & Policy</span></button>
+  <!-- ✅ Your exact directives preserved -->
+  <main class="nav-container" role="navigation" aria-label="Main navigation buttons">
+    <button class="nav-button" onclick="window.location.href='stages.html'" aria-label="Play the Game Now">
+        <span>▶ Play the Game Now</span>
+    </button>
+
+    <button class="nav-button" onclick="window.location.href='licenceagreement.html'" aria-label="Game License and Terms of Use">
+        <span>📄 Game License & Terms of Use</span>
+    </button>
+
+    <button class="nav-button" onclick="window.location.href='gameinstruction.html'" aria-label="Game Instructions and How to Play">
+        <span>📘 Game Instructions (How to Play)</span>
+    </button>
+
+    <button class="nav-button" onclick="window.location.href='this.html'" aria-label="View Achievements and Milestones">
+        <span>🏆 View Player Achievements & Milestones</span>
+    </button>
+
+    <button class="nav-button" onclick="window.location.href='refertofriend.html'" aria-label="Invite Friends to Play">
+        <span>🤝 Invite Friends to Play</span>
+    </button>
   </main>
 
   <footer>
-    © 2025 Memory Mix-Up | 
-    <a href="licence_agreement.html">Privacy Policy</a> | 
+    © 2025 Memory Mix-Up |
+    <a href="licenceagreement.html">Privacy Policy</a> |
     <a href="contact.html">Contact</a>
   </footer>
 </body>
