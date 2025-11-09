@@ -10,7 +10,7 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: "Poppins", Arial, sans-serif;
             background: linear-gradient(135deg, #2a2a72, #009ffd);
             color: white;
             display: flex;
@@ -20,18 +20,21 @@
             height: 100vh;
             text-align: center;
             overflow: hidden;
+            padding: 0 20px;
         }
 
         h1 {
             font-size: 2em;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
         }
 
         p {
-            max-width: 600px;
+            max-width: 700px;
             font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            opacity: 0.95;
         }
 
         .loader {
@@ -41,7 +44,7 @@
             width: 60px;
             height: 60px;
             animation: spin 2s linear infinite;
-            margin-top: 20px;
+            margin: 25px 0;
         }
 
         @keyframes spin {
@@ -56,7 +59,38 @@
             opacity: 0.8;
         }
 
-        /* Invisible navigation for AdSense crawler */
+        /* Continue Button */
+        #continue-btn {
+            display: none;
+            margin-top: 25px;
+            background: #fff;
+            color: #009ffd;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        #continue-btn:hover {
+            background: #e6e6e6;
+            transform: scale(1.05);
+        }
+
+        /* Fade-in animation for button */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hidden navigation for AdSense crawler */
         nav {
             visibility: hidden;
             height: 0;
@@ -67,15 +101,23 @@
 <body>
     <h1>Welcome to Memory Mix-Up</h1>
     <p>
-        Memory Mix-Up is a brain-training game that strengthens your focus and memory.
-        Challenge yourself through fun pattern sequences and test how far your memory can go!
-        The game is simple yet addictive — perfect for players who love mental challenges.
+        Memory Mix-Up is an exciting and brain-boosting game that challenges your mind with fun and clever patterns.
+        As you progress, levels become more complex, testing your logic, attention, and short-term memory.
+    </p>
+    <p>
+        Designed to train your brain while you play, Memory Mix-Up offers a perfect balance between entertainment and focus.
+        Compete with yourself, set new records, and see how far your memory can go.
+    </p>
+    <p>
+        This game is suitable for all ages and ideal for those who enjoy mental challenges and cognitive growth.
+        Sharpen your focus, have fun, and enjoy a refreshing gaming experience built to make you smarter.
     </p>
 
     <div class="loader"></div>
-    <p>Loading game... please wait</p>
+    <p>Preparing your game environment...</p>
 
-    <!-- Hidden navigation (for AdSense bots to crawl valid links) -->
+    <button id="continue-btn" class="fade-in" onclick="continueToGame()">Continue</button>
+
     <nav>
         <a href="play.html">Play Now</a>
         <a href="privacy.html">Privacy Policy</a>
@@ -85,10 +127,21 @@
     <footer>© 2025 Chuma Mnyipika | Game Lover | All Rights Reserved.</footer>
 
     <script>
-        // Redirect after 4 seconds to navigation page
+        // Show "Continue" button after user has time to read
         setTimeout(() => {
-            window.location.href = "navigation.html";
-        }, 4000);
+            const button = document.getElementById("continue-btn");
+            button.style.display = "inline-block";
+            button.classList.add("fade-in");
+        }, 9000); // show after 9 seconds (enough reading time)
+
+        // Redirect to navigation page when clicked
+        function continueToGame() {
+            document.body.style.transition = "opacity 1s";
+            document.body.style.opacity = "0";
+            setTimeout(() => {
+                window.location.href = "navigation.html";
+            }, 800);
+        }
     </script>
 </body>
 </html>
