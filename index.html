@@ -1,85 +1,104 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9518937155167074"
-     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory Game</title>
-   
+    <title>Memory  | Play the Ultimate Brain Challenge</title>
+    <meta name="description" content="Play Memory Mix-Up — a fun and challenging brain game that tests your focus, logic, and memory. Improve your skills while having fun!">
+    <link rel="icon" href="icon.png" type="image/png">
+
     <style>
-        html, body {
-            height: 100%;
+        body {
             margin: 0;
-            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #2a2a72, #009ffd);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
         }
-        #content {
-            height: 100%;  /* Make sure content div fills the screen */
-            width: 100%;
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
         }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+
+        p {
+            max-width: 600px;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+
+        /* Loader Animation */
+        .loader {
+            border: 6px solid rgba(255, 255, 255, 0.2);
+            border-top: 6px solid #fff;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 2s linear infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Navigation links for AdSense crawler */
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div id="content"></div>
+    <h1>Welcome to Memory Mix-Up</h1>
+    <p>
+        Memory Mix-Up is a fun, challenging brain game designed to test and improve your focus,
+        logic, and short-term memory. Each level becomes trickier as you progress — can you
+        remember every pattern and reach the top?
+    </p>
+
+    <div class="loader"></div>
+
+    <p>Loading game... please wait</p>
+
+    <nav>
+        <a href="play.html">Play Now</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <footer>© 2025 Chuma Mnyipika | Game Lover | All Rights Reserved.</footer>
+
     <script>
-        // Dynamically load your loading.html into the WebView
-        var content = document.getElementById('content');
-        var iframe = document.createElement('iframe');
-        iframe.src = "chumalogo.html";  // Your loading.html file
-        content.appendChild(iframe);
+        // Redirect after 4 seconds to keep AdSense and user-friendly flow
+        setTimeout(() => {
+            window.location.href = "navigation.html";
+        }, 4000);
     </script>
-	<script type="module">
-   
- // Import Firebase SDK
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-analytics.js";  // ✅ Added logEvent
-
-// Your Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAKbUwSO1sNucqc7FrRBYsAHCIQ_0bhDvM",
-  authDomain: "memory-f7eae.firebaseapp.com",
-  projectId: "memory-f7eae",
-  storageBucket: "memory-f7eae.firebasestorage.app",
-  messagingSenderId: "237676194389",
-  appId: "1:237676194389:web:f91fea0c3297e3f6e382dc",
-  measurementId: "G-E6RJZS0HVE"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
-// Function to track button clicks
-document.addEventListener("DOMContentLoaded", () => {  
-  // Waits for the full HTML document to load before running the script
-
-  document.body.addEventListener("click", (event) => {  
-    // Listens for any click event that happens anywhere inside the <body> tag
-
-    if (event.target.tagName === "BUTTON") {  
-      // Checks if the clicked element is a <button>
-      
-      const buttonText = event.target.innerText || "Unnamed Button";  
-      // Gets the text inside the button. If there's no text, it defaults to "Unnamed Button"
-      
-      logEvent(analytics, "button_click", {  
-        button_name: buttonText  
-      });  
-      // Sends an event to Firebase Analytics with the name "button_click"
-      // and includes the button's text as metadata
-      
-      console.log(`Button clicked: ${buttonText}`);  
-      // Logs the button click event to the console for debugging
-    }
-  });
-});
-
-
-</script>
 </body>
 </html>
