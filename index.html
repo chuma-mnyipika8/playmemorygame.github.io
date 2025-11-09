@@ -26,7 +26,6 @@
         .content {
             padding: 20px;
             flex: 1;
-            overflow-y: auto;
         }
 
         h1 {
@@ -40,7 +39,7 @@
         }
 
         .continue-button {
-            display: none; /* hidden until scrolled */
+            display: none; /* Hidden until scrolled to bottom */
             background-color: #4CAF50;
             color: white;
             border: none;
@@ -69,6 +68,7 @@
             color: #4CAF50;
             text-decoration: none;
         }
+
         a:hover {
             text-decoration: underline;
         }
@@ -124,15 +124,14 @@
     </footer>
 
     <script>
-        const description = document.getElementById('description');
         const button = document.getElementById('continueButton');
 
-        description.addEventListener('scroll', () => {
-            const scrollTop = description.scrollTop;
-            const scrollHeight = description.scrollHeight;
-            const offsetHeight = description.offsetHeight;
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
 
-            if (scrollTop + offsetHeight >= scrollHeight - 5) {
+            if (scrollTop + clientHeight >= scrollHeight - 5) {
                 button.style.display = 'block';
             } else {
                 button.style.display = 'none';
