@@ -34,7 +34,7 @@
       color: white;
       text-align: center;
       padding: 25px 15px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     header h1 {
@@ -50,7 +50,7 @@
 
     main {
       flex: 1;
-      padding: 30px 20px;
+      padding: 30px 20px 100px; /* Added bottom padding so footer isn’t blocked by button */
       max-width: 900px;
       margin: 0 auto;
       line-height: 1.7;
@@ -64,7 +64,7 @@
     /* ===== CONTINUE BUTTON ===== */
     .continue-button {
       position: fixed;
-      bottom: 25px;
+      bottom: 80px; /* ensures button sits above footer */
       left: 50%;
       transform: translateX(-50%) translateY(30px);
       background: var(--primary);
@@ -100,6 +100,8 @@
       font-size: 14px;
       margin-top: auto;
       border-top: 1px solid #ddd;
+      position: relative;
+      z-index: 1;
     }
 
     a {
@@ -118,12 +120,13 @@
         font-size: 1.6em;
       }
       main {
-        padding: 20px 15px;
+        padding: 20px 15px 120px; /* extra bottom space for mobile */
         font-size: 16px;
       }
       .continue-button {
         font-size: 16px;
         padding: 14px 28px;
+        bottom: 70px;
       }
     }
   </style>
@@ -148,9 +151,7 @@
       Each correct answer increases your score and brings you closer to mastering your memory skills.
     </p>
 
-    <p>
-      <strong>Why Play Memory Mix-Up?</strong>
-    </p>
+    <p><strong>Why Play Memory Mix-Up?</strong></p>
     <ul>
       <li>Multiple difficulty levels suited to your skills</li>
       <li>Pattern recognition and memory challenges</li>
