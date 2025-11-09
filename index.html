@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory  | Play the Ultimate Brain Challenge</title>
-    <meta name="description" content="Play Memory Mix-Up — a fun and challenging brain game that tests your focus, logic, and memory. Improve your skills while having fun!">
+    <title>Memory Mix-Up | Ultimate Brain Challenge</title>
+    <meta name="description" content="Play Memory Mix-Up — a fun and challenging brain game that tests your focus, logic, and memory. Boost your brain while enjoying the challenge!">
     <link rel="icon" href="icon.png" type="image/png">
 
     <style>
@@ -30,18 +30,10 @@
         p {
             max-width: 600px;
             font-size: 1rem;
-            line-height: 1.5;
+            line-height: 1.6;
             margin-bottom: 20px;
         }
 
-        footer {
-            position: absolute;
-            bottom: 10px;
-            font-size: 0.8em;
-            opacity: 0.8;
-        }
-
-        /* Loader Animation */
         .loader {
             border: 6px solid rgba(255, 255, 255, 0.2);
             border-top: 6px solid #fff;
@@ -57,35 +49,33 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Navigation links for AdSense crawler */
+        footer {
+            position: absolute;
+            bottom: 10px;
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+
+        /* Invisible navigation for AdSense crawler */
         nav {
-            margin-top: 15px;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 10px;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
+            visibility: hidden;
+            height: 0;
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
     <h1>Welcome to Memory Mix-Up</h1>
     <p>
-        Memory Mix-Up is a fun, challenging brain game designed to test and improve your focus,
-        logic, and short-term memory. Each level becomes trickier as you progress — can you
-        remember every pattern and reach the top?
+        Memory Mix-Up is a brain-training game that strengthens your focus and memory.
+        Challenge yourself through fun pattern sequences and test how far your memory can go!
+        The game is simple yet addictive — perfect for players who love mental challenges.
     </p>
 
     <div class="loader"></div>
-
     <p>Loading game... please wait</p>
 
+    <!-- Hidden navigation (for AdSense bots to crawl valid links) -->
     <nav>
         <a href="play.html">Play Now</a>
         <a href="privacy.html">Privacy Policy</a>
@@ -95,7 +85,7 @@
     <footer>© 2025 Chuma Mnyipika | Game Lover | All Rights Reserved.</footer>
 
     <script>
-        // Redirect after 4 seconds to keep AdSense and user-friendly flow
+        // Redirect after 4 seconds to navigation page
         setTimeout(() => {
             window.location.href = "navigation.html";
         }, 4000);
