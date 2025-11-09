@@ -4,126 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory Mix-Up | Ultimate Brain Challenge</title>
-    <meta name="description" content="Play Memory Mix-Up — a fun and challenging brain game that tests your focus, logic, and memory. Boost your brain while enjoying the challenge!">
-    <link rel="icon" href="icon.png" type="image/png">
-
+    <meta name="description" content="Play Memory Mix-Up, a fun and challenging brain game that tests your memory, logic, and focus. Boost your cognitive skills today!">
     <style>
         body {
+            font-family: Arial, sans-serif;
             margin: 0;
-            font-family: "Poppins", Arial, sans-serif;
-            background: linear-gradient(135deg, #2a2a72, #009ffd);
-            color: white;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
             text-align: center;
-            overflow: hidden;
-            padding: 0 20px;
+            padding: 20px 10px;
+        }
+
+        .content {
+            padding: 20px;
+            flex: 1;
+            overflow-y: auto;
         }
 
         h1 {
-            font-size: 2em;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
+            text-align: center;
         }
 
         p {
-            max-width: 700px;
-            font-size: 1rem;
-            line-height: 1.7;
-            margin-bottom: 15px;
-            opacity: 0.95;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .continue-button {
+            display: none; /* hidden until scrolled */
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+
+        .continue-button:hover {
+            background-color: #45a049;
         }
 
         footer {
-            position: absolute;
-            bottom: 10px;
-            font-size: 0.8em;
-            opacity: 0.8;
+            background-color: #eee;
+            padding: 15px 10px;
+            text-align: center;
+            font-size: 14px;
         }
 
-        /* Continue Button */
-        #continue-btn {
-            display: none;
-            margin-top: 25px;
-            background: #fff;
-            color: #009ffd;
-            border: none;
-            padding: 12px 28px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+        a {
+            color: #4CAF50;
+            text-decoration: none;
         }
-
-        #continue-btn:hover {
-            background: #e6e6e6;
-            transform: scale(1.05);
-        }
-
-        /* Fade-in animation for button */
-        .fade-in {
-            animation: fadeIn 1s ease-in-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Hidden navigation for AdSense crawler */
-        nav {
-            visibility: hidden;
-            height: 0;
-            overflow: hidden;
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to Memory Mix-Up</h1>
-    <p>
-        Memory Mix-Up is an exciting and brain-boosting game that challenges your mind with fun and clever patterns.
-        As you progress, levels become more complex, testing your logic, attention, and short-term memory.
-    </p>
-    <p>
-        Designed to train your brain while you play, Memory Mix-Up offers a perfect balance between entertainment and focus.
-        Compete with yourself, set new records, and see how far your memory can go.
-    </p>
-    <p>
-        This game is suitable for all ages and ideal for those who enjoy mental challenges and cognitive growth.
-        Sharpen your focus, have fun, and enjoy a refreshing gaming experience built to make you smarter.
-    </p>
+    <header>
+        <h1>Memory Mix-Up</h1>
+        <p>Ultimate Brain Challenge – Test your memory, logic, and focus!</p>
+    </header>
 
-    <button id="continue-btn" onclick="continueToGame()">Continue</button>
+    <div class="content" id="description">
+        <p>
+            Memory Mix-Up is a fun and challenging brain game designed to sharpen your memory, test your logic, 
+            and improve your focus. Whether you’re a casual gamer or a serious competitor, this game offers 
+            a unique way to exercise your brain while having fun.
+        </p>
+        <p>
+            The game presents you with a series of patterns, sequences, and memory challenges that grow 
+            progressively harder. You will need to observe carefully, recall quickly, and think strategically 
+            to advance through the levels. Each correct answer increases your score and pushes you closer 
+            to mastering your memory skills.
+        </p>
+        <p>
+            Memory Mix-Up is perfect for all ages and provides hours of engaging mental exercise. 
+            It’s not just a game; it’s a brain workout designed to enhance cognitive skills and boost 
+            your problem-solving abilities. Challenge yourself, track your progress, and see how far you can go!
+        </p>
+        <p>
+            Features of Memory Mix-Up include:
+            <ul>
+                <li>Multiple difficulty levels to match your skills</li>
+                <li>Pattern recognition challenges</li>
+                <li>Score tracking to monitor improvement</li>
+                <li>Engaging gameplay suitable for all ages</li>
+            </ul>
+        </p>
+        <p>
+            When you’re ready to start your journey and test your brain, scroll to the bottom of this description 
+            to reveal the Continue button and begin the adventure.
+        </p>
+    </div>
 
-    <nav>
-        <a href="play.html">Play Now</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="contact.html">Contact</a>
-    </nav>
+    <button class="continue-button" id="continueButton" onclick="location.href='navigation.html'">
+        Continue
+    </button>
 
-    <footer>© 2025 Chuma Mnyipika | Game Lover | All Rights Reserved.</footer>
+    <footer>
+        <p>
+            &copy; 2025 Memory Mix-Up | <a href="privacy.html">Privacy Policy</a> | 
+            <a href="contact.html">Contact Us</a>
+        </p>
+    </footer>
 
     <script>
-        // Show "Continue" button after user has time to read
-        setTimeout(() => {
-            const button = document.getElementById("continue-btn");
-            button.style.display = "inline-block";
-            button.classList.add("fade-in");
-        }, 9000); // show after 9 seconds (enough reading time)
+        const description = document.getElementById('description');
+        const button = document.getElementById('continueButton');
 
-        // Redirect to navigation page when clicked
-        function continueToGame() {
-            document.body.style.transition = "opacity 1s";
-            document.body.style.opacity = "0";
-            setTimeout(() => {
-                window.location.href = "navigation.html";
-            }, 800);
-        }
+        description.addEventListener('scroll', () => {
+            const scrollTop = description.scrollTop;
+            const scrollHeight = description.scrollHeight;
+            const offsetHeight = description.offsetHeight;
+
+            if (scrollTop + offsetHeight >= scrollHeight - 5) {
+                button.style.display = 'block';
+            } else {
+                button.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
