@@ -39,8 +39,17 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            object-fit: fill; /* Keeps your example style exactly */
+            object-fit: fill;
             z-index: -1;
+        }
+
+        .text-container {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 90%;
+            margin-top: 100px;
         }
 
         h1 {
@@ -51,7 +60,6 @@
 
         p {
             font-size: 20px;
-            margin-top: 500px;
             line-height: 1.6;
             color: #fff;
         }
@@ -64,21 +72,19 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 18px;
+            margin-top: 20px;
         }
 
         #playAgainBtn:hover {
             background-color: #ff66b2;
         }
 
-        .paragraph {
-            margin-top: 100px;
-        }
-
         /* Responsive text for smaller screens */
         @media (max-width: 600px) {
             h1 { font-size: 24px; }
-            p { font-size: 14px; margin-top: 300px; }
+            p { font-size: 14px; }
             #playAgainBtn { padding: 12px 25px; font-size: 16px; }
+            .text-container { padding: 20px; }
         }
     </style>
 </head>
@@ -86,16 +92,18 @@
     <img class="bg-image" src="IMG-20250523-WA0024.jpg" alt="Background">
 
     <div class="modal-content">
-        <h1>Keep Going!</h1>
-        <p>
-            Every great player faces challenges — what matters is how you rise again.  
-            Take a short break, refocus your strategy, and come back stronger.  
-            Remember, improvement comes with every try.
-        </p>
-        <button id="playAgainBtn" onclick="window.location.href='stages.html'">Try Again</button>
+        <div class="text-container">
+            <h1>Keep Going!</h1>
+            <p>
+                Every great player faces challenges — what matters is how you rise again.<br>
+                Take a short break, refocus your strategy, and come back stronger.<br>
+                Remember, improvement comes with every try.
+            </p>
+            <button id="playAgainBtn" onclick="window.location.href='stages.html'">Try Again</button>
+        </div>
     </div>
 
-    <!-- Example AdSense placement (kept minimal to not disturb layout) -->
+    <!-- Example AdSense placement -->
     <ins class="adsbygoogle"
         style="display:block; text-align:center; margin-top:20px;"
         data-ad-client="ca-pub-9518937155167074"
