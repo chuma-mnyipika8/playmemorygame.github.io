@@ -20,8 +20,8 @@
   <style>
     :root {
       --main-text: #ffffff;
-      --highlight: #ff007b;
-      --accent: #73009b;
+      --highlight: #0077ff;
+      --accent: #004080;
       --bg-overlay: rgba(0, 0, 0, 0.6);
     }
 
@@ -30,7 +30,7 @@
     body {
       font-family: 'Press Start 2P', cursive;
       color: var(--main-text);
-      background: linear-gradient(45deg, rgba(30,1,58,0.5), rgba(115,0,155,0.4), rgba(255,0,123,0.3)),
+      background: linear-gradient(45deg, rgba(0,0,30,0.7), rgba(0,40,80,0.6)),
                   url('InShot_20200411_043858064.jpg') no-repeat center center fixed;
       background-size: cover;
       height: 100vh;
@@ -82,14 +82,14 @@
       transition: all 0.3s ease;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      box-shadow: 0 0 8px rgba(255, 0, 123, 0.3);
+      box-shadow: 0 0 8px rgba(0, 119, 255, 0.3);
       margin: 0 auto;
     }
 
     .nav-button:hover {
       transform: scale(1.05);
       box-shadow: 0 0 20px var(--highlight);
-      background-color: rgba(255, 0, 123, 0.15);
+      background-color: rgba(0, 119, 255, 0.15);
     }
 
     .nav-button:active { transform: scale(0.97); }
@@ -105,7 +105,7 @@
     }
 
     footer a {
-      color: #ff99cc;
+      color: #66b3ff;
       margin: 0 6px;
       text-decoration: none;
     }
@@ -130,7 +130,7 @@
     <h1>Memory Mix-Up Navigation</h1>
   </header>
 
-  <!-- ✅ Buttons preserved, spans updated for clarity and AdSense compliance -->
+  <!-- ✅ Main Navigation -->
   <main class="nav-container" role="navigation" aria-label="Main navigation buttons">
     <button class="nav-button" onclick="window.location.href='stages.html'" aria-label="Play the Game Now">
         <span>▶ Start Playing Now</span>
@@ -153,11 +153,13 @@
     </button>
   </main>
 
-  <!-- ✅ Footer updated for AdSense compliance -->
+  <!-- ✅ AdSense & Legal Notice Section -->
   <footer>
     © 2025 Memory Mix-Up |
     <a href="licence_agreement.html" title="Privacy Policy & Terms of Use">Privacy Policy</a> |
     <a href="licence_agreement.html" title="Contact Memory Mix-Up Team">Contact</a>
+    <br />
+    <small>This website uses Google AdSense to serve ads based on user interactions and interests. By using this site, you acknowledge and accept our use of cookies for analytics and advertising purposes.</small>
   </footer>
 </body>
 </html>
