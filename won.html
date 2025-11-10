@@ -16,55 +16,52 @@
             align-items: center;
             height: 100vh;
             text-align: center;
-            /*background-image: url('IMG-20250523-WA0021.jpg');
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;*/
         }
+
         .bg-image {
             position: absolute;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            object-fit: fill; /* Stretch to cover full width and height */
-            z-index: -1;       /* Sit behind content */
+            object-fit: cover; /* Cover the screen */
+            z-index: -1;
         }
+
         .modal-content {
-            padding: 40px;
-            border-radius: 10px;
+            padding: 20px;
+            border-radius: 15px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            display: inline-block;
+            background-color: rgba(0,0,0,0.7); /* Semi-transparent box */
+            max-width: 90%;
+            width: 400px;
             text-align: center;
-            opacity: 0.9;	 
-            background-size: cover;
-            margin-top: 300px;
         }
 
         h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
+            font-size: clamp(24px, 4vw, 36px); /* Responsive font size */
+            margin-bottom: 15px;
             color: #ff00cc;
         }
 
         p {
-            font-size: 20px;
-            margin-bottom: 20px;
+            font-size: clamp(14px, 2.5vw, 20px); /* Responsive */
+            margin-bottom: 15px;
         }
 
         .medal {
-            font-size: 80px;
-            margin-bottom: 20px;
+            font-size: clamp(40px, 10vw, 80px); /* Responsive medal size */
+            margin-bottom: 15px;
         }
 
         #playAgainBtn {
             background-color: orange;
             color: black;
-            padding: 15px 30px;
+            padding: 12px 25px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: clamp(14px, 2vw, 18px);
             transition: background-color 0.3s;
         }
 
@@ -77,9 +74,9 @@
     <img class="bg-image" src="IMG-20250523-WA0021.jpg" alt="Background">
     <div class="modal-content">
         <h1>Congratulations!</h1>
-        <p>You successfully completed this stage. Great job! 🎉</p>
-        <div class="medal">🏅</div>
-        <p>Keep going to unlock more challenges and boost your skills.</p>
+        <p>You successfully completed this stage. Great job!</p>
+        <div class="medal"></div>
+        <p>Continue to the next level to unlock more challenges and improve your skills.</p>
         <button id="playAgainBtn" onclick="window.location.href='stages.html'">Next</button>
     </div>
 </body>
