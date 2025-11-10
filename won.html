@@ -1,91 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>You Won!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Press Start 2P', cursive;
-            background-color: #1a1a1a;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-			 /*background-image: url('IMG-20250523-WA0021.jpg');
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;*/
-        }
-        .bg-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: fill; /* Stretch to cover full width and height */
-      z-index: -1;       /* Sit behind content */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You Won!</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+    body {
+        margin: 0;
+        font-family: 'Press Start 2P', cursive;
+        background-color: #1a1a1a;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        position: relative;
     }
+
+    .bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        z-index: -1;
+    }
+
+    .modal-content {
+        background-color: rgba(0, 0, 0, 0.7); /* semi-transparent */
+        padding: 40px 50px;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        max-width: 90%;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        color: #ffcc00; /* readable yellow */
+    }
+
+    p {
+        font-size: 18px;
+        margin-bottom: 25px;
+        line-height: 1.5;
+    }
+
+    .medal {
+        font-size: 50px;
+        font-weight: bold;
+        color: #ffd700; /* gold color for medal effect */
+        margin-bottom: 20px;
+        letter-spacing: 3px;
+        border: 2px solid #ffd700;
+        padding: 15px 25px;
+        border-radius: 10px;
+        display: inline-block;
+    }
+
+    #playAgainBtn {
+        background-color: #ff6600;
+        color: #000000;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background-color 0.3s;
+    }
+
+    #playAgainBtn:hover {
+        background-color: #ff9933;
+    }
+
+    @media (max-width: 500px) {
         .modal-content {
-             
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            display: inline-block;
-            text-align: center;
-		opacity:0.9;	 
-            background-size: cover;
-            margin-top:300px;
+            padding: 25px 20px;
         }
-
-        h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #ff00cc;
-        }
-
-        p {
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
-
-        .medal {
-            font-size: 80px;
-            margin-bottom: 20px;
-        }
-
-        #playAgainBtn {
-            background-color: orange;
-            color: black;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 18px;
-            transition: background-color 0.3s;
-             
-        }
-
-        #playAgainBtn:hover {
-            background-color: #ff66b2;
-        }
-    </style>
+        h1 { font-size: 24px; }
+        p { font-size: 16px; }
+        .medal { font-size: 36px; padding: 10px 15px; }
+        #playAgainBtn { padding: 12px 20px; font-size: 16px; }
+    }
+</style>
 </head>
 <body>
-     <img class="bg-image" src="IMG-20250523-WA0021.jpg" alt="Background">
+    <img class="bg-image" src="IMG-20250523-WA0021.jpg" alt="Background">
     <div class="modal-content">
-        <h1></h1>
-         
-       <!-- <div class="medal"> </div>-->
-        <div class="medal"></div>
-        <br />
+        <h1>Congratulations!</h1>
+        <p>You completed the level! Click Next to continue to the next stage.</p>
+        <div class="medal">WINNER</div>
         <button id="playAgainBtn" onclick="window.location.href='stages.html'">Next</button>
     </div>
-    
-
 </body>
 </html>
