@@ -393,28 +393,7 @@
       object-fit: fill; /* Stretch to cover full width and height */
       z-index: -1;       /* Sit behind content */
     }
-         h2.header {
-    font-size: clamp(1.5rem, 5vw, 3rem); /* Responsive font size */
-    font-weight: bold;
-    color: rgba(255, 255, 255, 0.8);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    position: fixed; /* Fixed to viewport */
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0.8;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    transition: opacity 0.3s ease, transform 0.3s ease, bottom 0.3s ease;
-    z-index: 1000;
-    pointer-events: none; /* Clicks pass through */
-  }
-
-  h2.header.hidden {
-    opacity: 0;
-    bottom: 10px; /* Slight slide effect */
-    transform: translateX(-50%) translateY(20px);
-  }
+         
     </style>
 </head>
 <body>  
@@ -1062,24 +1041,7 @@
 	</div>
 	</button> 		 
    </div>
-<script>
-  let lastScroll = 0;
-  const header = document.querySelector('.header');
 
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-
-    if (currentScroll > lastScroll) {
-      // Scrolling down -> show header
-      header.classList.remove('hidden');
-    } else {
-      // Scrolling up -> hide header
-      header.classList.add('hidden');
-    }
-
-    lastScroll = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
-  });
-</script>
    <script>
     // Retrieve the text from local storage
 //const storedText2 = localStorage.getItem('stagetwoopen');
