@@ -6,12 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Navigate through Memory Mix-Up — Play the Game, View Achievements, Read Instructions, or Invite Friends to Join the Fun!" />
   <meta name="keywords" content="memory game, play online, how to play, achievements, invite friends, privacy policy, fun brain game" />
-  <meta name="author" content="Memory Mix-Up Team" />
+  <meta name="author" content="Chuma Mnyipika" />
   <meta property="og:title" content="Memory Mix-Up | Game Navigation" />
   <meta property="og:description" content="Choose what you want to do next: Play, Learn, or Invite Friends to Memory Mix-Up." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://yourdomain.com/navigation.html" />
-
   <title>Memory Mix-Up | Game Navigation</title>
 
   <!-- Google Font -->
@@ -19,12 +18,13 @@
 
   <style>
     :root {
-      --main-bg: #ffffff;
-      --text-color: #000000;
-      --highlight: #222222;
-      --accent: #444444;
-      --button-bg: #f5f5f5;
-      --button-hover: #e0e0e0;
+      --main-bg: #fefefe;
+      --text-color: #111;
+      --highlight: #333;
+      --button-bg: #ffffff;
+      --button-hover: #f2f2f2;
+      --border-color: #ccc;
+      --shadow-light: rgba(0, 0, 0, 0.08);
     }
 
     * {
@@ -36,15 +36,14 @@
     body {
       font-family: 'Press Start 2P', cursive;
       color: var(--text-color);
-      background: var(--main-bg);
-      height: 100vh;
+      background: linear-gradient(180deg, #ffffff, #f8f8f8);
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      position: relative;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     h1 {
@@ -57,15 +56,15 @@
     }
 
     @keyframes subtleGlow {
-      from { text-shadow: 0 0 8px rgba(0,0,0,0.3); }
-      to { text-shadow: 0 0 16px rgba(0,0,0,0.5); }
+      from { text-shadow: 0 0 5px rgba(0,0,0,0.2); }
+      to { text-shadow: 0 0 10px rgba(0,0,0,0.4); }
     }
 
     main.nav-container {
       display: flex;
       flex-direction: column;
-      gap: 18px;
-      animation: fadeSlideIn 1.3s ease-out;
+      gap: 20px;
+      animation: fadeSlideIn 1.2s ease-out;
     }
 
     @keyframes fadeSlideIn {
@@ -78,21 +77,21 @@
       color: var(--text-color);
       border: 2px solid var(--highlight);
       border-radius: 35px;
-      padding: 16px 30px;
+      padding: 16px 28px;
       font-size: 0.85rem;
       width: 280px;
       cursor: pointer;
       transition: all 0.3s ease;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 8px var(--shadow-light);
       margin: 0 auto;
     }
 
     .nav-button:hover {
-      transform: scale(1.05);
+      transform: translateY(-3px);
       background: var(--button-hover);
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
     }
 
     .nav-button:active {
@@ -104,17 +103,20 @@
     }
 
     footer {
-      position: absolute;
-      bottom: 20px;
+      position: relative;
+      bottom: 0;
       font-size: 0.75rem;
       color: #555;
       text-align: center;
       width: 100%;
-      padding: 0 10px;
+      margin-top: 50px;
+      padding: 20px 15px;
+      border-top: 1px solid var(--border-color);
+      background: #fafafa;
     }
 
     footer a {
-      color: #000;
+      color: var(--highlight);
       text-decoration: none;
       font-weight: bold;
     }
@@ -128,6 +130,39 @@
       margin-top: 8px;
       line-height: 1.5;
       color: #666;
+      font-size: 0.7rem;
+    }
+
+    /* AdSense Consent Notice */
+    .adsense-notice {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      border-top: 1px solid #ccc;
+      padding: 15px;
+      text-align: center;
+      font-size: 0.75rem;
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+      z-index: 9999;
+      display: none;
+    }
+
+    .adsense-notice button {
+      background: var(--highlight);
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 16px;
+      margin-left: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-size: 0.7rem;
+    }
+
+    .adsense-notice button:hover {
+      background: #000;
     }
 
     @media (max-width: 768px) {
@@ -138,7 +173,7 @@
     @media (max-width: 480px) {
       h1 { font-size: 1.3rem; }
       .nav-button { width: 200px; padding: 12px 18px; font-size: 0.7rem; }
-      footer { font-size: 0.65rem; bottom: 10px; }
+      footer { font-size: 0.65rem; padding: 15px 10px; }
     }
   </style>
 </head>
@@ -171,13 +206,33 @@
   </main>
 
   <footer>
-    © 2025 Memory Mix-Up |
+    © 2025 Memory Mix-Up | Created by <strong>Chuma Mnyipika</strong><br>
     <a href="licence_agreement.html" title="Privacy Policy & Terms of Use">Privacy Policy</a> |
     <a href="licence_agreement.html" title="Contact Memory Mix-Up Team">Contact</a>
     <small>
-      This website uses Google AdSense to serve ads based on user interactions and interests. 
-      By using this site, you acknowledge and accept our use of cookies for analytics and advertising purposes.
+      This site uses Google AdSense to display ads based on your interests and interactions.
+      By continuing, you consent to the use of cookies for analytics and personalized advertising.
+      For more information, read our <a href="licence_agreement.html">Cookie & Privacy Policy</a>.
     </small>
   </footer>
+
+  <!-- Google AdSense Compliance Notice -->
+  <div class="adsense-notice" id="adsenseNotice">
+    This website uses Google AdSense to serve ads relevant to you. By clicking “I got it”, you consent to the use of cookies and data collection as described in our policy.
+    <button onclick="acceptNotice()">I got it</button>
+  </div>
+
+  <script>
+    function acceptNotice() {
+      localStorage.setItem('adsenseConsent', 'true');
+      document.getElementById('adsenseNotice').style.display = 'none';
+    }
+
+    window.onload = function() {
+      if (!localStorage.getItem('adsenseConsent')) {
+        document.getElementById('adsenseNotice').style.display = 'block';
+      }
+    }
+  </script>
 </body>
 </html>
