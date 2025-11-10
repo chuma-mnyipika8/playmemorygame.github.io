@@ -1,100 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9518937155167074"
-    crossorigin="anonymous"></script>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Congratulations! You've completed the level — move to the next stage and keep winning in Memory Mix-Up!">
-  <title>You Won!</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Press Start 2P', cursive;
-      background-color: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .bg-image {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Won!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Press Start 2P', cursive;
+            background-color: #1a1a1a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+			 /*background-image: url('IMG-20250523-WA0021.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;*/
+        }
+        .bg-image {
       position: absolute;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      object-fit: cover;
-      z-index: -1;
+      object-fit: fill; /* Stretch to cover full width and height */
+      z-index: -1;       /* Sit behind content */
     }
+        .modal-content {
+             
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            text-align: center;
+		opacity:0.9;	 
+            background-size: cover;
+            margin-top:300px;
+        }
 
-    .button-container {
-      margin-top: 350px;
-      text-align: center;
-    }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ff00cc;
+        }
 
-    #playAgainBtn {
-      background-color: orange;
-      color: black;
-      padding: 15px 35px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 18px;
-      transition: background-color 0.3s;
-      font-family: 'Press Start 2P', cursive;
-    }
+        p {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
 
-    #playAgainBtn:hover {
-      background-color: #ff66b2;
-    }
+        .medal {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
 
-    /* Ad container styling */
-    .ad-container {
-      margin: 15px auto;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-  </style>
+        #playAgainBtn {
+            background-color: orange;
+            color: black;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+             
+        }
+
+        #playAgainBtn:hover {
+            background-color: #ff66b2;
+        }
+    </style>
 </head>
-
 <body>
-  <img class="bg-image" src="IMG-20250523-WA0021.jpg" alt="You Won Background">
-
-  <!-- Top Ad -->
-  <div class="ad-container">
-    <ins class="adsbygoogle"
-      style="display:block"
-      data-ad-client="ca-pub-9518937155167074"
-      data-ad-slot="1234567890"
-      data-ad-format="auto"
-      data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <!-- Button only, no extra text -->
-  <div class="button-container">
-    <button id="playAgainBtn" onclick="window.location.href='stages.html'">Next</button>
-  </div>
-
-  <!-- Bottom Ad -->
-  <div class="ad-container">
-    <ins class="adsbygoogle"
-      style="display:block"
-      data-ad-client="ca-pub-9518937155167074"
-      data-ad-slot="0987654321"
-      data-ad-format="auto"
-      data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+     <img class="bg-image" src="IMG-20250523-WA0021.jpg" alt="Background">
+    <div class="modal-content">
+        <h1></h1>
+         
+       <!-- <div class="medal"> </div>-->
+        <div class="medal"></div>
+        <br />
+        <button id="playAgainBtn" onclick="window.location.href='stages.html'">Next</button>
+    </div>
+    
 
 </body>
 </html>
