@@ -1,147 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Lover License & Privacy Policy</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Lover License & Privacy Policy</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #ecf0f1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      color: #333;
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ecf0f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+    padding: 20px;
+  }
+
+  .container {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    width: 100%;
+    overflow-y: auto;
+    max-height: 90vh;
+    scroll-behavior: smooth;
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    color: #34495e;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 22px;
+    color: #2c3e50;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    color: #555;
+  }
+
+  a {
+    color: #3498db;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .highlight {
+    font-weight: 700;
+    color: #e74c3c;
+  }
+
+  .accept-btn {
+    display: block;
+    width: 100%;
+    background-color: #38ada9;
+    color: #fff;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .accept-btn:hover {
+    background-color: #6a89cc;
+    transform: scale(1.02);
+  }
+
+  .footer {
+    text-align: center;
+    font-size: 14px;
+    color: #aaa;
+    margin-top: 30px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #38ada9;
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #6a89cc;
+  }
+
+  @media (max-width: 768px) {
+    .container {
       padding: 20px;
     }
 
-    .container {
-      background-color: #fff;
-      padding: 30px 40px;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      max-width: 900px;
-      width: 100%;
-      overflow-y: auto;
-      max-height: 90vh;
-    }
-
     h1 {
-      font-size: 28px;
-      font-weight: 600;
-      text-align: center;
-      color: #34495e;
-      margin-bottom: 20px;
-      text-transform: uppercase;
+      font-size: 24px;
     }
 
     h2 {
-      font-size: 22px;
-      color: #2c3e50;
-      margin-top: 30px;
-      margin-bottom: 10px;
+      font-size: 20px;
     }
 
     p {
-      font-size: 16px;
-      line-height: 1.8;
-      margin-bottom: 15px;
-      color: #555;
-    }
-
-    .highlight {
-      font-weight: 700;
-      color: #e74c3c;
+      font-size: 15px;
     }
 
     .accept-btn {
-      display: block;
-      width: 100%;
-      background-color: #38ada9;
-      color: #fff;
-      padding: 15px;
+      font-size: 16px;
+      padding: 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 20px;
+    }
+
+    h2 {
       font-size: 18px;
-      font-weight: 600;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 30px;
-      text-align: center;
-      transition: background-color 0.3s ease;
     }
 
-    .accept-btn:hover {
-      background-color: #6a89cc;
-    }
-
-    .footer {
-      text-align: center;
+    p {
       font-size: 14px;
-      color: #aaa;
-      margin-top: 30px;
     }
-
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background-color: #38ada9;
-      border-radius: 5px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background-color: #6a89cc;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Game Lover License & Privacy Policy</h1>
+<div class="container">
+  <h1>Game Lover License & Privacy Policy</h1>
 
-    <p>By installing, copying, or using the Game Lover software ("the Game"), you agree to the following terms and conditions:</p>
+  <p>By installing, copying, or using the Game Lover software ("the Game"), you agree to the following terms and conditions:</p>
 
-    <h2>License Agreement</h2>
-    <p><span class="highlight">Ownership:</span> The Game and all related content are the intellectual property of Chuma Mnyipika ("the Owner").</p>
+  <h2>License Agreement</h2>
+  <p><span class="highlight">Ownership:</span> The Game and all related content are the intellectual property of Chuma Mnyipika ("the Owner").</p>
+  <p><span class="highlight">License:</span> You are granted a non-exclusive, non-transferable license to use the Game for personal, non-commercial purposes only.</p>
+  <p><span class="highlight">Restrictions:</span> You may not reverse engineer, modify, or redistribute the Game or its components.</p>
+  <p><span class="highlight">Termination:</span> The Owner may terminate this license if you violate any terms. Upon termination, you must uninstall and delete all copies of the Game.</p>
+  <p><span class="highlight">Limitation of Liability:</span> The Game is provided "as is." The Owner is not responsible for any damages resulting from its use.</p>
+  <p><span class="highlight">Indemnification:</span> You agree to indemnify the Owner against any claims related to your use of the Game.</p>
+  <p><span class="highlight">Governing Law:</span> This Agreement is governed by the laws of the Owner’s jurisdiction.</p>
 
-    <p><span class="highlight">License:</span> You are granted a non-exclusive, non-transferable license to use the Game for personal, non-commercial purposes only.</p>
+  <h2>Privacy Policy</h2>
+  <p>This website uses <strong>Google AdSense</strong> to display advertisements. Google may use cookies and collect data to personalize ads. Learn more at <a href="https://policies.google.com/technologies/ads" target="_blank">Google Advertising Policies</a>.</p>
+  <p>We do not collect or store any personal information directly. However, third-party services like AdSense may collect data as part of their operations.</p>
+  <p>By using this website or the Game, you consent to the use of cookies and data collection by third-party ad services.</p>
 
-    <p><span class="highlight">Restrictions:</span> You may not reverse engineer, modify, or redistribute the Game or its components.</p>
+  <h2>Cookie Policy</h2>
+  <p>Our website uses cookies to improve user experience, monitor traffic, and provide personalized ads. You can control cookie settings in your browser.</p>
 
-    <p><span class="highlight">Termination:</span> The Owner may terminate this license if you violate any terms. Upon termination, you must uninstall and delete all copies of the Game.</p>
+  <h2>Children's Privacy</h2>
+  <p>The Game and website are not intended for children under 13. We do not knowingly collect personal information from children.</p>
 
-    <p><span class="highlight">Limitation of Liability:</span> The Game is provided "as is." The Owner is not responsible for any damages resulting from its use.</p>
+  <h2>AdSense Compliance</h2>
+  <p>All content and advertisements comply with Google AdSense Program Policies. No deceptive or excessive ads are displayed, and all ads are clearly distinguishable from content.</p>
 
-    <p><span class="highlight">Indemnification:</span> You agree to indemnify the Owner against any claims related to your use of the Game.</p>
+  <h2>Contact</h2>
+  <p>If you have any questions about this License Agreement, Privacy Policy, or AdSense compliance, please contact:</p>
+  <p>Email: <a href="mailto:chumachushman@gmail.com">chumachushman@gmail.com</a></p>
 
-    <p><span class="highlight">Governing Law:</span> This Agreement is governed by the laws of the Owner’s jurisdiction.</p>
+  <button class="accept-btn" onclick="window.location.href='navigation.html'">Back To Game Navigation</button>
 
-    <h2>Privacy Policy</h2>
-    <p>This website uses Google AdSense to display advertisements. Google may use cookies and collect data to personalize ads. Learn more at <a href="https://policies.google.com/technologies/ads" target="_blank">Google Advertising Policies</a>.</p>
-
-    <p>We do not collect or store any personal information directly. However, third-party services like AdSense may collect data as part of their operations.</p>
-
-    <p>By using this website or the Game, you agree to this privacy policy.</p>
-
-    <h2>Contact</h2>
-    <p>If you have any questions about this License Agreement or Privacy Policy, please contact the owner:</p>
-    <p>Email: <a href="mailto:chumachushman@gmail.com">chumachushman@gmail.com</a></p>
-
-    <button class="accept-btn" onclick="window.location.href='navigation.html'">Back To Game Navigation</button>
-
-    <div class="footer">
-      <p>&copy; 2024 Chuma Mnyipika. All Rights Reserved.</p>
-    </div>
+  <div class="footer">
+    <p>&copy; 2024 Chuma Mnyipika. All Rights Reserved.</p>
   </div>
+</div>
 
 </body>
 </html>
-
