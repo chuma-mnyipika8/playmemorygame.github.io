@@ -14,25 +14,29 @@
 
   <title>Memory Mix-Up | Game Navigation</title>
 
-  <!-- Google Fonts -->
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --main-text: #ffffff;
-      --highlight: #0077ff;
-      --accent: #004080;
-      --bg-overlay: rgba(0, 0, 0, 0.6);
+      --main-bg: #ffffff;
+      --text-color: #000000;
+      --highlight: #222222;
+      --accent: #444444;
+      --button-bg: #f5f5f5;
+      --button-hover: #e0e0e0;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: 'Press Start 2P', cursive;
-      color: var(--main-text);
-      background: linear-gradient(45deg, rgba(0,0,30,0.7), rgba(0,40,80,0.6)),
-                  url('InShot_20200411_043858064.jpg') no-repeat center center fixed;
-      background-size: cover;
+      color: var(--text-color);
+      background: var(--main-bg);
       height: 100vh;
       display: flex;
       flex-direction: column;
@@ -44,24 +48,23 @@
     }
 
     h1 {
-      font-size: 2.2rem;
+      font-size: 2rem;
       margin-bottom: 40px;
       text-transform: uppercase;
-      letter-spacing: 3px;
-      animation: glow 1.8s ease-in-out infinite alternate;
-      z-index: 2;
+      letter-spacing: 2px;
+      color: var(--highlight);
+      animation: subtleGlow 2s ease-in-out infinite alternate;
     }
 
-    @keyframes glow {
-      from { text-shadow: 0 0 10px var(--highlight), 0 0 20px var(--accent); }
-      to { text-shadow: 0 0 25px var(--highlight), 0 0 40px var(--accent); }
+    @keyframes subtleGlow {
+      from { text-shadow: 0 0 8px rgba(0,0,0,0.3); }
+      to { text-shadow: 0 0 16px rgba(0,0,0,0.5); }
     }
 
     main.nav-container {
       display: flex;
       flex-direction: column;
       gap: 18px;
-      z-index: 2;
       animation: fadeSlideIn 1.3s ease-out;
     }
 
@@ -71,8 +74,8 @@
     }
 
     .nav-button {
-      background: var(--bg-overlay);
-      color: var(--main-text);
+      background: var(--button-bg);
+      color: var(--text-color);
       border: 2px solid var(--highlight);
       border-radius: 35px;
       padding: 16px 30px;
@@ -82,43 +85,58 @@
       transition: all 0.3s ease;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      box-shadow: 0 0 8px rgba(0, 119, 255, 0.3);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
       margin: 0 auto;
     }
 
     .nav-button:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 20px var(--highlight);
-      background-color: rgba(0, 119, 255, 0.15);
+      background: var(--button-hover);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
     }
 
-    .nav-button:active { transform: scale(0.97); }
+    .nav-button:active {
+      transform: scale(0.97);
+    }
 
-    .nav-button span { color: #fff; font-weight: bold; }
+    .nav-button span {
+      font-weight: bold;
+    }
 
     footer {
       position: absolute;
       bottom: 20px;
       font-size: 0.75rem;
-      color: #ccc;
-      z-index: 2;
+      color: #555;
+      text-align: center;
+      width: 100%;
+      padding: 0 10px;
     }
 
     footer a {
-      color: #66b3ff;
-      margin: 0 6px;
+      color: #000;
       text-decoration: none;
+      font-weight: bold;
     }
 
-    footer a:hover { color: #fff; text-decoration: underline; }
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    footer small {
+      display: block;
+      margin-top: 8px;
+      line-height: 1.5;
+      color: #666;
+    }
 
     @media (max-width: 768px) {
-      h1 { font-size: 1.7rem; margin-bottom: 30px; }
+      h1 { font-size: 1.6rem; margin-bottom: 30px; }
       .nav-button { width: 240px; padding: 14px 25px; font-size: 0.8rem; }
     }
 
     @media (max-width: 480px) {
-      h1 { font-size: 1.4rem; }
+      h1 { font-size: 1.3rem; }
       .nav-button { width: 200px; padding: 12px 18px; font-size: 0.7rem; }
       footer { font-size: 0.65rem; bottom: 10px; }
     }
@@ -130,36 +148,36 @@
     <h1>Memory Mix-Up Navigation</h1>
   </header>
 
-  <!-- ✅ Main Navigation -->
   <main class="nav-container" role="navigation" aria-label="Main navigation buttons">
     <button class="nav-button" onclick="window.location.href='stages.html'" aria-label="Play the Game Now">
-        <span>▶ Start Playing Now</span>
+      <span>▶ Start Playing Now</span>
     </button>
 
     <button class="nav-button" onclick="window.location.href='licence_agreement.html'" aria-label="Game License and Privacy Policy">
-        <span>📄 Privacy Policy & License</span>
+      <span>📄 Privacy Policy & License</span>
     </button>
 
     <button class="nav-button" onclick="window.location.href='gameinstruction.html'" aria-label="Game Instructions and How to Play">
-        <span>📘 How to Play</span>
+      <span>📘 How to Play</span>
     </button>
 
     <button class="nav-button" onclick="window.location.href='this.html'" aria-label="View Achievements and Milestones">
-        <span>🏆 Player Achievements</span>
+      <span>🏆 Player Achievements</span>
     </button>
 
     <button class="nav-button" onclick="window.location.href='refertofriend.html'" aria-label="Invite Friends to Play">
-        <span>🤝 Invite Friends</span>
+      <span>🤝 Invite Friends</span>
     </button>
   </main>
 
-  <!-- ✅ AdSense & Legal Notice Section -->
   <footer>
     © 2025 Memory Mix-Up |
     <a href="licence_agreement.html" title="Privacy Policy & Terms of Use">Privacy Policy</a> |
     <a href="licence_agreement.html" title="Contact Memory Mix-Up Team">Contact</a>
-    <br />
-    <small>This website uses Google AdSense to serve ads based on user interactions and interests. By using this site, you acknowledge and accept our use of cookies for analytics and advertising purposes.</small>
+    <small>
+      This website uses Google AdSense to serve ads based on user interactions and interests. 
+      By using this site, you acknowledge and accept our use of cookies for analytics and advertising purposes.
+    </small>
   </footer>
 </body>
 </html>
