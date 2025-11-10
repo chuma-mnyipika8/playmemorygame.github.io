@@ -25,10 +25,21 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
-            filter: brightness(0.5);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5); /* semi-transparent overlay for readability */
+            z-index: 0;
         }
 
         .container {
+            position: relative;
+            z-index: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -44,16 +55,12 @@
             margin-bottom: 20px;
         }
 
-        .sad-face {
-            font-size: 100px;
-            margin-bottom: 20px;
-        }
-
         p {
             font-size: 18px;
             max-width: 600px;
             line-height: 1.5;
             margin-bottom: 40px;
+            color: #ffffff;
         }
 
         #playAgainBtn {
@@ -75,8 +82,11 @@
         .tips {
             font-size: 16px;
             margin-top: 30px;
-            color: #fff;
+            color: #ffffff;
             max-width: 500px;
+            background: rgba(0,0,0,0.4);
+            padding: 15px;
+            border-radius: 10px;
         }
 
         .tips ul {
@@ -90,7 +100,6 @@
 
         @media(max-width: 600px) {
             h1 { font-size: 32px; }
-            .sad-face { font-size: 70px; }
             p, .tips { font-size: 14px; }
             #playAgainBtn { padding: 12px 25px; font-size: 16px; }
         }
@@ -98,18 +107,18 @@
 </head>
 <body>
     <img class="bg-image" src="IMG-20250523-WA0024.jpg" alt="Background">
+    <div class="overlay"></div>
     <div class="container">
-        <h1>Oops! You Lost!</h1>
-        <div class="sad-face">😢</div>
-        <p>Don't worry, every defeat is a step closer to victory. Take a deep breath, learn from this attempt, and come back stronger!</p>
+        <h1>You Lost!</h1>
+        <p>Don't worry! Every attempt brings you closer to success. Take a deep breath, learn from this round, and try again with focus and strategy.</p>
         <button id="playAgainBtn" onclick="window.location.href='stages.html'">Try Again</button>
 
         <div class="tips">
-            <h2>Tips to Improve:</h2>
+            <h2>Quick Tips:</h2>
             <ul>
-                <li>Focus on the patterns carefully.</li>
-                <li>Take your time and avoid rushing.</li>
-                <li>Practice makes perfect—every attempt counts!</li>
+                <li>Pay attention to patterns carefully.</li>
+                <li>Take your time; rushing leads to mistakes.</li>
+                <li>Practice consistently to improve your skills.</li>
             </ul>
         </div>
     </div>
