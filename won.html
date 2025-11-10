@@ -6,38 +6,42 @@
 <title>You Won!</title>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
-    body {
+    html, body {
         margin: 0;
+        padding: 0;
+        height: 100%;
         font-family: 'Press Start 2P', cursive;
-        color: white;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
         text-align: center;
         overflow: hidden;
         background-color: #1a1a1a;
     }
 
-    /* Background image */
-    .bg-image {
-        position: absolute;
+    /* Background container */
+    .bg {
+        position: fixed;
         top: 0;
         left: 0;
-        width: 100vw;
-        height: 100vh;
-        object-fit: cover; /* Cover the whole screen without distortion */
-        z-index: -1;       /* Behind all content */
+        width: 100%;
+        height: 100%;
+        background-image: url('IMG-20250523-WA0021.jpg');
+        background-size: cover;         /* Cover full screen */
+        background-position: center;    /* Center image */
+        background-repeat: no-repeat;
+        z-index: -1;                    /* Behind all content */
     }
 
     /* Modal content */
     .modal-content {
-        background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent */
-        backdrop-filter: blur(5px); /* Optional blur for readability */
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
         padding: 40px 50px;
         border-radius: 12px;
         box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         max-width: 90%;
+        color: #ffffff;
     }
 
     h1 {
@@ -78,7 +82,6 @@
         background-color: #ff9933;
     }
 
-    /* Responsive adjustments */
     @media (max-width: 500px) {
         .modal-content {
             padding: 25px 20px;
@@ -91,8 +94,8 @@
 </style>
 </head>
 <body>
-    <!-- Background Image -->
-    <img class="bg-image" src="IMG-20250523-WA0021.jpg" alt="Background">
+    <!-- Background -->
+    <div class="bg"></div>
 
     <!-- Modal Content -->
     <div class="modal-content">
