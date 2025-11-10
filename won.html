@@ -6,32 +6,27 @@
 <title>You Won!</title>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
-    body {
+    html, body {
         margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
         font-family: 'Press Start 2P', cursive;
-        background-color: #1a1a1a;
         color: white;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
         text-align: center;
-        position: relative;
-    }
-
-    .bg-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        object-fit: cover;
-        z-index: -1;
+        background-color: #1a1a1a;
+        background-image: url('IMG-20250523-WA0021.jpg'); /* your background */
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain; /* fit whole image without cropping */
     }
 
     .modal-content {
-        background-color: rgba(0, 0, 0, 0.7); /* semi-transparent */
-        padding: 40px 50px;
+        background-color: rgba(0, 0, 0, 0.7); /* semi-transparent box */
+        padding: 35px 50px;
         border-radius: 12px;
         box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         max-width: 90%;
@@ -54,7 +49,7 @@
     .medal {
         font-size: 50px;
         font-weight: bold;
-        color: #ffd700; /* gold color for medal effect */
+        color: #ffd700; /* gold color */
         margin-bottom: 20px;
         letter-spacing: 3px;
         border: 2px solid #ffd700;
@@ -90,7 +85,6 @@
 </style>
 </head>
 <body>
-    <img class="bg-image" src="IMG-20250523-WA0021.jpg" alt="Background">
     <div class="modal-content">
         <h1>Congratulations!</h1>
         <p>You completed the level! Click Next to continue to the next stage.</p>
