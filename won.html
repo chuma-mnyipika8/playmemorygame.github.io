@@ -6,38 +6,44 @@
 <title>You Won!</title>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
-    html, body {
+    body {
         margin: 0;
-        padding: 0;
-        height: 100%;
-        width: 100%;
         font-family: 'Press Start 2P', cursive;
         color: white;
         display: flex;
         justify-content: center;
         align-items: center;
+        height: 100vh;
         text-align: center;
+        overflow: hidden;
         background-color: #1a1a1a;
-        background-image: url('IMG-20250523-WA0021.jpg'); /* your background */
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: contain; /* fit whole image without cropping */
     }
 
+    /* Background image */
+    .bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover; /* Cover the whole screen without distortion */
+        z-index: -1;       /* Behind all content */
+    }
+
+    /* Modal content */
     .modal-content {
-        background-color: rgba(0, 0, 0, 0.7); /* semi-transparent box */
-        padding: 35px 50px;
+        background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent */
+        backdrop-filter: blur(5px); /* Optional blur for readability */
+        padding: 40px 50px;
         border-radius: 12px;
         box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         max-width: 90%;
-        text-align: center;
-        color: #ffffff;
     }
 
     h1 {
-        font-size: 32px;
+        font-size: 36px;
         margin-bottom: 20px;
-        color: #ffcc00; /* readable yellow */
+        color: #ffcc00;
     }
 
     p {
@@ -47,11 +53,10 @@
     }
 
     .medal {
-        font-size: 50px;
+        font-size: 60px;
         font-weight: bold;
-        color: #ffd700; /* gold color */
+        color: #ffd700;
         margin-bottom: 20px;
-        letter-spacing: 3px;
         border: 2px solid #ffd700;
         padding: 15px 25px;
         border-radius: 10px;
@@ -73,6 +78,7 @@
         background-color: #ff9933;
     }
 
+    /* Responsive adjustments */
     @media (max-width: 500px) {
         .modal-content {
             padding: 25px 20px;
@@ -82,31 +88,13 @@
         .medal { font-size: 36px; padding: 10px 15px; }
         #playAgainBtn { padding: 12px 20px; font-size: 16px; }
     }
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    font-family: 'Press Start 2P', cursive;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: #1a1a1a;
-    background-image: url('IMG-20250523-WA0021.jpg'); /* your background */
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: contain; /* ensures the image fills the screen */
-}
-
-/* Optional: Prevent scrolling caused by tiny overflow on some screens */
-body {
-    overflow: hidden;
-}
 </style>
 </head>
 <body>
+    <!-- Background Image -->
+    <img class="bg-image" src="IMG-20250523-WA0021.jpg" alt="Background">
+
+    <!-- Modal Content -->
     <div class="modal-content">
         <h1>Congratulations!</h1>
         <p>You completed the level! Click Next to continue to the next stage.</p>
