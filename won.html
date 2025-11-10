@@ -24,18 +24,19 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            object-fit: cover; /* Cover the screen */
-            z-index: -1;
+            object-fit: fill; /* Keep your original bg stretch */
+            z-index: -1;     
         }
 
         .modal-content {
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            background-color: rgba(0,0,0,0.7); /* Semi-transparent box */
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent box */
             max-width: 90%;
             width: 400px;
             text-align: center;
+            margin-top: 300px; /* Keep your original spacing */
         }
 
         h1 {
@@ -50,7 +51,7 @@
         }
 
         .medal {
-            font-size: clamp(40px, 10vw, 80px); /* Responsive medal size */
+            font-size: clamp(40px, 10vw, 80px); /* Responsive */
             margin-bottom: 15px;
         }
 
