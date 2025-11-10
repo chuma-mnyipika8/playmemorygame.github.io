@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Game Tutorial Videos</title>
+<title>Game Tutorial & Tips</title>
 <style>
   body {
     margin: 0;
@@ -23,60 +23,38 @@
     letter-spacing: 1px;
     text-align: center;
     color: rgba(255,255,255,0.95);
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     text-transform: uppercase;
     text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
   }
 
-  .video-block {
-    text-align: center;
+  .tutorial-block {
+    text-align: left;
     max-width: 800px;
     width: 100%;
-  }
-
-  .video-block p {
-    margin-top: 10px;
-    font-size: 15px;
-    color: rgba(255,255,255,0.85);
     background: rgba(0,0,0,0.4);
-    padding: 10px 15px;
-    border-radius: 12px;
-    backdrop-filter: blur(4px);
-    line-height: 1.5;
-  }
-
-  video {
-    width: 100%;
-    max-width: 720px;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    display: block;
-    border: 2px solid rgba(255,255,255,0.2);
-    border-radius: 20px;
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(8px);
+    padding: 20px 25px;
+    border-radius: 15px;
+    backdrop-filter: blur(6px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-    cursor: pointer;
   }
 
-  video:hover {
-    transform: scale(1.03);
-    box-shadow: 0 14px 35px rgba(0,0,0,0.6);
+  .tutorial-block h3 {
+    font-size: 20px;
+    color: #ffdd59;
+    margin-bottom: 10px;
   }
 
-  .fullscreen {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    width: 100% !important;
-    height: 100% !important;
-    max-width: none !important;
-    border-radius: 0 !important;
-    border: none !important;
-    box-shadow: none !important;
-    background: black;
-    object-fit: contain !important;
+  .tutorial-block p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .tip {
+    font-weight: 600;
+    color: #00d2d3;
   }
 
   .back-button {
@@ -102,11 +80,13 @@
     transform: scale(0.98);
   }
 
-  /* Responsive instructions & captions */
   @media (max-width: 768px) {
-    .video-block p {
+    .tutorial-block p {
       font-size: 14px;
-      padding: 8px 12px;
+    }
+
+    .tutorial-block h3 {
+      font-size: 18px;
     }
   }
 
@@ -114,10 +94,15 @@
     h2 {
       font-size: 20px;
     }
-    .video-block p {
-      font-size: 13px;
-      padding: 6px 10px;
+
+    .tutorial-block h3 {
+      font-size: 16px;
     }
+
+    .tutorial-block p {
+      font-size: 13px;
+    }
+
     .back-button {
       width: 90%;
       padding: 12px;
@@ -127,64 +112,46 @@
 </head>
 <body>
 
-<h2>How to Play</h2>
+<h2>Game Tutorial & Tips</h2>
 
-<div class="video-block">
-  <video muted loop playsinline>
-    <source src="video2.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <p><strong>Memory Card Game:</strong> Match symbol pairs before time runs out. Dynamic cards, sound effects, and difficulty levels. Completing all pairs or running out of time directs you to the "won" or "lose" page. Tip: Focus on memorizing positions quickly!</p>
+<div class="tutorial-block">
+  <h3>Memory Card Game</h3>
+  <p>Match symbol pairs before time runs out. The game features dynamic cards, sound effects, and multiple difficulty levels.</p>
+  <p class="tip">Tip: Start by memorizing the positions of a few cards at a time for faster pairing.</p>
+  <p>Winning occurs when all pairs are matched; losing occurs when time expires. Focus and speed are key!</p>
 </div>
 
-<div class="video-block">
-  <video muted loop playsinline>
-    <source src="video2.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <p><strong>Word Search Puzzle:</strong> Find hidden words in a grid arranged horizontally, vertically, or diagonally. Scan the grid and circle each word from the word list until all are found. Tip: Start with unique letters to locate words faster.</p>
+<div class="tutorial-block">
+  <h3>Word Search Puzzle</h3>
+  <p>Find hidden words arranged horizontally, vertically, or diagonally. Scan the grid carefully and mark each word from the list.</p>
+  <p class="tip">Tip: Begin with words that have unique letters to spot them quickly.</p>
+  <p>This game improves observation, vocabulary, and concentration.</p>
 </div>
 
-<div class="video-block">
-  <video muted loop playsinline>
-    <source src="video3.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <p><strong>Advanced Word Puzzle:</strong> Drag and drop letters to complete hidden words using hints. Race against a timer with limited attempts. Interactive blocks, countdown, and attempt tracking create a challenging experience. Tip: Use hints strategically to save time.</p>
+<div class="tutorial-block">
+  <h3>Advanced Word Puzzle</h3>
+  <p>Drag and drop letters to form hidden words using hints. Race against a timer with limited attempts for a challenging experience.</p>
+  <p class="tip">Tip: Use hints strategically and plan moves to maximize your score.</p>
+  <p>Interactive letter blocks and countdown timers make this game both fun and educational.</p>
 </div>
 
-<div class="video-block">
-  <video muted loop playsinline>
-    <source src="video4.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <p><strong>Tips & Tricks:</strong> Take your time on harder levels. Sound and color cues help track your progress. Replay tutorials for better mastery.</p>
+<div class="tutorial-block">
+  <h3>General Gameplay Tips</h3>
+  <p>- Stay focused and avoid distractions.</p>
+  <p>- Take advantage of visual and sound cues.</p>
+  <p>- Replay tutorials to improve memory and strategy.</p>
+  <p>- Challenge yourself with higher difficulty levels for better rewards.</p>
+</div>
+
+<div class="tutorial-block">
+  <h3>AdSense & Privacy Info</h3>
+  <p>This page may display Google AdSense advertisements. Ads are clearly distinguishable from content and follow Google AdSense policies. No personal data is collected directly; third-party services may collect data according to their policies.</p>
+  <p>Learn more about AdSense policies at <a href="https://policies.google.com/technologies/ads" target="_blank">Google Ads Policies</a>.</p>
 </div>
 
 <button class="back-button" onclick="window.location.href='navigation.html'">
   Back to Navigation
 </button>
-
-<script>
-  const videos = document.querySelectorAll("video");
-
-  videos.forEach(video => {
-    video.addEventListener("click", () => {
-      if (video.classList.contains("fullscreen")) {
-        video.pause();
-        video.classList.remove("fullscreen");
-      } else {
-        document.querySelectorAll(".fullscreen").forEach(v => v.classList.remove("fullscreen"));
-        video.classList.add("fullscreen");
-        video.play();
-      }
-    });
-
-    video.addEventListener("ended", () => {
-      video.classList.remove("fullscreen");
-    });
-  });
-</script>
 
 </body>
 </html>
