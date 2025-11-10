@@ -1,97 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9518937155167074"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9518937155167074"
      crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>You Lost!</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
-        body {
+        html, body {
             margin: 0;
+            padding: 0;
+            height: 100%;
             font-family: 'Press Start 2P', cursive;
-            background-color: #1a1a1a;
+            overflow: hidden;
             color: white;
+        }
+
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.5);
+        }
+
+        .container {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 100%;
             text-align: center;
-		/*background-image: url('IMG-20250523-WA0024.jpg'); 
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;*/ 	
-             
+            padding: 20px;
         }
 
-        .modal-content {
-             
-            height:100%;
-            width:100%;
-            padding: 40px;
-            border-radius: 10px;
-             
-            display: inline-block;
-            text-align: center;
-			 
-        }
-        .bg-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: fill; /* Stretch to cover full width and height */
-      z-index: -1;       /* Sit behind content */
-    }
         h1 {
-            font-size: 36px;
+            font-size: 48px;
+            color: #ff3333;
             margin-bottom: 20px;
-            color: #ff0000;
-        }
-
-        p {
-            font-size: 20px;
-            margin-top: 500px;
         }
 
         .sad-face {
-            font-size: 80px;
+            font-size: 100px;
             margin-bottom: 20px;
         }
 
+        p {
+            font-size: 18px;
+            max-width: 600px;
+            line-height: 1.5;
+            margin-bottom: 40px;
+        }
+
         #playAgainBtn {
-            background-color:red;
+            background-color: #ff3333;
             color: white;
-            padding: 15px 30px;
+            padding: 15px 35px;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
             font-size: 18px;
-             
-             
+            transition: all 0.3s ease;
         }
 
         #playAgainBtn:hover {
             background-color: #ff66b2;
+            transform: scale(1.05);
         }
-        .paragraph{
-         margin-top:100px;
-       }
+
+        .tips {
+            font-size: 16px;
+            margin-top: 30px;
+            color: #fff;
+            max-width: 500px;
+        }
+
+        .tips ul {
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .tips li {
+            margin-bottom: 10px;
+        }
+
+        @media(max-width: 600px) {
+            h1 { font-size: 32px; }
+            .sad-face { font-size: 70px; }
+            p, .tips { font-size: 14px; }
+            #playAgainBtn { padding: 12px 25px; font-size: 16px; }
+        }
     </style>
 </head>
 <body>
     <img class="bg-image" src="IMG-20250523-WA0024.jpg" alt="Background">
-    <div class="modal-content">
-         <p id="paragraph"></p> 
-        <div class="sad-face"></div>
-        <br />
-       <button id="playAgainBtn" onclick="window.location.href='stages.html'">Try Again</button>
+    <div class="container">
+        <h1>Oops! You Lost!</h1>
+        <div class="sad-face">😢</div>
+        <p>Don't worry, every defeat is a step closer to victory. Take a deep breath, learn from this attempt, and come back stronger!</p>
+        <button id="playAgainBtn" onclick="window.location.href='stages.html'">Try Again</button>
+
+        <div class="tips">
+            <h2>Tips to Improve:</h2>
+            <ul>
+                <li>Focus on the patterns carefully.</li>
+                <li>Take your time and avoid rushing.</li>
+                <li>Practice makes perfect—every attempt counts!</li>
+            </ul>
+        </div>
     </div>
-      <h1> </h1>
-        
-        
 </body>
 </html>
-
