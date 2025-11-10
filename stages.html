@@ -393,7 +393,25 @@
       object-fit: fill; /* Stretch to cover full width and height */
       z-index: -1;       /* Sit behind content */
     }
-         
+         h2.header {
+      font-size: 2rem;
+      text-align: center;
+      margin-top: 50px;
+      opacity: 1;
+      animation: fadeOutH2 3s forwards; /* only affects h2.header */
+    }
+
+    @keyframes fadeOutH2 {
+      0% {
+        opacity: 1;
+      }
+      70% {
+        opacity: 1; /* stays visible for a while */
+      }
+      100% {
+        opacity: 0; /* fades out completely */
+      }
+    }
     </style>
 </head>
 <body>  
