@@ -16,14 +16,13 @@
     body {
       margin: 0;
       font-family: 'Press Start 2P', cursive;
-      background-color: #1a1a1a;
-      color: white;
+      background-color: #000;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       height: 100vh;
-      text-align: center;
+      overflow: hidden;
     }
 
     .bg-image {
@@ -32,46 +31,25 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      object-fit: fill;
+      object-fit: cover;
       z-index: -1;
     }
 
-    .modal-content {
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-      display: inline-block;
+    .button-container {
+      margin-top: 350px;
       text-align: center;
-      opacity: 0.9;
-      background-size: cover;
-      margin-top: 250px;
-    }
-
-    h1 {
-      font-size: 36px;
-      margin-bottom: 20px;
-      color: #ff00cc;
-    }
-
-    p {
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-
-    .medal {
-      font-size: 80px;
-      margin-bottom: 20px;
     }
 
     #playAgainBtn {
       background-color: orange;
       color: black;
-      padding: 15px 30px;
+      padding: 15px 35px;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
       font-size: 18px;
       transition: background-color 0.3s;
+      font-family: 'Press Start 2P', cursive;
     }
 
     #playAgainBtn:hover {
@@ -80,16 +58,18 @@
 
     /* Ad container styling */
     .ad-container {
-      margin: 20px auto;
+      margin: 15px auto;
       text-align: center;
+      position: relative;
+      z-index: 2;
     }
   </style>
 </head>
 
 <body>
-  <img class="bg-image" src="IMG-20250523-WA0021.jpg" alt="Background">
+  <img class="bg-image" src="IMG-20250523-WA0021.jpg" alt="You Won Background">
 
-  <!-- Top Ad (banner) -->
+  <!-- Top Ad -->
   <div class="ad-container">
     <ins class="adsbygoogle"
       style="display:block"
@@ -100,14 +80,12 @@
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <div class="modal-content">
-    <h1>🎉 You Won! 🎉</h1>
-    <div class="medal">🏅</div>
-    <p>Great job! Get ready for the next stage.</p>
+  <!-- Button only, no extra text -->
+  <div class="button-container">
     <button id="playAgainBtn" onclick="window.location.href='stages.html'">Next</button>
   </div>
 
-  <!-- Bottom Ad (responsive display) -->
+  <!-- Bottom Ad -->
   <div class="ad-container">
     <ins class="adsbygoogle"
       style="display:block"
