@@ -6,7 +6,7 @@
   <title>Memory Mix-Up | Ultimate Brain Challenge</title>
   <meta name="description" content="Memory Mix-Up is a fun and challenging online memory game designed to boost your brain power and sharpen your focus. Play now!" />
   <meta name="keywords" content="memory game, brain challenge, logic puzzles, cognitive training, focus games" />
-  <meta name="author" content="Memory Mix-Up Team" />
+  <meta name="author" content="Chuma Mnyipika" />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
   <style>
@@ -70,7 +70,6 @@
       margin: 10px 0 30px 25px;
     }
 
-    /* ===== CONTINUE BUTTON ===== */
     .continue-button {
       position: fixed;
       bottom: 90px;
@@ -123,6 +122,46 @@
       text-decoration: underline;
     }
 
+    /* ===== COOKIE & ADSENSE CONSENT POPUP ===== */
+    #adsenseNotice {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      border-top: 1px solid #ddd;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+      padding: 15px 20px;
+      font-size: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      z-index: 9999;
+    }
+
+    #adsenseNotice p {
+      margin: 5px 0 12px;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    #adsenseNotice button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 25px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    #adsenseNotice button:hover {
+      background: var(--primary-dark);
+    }
+
     @media (max-width: 600px) {
       header h1 {
         font-size: 1.7em;
@@ -173,6 +212,18 @@
     <p>
       Scroll to the bottom to reveal the <strong>Continue</strong> button and begin your adventure!
     </p>
+
+    <section id="about">
+      <h2>About the Developer</h2>
+      <p>
+        <strong>Memory Mix-Up</strong> is created and developed by <strong>Chuma Mnyipika</strong>,
+        founder of <em>Game Lover</em>, based in South Africa.
+      </p>
+      <p>
+        For inquiries or feedback, you can contact Chuma directly at:
+        <a href="mailto:chumachushman@gmail.com">chumachushman@gmail.com</a>.
+      </p>
+    </section>
   </main>
 
   <button class="continue-button" id="continueButton" aria-label="Continue to next page" onclick="location.href='navigation.html'">
@@ -187,15 +238,39 @@
     </p>
   </footer>
 
+  <!-- ===== ADSENSE CONSENT POPUP ===== -->
+  <div id="adsenseNotice">
+    <p>
+      This website uses <strong>Google AdSense</strong> to serve ads. Google and its partners may use cookies to
+      personalize ads and measure performance. By continuing to use this site, you acknowledge and accept this.
+    </p>
+    <button id="acceptAdsense">I Got It</button>
+  </div>
+
   <script>
     const button = document.getElementById('continueButton');
+    const consent = document.getElementById('adsenseNotice');
+    const acceptBtn = document.getElementById('acceptAdsense');
 
+    // Show continue button when scrolled to bottom
     window.addEventListener('scroll', () => {
       const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
       if (scrollTop + clientHeight >= scrollHeight - 60) {
         button.classList.add('visible');
       } else {
         button.classList.remove('visible');
+      }
+    });
+
+    // Handle AdSense consent
+    acceptBtn.addEventListener('click', () => {
+      consent.style.display = 'none';
+      localStorage.setItem('adsenseConsent', 'accepted');
+    });
+
+    window.addEventListener('load', () => {
+      if (localStorage.getItem('adsenseConsent') === 'accepted') {
+        consent.style.display = 'none';
       }
     });
   </script>
