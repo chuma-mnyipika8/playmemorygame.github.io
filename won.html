@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9518937155167074"
+     crossorigin="anonymous"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>You Won!</title>
+    <meta name="description" content="You’ve completed this stage! Keep going and test your skills on the next level for more fun and challenges.">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
     <style>
         body {
             margin: 0;
@@ -12,46 +18,50 @@
             background-color: #1a1a1a;
             color: white;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             text-align: center;
+            position: relative;
+            overflow-x: hidden;
         }
 
         .bg-image {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            object-fit: fill; /* Keep your original bg stretch */
-            z-index: -1;     
+            object-fit: cover;
+            z-index: -1;
         }
 
         .modal-content {
-            padding: 20px;
+            padding: 25px;
             border-radius: 15px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent box */
+            background-color: rgba(0, 0, 0, 0.7);
             max-width: 90%;
             width: 400px;
             text-align: center;
-            margin-top: 300px; /* Keep your original spacing */
+            margin-top: 100px;
         }
 
         h1 {
-            font-size: clamp(24px, 4vw, 36px); /* Responsive font size */
+            font-size: clamp(24px, 4vw, 36px);
             margin-bottom: 15px;
             color: #ff00cc;
         }
 
         p {
-            font-size: clamp(14px, 2.5vw, 20px); /* Responsive */
+            font-size: clamp(14px, 2.5vw, 18px);
             margin-bottom: 15px;
+            color: #fff;
         }
 
         .medal {
-            font-size: clamp(40px, 10vw, 80px); /* Responsive */
+            font-size: clamp(40px, 10vw, 80px);
             margin-bottom: 15px;
         }
 
@@ -69,16 +79,58 @@
         #playAgainBtn:hover {
             background-color: #ff66b2;
         }
+
+        /* Ad container */
+        .ad-container {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            margin: 25px auto;
+        }
+
+        @media (max-width: 600px) {
+            .modal-content {
+                margin-top: 60px;
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
     <img class="bg-image" src="IMG-20250523-WA0021.jpg" alt="Background">
+
+    <!-- Top ad (optional, helps approval) -->
+    <div class="ad-container">
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-9518937155167074"
+            data-ad-slot="9876543210"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
     <div class="modal-content">
-        <h1>Well done</h1>
+        <h1>Well Done!</h1>
         <p>You successfully completed this stage. Great job!</p>
         <div class="medal"></div>
         <p>Continue to the next level to unlock more challenges and improve your skills.</p>
         <button id="playAgainBtn" onclick="window.location.href='stages.html'">Next</button>
+    </div>
+
+    <!-- Bottom ad -->
+    <div class="ad-container">
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-9518937155167074"
+            data-ad-slot="1234567890"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>
 </body>
 </html>
