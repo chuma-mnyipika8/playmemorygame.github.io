@@ -134,6 +134,27 @@
             max-width: 800px;
             margin: 10px auto 20px;
         }
+
+        /* Navigation button */
+        .navigation-btn {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .navigation-btn button {
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: none;
+            background-color: #17a2b8;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .navigation-btn button:hover {
+            background-color: #117a8b;
+            transform: scale(1.05);
+        }
+
         footer {
             margin-top: 50px;
             text-align: center;
@@ -172,6 +193,13 @@
             <textarea id="userThoughts" rows="4" placeholder="Write your thoughts here..."></textarea>
             <button class="submit-btn" onclick="submitRating()">Submit Rating</button>
         </div>
+    </div>
+
+    <!-- Navigation Button -->
+    <div class="navigation-btn">
+        <a href="navigation.html">
+            <button>Navigation</button>
+        </a>
     </div>
 
     <footer>
