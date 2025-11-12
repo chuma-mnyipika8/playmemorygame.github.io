@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rate Game Stages - Give Your Feedback</title>
+    <title>Rate Game Stages - Professional Layout</title>
     <meta name="description" content="Rate the stages of our game, share your thoughts on difficulty, fun, and gameplay. Help us improve by submitting your feedback!">
     <meta name="keywords" content="game rating, stage rating, game feedback, rate game stages, difficulty, fun, boring, easy, hard">
     <meta name="author" content="Chuma Mnyipika">
@@ -20,23 +20,24 @@
             color: #007bff;
         }
         .stage-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 8px;
             margin-bottom: 30px;
         }
         .stage-buttons button {
-            padding: 8px 12px;
+            padding: 10px 0;
             border-radius: 6px;
             border: none;
             background-color: #007bff;
             color: #fff;
             cursor: pointer;
             font-size: 14px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
         }
         .stage-buttons button:hover {
             background-color: #0056b3;
+            transform: scale(1.05);
         }
         .rating-container {
             display: none;
@@ -56,10 +57,11 @@
             color: #fff;
             cursor: pointer;
             font-size: 14px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
         }
         .rating-buttons button:hover {
             background-color: #1e7e34;
+            transform: scale(1.05);
         }
         textarea {
             width: 100%;
@@ -73,9 +75,16 @@
         .submit-btn {
             margin-top: 15px;
             background-color: #ffc107;
+            border-radius: 8px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s, transform 0.2s;
         }
         .submit-btn:hover {
             background-color: #e0a800;
+            transform: scale(1.05);
         }
         p.intro-text {
             max-width: 800px;
