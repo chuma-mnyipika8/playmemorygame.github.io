@@ -9,16 +9,31 @@
     <meta name="author" content="Chuma Mnyipika">
     <meta name="robots" content="index, follow">
     <style>
+        /* Full-screen background with overlay */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f4f8;
+            background: url('background.png') no-repeat center center fixed;
+            background-size: cover;
             padding: 20px;
             line-height: 1.6;
-            color: #333;
+            color: #fff;
+            position: relative;
         }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.35);
+            z-index: -1;
+        }
+
         h1, h2, h3 {
-            color: #007bff;
+            color: #fff;
         }
+
         .stage-buttons {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
@@ -29,16 +44,17 @@
             padding: 10px 0;
             border-radius: 6px;
             border: none;
-            background-color: #007bff;
+            background-color: rgba(0, 123, 255, 0.85);
             color: #fff;
             cursor: pointer;
             font-size: 14px;
             transition: background-color 0.3s, transform 0.2s;
         }
         .stage-buttons button:hover {
-            background-color: #0056b3;
+            background-color: rgba(0, 86, 179, 0.9);
             transform: scale(1.05);
         }
+
         /* Modal styles */
         .modal {
             display: none;
@@ -54,7 +70,8 @@
             align-items: center;
         }
         .modal-content {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.95);
+            color: #333;
             border-radius: 12px;
             padding: 25px;
             width: 90%;
@@ -121,7 +138,7 @@
             margin-top: 50px;
             text-align: center;
             font-size: 14px;
-            color: #666;
+            color: #fff;
         }
     </style>
 </head>
@@ -171,14 +188,12 @@
         let selectedStage = null;
         let selectedRating = '';
 
-        // Load ratings from localStorage
         const ratings = JSON.parse(localStorage.getItem('stageRatings')) || {};
 
-        // Generate 100 stage buttons dynamically
         for (let i = 1; i <= 100; i++) {
             const btn = document.createElement('button');
             btn.textContent = `Stage ${i}`;
-            if (ratings[i]) btn.style.backgroundColor = '#28a745'; // green if rated
+            if (ratings[i]) btn.style.backgroundColor = '#28a745';
             btn.addEventListener('click', () => openModal(i));
             stageButtonsContainer.appendChild(btn);
         }
@@ -196,19 +211,10 @@
             }
         }
 
-        closeModal.onclick = () => {
-            ratingModal.style.display = 'none';
-        };
+        closeModal.onclick = () => { ratingModal.style.display = 'none'; };
+        window.onclick = (event) => { if(event.target == ratingModal) ratingModal.style.display = 'none'; };
 
-        window.onclick = (event) => {
-            if (event.target == ratingModal) {
-                ratingModal.style.display = 'none';
-            }
-        };
-
-        function rateStage(rating) {
-            selectedRating = rating;
-        }
+        function rateStage(rating) { selectedRating = rating; }
 
         function submitRating() {
             if (!selectedRating) {
@@ -220,7 +226,6 @@
             ratings[selectedStage] = { rating: selectedRating, thoughts: thoughts };
             localStorage.setItem('stageRatings', JSON.stringify(ratings));
 
-            // Update stage button color
             const stageButtons = stageButtonsContainer.children;
             for (let btn of stageButtons) {
                 if (btn.textContent === `Stage ${selectedStage}`) btn.style.backgroundColor = '#28a745';
