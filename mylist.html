@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rate Game Stages - Professional Layout</title>
+    <title>Rate Game Stages - Professional Modal</title>
     <meta name="description" content="Rate the stages of our game, share your thoughts on difficulty, fun, and gameplay. Help us improve by submitting your feedback!">
     <meta name="keywords" content="game rating, stage rating, game feedback, rate game stages, difficulty, fun, boring, easy, hard">
     <meta name="author" content="Chuma Mnyipika">
@@ -39,14 +39,41 @@
             background-color: #0056b3;
             transform: scale(1.05);
         }
-        .rating-container {
+        /* Modal styles */
+        .modal {
             display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
             background-color: #fff;
-            padding: 20px;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            max-width: 600px;
-            margin: auto;
+            padding: 25px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            text-align: center;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #888;
+            cursor: pointer;
+        }
+        .close-modal:hover {
+            color: #000;
         }
         .rating-buttons button {
             margin: 5px;
@@ -103,7 +130,7 @@
     <header>
         <h1>Rate Game Stages</h1>
         <p class="intro-text">
-            Welcome to our game feedback page! Select a stage below to rate its difficulty, fun level, and overall experience. Your input helps us make the game better for everyone.
+            Welcome! Select a stage below to rate its difficulty, fun level, and overall experience. Your input helps us improve the game for everyone.
         </p>
     </header>
 
@@ -112,19 +139,23 @@
         <div class="stage-buttons" id="stageButtons"></div>
     </section>
 
-    <section class="rating-container" id="ratingContainer">
-        <h2 id="stageTitle"></h2>
-        <p>Rate the stage and share your thoughts:</p>
-        <div class="rating-buttons">
-            <button onclick="rateStage('Easy')">Easy</button>
-            <button onclick="rateStage('Medium')">Medium</button>
-            <button onclick="rateStage('Hard')">Hard</button>
-            <button onclick="rateStage('Boring')">Boring</button>
-            <button onclick="rateStage('Fun')">Fun</button>
+    <!-- Modal -->
+    <div class="modal" id="ratingModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2 id="stageTitle"></h2>
+            <p>Rate the stage and share your thoughts:</p>
+            <div class="rating-buttons">
+                <button onclick="rateStage('Easy')">Easy</button>
+                <button onclick="rateStage('Medium')">Medium</button>
+                <button onclick="rateStage('Hard')">Hard</button>
+                <button onclick="rateStage('Boring')">Boring</button>
+                <button onclick="rateStage('Fun')">Fun</button>
+            </div>
+            <textarea id="userThoughts" rows="4" placeholder="Write your thoughts here..."></textarea>
+            <button class="submit-btn" onclick="submitRating()">Submit Rating</button>
         </div>
-        <textarea id="userThoughts" rows="4" placeholder="Write your thoughts here..."></textarea>
-        <button class="submit-btn" onclick="submitRating()">Submit Rating</button>
-    </section>
+    </div>
 
     <footer>
         &copy; 2025 Game Feedback by Chuma Mnyipika. Share your thoughts responsibly.
@@ -132,7 +163,8 @@
 
     <script>
         const stageButtonsContainer = document.getElementById('stageButtons');
-        const ratingContainer = document.getElementById('ratingContainer');
+        const ratingModal = document.getElementById('ratingModal');
+        const closeModal = document.getElementById('closeModal');
         const stageTitle = document.getElementById('stageTitle');
         const userThoughts = document.getElementById('userThoughts');
 
@@ -146,18 +178,15 @@
         for (let i = 1; i <= 100; i++) {
             const btn = document.createElement('button');
             btn.textContent = `Stage ${i}`;
-
             if (ratings[i]) btn.style.backgroundColor = '#28a745'; // green if rated
-
-            btn.addEventListener('click', () => openRating(i, btn));
+            btn.addEventListener('click', () => openModal(i));
             stageButtonsContainer.appendChild(btn);
         }
 
-        function openRating(stageNumber, btnElement) {
+        function openModal(stageNumber) {
             selectedStage = stageNumber;
             stageTitle.textContent = `Stage ${stageNumber}`;
-            ratingContainer.style.display = 'block';
-
+            ratingModal.style.display = 'flex';
             if (ratings[stageNumber]) {
                 selectedRating = ratings[stageNumber].rating;
                 userThoughts.value = ratings[stageNumber].thoughts;
@@ -165,9 +194,17 @@
                 selectedRating = '';
                 userThoughts.value = '';
             }
-
-            ratingContainer.scrollIntoView({ behavior: 'smooth' });
         }
+
+        closeModal.onclick = () => {
+            ratingModal.style.display = 'none';
+        };
+
+        window.onclick = (event) => {
+            if (event.target == ratingModal) {
+                ratingModal.style.display = 'none';
+            }
+        };
 
         function rateStage(rating) {
             selectedRating = rating;
@@ -183,6 +220,7 @@
             ratings[selectedStage] = { rating: selectedRating, thoughts: thoughts };
             localStorage.setItem('stageRatings', JSON.stringify(ratings));
 
+            // Update stage button color
             const stageButtons = stageButtonsContainer.children;
             for (let btn of stageButtons) {
                 if (btn.textContent === `Stage ${selectedStage}`) btn.style.backgroundColor = '#28a745';
@@ -192,7 +230,7 @@
             selectedStage = null;
             selectedRating = '';
             userThoughts.value = '';
-            ratingContainer.style.display = 'none';
+            ratingModal.style.display = 'none';
         }
     </script>
 
