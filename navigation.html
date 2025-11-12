@@ -42,73 +42,23 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       text-align: center;
       overflow-x: hidden;
-      padding-top: 20px;
-    }
-
-    header {
-      position: relative;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 90%;
-      max-width: 1200px;
-      margin: 30px auto;
     }
 
     h1 {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-size: 2.5rem;
-      color: #2c3e50;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-align: left;
+      font-size: 2rem;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--highlight);
+      animation: subtleGlow 2s ease-in-out infinite alternate;
     }
 
-    /* Hamburger */
-    #hamburger {
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      padding: 10px;
-    }
-
-    #hamburger div {
-      width: 25px;
-      height: 3px;
-      background-color: #2c3e50;
-      border-radius: 2px;
-    }
-
-    /* Info Panel */
-    #infoPanel {
-      display: none;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      width: 300px;
-      background-color: rgba(255, 255, 255, 0.95);
-      color: #333;
-      border-radius: 8px;
-      padding: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      font-family: Arial, sans-serif;
-      font-size: 0.85rem;
-      z-index: 1000;
-    }
-
-    #infoPanel h3 {
-      margin-top:0;
-      font-size:1.1rem;
-      color:#007bff;
-    }
-
-    #infoPanel ul {
-      padding-left: 20px;
-      margin-top: 5px;
+    @keyframes subtleGlow {
+      from { text-shadow: 0 0 5px rgba(0,0,0,0.2); }
+      to { text-shadow: 0 0 10px rgba(0,0,0,0.4); }
     }
 
     main.nav-container {
@@ -116,7 +66,6 @@
       flex-direction: column;
       gap: 20px;
       animation: fadeSlideIn 1.2s ease-out;
-      margin-top: 20px;
     }
 
     @keyframes fadeSlideIn {
@@ -218,46 +167,32 @@
     }
 
     @media (max-width: 768px) {
-      h1 { font-size: 1.6rem; }
+      h1 { font-size: 1.6rem; margin-bottom: 30px; }
       .nav-button { width: 240px; padding: 14px 25px; font-size: 0.8rem; }
-      #infoPanel { width: 220px; font-size: 0.75rem; }
     }
 
     @media (max-width: 480px) {
       h1 { font-size: 1.3rem; }
       .nav-button { width: 200px; padding: 12px 18px; font-size: 0.7rem; }
       footer { font-size: 0.65rem; padding: 15px 10px; }
-      #infoPanel { width: 180px; font-size: 0.7rem; }
     }
   </style>
 </head>
 
 <body>
   <header>
-    <h1>Memory Mix-Up Navigation</h1>
-
-    <!-- Hamburger Icon -->
-    <div id="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+    <h1 style="
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 2.5rem;
+    color: #2c3e50;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-align: center;
+    margin: 30px 0;
+">
+    Memory Mix-Up Navigation 
+</h1>
   </header>
-
-  <!-- Dropdown Panel -->
-  <div id="infoPanel">
-    <h3>About Memory Mix-Up</h3>
-    <p>Memory Mix-Up is an addictive and strategic memory game designed to challenge your mind and improve cognitive skills. Players progress through multiple stages of increasing difficulty.</p>
-    <p><strong>Features:</strong></p>
-    <ul>
-      <li>100 unique stages to test memory</li>
-      <li>Timed challenges to boost focus</li>
-      <li>Track your progress and achievements</li>
-      <li>Fun and professional design</li>
-      <li>Engage with friends and compare scores</li>
-    </ul>
-    <p><strong>Tips:</strong> Focus on patterns, use short-term recall strategies, and improve your score with repeated play.</p>
-  </div>
 
   <main class="nav-container" role="navigation" aria-label="Main navigation buttons">
     <button class="nav-button" onclick="window.location.href='stages.html'" aria-label="Play the Game Now">
@@ -280,20 +215,30 @@
       <span>🤝 Invite Friends</span>
     </button>
 
+    <!-- New Game Ratings Button -->
     <button class="nav-button" onclick="window.location.href='mylist.html'" aria-label="View Game Ratings">
       <span>⭐ Game Ratings</span>
     </button>
   </main>
 
-  <footer>
-    <p>© 2025 <strong>Memory Mix-Up</strong> | Created by <strong>Chuma Mnyipika</strong></p>
-    <p><a href="licence_agreement.html" title="Privacy Policy & Terms of Use">Privacy Policy</a></p>
-    <small>
-      This site uses Google AdSense to display ads based on your interests and interactions. 
-      By continuing, you consent to the use of cookies for analytics and personalized advertising. 
-      For more information, please read our <a href="licence_agreement.html">Privacy Policy</a>.
+ <footer style="background-color: #f8f9fa; color: #333; text-align: center; padding: 20px; font-family: Arial, sans-serif; font-size: 14px;">
+    <!-- Main Copyright -->
+    <p style="margin: 0;">
+        © 2025 <strong>Memory Mix-Up</strong> | Created by <strong>Chuma Mnyipika</strong>
+    </p>
+
+    <!-- Footer Links -->
+    <p style="margin: 5px 0;">
+        <a href="licence_agreement.html" title="Privacy Policy & Terms of Use" style="color: #007bff; text-decoration: none;">Privacy Policy</a>
+    </p>
+
+    <!-- Disclaimer -->
+    <small style="display: block; margin-top: 10px; color: #666; line-height: 1.5;">
+        This site uses Google AdSense to display ads based on your interests and interactions. 
+        By continuing, you consent to the use of cookies for analytics and personalized advertising. 
+        For more information, please read our <a href="licence_agreement.html" style="color: #007bff; text-decoration: none;">Privacy Policy</a>.
     </small>
-  </footer>
+</footer>
 
   <!-- Google AdSense Compliance Notice -->
   <div class="adsense-notice" id="adsenseNotice">
@@ -302,26 +247,6 @@
   </div>
 
   <script>
-    // Hamburger toggle
-    const hamburger = document.getElementById('hamburger');
-    const infoPanel = document.getElementById('infoPanel');
-
-    hamburger.addEventListener('click', () => {
-      if (infoPanel.style.display === 'none' || infoPanel.style.display === '') {
-        infoPanel.style.display = 'block';
-      } else {
-        infoPanel.style.display = 'none';
-      }
-    });
-
-    // Close panel if clicked outside
-    window.addEventListener('click', (e) => {
-      if (!hamburger.contains(e.target) && !infoPanel.contains(e.target)) {
-        infoPanel.style.display = 'none';
-      }
-    });
-
-    // AdSense consent
     function acceptNotice() {
       localStorage.setItem('adsenseConsent', 'true');
       document.getElementById('adsenseNotice').style.display = 'none';
