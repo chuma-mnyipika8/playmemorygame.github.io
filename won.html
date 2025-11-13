@@ -134,25 +134,31 @@
         </script>
     </div>
 
-    <!-- Pop-under click-trigger -->
+    <!-- Pop-under: professional, compliant, appears on page load -->
     <script>
         const popUnderScript = "//pl28043518.effectivegatecpm.com/b5/67/a3/b567a3d303ab8ead53762623da7df885.js";
-        const playBtn = document.getElementById("playAgainBtn");
 
-        playBtn.addEventListener("click", function() {
-            // Redirect immediately
+        // Check if pop-under has already appeared this session
+        if (!sessionStorage.getItem("popUnderShown")) {
+            window.addEventListener("load", () => {
+                // Delay to allow user to see content first
+                setTimeout(() => {
+                    const pop = window.open("", "_blank");
+                    if (pop) {
+                        const script = pop.document.createElement("script");
+                        script.type = "text/javascript";
+                        script.src = popUnderScript;
+                        pop.document.body.appendChild(script);
+                    }
+                    // Mark pop-under as shown
+                    sessionStorage.setItem("popUnderShown", "true");
+                }, 2000); // 2 seconds delay after page load
+            });
+        }
+
+        // Next button functionality
+        document.getElementById("playAgainBtn").addEventListener("click", () => {
             window.location.href = "stages.html";
-
-            // Open pop-under shortly after
-            setTimeout(() => {
-                const pop = window.open("", "_blank");
-                if (pop) {
-                    const script = pop.document.createElement("script");
-                    script.type = "text/javascript";
-                    script.src = popUnderScript;
-                    pop.document.body.appendChild(script);
-                }
-            }, 500); // 500ms delay
         });
     </script>
 
