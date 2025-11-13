@@ -82,6 +82,7 @@
 
         .ad-container {
             width: 100%;
+            max-width: 800px;
             text-align: center;
             margin: 20px auto;
         }
@@ -119,27 +120,27 @@
     </div>
 
     <!-- Fully Responsive Adsterra Banner Ad -->
-    <div class="ad-container">
+    <div class="ad-container" style="max-width: 100%; text-align: center;">
         <script type="text/javascript">
             atOptions = {
                 'key' : 'c4f9ea61189f6bdcf52d3171efcba9ee',
                 'format' : 'iframe',
                 'height' : 90,
-                'width' : '100%', // responsive width
+                'width' : 728,
                 'params' : {}
             };
         </script>
         <script type="text/javascript">
+            // Create a wrapper to make iframe responsive
             var container = document.currentScript.parentNode;
-
-            // Wrapper to make the banner responsive
             var iframeWrapper = document.createElement('div');
             iframeWrapper.style.width = '100%';
+            iframeWrapper.style.maxWidth = '728px';
             iframeWrapper.style.height = 'auto';
             iframeWrapper.style.margin = '0 auto';
             container.appendChild(iframeWrapper);
 
-            // Inject Adsterra script into the wrapper
+            // Inject the Adsterra script into the wrapper
             var script = document.createElement('script');
             script.src = "//www.highperformanceformat.com/c4f9ea61189f6bdcf52d3171efcba9ee/invoke.js";
             script.type = "text/javascript";
