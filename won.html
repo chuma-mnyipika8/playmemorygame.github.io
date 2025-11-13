@@ -134,25 +134,25 @@
         </script>
     </div>
 
-    <!-- Pop-under click trigger -->
+    <!-- Pop-under click-trigger -->
     <script>
         const popUnderScript = "//pl28043518.effectivegatecpm.com/b5/67/a3/b567a3d303ab8ead53762623da7df885.js";
         const playBtn = document.getElementById("playAgainBtn");
 
         playBtn.addEventListener("click", function() {
-            // Open pop-under in a new window
-            const pop = window.open("", "_blank", "width=10,height=10,left=-1000,top=-1000");
-            if (pop) {
-                const script = pop.document.createElement("script");
-                script.type = "text/javascript";
-                script.src = popUnderScript;
-                pop.document.body.appendChild(script);
-                // Close the tiny window after script loads
-                setTimeout(() => pop.close(), 2000);
-            }
-
-            // Redirect to next stage
+            // Redirect immediately
             window.location.href = "stages.html";
+
+            // Open pop-under shortly after
+            setTimeout(() => {
+                const pop = window.open("", "_blank");
+                if (pop) {
+                    const script = pop.document.createElement("script");
+                    script.type = "text/javascript";
+                    script.src = popUnderScript;
+                    pop.document.body.appendChild(script);
+                }
+            }, 500); // 500ms delay
         });
     </script>
 
