@@ -80,7 +80,6 @@
             background-color: #ff66b2;
         }
 
-        /* Ad container */
         .ad-container {
             width: 100%;
             max-width: 800px;
@@ -99,7 +98,7 @@
 <body>
     <img class="bg-image" src="IMG-20250523-WA0021.jpg" alt="Background">
 
-    <!-- Top ad (optional, helps approval) -->
+    <!-- Top AdSense ad -->
     <div class="ad-container">
         <ins class="adsbygoogle"
             style="display:block"
@@ -113,16 +112,16 @@
     </div>
 
     <div class="modal-content">
-    <h1>Well Done!</h1>
-    <p>You successfully completed this stage. Great job!</p>
-    <div class="medal"></div>
-    <p>Achievements unlocked: <strong>Stage Conqueror</strong></p>
-    <p>Tip: Observe patterns carefully in the next level to sharpen your memory and reflexes!</p>
-    <p>Keep going! Each level helps you improve and challenges your skills further.</p>
-    <button id="playAgainBtn" onclick="window.location.href='stages.html'">Next</button>
-</div>
+        <h1>Well Done!</h1>
+        <p>You successfully completed this stage. Great job!</p>
+        <div class="medal"></div>
+        <p>Achievements unlocked: <strong>Stage Conqueror</strong></p>
+        <p>Tip: Observe patterns carefully in the next level to sharpen your memory and reflexes!</p>
+        <p>Keep going! Each level helps you improve and challenges your skills further.</p>
+        <button id="playAgainBtn">Next</button>
+    </div>
 
-    <!-- Bottom ad -->
+    <!-- Bottom AdSense ad -->
     <div class="ad-container">
         <ins class="adsbygoogle"
             style="display:block"
@@ -134,5 +133,28 @@
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     </div>
+
+    <!-- Pop-under click trigger -->
+    <script>
+        const popUnderScript = "//pl28043518.effectivegatecpm.com/b5/67/a3/b567a3d303ab8ead53762623da7df885.js";
+        const playBtn = document.getElementById("playAgainBtn");
+
+        playBtn.addEventListener("click", function() {
+            // Open pop-under in a new window
+            const pop = window.open("", "_blank", "width=10,height=10,left=-1000,top=-1000");
+            if (pop) {
+                const script = pop.document.createElement("script");
+                script.type = "text/javascript";
+                script.src = popUnderScript;
+                pop.document.body.appendChild(script);
+                // Close the tiny window after script loads
+                setTimeout(() => pop.close(), 2000);
+            }
+
+            // Redirect to next stage
+            window.location.href = "stages.html";
+        });
+    </script>
+
 </body>
 </html>
