@@ -134,29 +134,22 @@
         </script>
     </div>
 
-    <!-- Adsterra Pop-under: professional & compliant -->
+    <!-- New Adsterra ad unit: ID 27943034 -->
+    <div class="ad-container">
+        <script type="text/javascript" src="//pl28043518.effectivegatecpm.com/27943034.js"></script>
+    </div>
+
+    <!-- Another Ad unit via URL -->
+    <div class="ad-container">
+        <script type="text/javascript" src="https://www.effectivegatecpm.com/jyrrg1ra?key=189b4af7c125093a7e3b233272c51d7a"></script>
+    </div>
+
+    <!-- Next button functionality -->
     <script>
-        const adsterraID = "27943019";
-
-        if (!sessionStorage.getItem("adsterraShown")) {
-            window.addEventListener("load", () => {
-                setTimeout(() => {
-                    const pop = window.open("", "_blank");
-                    if (pop) {
-                        const script = pop.document.createElement("script");
-                        script.type = "text/javascript";
-                        script.src = `//pl28043518.effectivegatecpm.com/${adsterraID}.js`;
-                        pop.document.body.appendChild(script);
-                    }
-                    sessionStorage.setItem("adsterraShown", "true");
-                }, 2000); // 2 seconds delay
-            });
-        }
-
-        // Next button
         document.getElementById("playAgainBtn").addEventListener("click", () => {
             window.location.href = "stages.html";
         });
     </script>
+
 </body>
 </html>
