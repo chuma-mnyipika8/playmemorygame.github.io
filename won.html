@@ -119,8 +119,8 @@
         </script>
     </div>
 
-    <!-- Adsterra Banner Ad -->
-    <div class="ad-container">
+    <!-- Fully Responsive Adsterra Banner Ad -->
+    <div class="ad-container" style="max-width: 100%; text-align: center;">
         <script type="text/javascript">
             atOptions = {
                 'key' : 'c4f9ea61189f6bdcf52d3171efcba9ee',
@@ -130,7 +130,22 @@
                 'params' : {}
             };
         </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/c4f9ea61189f6bdcf52d3171efcba9ee/invoke.js"></script>
+        <script type="text/javascript">
+            // Create a wrapper to make iframe responsive
+            var container = document.currentScript.parentNode;
+            var iframeWrapper = document.createElement('div');
+            iframeWrapper.style.width = '100%';
+            iframeWrapper.style.maxWidth = '728px';
+            iframeWrapper.style.height = 'auto';
+            iframeWrapper.style.margin = '0 auto';
+            container.appendChild(iframeWrapper);
+
+            // Inject the Adsterra script into the wrapper
+            var script = document.createElement('script');
+            script.src = "//www.highperformanceformat.com/c4f9ea61189f6bdcf52d3171efcba9ee/invoke.js";
+            script.type = "text/javascript";
+            iframeWrapper.appendChild(script);
+        </script>
     </div>
 
     <div class="modal-content">
