@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9518937155167074"
-     crossorigin="anonymous"></script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -87,7 +84,6 @@
             margin: 20px auto;
         }
 
-        /* Make ads responsive */
         .ad-container iframe,
         .ad-container script {
             width: 100% !important;
@@ -106,21 +102,8 @@
 <body>
     <img class="bg-image" src="IMG-20250523-WA0021.jpg" alt="Background">
 
-    <!-- Top AdSense ad -->
+    <!-- 🔝 Top Adsterra Ad -->
     <div class="ad-container">
-        <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-9518937155167074"
-            data-ad-slot="9876543210"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
-
-    <!-- Fully Responsive Adsterra Banner Ad -->
-    <div class="ad-container" style="max-width: 100%; text-align: center;">
         <script type="text/javascript">
             atOptions = {
                 'key' : 'c4f9ea61189f6bdcf52d3171efcba9ee',
@@ -130,22 +113,7 @@
                 'params' : {}
             };
         </script>
-        <script type="text/javascript">
-            // Create a wrapper to make iframe responsive
-            var container = document.currentScript.parentNode;
-            var iframeWrapper = document.createElement('div');
-            iframeWrapper.style.width = '100%';
-            iframeWrapper.style.maxWidth = '728px';
-            iframeWrapper.style.height = 'auto';
-            iframeWrapper.style.margin = '0 auto';
-            container.appendChild(iframeWrapper);
-
-            // Inject the Adsterra script into the wrapper
-            var script = document.createElement('script');
-            script.src = "//www.highperformanceformat.com/c4f9ea61189f6bdcf52d3171efcba9ee/invoke.js";
-            script.type = "text/javascript";
-            iframeWrapper.appendChild(script);
-        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/c4f9ea61189f6bdcf52d3171efcba9ee/invoke.js"></script>
     </div>
 
     <div class="modal-content">
@@ -158,20 +126,20 @@
         <button id="playAgainBtn">Next</button>
     </div>
 
-    <!-- Bottom AdSense ad -->
+    <!-- 🔻 Bottom Adsterra Ad -->
     <div class="ad-container">
-        <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-9518937155167074"
-            data-ad-slot="1234567890"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'c4f9ea61189f6bdcf52d3171efcba9ee',
+                'format' : 'iframe',
+                'height' : 90,
+                'width' : 728,
+                'params' : {}
+            };
         </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/c4f9ea61189f6bdcf52d3171efcba9ee/invoke.js"></script>
     </div>
 
-    <!-- Next button functionality -->
     <script>
         document.getElementById("playAgainBtn").addEventListener("click", () => {
             window.location.href = "stages.html";
