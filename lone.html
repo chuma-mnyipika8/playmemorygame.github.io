@@ -1,333 +1,252 @@
-﻿ <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Level 11 - Memory Mix-Up</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Global Styling */
-        body {
-            font-family: 'Orbitron', sans-serif;
-            background: radial-gradient(circle, #1a1a1a, #000000);
-            color: black;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-			
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Level 11 - Memory Mix-Up</title>
 
-        .app-container {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 20px;
-            text-align: center;
-            border-radius: 15px;
-            box-shadow: 0px 0px 20px #00ffcc;
-             background-image: url('InShot_20200411_043932719.jpg'); /* Your image */
-     background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-			
-        }
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
-        header {
-            font-size: 36px;
-             color: black;
-            text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ff99;
-            margin-bottom: 30px;
-        }
+<style>
+    /* Global Styling */
+    body {
+        font-family: 'Orbitron', system-ui, -apple-system, 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+        background: radial-gradient(circle, #1a1a1a, #000000);
+        color: black;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
 
-        .game-board {
-            display: grid;
-            gap: 15px;
-            margin: 20px auto;
-            position: relative;
-         
-        }
+    .app-container {
+        max-width: 900px;
+        margin: 50px auto;
+        padding: 20px;
+        text-align: center;
+        border-radius: 15px;
+        box-shadow: 0px 0px 20px #00ffcc;
+        background-image: url('InShot_20200411_043932719.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 
-        .game-board.grid-4 {
-            grid-template-columns: repeat(4, 1fr);
-        }
+    header {
+        font-size: 36px;
+        color: black;
+        text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ff99;
+        margin-bottom: 30px;
+    }
 
-        .card {
-            background: linear-gradient(145deg, #333, #111);
-            border: 2px solid #00ffcc;
-            border-radius: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 32px;
-            color: transparent;
-            cursor: pointer;
-            position: relative;
-            transform: scale(1);
-            transition: all 0.4s ease, transform 0.3s ease;
-        }
+    .game-board {
+        display: grid;
+        gap: 15px;
+        margin: 20px auto;
+    }
 
-        .card:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 15px #00ffcc;
-        }
+    .game-board.grid-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
 
-        .card.flipped {
-            background: linear-gradient(145deg, #ff0066, #ff0033);
-            color: white;
-            box-shadow: 0 0 20px #ff0033, inset 0 0 10px #ff6699;
-        }
+    .card {
+        background: linear-gradient(145deg, #333, #111);
+        border: 2px solid #00ffcc;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 32px;
 
-        .card.matched {
-            background: linear-gradient(145deg, #00ff99, #00cc66);
-            animation: glow 1s infinite alternate;
-        }
+        /* Important for iPhone emoji support */
+        font-family: system-ui, -apple-system, 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
 
-        .card.hindrance {
-            background: linear-gradient(145deg, #ff3300, #cc2900);
-            color: #ff0000;
-        }
+        color: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        height: 90px;
+    }
 
-        @keyframes glow {
-            0% {
-                box-shadow: 0 0 20px #00ffcc;
-            }
-            100% {
-                box-shadow: 0 0 30px #00ff99;
-            }
-        }
+    .card.flipped {
+        background: linear-gradient(145deg, #ff0066, #ff0033);
+        color: white;
+        box-shadow: 0 0 20px #ff0033, inset 0 0 10px #ff6699;
+    }
 
-        .game-info {
-            margin: 20px 0;
-            font-size: 20px;
-        }
+    .card.matched {
+        background: linear-gradient(145deg, #00ff99, #00cc66);
+        animation: glow 1s infinite alternate;
+        color: white;
+    }
 
-        .progress-bar {
-            background: #333;
-            height: 12px;
-            border-radius: 5px;
-            overflow: hidden;
-            margin: 15px auto;
-            width: 80%;
-            position: relative;
-             
-        }
+    @keyframes glow {
+        0% { box-shadow: 0 0 20px #00ffcc; }
+        100% { box-shadow: 0 0 30px #00ff99; }
+    }
 
-        .progress-bar .progress {
-            background: linear-gradient(45deg, #00ffcc, #00cc99);
-            height: 100%;
-            width: 100%;
-            transition: width 0.5s linear;
-        }
+    .game-info {
+        margin: 20px 0;
+        font-size: 20px;
+    }
 
-        button {
-            background-color: #00ffcc;
-            color: black;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 10px 25px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 10px;
-            transition: all 0.3s ease;
-         
-        }
+    .progress-bar {
+        background: #333;
+        height: 12px;
+        border-radius: 5px;
+        overflow: hidden;
+        margin: 15px auto;
+        width: 80%;
+    }
 
-        button:hover {
-            background-color: #00cc99;
-        }
+    .progress {
+        background: linear-gradient(45deg, #00ffcc, #00cc99);
+        height: 100%;
+        width: 100%;
+        transition: width 0.5s linear;
+    }
 
-        footer {
-            margin-top: 30px;
-            font-size: 14px;
-             color: black;
-        }
+    button {
+        background-color: #00ffcc;
+        color: black;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 10px 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 10px;
+        transition: all 0.3s ease;
+    }
 
-        .message {
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 20px;
-            animation: fadeIn 1s ease;
-        }
+    button:hover {
+        background-color: #00cc99;
+    }
 
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-		button#stages-btn {
-    background-color: #ffcc00; 
-    color: black;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 10px 25px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 10px;
-    transition: all 0.3s ease;
-}
-
-button#stages-btn:hover {
-    background-color: #ffaa00;
-}
-     #time{
- color: black;
-}
-    </style>
+    #stages-btn {
+        background-color: #ffcc00;
+    }
+    #stages-btn:hover {
+        background-color: #ffaa00;
+    }
+</style>
 </head>
 <body>
-<!-- Background music with autoplay off (no autoplay initially) -->
-    <audio id="background-music" autoplay loop>
-  <source src="gaming-music-2-145874.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
+
+<audio id="background-music" loop>
+    <source src="gaming-music-2-145874.mp3" type="audio/mpeg">
 </audio>
-    <div class="app-container">
-        <!-- Header -->
-        <header>🚀 Level 11 - Memory 🚀</header>
 
-        <!-- Game Info -->
-        <div class="game-info">
-            <p id="time">Time Remaining: <span id="time">60</span>s</p>
-            <p>  <span id="score"> </span></p>
-            <div class="progress-bar">
-                <div class="progress" id="progress-bar"></div>
-            </div>
+<div class="app-container">
+    <header>🚀 Level 11 - Memory 🚀</header>
+
+    <div class="game-info">
+        <p>Time Remaining: <span id="time-remaining">60</span>s</p>
+        <p><span id="score"></span></p>
+
+        <div class="progress-bar">
+            <div class="progress" id="progress-bar"></div>
         </div>
-
-        <!-- Game Board -->
-        <div class="game-board grid-4" id="game-board"></div>
-
-        <!-- Controls -->
-        <div>
-            <button id="start-btn">Start Game</button>
-            <button id="reset-btn" style="display: none;">Reset</button>
-			 <button id="stages-btn">Stages</button> <!-- New Stages Button -->
-        </div>
-
-        <!-- Footer -->
-        <footer>&copy; 2025 Chuma Mnyipika </footer>
     </div>
 
-    <script>
-        // Game Variables
-        const gameBoard = document.getElementById("game-board");
-        const progressBar = document.getElementById("progress-bar");
-        const timeDisplay = document.getElementById("time");
-        const scoreDisplay = document.getElementById("score");
-        const startBtn = document.getElementById("start-btn");
-        const resetBtn = document.getElementById("reset-btn");
+    <div class="game-board grid-4" id="game-board"></div>
 
-        let cards = [];
-        let flippedCards = [];
-        let matchedPairs = 0;
-        let score = 0;
-        let timeRemaining = 60;
-        let timer;
+    <div>
+        <button id="start-btn">Start Game</button>
+        <button id="reset-btn" style="display:none;">Reset</button>
+        <button id="stages-btn">Stages</button>
+    </div>
 
-        const cardValues = ['🍎', '🍕', '🚀', '🎮', '🌟', '🦄', '🍓', '⚡'];
-        //const specialCards = ['💥', '🎉', '🔥', '⏰'];
-        const specialCards = [];
-        function shuffleCards() {
-            const allCards = [...cardValues, ...cardValues, ...specialCards];
-            return allCards.sort(() => Math.random() - 0.5);
-        }
+    <footer>© 2025 Chuma Mnyipika</footer>
+</div>
 
-        function createCards() {
-            const shuffledCards = shuffleCards();
-            gameBoard.innerHTML = '';
-            shuffledCards.forEach(value => {
-                const card = document.createElement("div");
-                card.classList.add("card");
-                card.dataset.value = value;
-                card.addEventListener("click", flipCard);
-                gameBoard.appendChild(card);
-            });
-            cards = Array.from(gameBoard.children);
-        }
-
-        function flipCard() {
-            if (flippedCards.length >= 2 || this.classList.contains("flipped")) return;
-            this.classList.add("flipped");
-            this.textContent = this.dataset.value;
-            flippedCards.push(this);
-
-            if (flippedCards.length === 2) checkMatch();
-        }
-
-        function checkMatch() {
-            const [card1, card2] = flippedCards;
-            if (card1.dataset.value === card2.dataset.value) {
-                card1.classList.add("matched");
-                card2.classList.add("matched");
-                score += 10;
-               // scoreDisplay.textContent = score;
-                matchedPairs++;
-                flippedCards = [];
-                if (matchedPairs === cardValues.length) {
-                   //endGame(true);
-                localStorage.setItem('stagetwelveopen', 'stagetwelveopen');                   
-                window.location.href='won.html';
-			
-                         }
-				 	 
-            } else {
-                setTimeout(() => {
-                    card1.classList.remove("flipped");
-                    card2.classList.remove("flipped");
-                    card1.textContent = '';
-                    card2.textContent = '';
-                    flippedCards = [];
-                }, 1000);
-            }
-        }
-
-        function startGame() {
-            matchedPairs = 0;
-            score = 0;
-            timeRemaining = 60;
-            createCards();
-            timer = setInterval(() => {
-                timeRemaining--;
-                timeDisplay.textContent = timeRemaining;
-                progressBar.style.width = `${(timeRemaining / 60) * 100}%`;
-                if (timeRemaining <= 0){ 
-				//endGame(false);
-				window.location.href='lose.html';
-				}
-            }, 1000);
-        }
-
-        function endGame(won) {
-           // clearInterval(timer);
-           // alert(won ? "You Win! 🎉" : "Time's up! Try again. 🕒");
-            //resetGame();
-			
-        }
-
-        function resetGame() {
-            clearInterval(timer);
-            flippedCards = [];
-            score = 0;
-            matchedPairs = 0;
-            timeRemaining = 60;
-            startGame();
-        }
-
-        startBtn.addEventListener("click", startGame);
-        resetBtn.addEventListener("click", resetGame);
-    </script>
-	<!-- Add this script section at the end of the <body> -->
 <script>
-    // Redirect to the stages.html page when the Stages button is clicked
-    const stagesBtn = document.getElementById("stages-btn");
-    stagesBtn.addEventListener("click", () => {
+    const gameBoard = document.getElementById("game-board");
+    const progressBar = document.getElementById("progress-bar");
+    const timeDisplay = document.getElementById("time-remaining");
+    const startBtn = document.getElementById("start-btn");
+
+    let cards = [];
+    let flippedCards = [];
+    let matchedPairs = 0;
+    let timeRemaining = 60;
+    let timer;
+
+    const cardValues = ['🍎', '🍕', '🚀', '🎮', '🌟', '🦄', '🍓', '⚡'];
+
+    function shuffleCards() {
+        return [...cardValues, ...cardValues].sort(() => Math.random() - 0.5);
+    }
+
+    function createCards() {
+        const shuffledCards = shuffleCards();
+        gameBoard.innerHTML = "";
+
+        shuffledCards.forEach(value => {
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.dataset.value = value;
+            card.addEventListener("click", flipCard);
+            gameBoard.appendChild(card);
+        });
+
+        cards = Array.from(gameBoard.children);
+    }
+
+    function flipCard() {
+        if (flippedCards.length >= 2 || this.classList.contains("flipped")) return;
+
+        this.classList.add("flipped");
+        this.textContent = this.dataset.value;
+        flippedCards.push(this);
+
+        if (flippedCards.length === 2) checkMatch();
+    }
+
+    function checkMatch() {
+        const [c1, c2] = flippedCards;
+
+        if (c1.dataset.value === c2.dataset.value) {
+            c1.classList.add("matched");
+            c2.classList.add("matched");
+            matchedPairs++;
+            flippedCards = [];
+
+            if (matchedPairs === cardValues.length) {
+                localStorage.setItem("stagetwelveopen", "true");
+                window.location.href = "won.html";
+            }
+        } else {
+            setTimeout(() => {
+                c1.classList.remove("flipped");
+                c2.classList.remove("flipped");
+                c1.textContent = "";
+                c2.textContent = "";
+                flippedCards = [];
+            }, 800);
+        }
+    }
+
+    function startGame() {
+        matchedPairs = 0;
+        timeRemaining = 60;
+        createCards();
+
+        timer = setInterval(() => {
+            timeRemaining--;
+            timeDisplay.textContent = timeRemaining;
+            progressBar.style.width = `${(timeRemaining / 60) * 100}%`;
+
+            if (timeRemaining <= 0) {
+                window.location.href = "lose.html";
+            }
+        }, 1000);
+    }
+
+    startBtn.addEventListener("click", startGame);
+
+    document.getElementById("stages-btn").addEventListener("click", () => {
         window.location.href = "stages.html";
     });
 </script>
+
 </body>
 </html>
-		  
-		 
