@@ -140,9 +140,19 @@
         <script type="text/javascript" src="//www.highperformanceformat.com/c4f9ea61189f6bdcf52d3171efcba9ee/invoke.js"></script>
     </div>
 
+    <!-- ⭐ Button Click + Pop-Under -->
     <script>
         document.getElementById("playAgainBtn").addEventListener("click", () => {
-            window.location.href = "stages.html";
+
+            // 🔥 Trigger pop-under on click
+            let popScript = document.createElement("script");
+            popScript.src = "//pl28043518.effectivegatecpm.com/b5/67/a3/b567a3d303ab8ead53762623da7df885.js";
+            document.body.appendChild(popScript);
+
+            // ⏳ Delay so pop-under fires before redirect
+            setTimeout(() => {
+                window.location.href = "stages.html";
+            }, 600);
         });
     </script>
 
