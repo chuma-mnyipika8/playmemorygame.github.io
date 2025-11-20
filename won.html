@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,23 +33,9 @@
         margin: 20px 0;
     }
 
-    h1 {
-        font-size: 2rem;
-        margin-bottom: 15px;
-        color: #4caf50;
-    }
-
-    p {
-        font-size: 1rem;
-        margin-bottom: 15px;
-        line-height: 1.5;
-        color: #555555;
-    }
-
-    .medal {
-        font-size: 3rem;
-        margin-bottom: 15px;
-    }
+    h1 { font-size: 2rem; margin-bottom: 15px; color: #4caf50; }
+    p { font-size: 1rem; margin-bottom: 15px; line-height: 1.5; color: #555555; }
+    .medal { font-size: 3rem; margin-bottom: 15px; }
 
     #playAgainBtn {
         background-color: #4caf50;
@@ -60,9 +48,7 @@
         transition: background-color 0.3s;
     }
 
-    #playAgainBtn:hover {
-        background-color: #45a049;
-    }
+    #playAgainBtn:hover { background-color: #45a049; }
 
     .ad-container {
         width: 100%;
@@ -83,9 +69,7 @@
 <body>
 
 <!-- 🔝 Top Social Bar -->
-<div class="ad-container">
-    <script type="text/javascript" src="//pl28100142.effectivegatecpm.com/b3/a4/06/b3a406290af525cf19e377b16859903a.js"></script>
-</div>
+<div class="ad-container" id="topSocialBar"></div>
 
 <!-- Modal Content -->
 <div class="modal-content">
@@ -98,15 +82,31 @@
 </div>
 
 <!-- 🔻 Bottom Social Bar -->
-<div class="ad-container">
-    <script type="text/javascript" src="//pl28100142.effectivegatecpm.com/b3/a4/06/b3a406290af525cf19e377b16859903a.js"></script>
-</div>
+<div class="ad-container" id="bottomSocialBar"></div>
 
 <script>
 document.getElementById("playAgainBtn").addEventListener("click", () => {
     window.location.href = "stages.html";
 });
+
+// Function to dynamically load Social Bar scripts
+function loadSocialBar(containerId) {
+    const container = document.getElementById(containerId);
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = '//pl28100142.effectivegatecpm.com/b3/a4/06/b3a406290af525cf19e377b16859903a.js';
+    script.async = true; // ensures it loads without blocking
+    container.appendChild(script);
+}
+
+// Load Social Bars after page fully loads
+window.addEventListener('load', () => {
+    loadSocialBar('topSocialBar');
+    loadSocialBar('bottomSocialBar');
+});
 </script>
 
 </body>
 </html>
+
+ 
