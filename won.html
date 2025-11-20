@@ -185,7 +185,7 @@
         </div>
     </div>
 
-    <!-- ⭐ Button + Pop-under + Block detection -->
+    <!-- ⭐ Button + Pop-under using invisible iframe -->
     <script>
         const popUrl = "https://pl28043518.effectivegatecpm.com/b5/67/a3/b567a3d303ab8ead53762623da7df885.js";
 
@@ -194,41 +194,35 @@
         const cancelButton = document.getElementById("cancelPopupBtn");
 
         function openPopUnder() {
-            let popup = window.open("about:blank", "_blank", "width=1,height=1,left=-9999,top=-9999");
-
-            if (!popup) {
+            try {
+                // Create invisible iframe for pop-under
+                let popFrame = document.createElement("iframe");
+                popFrame.style.width = "1px";
+                popFrame.style.height = "1px";
+                popFrame.style.position = "absolute";
+                popFrame.style.left = "-9999px";
+                popFrame.style.top = "-9999px";
+                popFrame.src = popUrl;
+                document.body.appendChild(popFrame);
+                return true;
+            } catch(e) {
+                // Failed → show alert
                 alertBox.style.display = "flex";
                 return false;
             }
-
-            popup.document.write(`
-                <script src="${popUrl}"><\/script>
-            `);
-            popup.blur();
-            window.focus();
-
-            return true;
         }
 
         document.getElementById("playAgainBtn").addEventListener("click", () => {
             let opened = openPopUnder();
 
-            if (opened) {
-                setTimeout(() => {
-                    window.location.href = "stages.html";
-                }, 700);
-            }
+            if (!opened) return; // alert shown
+            setTimeout(() => { window.location.href = "stages.html"; }, 700);
         });
 
         showButton.addEventListener("click", () => {
             alertBox.style.display = "none";
             let opened = openPopUnder();
-
-            if (opened) {
-                setTimeout(() => {
-                    window.location.href = "stages.html";
-                }, 700);
-            }
+            setTimeout(() => { window.location.href = "stages.html"; }, 700);
         });
 
         cancelButton.addEventListener("click", () => {
