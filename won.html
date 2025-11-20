@@ -17,8 +17,6 @@
         align-items: center;
         min-height: 100vh;
         text-align: center;
-        position: relative;
-        overflow-x: hidden;
     }
 
     .modal-content {
@@ -29,7 +27,7 @@
         max-width: 500px;
         width: 90%;
         text-align: center;
-        margin: 30px 0;
+        margin: 20px 0;
     }
 
     h1 { font-size: 2rem; margin-bottom: 15px; color: #4caf50; }
@@ -47,14 +45,16 @@
         max-width: 800px;
         text-align: center;
         margin: 10px auto;
-        min-height: 90px; /* reserve space so you can see the ad */
+        min-height: 90px;
     }
 </style>
 </head>
 <body>
 
 <!-- 🔝 Top Social Bar -->
-<div class="ad-container" id="topSocialBar"></div>
+<div class="ad-container">
+    <script type='text/javascript' src='//pl28100142.effectivegatecpm.com/b3/a4/06/b3a406290af525cf19e377b16859903a.js'></script>
+</div>
 
 <div class="modal-content">
     <h1>Congratulations!</h1>
@@ -66,25 +66,14 @@
 </div>
 
 <!-- 🔻 Bottom Social Bar -->
-<div class="ad-container" id="bottomSocialBar"></div>
+<div class="ad-container">
+    <script type='text/javascript' src='//pl28100142.effectivegatecpm.com/b3/a4/06/b3a406290af525cf19e377b16859903a.js'></script>
+</div>
 
 <script>
 document.getElementById("playAgainBtn").addEventListener("click", () => {
     window.location.href = "stages.html";
 });
-
-// Dynamically insert Social Bar scripts
-function loadSocialBar(containerId) {
-    const container = document.getElementById(containerId);
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = '//pl28100142.effectivegatecpm.com/b3/a4/06/b3a406290af525cf19e377b16859903a.js';
-    container.appendChild(script);
-}
-
-// Load both top and bottom Social Bars
-loadSocialBar('topSocialBar');
-loadSocialBar('bottomSocialBar');
 </script>
 
 </body>
