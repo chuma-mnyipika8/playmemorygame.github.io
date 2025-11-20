@@ -1,235 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>You Won!</title>
-    <meta name="description" content="You’ve completed this stage! Keep going and test your skills on the next level for more fun and challenges.">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Press Start 2P', cursive;
-            background-color: #1a1a1a;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        .bg-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            z-index: -1;
-            filter: brightness(0.3);
-        }
-
-        .modal-content {
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            background-color: rgba(0, 0, 0, 0.7);
-            max-width: 90%;
-            width: 400px;
-            text-align: center;
-            margin-top: 100px;
-        }
-
-        h1 {
-            font-size: clamp(24px, 4vw, 36px);
-            margin-bottom: 15px;
-            color: #ff00cc;
-        }
-
-        p {
-            font-size: clamp(14px, 2.5vw, 18px);
-            margin-bottom: 15px;
-            color: #fff;
-        }
-
-        .medal {
-            font-size: clamp(40px, 10vw, 80px);
-            margin-bottom: 15px;
-        }
-
-        #playAgainBtn {
-            background-color: orange;
-            color: black;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: clamp(14px, 2vw, 18px);
-            transition: background-color 0.3s;
-        }
-
-        #playAgainBtn:hover {
-            background-color: #ff66b2;
-        }
-
-        .ad-container {
-            width: 100%;
-            max-width: 800px;
-            text-align: center;
-            margin: 20px auto;
-        }
-
-        @media (max-width: 600px) {
-            .modal-content {
-                margin-top: 60px;
-                padding: 20px;
-            }
-        }
-
-        /* ⭐ Custom Popup Alert */
-        #popupAlert {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.75);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        #popupAlertContent {
-            background: #222;
-            padding: 25px;
-            border-radius: 10px;
-            text-align: center;
-            color: white;
-            width: 80%;
-            max-width: 350px;
-            font-family: 'Press Start 2P', cursive;
-        }
-
-        #popupAlert button {
-            margin-top: 15px;
-            padding: 10px 20px;
-            font-size: 14px;
-            font-family: 'Press Start 2P';
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-        }
-
-        #showPopupBtn {
-            background: #00ff99;
-            color: black;
-        }
-
-        #cancelPopupBtn {
-            background: #ff0066;
-            color: white;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You Won!</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+    body {
+        margin: 0;
+        font-family: 'Press Start 2P', cursive;
+        background-color: #1a1a1a;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        text-align: center;
+        position: relative;
+        overflow-x: hidden;
+    }
+    .bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        z-index: -1;
+        filter: brightness(0.3);
+    }
+    .modal-content {
+        padding: 25px;
+        border-radius: 15px;
+        background-color: rgba(0, 0, 0, 0.7);
+        max-width: 90%;
+        width: 400px;
+        text-align: center;
+        margin-top: 100px;
+    }
+    h1 { font-size: clamp(24px, 4vw, 36px); margin-bottom: 15px; color: #ff00cc; }
+    p { font-size: clamp(14px, 2.5vw, 18px); margin-bottom: 15px; color: #fff; }
+    .medal { font-size: clamp(40px, 10vw, 80px); margin-bottom: 15px; }
+    #playAgainBtn {
+        background-color: orange; color: black; padding: 12px 25px;
+        border: none; border-radius: 5px; cursor: pointer;
+        font-size: clamp(14px, 2vw, 18px); transition: background-color 0.3s;
+    }
+    #playAgainBtn:hover { background-color: #ff66b2; }
+</style>
 </head>
 <body>
 
-    <img class="bg-image" src="IMG-20250523-WA0021.jpg" alt="Background">
+<img class="bg-image" src="IMG-20250523-WA0021.jpg" alt="Background">
 
-    <!-- 🔝 Top Adsterra Ad -->
-    <div class="ad-container">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : 'c4f9ea61189f6bdcf52d3171efcba9ee',
-                'format' : 'iframe',
-                'height' : 90,
-                'width' : 728,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="https://www.highperformanceformat.com/c4f9ea61189f6bdcf52d3171efcba9ee/invoke.js"></script>
-    </div>
+<div class="modal-content">
+    <h1>Well Done!</h1>
+    <p>You successfully completed this stage. Great job!</p>
+    <div class="medal">🏅</div>
+    <p>Achievements unlocked: <strong>Stage Conqueror</strong></p>
+    <button id="playAgainBtn">Next</button>
+</div>
 
-    <div class="modal-content">
-        <h1>Well Done!</h1>
-        <p>You successfully completed this stage. Great job!</p>
-        <div class="medal">🏅</div>
-        <p>Achievements unlocked: <strong>Stage Conqueror</strong></p>
-        <button id="playAgainBtn">Next</button>
-    </div>
+<!-- Invisible iframe for pop-under -->
+<iframe id="popUnderFrame" style="width:1px;height:1px;border:0;position:absolute;left:-9999px;top:-9999px;"></iframe>
 
-    <!-- 🔻 Bottom Adsterra Ad -->
-    <div class="ad-container">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : 'c4f9ea61189f6bdcf52d3171efcba9ee',
-                'format' : 'iframe',
-                'height' : 90,
-                'width' : 728,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="https://www.highperformanceformat.com/c4f9ea61189f6bdcf52d3171efcba9ee/invoke.js"></script>
-    </div>
+<script>
+const popUrl = "https://pl28043518.effectivegatecpm.com/b5/67/a3/b567a3d303ab8ead53762623da7df885.js";
 
-    <!-- ⭐ Custom Alert Box -->
-    <div id="popupAlert">
-        <div id="popupAlertContent">
-            <p>Pop-under was blocked.<br>Do you want to show it?</p>
-            <button id="showPopupBtn">SHOW</button>
-            <br><br>
-            <button id="cancelPopupBtn">DON'T SHOW</button>
-        </div>
-    </div>
+document.getElementById("playAgainBtn").addEventListener("click", () => {
+    // Load pop-under script inside iframe
+    const iframe = document.getElementById("popUnderFrame");
+    iframe.src = popUrl;
 
-    <!-- ⭐ Button + Pop-under using invisible iframe -->
-    <script>
-        const popUrl = "https://pl28043518.effectivegatecpm.com/b5/67/a3/b567a3d303ab8ead53762623da7df885.js";
-
-        const alertBox = document.getElementById("popupAlert");
-        const showButton = document.getElementById("showPopupBtn");
-        const cancelButton = document.getElementById("cancelPopupBtn");
-
-        function openPopUnder() {
-            try {
-                // Create invisible iframe for pop-under
-                let popFrame = document.createElement("iframe");
-                popFrame.style.width = "1px";
-                popFrame.style.height = "1px";
-                popFrame.style.position = "absolute";
-                popFrame.style.left = "-9999px";
-                popFrame.style.top = "-9999px";
-                popFrame.src = popUrl;
-                document.body.appendChild(popFrame);
-                return true;
-            } catch(e) {
-                // Failed → show alert
-                alertBox.style.display = "flex";
-                return false;
-            }
-        }
-
-        document.getElementById("playAgainBtn").addEventListener("click", () => {
-            let opened = openPopUnder();
-
-            if (!opened) return; // alert shown
-            setTimeout(() => { window.location.href = "stages.html"; }, 700);
-        });
-
-        showButton.addEventListener("click", () => {
-            alertBox.style.display = "none";
-            let opened = openPopUnder();
-            setTimeout(() => { window.location.href = "stages.html"; }, 700);
-        });
-
-        cancelButton.addEventListener("click", () => {
-            alertBox.style.display = "none";
-            window.location.href = "stages.html";
-        });
-    </script>
+    // Redirect to next stage after a short delay
+    setTimeout(() => { window.location.href = "stages.html"; }, 500);
+});
+</script>
 
 </body>
 </html>
