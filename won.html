@@ -3,87 +3,117 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>You Won!</title>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<title>Stage Complete!</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
     body {
         margin: 0;
-        font-family: 'Press Start 2P', cursive;
-        background-color: #1a1a1a;
-        color: white;
+        font-family: 'Roboto', sans-serif;
+        background-color: #ffffff;
+        color: #333333;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         min-height: 100vh;
         text-align: center;
-        position: relative;
-        overflow-x: hidden;
     }
-    .bg-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        object-fit: cover;
-        z-index: -1;
-        filter: brightness(0.3);
-    }
+
     .modal-content {
-        padding: 25px;
-        border-radius: 15px;
-        background-color: rgba(0, 0, 0, 0.7);
-        max-width: 90%;
-        width: 400px;
-        text-align: center;
-        margin-top: 50px;
-        margin-bottom: 50px;
+        padding: 40px 30px;
+        border-radius: 12px;
+        box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        background-color: #f9f9f9;
+        max-width: 500px;
+        width: 90%;
+        margin: 20px 0;
     }
-    h1 { font-size: clamp(24px, 4vw, 36px); margin-bottom: 15px; color: #ff00cc; }
-    p { font-size: clamp(14px, 2.5vw, 18px); margin-bottom: 15px; color: #fff; }
-    .medal { font-size: clamp(40px, 10vw, 80px); margin-bottom: 15px; }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+        color: #4caf50;
+    }
+
+    p {
+        font-size: 1rem;
+        margin-bottom: 15px;
+        line-height: 1.5;
+        color: #555555;
+    }
+
+    .medal {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+
     #playAgainBtn {
-        background-color: orange; color: black; padding: 12px 25px;
-        border: none; border-radius: 5px; cursor: pointer;
-        font-size: clamp(14px, 2vw, 18px); transition: background-color 0.3s;
+        background-color: #4caf50;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s;
     }
-    #playAgainBtn:hover { background-color: #ff66b2; }
+
+    #playAgainBtn:hover {
+        background-color: #45a049;
+    }
+
     .ad-container {
         width: 100%;
         max-width: 800px;
         text-align: center;
-        margin: 10px auto;
+        margin: 15px auto;
+        min-height: 90px; /* reserve space for Social Bar */
+    }
+
+    @media (max-width: 600px) {
+        .modal-content { padding: 30px 20px; }
+        h1 { font-size: 1.5rem; }
+        .medal { font-size: 2.5rem; }
+        #playAgainBtn { padding: 10px 20px; font-size: 0.9rem; }
     }
 </style>
 </head>
 <body>
 
-<img class="bg-image" src="IMG-20250523-WA0021.jpg" alt="Background">
-
 <!-- 🔝 Top Social Bar -->
-<div class="ad-container">
-    <script type='text/javascript' src='//pl28100142.effectivegatecpm.com/b3/a4/06/b3a406290af525cf19e377b16859903a.js'></script>
-</div>
+<div class="ad-container" id="topSocialBar"></div>
 
+<!-- Modal Content -->
 <div class="modal-content">
-    <h1>Well Done!</h1>
-    <p>You successfully completed this stage. Great job!</p>
+    <h1>Congratulations!</h1>
     <div class="medal">🏅</div>
-    <p>Achievements unlocked: <strong>Stage Conqueror</strong></p>
-    <button id="playAgainBtn">Next</button>
+    <p>You have successfully completed this stage. Excellent work!</p>
+    <p><strong>Achievements unlocked:</strong> Stage Conqueror</p>
+    <p>Keep going! Each level improves your skills and challenges your abilities further.</p>
+    <button id="playAgainBtn">Next Stage</button>
 </div>
 
 <!-- 🔻 Bottom Social Bar -->
-<div class="ad-container">
-    <script type='text/javascript' src='//pl28100142.effectivegatecpm.com/b3/a4/06/b3a406290af525cf19e377b16859903a.js'></script>
-</div>
+<div class="ad-container" id="bottomSocialBar"></div>
 
 <script>
-document.getElementById("playAgainBtn").addEventListener("click", () => {
     // Redirect to next stage
-    window.location.href = "stages.html";
-});
+    document.getElementById("playAgainBtn").addEventListener("click", () => {
+        window.location.href = "stages.html";
+    });
+
+    // Function to load Social Bar scripts dynamically
+    function loadSocialBar(containerId) {
+        const container = document.getElementById(containerId);
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = '//pl28100142.effectivegatecpm.com/b3/a4/06/b3a406290af525cf19e377b16859903a.js';
+        script.async = true; // ensures it loads asynchronously
+        container.appendChild(script);
+    }
+
+    // Load both top and bottom Social Bars
+    loadSocialBar('topSocialBar');
+    loadSocialBar('bottomSocialBar');
 </script>
 
 </body>
