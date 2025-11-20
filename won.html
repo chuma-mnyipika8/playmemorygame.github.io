@@ -32,69 +32,29 @@
         margin: 30px 0;
     }
 
-    h1 {
-        font-size: 2rem;
-        margin-bottom: 15px;
-        color: #4caf50;
-    }
-
-    p {
-        font-size: 1rem;
-        margin-bottom: 15px;
-        line-height: 1.5;
-        color: #555555;
-    }
-
-    .medal {
-        font-size: 3rem;
-        margin-bottom: 15px;
-    }
-
+    h1 { font-size: 2rem; margin-bottom: 15px; color: #4caf50; }
+    p { font-size: 1rem; margin-bottom: 15px; line-height: 1.5; color: #555555; }
+    .medal { font-size: 3rem; margin-bottom: 15px; }
     #playAgainBtn {
-        background-color: #4caf50;
-        color: white;
-        padding: 12px 25px;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 1rem;
+        background-color: #4caf50; color: white; padding: 12px 25px;
+        border: none; border-radius: 6px; cursor: pointer; font-size: 1rem;
         transition: background-color 0.3s;
     }
-
-    #playAgainBtn:hover {
-        background-color: #45a049;
-    }
+    #playAgainBtn:hover { background-color: #45a049; }
 
     .ad-container {
         width: 100%;
         max-width: 800px;
         text-align: center;
-        margin: 15px auto;
-    }
-
-    @media (max-width: 600px) {
-        .modal-content {
-            padding: 30px 20px;
-        }
-        h1 {
-            font-size: 1.5rem;
-        }
-        .medal {
-            font-size: 2.5rem;
-        }
-        #playAgainBtn {
-            padding: 10px 20px;
-            font-size: 0.9rem;
-        }
+        margin: 10px auto;
+        min-height: 90px; /* reserve space so you can see the ad */
     }
 </style>
 </head>
 <body>
 
 <!-- 🔝 Top Social Bar -->
-<div class="ad-container">
-    <script type='text/javascript' src='//pl28100142.effectivegatecpm.com/b3/a4/06/b3a406290af525cf19e377b16859903a.js'></script>
-</div>
+<div class="ad-container" id="topSocialBar"></div>
 
 <div class="modal-content">
     <h1>Congratulations!</h1>
@@ -106,14 +66,25 @@
 </div>
 
 <!-- 🔻 Bottom Social Bar -->
-<div class="ad-container">
-    <script type='text/javascript' src='//pl28100142.effectivegatecpm.com/b3/a4/06/b3a406290af525cf19e377b16859903a.js'></script>
-</div>
+<div class="ad-container" id="bottomSocialBar"></div>
 
 <script>
 document.getElementById("playAgainBtn").addEventListener("click", () => {
     window.location.href = "stages.html";
 });
+
+// Dynamically insert Social Bar scripts
+function loadSocialBar(containerId) {
+    const container = document.getElementById(containerId);
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = '//pl28100142.effectivegatecpm.com/b3/a4/06/b3a406290af525cf19e377b16859903a.js';
+    container.appendChild(script);
+}
+
+// Load both top and bottom Social Bars
+loadSocialBar('topSocialBar');
+loadSocialBar('bottomSocialBar');
 </script>
 
 </body>
