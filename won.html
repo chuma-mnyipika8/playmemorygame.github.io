@@ -37,7 +37,8 @@
         max-width: 90%;
         width: 400px;
         text-align: center;
-        margin-top: 100px;
+        margin-top: 50px;
+        margin-bottom: 50px;
     }
     h1 { font-size: clamp(24px, 4vw, 36px); margin-bottom: 15px; color: #ff00cc; }
     p { font-size: clamp(14px, 2.5vw, 18px); margin-bottom: 15px; color: #fff; }
@@ -48,11 +49,22 @@
         font-size: clamp(14px, 2vw, 18px); transition: background-color 0.3s;
     }
     #playAgainBtn:hover { background-color: #ff66b2; }
+    .ad-container {
+        width: 100%;
+        max-width: 800px;
+        text-align: center;
+        margin: 10px auto;
+    }
 </style>
 </head>
 <body>
 
 <img class="bg-image" src="IMG-20250523-WA0021.jpg" alt="Background">
+
+<!-- 🔝 Top Social Bar -->
+<div class="ad-container">
+    <script type='text/javascript' src='//pl28100142.effectivegatecpm.com/b3/a4/06/b3a406290af525cf19e377b16859903a.js'></script>
+</div>
 
 <div class="modal-content">
     <h1>Well Done!</h1>
@@ -62,19 +74,15 @@
     <button id="playAgainBtn">Next</button>
 </div>
 
-<!-- Invisible iframe for pop-under -->
-<iframe id="popUnderFrame" style="width:1px;height:1px;border:0;position:absolute;left:-9999px;top:-9999px;"></iframe>
+<!-- 🔻 Bottom Social Bar -->
+<div class="ad-container">
+    <script type='text/javascript' src='//pl28100142.effectivegatecpm.com/b3/a4/06/b3a406290af525cf19e377b16859903a.js'></script>
+</div>
 
 <script>
-const popUrl = "https://pl28043518.effectivegatecpm.com/b5/67/a3/b567a3d303ab8ead53762623da7df885.js";
-
 document.getElementById("playAgainBtn").addEventListener("click", () => {
-    // Load pop-under script inside iframe
-    const iframe = document.getElementById("popUnderFrame");
-    iframe.src = popUrl;
-
-    // Redirect to next stage after a short delay
-    setTimeout(() => { window.location.href = "stages.html"; }, 500);
+    // Redirect to next stage
+    window.location.href = "stages.html";
 });
 </script>
 
