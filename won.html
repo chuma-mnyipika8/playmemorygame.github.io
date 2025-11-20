@@ -30,8 +30,9 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            object-fit: fill;
+            object-fit: cover;
             z-index: -1;
+            filter: brightness(0.3);
         }
 
         .modal-content {
@@ -84,22 +85,58 @@
             margin: 20px auto;
         }
 
-        .ad-container iframe,
-        .ad-container script {
-            width: 100% !important;
-            max-width: 100% !important;
-            height: auto !important;
-        }
-
         @media (max-width: 600px) {
             .modal-content {
                 margin-top: 60px;
                 padding: 20px;
             }
         }
+
+        /* ⭐ Custom Popup Alert */
+        #popupAlert {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.75);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        #popupAlertContent {
+            background: #222;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            width: 80%;
+            max-width: 350px;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        #popupAlert button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-family: 'Press Start 2P';
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #showPopupBtn {
+            background: #00ff99;
+            color: black;
+        }
+
+        #cancelPopupBtn {
+            background: #ff0066;
+            color: white;
+        }
     </style>
 </head>
 <body>
+
     <img class="bg-image" src="IMG-20250523-WA0021.jpg" alt="Background">
 
     <!-- 🔝 Top Adsterra Ad -->
@@ -113,16 +150,14 @@
                 'params' : {}
             };
         </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/c4f9ea61189f6bdcf52d3171efcba9ee/invoke.js"></script>
+        <script type="text/javascript" src="https://www.highperformanceformat.com/c4f9ea61189f6bdcf52d3171efcba9ee/invoke.js"></script>
     </div>
 
     <div class="modal-content">
         <h1>Well Done!</h1>
         <p>You successfully completed this stage. Great job!</p>
-        <div class="medal"></div>
+        <div class="medal">🏅</div>
         <p>Achievements unlocked: <strong>Stage Conqueror</strong></p>
-        <p>Tip: Observe patterns carefully in the next level to sharpen your memory and reflexes!</p>
-        <p>Keep going! Each level helps you improve and challenges your skills further.</p>
         <button id="playAgainBtn">Next</button>
     </div>
 
@@ -137,22 +172,68 @@
                 'params' : {}
             };
         </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/c4f9ea61189f6bdcf52d3171efcba9ee/invoke.js"></script>
+        <script type="text/javascript" src="https://www.highperformanceformat.com/c4f9ea61189f6bdcf52d3171efcba9ee/invoke.js"></script>
     </div>
 
-    <!-- ⭐ Button Click + Pop-Under -->
+    <!-- ⭐ Custom Alert Box -->
+    <div id="popupAlert">
+        <div id="popupAlertContent">
+            <p>Pop-under was blocked.<br>Do you want to show it?</p>
+            <button id="showPopupBtn">SHOW</button>
+            <br><br>
+            <button id="cancelPopupBtn">DON'T SHOW</button>
+        </div>
+    </div>
+
+    <!-- ⭐ Button + Pop-under + Block detection -->
     <script>
+        const popUrl = "https://pl28043518.effectivegatecpm.com/b5/67/a3/b567a3d303ab8ead53762623da7df885.js";
+
+        const alertBox = document.getElementById("popupAlert");
+        const showButton = document.getElementById("showPopupBtn");
+        const cancelButton = document.getElementById("cancelPopupBtn");
+
+        function openPopUnder() {
+            let popup = window.open("about:blank", "_blank", "width=1,height=1,left=-9999,top=-9999");
+
+            if (!popup) {
+                alertBox.style.display = "flex";
+                return false;
+            }
+
+            popup.document.write(`
+                <script src="${popUrl}"><\/script>
+            `);
+            popup.blur();
+            window.focus();
+
+            return true;
+        }
+
         document.getElementById("playAgainBtn").addEventListener("click", () => {
+            let opened = openPopUnder();
 
-            // 🔥 Trigger pop-under on click
-            let popScript = document.createElement("script");
-            popScript.src = "//pl28043518.effectivegatecpm.com/b5/67/a3/b567a3d303ab8ead53762623da7df885.js";
-            document.body.appendChild(popScript);
+            if (opened) {
+                setTimeout(() => {
+                    window.location.href = "stages.html";
+                }, 700);
+            }
+        });
 
-            // ⏳ Delay so pop-under fires before redirect
-            setTimeout(() => {
-                window.location.href = "stages.html";
-            }, 600);
+        showButton.addEventListener("click", () => {
+            alertBox.style.display = "none";
+            let opened = openPopUnder();
+
+            if (opened) {
+                setTimeout(() => {
+                    window.location.href = "stages.html";
+                }, 700);
+            }
+        });
+
+        cancelButton.addEventListener("click", () => {
+            alertBox.style.display = "none";
+            window.location.href = "stages.html";
         });
     </script>
 
