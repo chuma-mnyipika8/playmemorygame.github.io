@@ -9,14 +9,36 @@
     <style>
         body {
             font-family: 'Orbitron', sans-serif;
+            margin: 0;
+            background: #f0f0f0;
+            text-align: center;
+        }
+        /* Social Bar */
+        .social-bar {
+            display: flex;
+            justify-content: center;
+            background: #3498db;
+            padding: 10px 0;
+            gap: 15px;
+        }
+        .social-bar a {
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+        .social-bar a:hover {
+            transform: scale(1.2);
+        }
+
+        /* Main Content */
+        .content {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            background: #f0f0f0;
-            text-align: center;
+            min-height: calc(100vh - 60px); /* adjust for social bar */
+            padding: 20px;
         }
         h1 {
             font-size: 2.5rem;
@@ -31,7 +53,7 @@
             margin-top: 30px;
             padding: 12px 25px;
             font-size: 1rem;
-            background: #3498db;
+            background: #2980b9;
             color: white;
             border: none;
             border-radius: 8px;
@@ -39,8 +61,10 @@
             text-decoration: none;
         }
         .button:hover {
-            background: #2980b9;
+            background: #2471a3;
         }
+
+        /* Ad Container */
         .ad-container {
             width: 100%;
             max-width: 800px;
@@ -50,14 +74,25 @@
 </head>
 <body>
 
-    <h1>🎉 Congratulations! You Won! 🎉</h1>
-    <p>Keep going and try the next level for more fun and challenges!</p>
+    <!-- Social Bar -->
+    <div class="social-bar">
+        <a href="https://facebook.com" target="_blank">Facebook</a>
+        <a href="https://twitter.com" target="_blank">Twitter</a>
+        <a href="https://instagram.com" target="_blank">Instagram</a>
+        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+    </div>
 
-    <a href="stages.html" class="button">Next Level</a>
+    <!-- Main Content -->
+    <div class="content">
+        <h1>🎉 Congratulations! You Won! 🎉</h1>
+        <p>Keep going and try the next level for more fun and challenges!</p>
 
-    <!-- Ad Script -->
-    <div class="ad-container">
-        <script type="text/javascript" src="//pl28100142.effectivegatecpm.com/b3/a4/06/b3a406290af525cf19e377b16859903a.js"></script>
+        <a href="stages.html" class="button">Next Level</a>
+
+        <!-- Ad Script -->
+        <div class="ad-container">
+            <script type="text/javascript" src="//pl28100142.effectivegatecpm.com/b3/a4/06/b3a406290af525cf19e377b16859903a.js"></script>
+        </div>
     </div>
 
 </body>
